@@ -134,6 +134,7 @@
       <button class="gbtn lit" id="pMap">Map</button>
       <button class="gbtn lit" id="pGarage">Garage</button>
       <button class="gbtn lit" id="pClubs">Clubs</button>
+      <button class="gbtn lit" id="pLive">Race a friend</button>
       <button class="gbtn lit" id="pFuelBtn">Fuel</button>
       <button class="gbtn lit" id="pGears">Gears: manual</button>
       <button class="gbtn lit" id="pMode">Controls: tilt</button>
@@ -186,6 +187,25 @@
     <div class="pills left" id="evPills"></div>
     <p class="small dim" id="evNote"></p>
     <div class="actions"><button class="gbtn primary lit" id="evStart">Start race</button><button class="gbtn lit" id="evSkip">Not now</button></div>
+  </div>
+</div>
+
+<!-- Live race lobby -->
+<div class="overlay" id="live" hidden>
+  <div class="pane panel lit">
+    <div class="label">Live race</div>
+    <h2 id="lvTitle">Race a friend</h2>
+    <p id="lvText">Race a friend on their own phone. One of you hosts and gets a room code, the other types it in. Live races pay no prize money.</p>
+    <div id="lvStart">
+      <label class="small dim" for="lvName">Your name</label>
+      <input class="field" id="lvName" maxlength="14" autocomplete="off" placeholder="Driver">
+      <div class="actions"><button class="gbtn primary lit" id="lvHost">Host a race</button></div>
+      <label class="small dim" for="lvCodeIn">Or join with a code</label>
+      <div class="actions"><input class="field code" id="lvCodeIn" maxlength="4" autocomplete="off" autocapitalize="characters" placeholder="ABCD"><button class="gbtn lit" id="lvJoin">Join</button></div>
+    </div>
+    <div class="bigcode" id="lvCode" hidden></div>
+    <div class="chips" id="lvEvents" hidden></div>
+    <div class="actions"><button class="gbtn lit" id="lvLeave" hidden>End live session</button><button class="gbtn lit" id="lvClose">Back</button></div>
   </div>
 </div>
 

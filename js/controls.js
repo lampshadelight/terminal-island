@@ -66,6 +66,7 @@ export class Controls {
   _bindKeys() {
     const map = { ArrowLeft: 'left', KeyA: 'left', ArrowRight: 'right', KeyD: 'right', ArrowUp: 'gas', KeyW: 'gas', ArrowDown: 'brake', KeyS: 'brake', ShiftLeft: 'nos', ShiftRight: 'nos', Space: 'drift' };
     addEventListener('keydown', e => {
+      if (e.target && e.target.tagName === 'INPUT') return;
       if (map[e.code]) { this.keys[map[e.code]] = 1; e.preventDefault(); }
       if (!e.repeat && (e.code === 'KeyE' || e.code === 'KeyX')) this.shifts.push(1);
       if (!e.repeat && (e.code === 'KeyQ' || e.code === 'KeyZ')) this.shifts.push(-1);

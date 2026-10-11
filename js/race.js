@@ -54,6 +54,13 @@ export const CLUBS = {
   union: { name: 'Harbour Drift Union', where: 'Dockside', boss: 'Reika', event: 'union-final', type: 'drift', reward: 'Union membership and $3,500' },
   syndicate: { name: 'Runway Syndicate', where: 'Old Terminal', boss: 'Marlow', event: 'syndicate-long', type: 'drag', reward: 'Syndicate membership and $4,500' }
 };
+// live races: the friend's car is a puppet moved by their phone
+export const LIVE_EVENTS = ['neon-loop', 'quay-quarter', 'runway-roll'];
+export function liveEvent(id, friend) {
+  const base = EVENTS.find(e => e.id === id), f = friend.car;
+  return { ...base, live: true, prize: 0, traffic: false, rivals: [{ name: friend.name || 'Your friend', live: true, spec: f.spec, paint: f.paint, glow: f.glow, opts: f.opts }],
+    blurb: `Live race against ${friend.name || 'your friend'}.` };
+}
 export const unlocked = ev => !ev.needs || ev.needs.every(id => save.wins[id]);
 const evById = id => EVENTS.find(e => e.id === id);
 export function clubsHtml() {
@@ -134,30 +141,33 @@ export class Race {
     this.cleanup(true);
     const car = this.car;
     this.active = ev; this.phase = 'count'; this.t = 3.6; this.clock = 0; this.shown = 0; this.calibrated = false;
+    this.ready = { me: false, them: false }; this.sendT = 0;
     this.cp = 0; this.score = 0; this.drift = { t: 0, pending: 0, idle: 0, mult: 1 }; this.wobble = 0; this.resultShown = false; this.finishT = null;
     for (const m of this.markers) m.visible = false;
     this.ui.setTraffic(ev.traffic);
     car.nitro = 1; car.barrier = 0;
     this.rivals = (ev.rivals || []).map((r, i) => {
       const c = new Car(r.spec); c.auto = true; c.nitro = 1;
-      const key = r.spec.id + r.paint;
+      const key = r.spec.id + r.paint + (r.live ? JSON.stringify(r.opts || {}) + r.spec.rideH + r.spec.camber : '');
       let m = this.models.get(key);
-      if (!m) { m = buildCar(r.spec, r.paint, new THREE.Color(r.paint).getHex(), this.T); this.models.set(key, m); }
+      if (!m) { m = buildCar(r.spec, r.paint, r.glow ? new THREE.Color(r.glow).getHex() : new THREE.Color(r.paint).getHex(), this.T, r.opts || {}); this.models.set(key, m); }
       this.scene.add(m.g);
       return { ...r, car: c, m, cp: 0, lane: [3, -3, 0][i % 3], stuck: 0, done: null, react: 0.2 + Math.random() * 0.2, nosAt: 0.35 + Math.random() * 0.3 };
     });
     if (ev.strip) this._startStrip(ev); else this._startPath(ev);
     this.saveCalib = { r: this.controls.tilt.roll0, p: this.controls.tilt.pitch0 };
     this.ui.raceUi(true, ev);
-    this.hud.setTicker([`${TYPES[ev.type].label}: ${ev.name}`, ev.laps ? `${ev.laps} laps` : `${ev.strip.len} metres`, ev.target ? `Target ${ev.target.toLocaleString('en-US')} points` : `${(ev.rivals || []).length + 1} cars`, `Prize ${money(ev.prize)}`]);
+    this.hud.setTicker([`${TYPES[ev.type].label}: ${ev.name}`, ev.laps ? `${ev.laps} laps` : `${ev.strip.len} metres`, ev.target ? `Target ${ev.target.toLocaleString('en-US')} points` : `${(ev.rivals || []).length + 1} cars`, ev.live ? 'Live race' : `Prize ${money(ev.prize)}`]);
     this.hud.setPlace(ev.name);
     this.hud.say(ev.strip ? 'Hold the phone upright and level' : 'Get ready', 2600);
   }
   _startPath(ev) {
     const p = ev.path, a = p[0], b = p[1], h = Math.atan2(b.x - a.x, b.z - a.z), fx = Math.sin(h), fz = Math.cos(h), rx = -fz, rz = fx;
     const slot = (k) => { const row = Math.floor(k / 2), side = k % 2 ? -1 : 1; return { x: a.x - fx * (8 + row * 9) + rx * side * 3.5, z: a.z - fz * (8 + row * 9) + rz * side * 3.5 }; };
-    const s = slot(this.rivals.length); this.car.reset(s.x, s.z, h); this.car.nitro = 1;
-    this.rivals.forEach((r, i) => { const q = slot(i); r.car.reset(q.x, q.z, h); r.car.nitro = 1; });
+    // live: the host takes pole and the guest lines up beside, on both phones
+    const mine = ev.live ? (this.net.role === 'host' ? 0 : 1) : this.rivals.length;
+    const s = slot(mine); this.car.reset(s.x, s.z, h); this.car.nitro = 1;
+    this.rivals.forEach((r, i) => { const q = slot(ev.live ? 1 - mine : i); r.car.reset(q.x, q.z, h); r.car.nitro = 1; });
     this.cpCount = p.length * ev.laps;
     this._placeGate();
   }
@@ -170,7 +180,7 @@ export class Race {
     this._buildStrip(s);
   }
   restart() { const ev = this.active; this.cleanup(); this.start(ev); }
-  leave() { this.cleanup(); }
+  leave() { if (this.active && this.active.live && this.phase !== 'done' && this.phase !== 'aborted') this.net.send({ t: 'leave' }); this.cleanup(); }
   cleanup(keepUi) {
     if (!this.active) return;
     for (const r of this.rivals || []) this.scene.remove(r.m.g);
@@ -217,6 +227,7 @@ export class Race {
   }
   abort(why) {
     if (this.phase !== 'go') return;
+    if (this.active.live) this.net.send({ t: 'abort' });
     this.phase = 'aborted'; this.car.barrier = 1; this.audio.thump(12);
     navigator.vibrate && navigator.vibrate([30, 40, 30]);
     this.hud.say('Run aborted', 2500);
@@ -229,6 +240,10 @@ export class Race {
     const car = this.car;
     if (this.phase === 'count') {
       if (ev.strip && this.ui.needRotate()) { this.ui.count(''); return; }
+      if (ev.live) {
+        if (!this.ready.me) { this.ready.me = true; this.net.send({ t: 'ready' }); }
+        if (!this.ready.them) { this.ui.count(''); this.hud.say(`Waiting for ${this.rivals[0].name}`, 600); this._sync(dt); return; }
+      }
       if (!this.calibrated && this.t < 3.0) { if (this.controls.mode === 'tilt') this.controls.calibrate(); this.calibrated = true; }
       this.t -= dt;
       const n = Math.ceil(this.t);
@@ -242,20 +257,53 @@ export class Race {
     }
     if (this.phase === 'go' || this.phase === 'done') this.clock += this.phase === 'go' ? dt : 0;
     // rivals
+    for (const r of this.rivals) if (r.live) this._puppet(r, dt);
     for (let s = 0; s < 2; s++) for (const r of this.rivals) {
+      if (r.live) continue;
       const inp = ev.strip ? this._aiStrip(r) : this._aiPath(r, dt / 2);
       r.car.step(dt / 2, inp, false);
       if (ev.strip) { r.car.z = r.laneZ; r.car.h = Math.PI / 2; r.car.vz = 0; syncFL(r.car); }
       else if (collide(r.car, 1.7)) syncFL(r.car);
     }
     if (!ev.strip) {
-      for (const r of this.rivals) { const v = pushApart(car, r.car); if (v > 3) { car.hit(v); r.car.hit(v); this.audio.thump(v); this.onHit(v); } }
+      for (const r of this.rivals) { if (r.live) continue; const v = pushApart(car, r.car); if (v > 3) { car.hit(v); r.car.hit(v); this.audio.thump(v); this.onHit(v); } }
       for (let i = 0; i < this.rivals.length; i++) for (let j = i + 1; j < this.rivals.length; j++) pushApart(this.rivals[i].car, this.rivals[j].car);
     }
     if (ev.strip) this._stripRules(dt); else this._pathRules(dt);
+    if (ev.live) this._sendState(dt);
     this._sync(dt);
     this.ui.raceHud(this._hudInfo());
   }
+  /* ---------- live: the friend's car follows their phone ---------- */
+  _puppet(r, dt) {
+    const n = r.net, c = r.car; if (!n) return;
+    const k = 1 - Math.exp(-dt * 12);
+    // where they will be by now, from their last report
+    const age = Math.min(0.5, (performance.now() - n.at) / 1000), px = n.x + n.vx * age, pz = n.z + n.vz * age;
+    c.x += (px - c.x) * k; c.vx = n.vx; c.f = n.f; c.rpm = n.rpm; c.gear = n.gear;
+    if (this.active.strip) { c.z = r.laneZ; c.h = Math.PI / 2; c.vz = 0; }
+    else { c.z += (pz - c.z) * k; c.vz = n.vz; c.h += wrapA(n.h - c.h) * k; }
+    r.cp = n.cp;
+  }
+  _sendState(dt) {
+    this.sendT -= dt; if (this.sendT > 0) return; this.sendT = 1 / 15;
+    const c = this.car;
+    this.net.send({ t: 's', x: c.x, z: c.z, h: c.h, vx: c.vx, vz: c.vz, f: c.f, rpm: c.rpm, gear: c.gear, cp: this.cp });
+  }
+  // a message from the friend's phone during a live race
+  onNet(d) {
+    const ev = this.active; if (!ev || !ev.live) return;
+    const r = this.rivals[0]; if (!r) return;
+    if (d.t === 'ready') this.ready.them = true;
+    if (d.t === 's') {
+      // their strip lane is ours mirrored: only the distance down the strip matters
+      r.net = { ...d, at: performance.now() };
+      if (ev.strip) r.net.x = d.x;
+    }
+    if (d.t === 'fin' && r.done == null) { r.done = d.time; if (this.phase === 'go') this.hud.say(`${r.name} finished in ${fmtTime(d.time)}`, 2400); else if (this.phase === 'done') this._liveResult(); }
+    if (d.t === 'abort' || d.t === 'leave') { r.out = true; this.hud.say(d.t === 'abort' ? `${r.name}'s run was aborted` : `${r.name} left the race`, 2600); if (this.phase === 'done') this._liveResult(); }
+  }
+
   _sync(dt) { for (const r of this.rivals) syncModel(r.m, r.car, dt); }
   _cruise() {
     const v = this.active.strip.roll;
@@ -393,6 +441,7 @@ export class Race {
     if (this.phase !== 'go') return;
     this.phase = 'done'; this.finishT = this.clock; this.gate.visible = false;
     const ev = this.active, t = TYPES[ev.type];
+    if (ev.live) { this.net.send({ t: 'fin', time: this.finishT }); this.hud.say('Finished', 2000); this._liveResult(); return; }
     let place = 1, win, title, text, prize = 0;
     const pills = [];
     if (ev.type === 'drift') {
@@ -425,6 +474,17 @@ export class Race {
     persist();
     this.hud.say(win ? 'Finished: you won' : 'Finished', 2500);
     setTimeout(() => this.ui.results({ label: t.label, title, text, pills, win, color: t.color }), 1500);
+  }
+
+  _liveResult() {
+    const ev = this.active, t = TYPES[ev.type], r = this.rivals[0], me = this.finishT;
+    const theirs = r.out ? null : r.done;
+    let title, text, win = false;
+    if (theirs != null) { win = me < theirs; title = win ? `You beat ${r.name}` : `${r.name} won`; text = `You ran ${fmtTime(me)}. ${r.name} ran ${fmtTime(theirs)}.`; }
+    else if (r.out) { win = true; title = 'You won'; text = `You ran ${fmtTime(me)}. ${r.name} did not finish.`; }
+    else { win = true; title = 'You crossed the line first'; text = `You ran ${fmtTime(me)}. ${r.name} is still racing.`; }
+    clearTimeout(this.resT);
+    this.resT = setTimeout(() => this.ui.results({ label: 'Live race', title, text, pills: [fmtTime(me), ev.name], win, color: t.color, live: true }), theirs != null || r.out ? 300 : 1500);
   }
 
   _hudInfo() {

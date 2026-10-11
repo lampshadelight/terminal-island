@@ -22,6 +22,12 @@ Every car is an original design inspired by a real street car, with invented bra
 - Starters (pick one): Hikari Kaze (180SX-inspired), Tachi Hornet (Civic), Mazura Vortex (RX-8), Brauer Dreier (E36), Kagero Ronin (AE86)
 - At the dealer: Sanko Solstice (Eclipse), Hikari Zephyr (Skyline R34), Brannock Vandal (Mustang), Ravelle Strix (mid-engine exotic)
 
+## Tuning, clubs and live races
+- Torque Works has a dyno (power and torque curves) and tuning sliders: ride height, camber, final drive and steering lock.
+- Spectra Paint sells vinyls (flames, side band, speed slashes, splatter, checker) in seven colours, plus invented sponsor decals.
+- Three street clubs, each with a boss race that appears once you win its qualifying events: The Kings (Neon Row circuit), Harbour Drift Union (drift) and Runway Syndicate (760 m drag). See Pause > Clubs.
+- Pause > Race a friend: one phone hosts and shows a four letter code, the other joins with it. The phones connect directly through the free PeerJS service. Live races pay no prize money.
+
 ## Graphics
 Wet streets that reflect the city, glow around lights (High), light trails and speed streaks. Pause menu → Graphics switches Low / Medium / High.
 
@@ -34,7 +40,9 @@ Plain JavaScript modules and three.js, no build step.
 - `js/controls.js` tilt, touch and keyboard
 - `js/hud.js` dashboard and maps
 - `js/race.js` race events, rivals and the portrait balance mode
-- `js/garage.js` shops, upgrades and the garage
+- `js/garage.js` shops, upgrades, tuning, dyno and the garage
+- `js/livery.js` vinyls and sponsor decals
+- `js/live.js` live races against a friend
 - `js/fuel.js` fuel tank and daily charges
 - `js/save.js` progress saved on the phone
 - `js/main.js` game loop and menus

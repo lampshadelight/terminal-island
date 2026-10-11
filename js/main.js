@@ -7,7 +7,8 @@ import { carStats } from './garage.js';
 import { Controls } from './controls.js';
 import { Audio } from './audio.js';
 import { Hud, drawMap } from './hud.js';
-import { Race, clubsHtml } from './race.js';
+import { Race, clubsHtml, LIVE_EVENTS, liveEvent, EVENTS, TYPES } from './race.js';
+import { Live } from './live.js';
 import { WetRoads, makeBloom, Trails } from './fx.js';
 import { SHOPS, Shops, buildShopDoors, tunedSpec, looks } from './garage.js';
 import { Fuel, fmtLeft } from './fuel.js';
@@ -35,8 +36,9 @@ const streamer = new Streamer(scene, T, M);
 let previewId = save.current || 'kaze';
 const shownId = () => save.current || previewId;
 const car = new Car(tunedSpec(shownId()));
+const modelOpts = L => ({ rims: L.rims, vinyl: L.vinyl, vinylColor: L.vinylColor, decals: L.decals });
 function makeModel() {
-  const L = looks(shownId()), m = buildCar(L.spec, L.paint, L.glow ? new THREE.Color(L.glow).getHex() : null, T, { rims: L.rims, vinyl: L.vinyl, vinylColor: L.vinylColor, decals: L.decals });
+  const L = looks(shownId()), m = buildCar(L.spec, L.paint, L.glow ? new THREE.Color(L.glow).getHex() : null, T, modelOpts(L));
   scene.add(m.g); return m;
 }
 let model = makeModel();
@@ -225,7 +227,7 @@ function pause() {
   $('pCash').textContent = money(save.cash); $('pFuel').textContent = Math.ceil(fuel.level * 100) + '%'; $('pCharges').textContent = `${fuel.charges} of 6`;
   show('pause', true);
 }
-function resume() { show('pause', false); show('map', false); show('eventCard', false); show('shop', false); show('fuel', false); clearInterval(fuelTimer); state.mapOpen = false; state.paused = false; controls.clear(); audio.resume(); }
+function resume() { show('live', false); show('pause', false); show('map', false); show('eventCard', false); show('shop', false); show('fuel', false); clearInterval(fuelTimer); state.mapOpen = false; state.paused = false; controls.clear(); audio.resume(); }
 $('pauseBtn').addEventListener('click', () => state.paused ? resume() : pause());
 $('pResume').addEventListener('click', resume);
 $('pRestart').addEventListener('click', () => { if (race.active) { show('results', false); race.restart(); resume(); } });
@@ -272,7 +274,7 @@ $('mapBtn').addEventListener('click', openMap); $('pMap').addEventListener('clic
 $('mapClose').addEventListener('click', resume);
 document.addEventListener('visibilitychange', () => { if (document.hidden) pause(); });
 addEventListener('keydown', e => {
-  if (!$('results').hidden) return;
+  if (!$('results').hidden || (e.target && e.target.tagName === 'INPUT')) return;
   if (e.code === 'Escape' || e.code === 'KeyP') { state.paused ? (state.mapOpen ? resume() : (state.running && resume())) : pause(); }
   if (e.code === 'KeyM') state.mapOpen ? resume() : openMap();
 });
@@ -314,11 +316,74 @@ const ui = {
     if (!race.active) return;
     $('resLabel').textContent = r.label; $('resLabel').style.color = r.color || '';
     $('resTitle').textContent = r.title; $('resText').textContent = r.text;
+    $('resRetry').hidden = !!r.live;
     $('resPills').innerHTML = r.pills.map(p => `<span class="pill" style="--c:${r.color || '#BF0003'}">${p}</span>`).join('');
     ui.modal('results');
   }
 };
 const race = new Race({ scene, T, car, model, hud, controls, audio, ui });
+
+/* ---------------- live races against a friend ---------------- */
+const live = new Live({ onMsg: liveMsg, onStatus: liveStatus });
+race.net = live;
+let lvState = 'idle';
+const myName = () => (save.name || 'Driver');
+function hello() {
+  const L = looks(save.current);
+  live.send({ t: 'hello', name: myName(), car: { spec: car.spec, paint: L.paint, glow: L.glow, opts: modelOpts(L) } });
+}
+function renderLive(msg) {
+  const host = live.role === 'host', on = live.connected, f = live.friend;
+  $('lvStart').hidden = lvState !== 'idle' && lvState !== 'error';
+  $('lvCode').hidden = !(host && lvState === 'waiting'); $('lvCode').textContent = live.code;
+  $('lvLeave').hidden = lvState === 'idle' || lvState === 'error';
+  $('lvEvents').hidden = !(host && on && f);
+  $('lvTitle').textContent = on && f ? `Connected to ${f.name}` : lvState === 'waiting' ? 'Your room code' : lvState === 'joining' ? `Joining ${live.code}` : 'Race a friend';
+  $('lvText').textContent = msg || (on && f ? (host ? 'Pick a race. You will both be taken to the start line.' : `Waiting for ${f.name} to pick a race.`)
+    : lvState === 'waiting' ? 'Tell your friend this code. They tap Race a friend, then Join.'
+    : lvState === 'joining' || lvState === 'connected' ? 'Connecting…'
+    : 'Race a friend on their own phone. One of you hosts and gets a room code, the other types it in. Live races pay no prize money.');
+  $('lvEvents').innerHTML = LIVE_EVENTS.map(id => { const ev = EVENTS.find(e => e.id === id); return `<button class="chip" data-ev="${id}" style="border-color:${TYPES[ev.type].color}">${ev.name} · ${TYPES[ev.type].label}</button>`; }).join('');
+}
+function liveStatus(st, info) {
+  if (st === 'error') { lvState = 'error'; live.close(); renderLive(info); return; }
+  if (st === 'closed') {
+    lvState = 'idle';
+    if (race.active && race.active.live) { race.onNet({ t: 'leave' }); }
+    hud.say('Your friend disconnected', 3000); renderLive(); return;
+  }
+  lvState = st;
+  if (st === 'connected') hello();
+  renderLive();
+}
+function liveMsg(d) {
+  if (d.t === 'hello') renderLive();
+  if (d.t === 'start') startLive(d.ev);
+  race.onNet(d);
+}
+function startLive(id) {
+  if (!live.friend) return;
+  ['live', 'pause', 'results', 'eventCard', 'shop', 'map', 'fuel'].forEach(o => show(o, false));
+  if (race.active) race.cleanup();
+  race.start(liveEvent(id, live.friend)); resume();
+}
+$('pLive').addEventListener('click', () => {
+  show('pause', false); ui.modal('live'); $('lvName').value = save.name || '';
+  if (live.connected) hello(); renderLive();
+});
+$('lvName').addEventListener('change', () => { save.name = $('lvName').value.trim().slice(0, 14) || null; persist(); });
+$('lvHost').addEventListener('click', () => { $('lvName').dispatchEvent(new Event('change')); lvState = 'joining'; renderLive('Getting a room code…'); live.host(); });
+$('lvJoin').addEventListener('click', () => {
+  const code = $('lvCodeIn').value.trim().toUpperCase();
+  if (!/^[A-Z]{4}$/.test(code)) { renderLive('Room codes are four letters.'); return; }
+  $('lvName').dispatchEvent(new Event('change')); live.join(code);
+});
+$('lvEvents').addEventListener('click', e => {
+  const b = e.target.closest('[data-ev]'); if (!b || !live.connected) return;
+  live.send({ t: 'start', ev: b.dataset.ev }); startLive(b.dataset.ev);
+});
+$('lvLeave').addEventListener('click', () => { live.close(); lvState = 'idle'; renderLive(); });
+$('lvClose').addEventListener('click', resume);
 $('evStart').addEventListener('click', () => {
   if (fuel.empty) { show('eventCard', false); hud.say('Your tank is empty'); openFuel(); return; }
   show('eventCard', false); race.start(); resume();
@@ -453,4 +518,4 @@ function frame(now) {
 }
 applyQuality(); resize();
 requestAnimationFrame(frame);
-window.__ti = { scene, T, camera, THREE, car, state, controls, streamer, traffic, race, fuel, save, shops, get model() { return model; } };
+window.__ti = { live, scene, T, camera, THREE, car, state, controls, streamer, traffic, race, fuel, save, shops, get model() { return model; } };
