@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { clamp, lerp, rng } from './util.js';
 import { makeTextures, makeMaterials } from './textures.js';
-import { DATA, collide, placeAt, Streamer, buildStatic } from './world.js';
+import { DATA, collide, placeAt, Streamer, buildStatic, ROADS, roadPose, onRoad } from './world.js';
 import { CARS, Car, buildCar, syncModel, disposeCar } from './car.js';
 import { carStats } from './garage.js';
 import { Controls } from './controls.js';
@@ -57,23 +57,19 @@ const TRAFFIC_PAINT = ['#d8dade', '#2a2e35', '#5b6470', '#e9e4da', '#1c2a3a', '#
 const traffic = new Map(); // district id -> array of bots
 const pool = [];
 const rnd = rng(7);
-function graph(d) {
-  if (d._g) return d._g;
-  const nodes = new Map(d.nodes.map(n => [n.id, { ...n, nb: [] }]));
-  for (const [a, b] of d.edges) { const A = nodes.get(a), B = nodes.get(b); if (A && B) { A.nb.push(B); B.nb.push(A); } }
-  return (d._g = [...nodes.values()].filter(n => n.nb.length));
-}
+const TRAFFIC_ROADS = ROADS.filter(r => r.id !== 'closed');
 function spawnTraffic(id) {
-  const d = DATA[id], g = graph(d);
-  if (!g.length) return;
-  const n = id === 'terminal' ? 8 : 16, bots = [];
-  for (let k = 0; k < n; k++) {
-    const a = g[Math.floor(rnd() * g.length)], b = a.nb[Math.floor(rnd() * a.nb.length)];
+  const bots = [], total = TRAFFIC_ROADS.reduce((t, r) => t + r.len, 0);
+  for (let k = 0; k < 26; k++) {
+    // more cars on longer roads
+    let pick = rnd() * total, road = TRAFFIC_ROADS[0];
+    for (const r of TRAFFIC_ROADS) { if (pick < r.len) { road = r; break; } pick -= r.len; }
     const spec = Object.values(CARS)[k % 3];
     let m = pool.pop();
     if (!m) { m = buildCar(spec, TRAFFIC_PAINT[k % TRAFFIC_PAINT.length], null, T, { beam: false }); scene.add(m.g); }
     m.g.visible = trafficOn;
-    bots.push({ a, b, t: rnd(), v: 9 + rnd() * 5, m, x: a.x, z: a.z, vx: 0, vz: 0, h: 0, lane: (d.RW || 16) * 0.25, barrier: 0, wait: 0 });
+    const p = roadPose(road, pick);
+    bots.push({ road, s: pick, dir: rnd() < 0.5 ? 1 : -1, v: 9 + rnd() * 6, m, x: p.x, z: p.z, vx: 0, vz: 0, h: p.h, lane: road.w * 0.25, barrier: 0 });
   }
   traffic.set(id, bots);
 }
@@ -86,26 +82,19 @@ function dropTraffic(id) {
 function stepTraffic(dt) {
   if (!trafficOn) return;
   for (const bots of traffic.values()) for (const b of bots) {
-    const dx = b.b.x - b.a.x, dz = b.b.z - b.a.z, L = Math.hypot(dx, dz) || 1;
+    const p0 = roadPose(b.road, b.s), th = b.dir > 0 ? p0.h : p0.h + Math.PI, fx = Math.sin(th), fz = Math.cos(th);
     // slow down when the player is right in front
-    const fx = dx / L, fz = dz / L, px = car.x - b.x, pz = car.z - b.z, ahead = px * fx + pz * fz, side = Math.abs(px * fz - pz * fx);
-    const blocked = ahead > 0 && ahead < 14 && side < 3;
-    b.wait = blocked ? 0 : b.wait;
-    const v = blocked ? 0 : b.v;
-    b.t += v * dt / L;
-    if (b.t >= 1) {
-      const prev = b.a; b.a = b.b;
-      const opts = b.a.nb.filter(n => n !== prev);
-      b.b = (opts.length ? opts : b.a.nb)[Math.floor(rnd() * (opts.length || b.a.nb.length))];
-      b.t = 0;
-      continue;
-    }
+    const px = car.x - b.x, pz = car.z - b.z, ahead = px * fx + pz * fz, side = Math.abs(px * fz - pz * fx);
+    const v = ahead > 0 && ahead < 14 && side < 3 ? 0 : b.v;
+    b.s += b.dir * v * dt;
+    // open roads: turn round at the end
+    if (!b.road.closed && (b.s <= 1 || b.s >= b.road.len - 1)) { b.dir = -b.dir; b.s = clamp(b.s, 1, b.road.len - 1); }
+    const p = roadPose(b.road, b.s), h2 = b.dir > 0 ? p.h : p.h + Math.PI, gx = Math.sin(h2), gz = Math.cos(h2);
     // keep right: offset from the centre line
-    const rx = -fz, rz = fx;
-    const nx = b.a.x + dx * b.t + rx * b.lane, nz = b.a.z + dz * b.t + rz * b.lane;
+    const nx = p.x - gz * b.lane, nz = p.z + gx * b.lane;
     b.vx = (nx - b.x) / Math.max(dt, 1e-3); b.vz = (nz - b.z) / Math.max(dt, 1e-3);
     b.x = nx; b.z = nz;
-    const th = Math.atan2(fx, fz); let dh = th - b.h; while (dh > Math.PI) dh -= 2 * Math.PI; while (dh < -Math.PI) dh += 2 * Math.PI;
+    let dh = h2 - b.h; while (dh > Math.PI) dh -= 2 * Math.PI; while (dh < -Math.PI) dh += 2 * Math.PI;
     b.h += dh * Math.min(1, dt * 6);
     b.m.g.position.set(b.x, 0, b.z); b.m.g.rotation.y = b.h;
     for (const w of b.m.wheels) w.rotation.x += v * dt / 0.37;
@@ -268,7 +257,7 @@ function openMap() {
   const px = Math.max(200, Math.min(row ? innerWidth - 260 : innerWidth - 32, row ? innerHeight - 32 : innerHeight - 150, 640)), dpr = Math.min(2, devicePixelRatio || 1);
   big.style.width = big.style.height = px + 'px'; big.width = big.height = Math.round(px * dpr);
   // the whole island, including the unfinished roads out over the sea
-  drawMap(bctx, big.width, big.height, -300, 420, big.width / 3000, [0, -1], car, true, dpr * clamp(px / 520, 0.6, 1.1), marks());
+  drawMap(bctx, big.width, big.height, 0, 0, big.width / 3700, [0, -1], car, true, dpr * clamp(px / 520, 0.6, 1.1), marks());
   show('map', true); state.mapOpen = true;
 }
 $('pMap').addEventListener('click', openMap); $('mini').addEventListener('click', openMap);
@@ -457,6 +446,7 @@ function frame(now) {
       const d = controls.shifts.shift(), ratio = car.rpm / car.spec.redline;
       if (car.shift(d)) { audio.blip(d > 0 ? 520 : 380, 0.06, 'square', 0.05); race.onShift(d, ratio); }
     }
+    car.offroad = !onRoad(car.x, car.z);
     for (let s = 0; s < 2; s++) {
       car.step(dt / 2, inp, race.locked);
       const hit = collide(car, 1.7);

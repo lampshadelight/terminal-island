@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { clamp, lerp, wrapA, DEG, canvasTex } from './util.js';
 import { CARS, RATIOS, Car, buildCar, syncModel } from './car.js';
-import { collide } from './world.js';
+import { collide, ROUTES } from './world.js';
 import { PAL } from './textures.js';
 import { save, persist, money } from './save.js';
 
@@ -23,29 +23,29 @@ export const TYPES = {
 };
 
 export const EVENTS = [
-  { id: 'neon-loop', type: 'circuit', name: 'Neon Loop', where: 'Neon Row', marker: { x: 60, z: -288 }, laps: 2, prize: 1200, traffic: true,
-    path: P([[0, -288], [288, -288], [288, 96], [96, 96], [96, 288], [-192, 288], [-192, -96], [0, -96]]),
+  { id: 'neon-loop', type: 'circuit', name: 'Neon Loop', where: 'Neon Row', marker: ROUTES.town[1], laps: 2, prize: 1200, traffic: true,
+    path: ROUTES.town,
     rivals: [{ name: 'Kestrel', spec: rivalSpec('hornet', 1), paint: '#FFC400' }, { name: 'Mox', spec: rivalSpec('dreier', 0.98), paint: '#249689' }, { name: 'Juno', spec: rivalSpec('vortex', 0.96), paint: '#587AF9' }],
-    blurb: 'Two laps through the towers of Neon Row against three local drivers. Drive through every checkpoint gate.' },
-  { id: 'harbour-drift', type: 'drift', name: 'Harbour Drift', where: 'Dockside', marker: { x: 60, z: 1210 }, laps: 2, prize: 1000, target: 6000, traffic: false,
-    path: P([[0, 1210], [240, 1210], [240, 1430], [0, 1430]]),
-    blurb: 'Two laps around the container yards. Slide the car to score: the longer the drift, the higher the multiplier. Touching a barrier mid-drift loses the points you were building.' },
-  { id: 'quay-quarter', type: 'drag', name: 'Quay Quarter', where: 'Dockside', marker: { x: -400, z: 1650 }, prize: 900, traffic: false,
-    strip: { cz: 1650, x0: -440, len: 402 }, rivals: [{ name: 'Brick', spec: rivalSpec('kaze', 0.98), paint: '#FF4500' }],
+    blurb: 'Two laps round the streets of Neon Row against three local drivers. Drive through every checkpoint gate.' },
+  { id: 'harbour-drift', type: 'drift', name: 'Harbour Drift', where: 'Dockside', marker: ROUTES.dock[1], laps: 2, prize: 1000, target: 6000, traffic: false,
+    path: ROUTES.dock,
+    blurb: 'Two laps round the harbour loop in the port. Slide the car to score: the longer the drift, the higher the multiplier. Touching a barrier mid-drift loses the points you were building.' },
+  { id: 'quay-quarter', type: 'drag', name: 'Quay Quarter', where: 'Dockside', marker: { x: -215, z: 880 }, prize: 900, traffic: false,
+    strip: { cz: 880, x0: -180, len: 402 }, rivals: [{ name: 'Brick', spec: rivalSpec('kaze', 0.98), paint: '#FF4500' }],
     blurb: 'A quarter mile down the quay. Shift at the top of the rev bar for a perfect shift. Hold the phone upright and level.' },
-  { id: 'runway-roll', type: 'roll', name: 'Runway Roll', where: 'Old Terminal', marker: { x: -1700, z: 225 }, prize: 1100, traffic: false,
-    strip: { cz: 250, x0: -1630, len: 600, roll: 60 / 3.6 }, rivals: [{ name: 'Sable', spec: rivalSpec('dreier', 0.93), paint: '#FFFFFF' }],
+  { id: 'runway-roll', type: 'roll', name: 'Runway Roll', where: 'Old Terminal', marker: { x: -1080, z: 225 }, prize: 1100, traffic: false,
+    strip: { cz: 250, x0: -1000, len: 600, roll: 60 / 3.6 }, rivals: [{ name: 'Sable', spec: rivalSpec('dreier', 0.93), paint: '#FFFFFF' }],
     blurb: 'Both cars roll down the old runway at 60 km/h. When the lights change, it is flat out for 600 metres. Hold the phone upright and level.' },
   // club boss races: hidden until you have won the club's qualifying races
-  { id: 'kings-crown', type: 'circuit', club: 'kings', needs: ['neon-loop'], name: 'Crown of Neon Row', where: 'Neon Row', marker: { x: 288, z: -150 }, laps: 3, prize: 4000, traffic: true,
-    path: P([[0, -288], [288, -288], [288, 96], [96, 96], [96, 288], [-192, 288], [-192, -96], [0, -96]]),
+  { id: 'kings-crown', type: 'circuit', club: 'kings', needs: ['neon-loop'], name: 'Crown of Neon Row', where: 'Neon Row', marker: ROUTES.town[Math.floor(ROUTES.town.length / 2)], laps: 3, prize: 4000, traffic: true,
+    path: ROUTES.town,
     rivals: [{ name: 'Vex', boss: true, spec: rivalSpec('zephyr', 1.04), paint: '#1A1A1E' }, { name: 'Halo', spec: rivalSpec('vandal', 1), paint: '#BF0003' }, { name: 'Pike', spec: rivalSpec('solstice', 1), paint: '#FFC400' }],
     blurb: 'The Kings run Neon Row. Three laps against their boss Vex and two of the crew. Beat Vex to take the crown.' },
-  { id: 'union-final', type: 'drift', club: 'union', needs: ['harbour-drift'], name: 'Union Final', where: 'Dockside', marker: { x: 240, z: 1320 }, laps: 3, prize: 3500, target: 11000, traffic: false,
-    path: P([[0, 1210], [240, 1210], [240, 1430], [0, 1430]]),
+  { id: 'union-final', type: 'drift', club: 'union', needs: ['harbour-drift'], name: 'Union Final', where: 'Dockside', marker: ROUTES.dock[Math.floor(ROUTES.dock.length / 2)], laps: 3, prize: 3500, target: 11000, traffic: false,
+    path: ROUTES.dock,
     blurb: 'The Harbour Drift Union boss, Reika, set 11,000 points over three laps of the yards. Beat her score to join the Union.' },
-  { id: 'syndicate-long', type: 'drag', club: 'syndicate', needs: ['quay-quarter', 'runway-roll'], name: 'Syndicate Long Run', where: 'Old Terminal', marker: { x: -1720, z: 268 }, prize: 4500, traffic: false,
-    strip: { cz: 250, x0: -1645, len: 760 }, rivals: [{ name: 'Marlow', boss: true, spec: rivalSpec('zephyr', 1.02), paint: '#B8BCC4' }],
+  { id: 'syndicate-long', type: 'drag', club: 'syndicate', needs: ['quay-quarter', 'runway-roll'], name: 'Syndicate Long Run', where: 'Old Terminal', marker: { x: -1080, z: 290 }, prize: 4500, traffic: false,
+    strip: { cz: 250, x0: -1050, len: 760 }, rivals: [{ name: 'Marlow', boss: true, spec: rivalSpec('zephyr', 1.02), paint: '#B8BCC4' }],
     blurb: 'The Runway Syndicate only race the long way: 760 metres from a standing start against their boss, Marlow. Hold the phone upright and level.' }
 ];
 
@@ -323,8 +323,9 @@ export class Race {
     if (this.phase !== 'go' || r.done) return { steer: 0, throttle: 0, brake: 1, nos: false, drift: false };
     const aim = dist < 30 ? Math.atan2(nx.x - c.x, nx.z - c.z) * 0.35 + Math.atan2(tx - c.x, tz - c.z) * 0.65 : Math.atan2(tx - c.x, tz - c.z);
     const steer = clamp(wrapA(aim - c.h) * 2.4, -1, 1);
-    const turn = Math.abs(wrapA(hout - hin));
-    const vCorner = turn > 1 ? 13.5 : turn > 0.3 ? 22 : 70;
+    // corner speed from how tight the bend is: radius = chord / turn
+    const turn = Math.abs(wrapA(hout - hin)), chord = Math.hypot(nx.x - wp.x, nx.z - wp.z);
+    const vCorner = Math.min(70, Math.sqrt(8.5 * chord / Math.max(turn, 0.01)));
     // rubber band a little so the race stays close
     const gap = this._progress(r) - this._progress(this);
     const skill = gap > 1.5 ? 0.93 : gap < -1.5 ? 1.08 : 1;

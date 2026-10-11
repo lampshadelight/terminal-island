@@ -133,8 +133,11 @@ export class Car {
     f = Math.abs(f) < roll ? 0 : f - Math.sign(f) * roll;
     f -= Math.sign(f) * f * f * (s.accel * 0.32 / (s.top * s.top)) * dt;
     if (hb) f -= f * 0.5 * dt;
+    // rough grass off the road: heavy drag and less grip
+    if (this.offroad) f -= Math.sign(f) * Math.min(Math.abs(f), (1.2 + Math.abs(f) * 0.28) * dt);
     const sp = Math.abs(f);
     let grip = s.grip;
+    if (this.offroad) grip *= 0.7;
     if (hb) grip = 1.1; else if (this.drifting && thr > 0.4 && Math.abs(l) > 2) grip = s.grip * 0.42;
     l *= Math.exp(-grip * dt);
     this.steer += (inp.steer - this.steer) * Math.min(1, dt * 8);

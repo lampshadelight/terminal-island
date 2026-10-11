@@ -1,3 +1,4 @@
+import { SPOTS } from './world.js';
 import * as THREE from 'three';
 import { CARS } from './car.js';
 import { PAL } from './textures.js';
@@ -9,11 +10,11 @@ import { VINYLS, VINYL_COLORS } from './livery.js';
    you find one by driving past it. Drive slowly into the doorway to go in.
    ------------------------------------------------------------------ */
 export const SHOPS = [
-  { id: 'cars', kind: 'cars', name: 'Kinetic Motors', label: 'Car dealer', sign: 'MOTORS', x: -378, z: 240, h: -Math.PI / 2, rumour: 'Word is there is a car dealer on the west side of Neon Row' },
-  { id: 'parts', kind: 'parts', name: 'Torque Works', label: 'Performance parts', sign: 'TORQUE', x: -234, z: 1100, h: -Math.PI / 2, rumour: 'Someone is selling turbos out of a warehouse in Dockside' },
-  { id: 'paint', kind: 'paint', name: 'Spectra Paint', label: 'Paint shop', sign: 'PAINT', x: -1443, z: -380, h: -Math.PI / 2, rumour: 'There is a paint booth near the Old Terminal car park' },
-  { id: 'body', kind: 'body', name: 'Panel & Line', label: 'Body kits', sign: 'BODY', x: 294, z: -420, h: Math.PI / 2, rumour: 'A body shop hides on the north-east side of Neon Row' },
-  { id: 'acc', kind: 'acc', name: 'Glowline', label: 'Accessories', sign: 'GLOW', x: 470, z: 880, h: Math.PI / 2, rumour: 'Underglow kits are sold at the far east end of the docks' }
+  { id: 'cars', kind: 'cars', name: 'Kinetic Motors', label: 'Car dealer', sign: 'MOTORS', ...SPOTS.cars, rumour: 'Word is there is a car dealer on the main street of Neon Row' },
+  { id: 'parts', kind: 'parts', name: 'Torque Works', label: 'Performance parts', sign: 'TORQUE', ...SPOTS.parts, rumour: 'Someone is selling turbos out of the port in Dockside' },
+  { id: 'paint', kind: 'paint', name: 'Spectra Paint', label: 'Paint shop', sign: 'PAINT', ...SPOTS.paint, rumour: 'There is a paint booth on the road to the old airport' },
+  { id: 'body', kind: 'body', name: 'Panel & Line', label: 'Body kits', sign: 'BODY', ...SPOTS.body, rumour: 'A body shop hides on the back streets of Neon Row' },
+  { id: 'acc', kind: 'acc', name: 'Glowline', label: 'Accessories', sign: 'GLOW', ...SPOTS.acc, rumour: 'Underglow kits are sold beside the coast road on the east side' }
 ];
 
 export const PARTS = [

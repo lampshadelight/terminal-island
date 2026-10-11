@@ -41,21 +41,22 @@ export function drawMap(ctx, w, h, cx, cz, s, up, car, full, k = 1, marks = []) 
   ctx.fillStyle = '#05070a'; ctx.fillRect(0, 0, w, h);
   ctx.setTransform(a, b, c, d, e, f);
   const rect = (r, col) => { ctx.fillStyle = col; ctx.fillRect(r.x0, r.z0, r.x1 - r.x0, r.z1 - r.z0); };
-  for (const dd of SHAPES.districts) rect(dd.rect, '#14181c');
-  for (const r of SHAPES.tarmac) rect(r, '#262a30');
-  for (const r of SHAPES.roads) rect(r, '#5a5f66');
-  for (const t of SHAPES.tunnels) rect(t.rect, '#8a6a10');
-  for (const cl of SHAPES.closed) rect(cl.rect, '#3a3d42');
+  const poly = (pts, closed) => { ctx.beginPath(); pts.forEach((q, i) => (i ? ctx.lineTo(q.x, q.z) : ctx.moveTo(q.x, q.z))); if (closed) ctx.closePath(); };
+  poly(SHAPES.coast, true); ctx.fillStyle = '#121a13'; ctx.fill();
+  ctx.fillStyle = '#1d261b';
+  for (const hl of SHAPES.hills) { ctx.beginPath(); ctx.arc(hl.x, hl.z, hl.vr, 0, Math.PI * 2); ctx.fill(); }
+  for (const r of SHAPES.paved) rect(r, '#262a30');
+  ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  for (const r of SHAPES.roads) { poly(r.pts, r.closed); ctx.lineWidth = Math.max(r.w, 2.2 / s); ctx.strokeStyle = r.id === 'closed' ? '#3a3d42' : '#5a5f66'; ctx.stroke(); }
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   if (full) {
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    for (const dd of SHAPES.districts) {
-      const [px, py] = pt(dd.cx, dd.cz);
-      ctx.font = `600 ${18 * k}px "Inter Tight", Arial, sans-serif`; ctx.fillStyle = '#FFC400'; ctx.fillText(dd.name.toUpperCase(), px, py);
+    for (const zn of SHAPES.zones) {
+      const [px, py] = pt(zn.x, zn.z);
+      ctx.font = `600 ${18 * k}px "Inter Tight", Arial, sans-serif`; ctx.fillStyle = '#FFC400'; ctx.fillText(zn.name.toUpperCase(), px, py);
     }
     for (const cl of SHAPES.closed) {
-      const r = cl.rect, ex = cl.axis === 'x' ? (cl.end > 0 ? r.x1 + 90 : r.x0 - 90) : (r.x0 + r.x1) / 2, ez = cl.axis === 'z' ? (cl.end > 0 ? r.z1 + 90 : r.z0 - 90) : (r.z0 + r.z1) / 2;
-      const [px, py] = pt(ex, ez);
+      const [px, py] = pt(cl.x + cl.ux * 90, cl.z + cl.uz * 90);
       ctx.font = `600 ${14 * k}px "Inter Tight", Arial, sans-serif`; ctx.fillStyle = 'rgba(255,255,255,.55)';
       ctx.fillText(cl.name.toUpperCase(), px, py - 9 * k); ctx.font = `500 ${12 * k}px Inter, Arial, sans-serif`; ctx.fillText('Under construction', px, py + 9 * k);
     }
