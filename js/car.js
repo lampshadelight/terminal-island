@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { clamp } from './util.js';
 import { SHAPES, buildBody } from './carmodel.js';
+import { liveryTexture, addDecals } from './livery.js';
 
 /* Cars. Brands and names are invented for this game; each one is
    inspired by a real street car (see carmodel.js) without copying badges.
@@ -43,18 +44,21 @@ function sharedParts(T) {
   };
   return shared;
 }
-export function buildCar(spec, paint, glow, T, { beam = true, rims = null } = {}) {
+export function buildCar(spec, paint, glow, T, { beam = true, rims = null, vinyl = null, vinylColor = null, decals = false } = {}) {
   const S = sharedParts(T), sh = SHAPES[spec.id];
   const g = new THREE.Group(), pc = new THREE.Color(paint);
   const pm = new THREE.MeshPhongMaterial({ color: pc, shininess: 110, specular: 0x8a8a8a, emissive: pc.clone().multiplyScalar(pc.getHSL({}).l > 0.6 ? 0.02 : 0.08), envMap: S.env, reflectivity: 0.25, combine: THREE.MixOperation });
+  if (vinyl) { pm.map = liveryTexture(paint, vinyl, vinylColor, SHAPES[spec.id].L); pm.userData.ownMap = true; pm.color.set(0xffffff); }
   const tailMat = new THREE.MeshBasicMaterial({ color: 0x7a0010 });
   const stripe = new THREE.MeshPhongMaterial({ color: pc.getHSL({}).l > 0.6 ? 0x15131f : 0xf3f0ff, shininess: 60, side: THREE.DoubleSide });
   const { group: body } = buildBody(sh, { paint: pm, glass: S.glassMat, head: S.headMat, tail: tailMat, dark: S.darkMat, stripe }, spec);
   g.add(body);
+  body.position.y = spec.rideH || 0;
+  if (decals) addDecals(body, T, sh);
   const rimMat = rims ? new THREE.MeshPhongMaterial({ color: rims, shininess: 90 }) : S.rimMat;
   const { L, W, R } = sh, wheels = [], pivots = [], Z = u => u * L - L / 2;
   for (const [u, front] of [[sh.axles[1], 1], [sh.axles[0], 0]]) for (const sx of [1, -1]) {
-    const piv = new THREE.Group(); piv.position.set(sx * (W / 2 - 0.14), R, Z(u)); g.add(piv);
+    const piv = new THREE.Group(); piv.position.set(sx * (W / 2 - 0.14), R, Z(u)); piv.rotation.z = sx * (spec.camber || 0) * 0.14; g.add(piv);
     const w = new THREE.Group(), t = new THREE.Mesh(S.wheelGeo, S.wheelMat), r = new THREE.Mesh(S.rimGeo, rimMat);
     t.scale.set(1, R / 0.37, R / 0.37); r.scale.set(1, R / 0.37, R / 0.37); w.add(t); w.add(r); piv.add(w);
     wheels.push(w); if (front) pivots.push(piv);
@@ -78,7 +82,7 @@ function plane(w, l, mat, y, z, parent) { const m = new THREE.Mesh(new THREE.Pla
 export function disposeCar(m, T) {
   const S = sharedParts(T), keepGeo = new Set([S.wheelGeo, S.rimGeo, S.flameGeo]), keepMat = new Set([S.wheelMat, S.rimMat, S.glassMat, S.headMat, S.darkMat, S.shadowMat, S.flameMat, S.beamMat]);
   m.g.parent && m.g.parent.remove(m.g);
-  m.g.traverse(o => { if (o.geometry && !keepGeo.has(o.geometry)) o.geometry.dispose(); if (o.material && !keepMat.has(o.material)) o.material.dispose(); });
+  m.g.traverse(o => { if (o.geometry && !keepGeo.has(o.geometry)) o.geometry.dispose(); if (o.material && !keepMat.has(o.material)) { if (o.material.userData.ownMap && o.material.map) o.material.map.dispose(); o.material.dispose(); } });
 }
 
 /* ---------------- driving model ---------------- */

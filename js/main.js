@@ -36,7 +36,7 @@ let previewId = save.current || 'kaze';
 const shownId = () => save.current || previewId;
 const car = new Car(tunedSpec(shownId()));
 function makeModel() {
-  const L = looks(shownId()), m = buildCar(L.spec, L.paint, L.glow ? new THREE.Color(L.glow).getHex() : null, T, { rims: L.rims });
+  const L = looks(shownId()), m = buildCar(L.spec, L.paint, L.glow ? new THREE.Color(L.glow).getHex() : null, T, { rims: L.rims, vinyl: L.vinyl, vinylColor: L.vinylColor, decals: L.decals });
   scene.add(m.g); return m;
 }
 let model = makeModel();

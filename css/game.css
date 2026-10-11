@@ -235,3 +235,13 @@ body.touch .pad.nos{box-shadow:inset 0 0 0 2px rgba(88,122,249,.7)}
   body.touch .pad.gas{width:64px;height:108px}
   body.touch:not(.portrait) .pad.nos,body.touch:not(.portrait) [data-k="drift"]{width:60px;height:60px}
 }
+
+/* tuning and dyno */
+.dyno{display:grid;gap:8px;background:rgba(0,0,0,.45);border-radius:14px;padding:10px}
+.dyno canvas{width:100%;height:auto;border-radius:10px;background:#000}
+.dyno .readouts{margin:0}
+.dyno-key{display:flex;gap:14px;font-size:13px;font-weight:600}
+.tune-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.tune-row{display:grid;grid-template-columns:52px 1fr 52px;align-items:center;gap:10px;margin-top:6px}
+.tune-row span:last-child{text-align:right}
+.tune input[type=range]{width:100%;accent-color:var(--red);height:28px}
