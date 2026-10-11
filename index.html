@@ -6,6 +6,9 @@
 <meta name="theme-color" content="#161B1F">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <title>Terminal Island</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,13 +31,21 @@
 
   <canvas id="mini" width="224" height="224" aria-label="Minimap. Tap for the full map."></canvas>
 
+  <!-- rev counter, NFS style: needle over a 270 degree dial, speed and gear in the middle -->
   <div class="cluster" id="cluster">
-    <div class="inst speed"><div class="big num" id="spd">0</div><div class="unit">km/h</div></div>
-    <div class="inst gearbox"><div class="gear num" id="gear">1</div><div class="unit" id="gearMode">manual</div></div>
-    <div class="inst meters">
-      <div class="meter"><span class="lab">RPM</span><i class="rpm"><b id="rpmFill"></b></i></div>
-      <div class="meter"><span class="lab">NOS</span><i class="nos"><b id="nosFill"></b></i></div>
-      <div class="meter"><span class="lab">FUEL</span><i class="fuel"><b id="fuelFill"></b></i></div>
+    <div class="tacho">
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="100" r="96" class="t-face"/>
+        <path id="tRed" class="t-red"/>
+        <g id="tTicks"></g>
+        <path id="tNos" class="t-nos"/>
+        <path id="tFuel" class="t-fuel"/>
+        <g id="tNeedle"><line x1="100" y1="100" x2="100" y2="22" class="t-needle"/><circle cx="100" cy="100" r="7" class="t-hub"/></g>
+      </svg>
+      <div class="t-read">
+        <div class="t-spd num" id="spd">0</div><div class="t-unit">km/h</div>
+        <div class="gear num" id="gear">1</div><div class="t-unit" id="gearMode">manual</div>
+      </div>
     </div>
   </div>
 

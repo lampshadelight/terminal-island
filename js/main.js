@@ -49,6 +49,9 @@ car.reset(sp.x, sp.z, sp.h);
 
 const controls = new Controls();
 controls.bindButtons(document.getElementById('hud'));
+// Safari ignores user-scalable=no, so block pinch and double-tap zoom by hand
+for (const ev of ['gesturestart', 'gesturechange', 'dblclick']) document.addEventListener(ev, e => e.preventDefault(), { passive: false });
+document.addEventListener('touchmove', e => { if (e.touches.length > 1 || !e.target.closest('.overlay')) e.preventDefault(); }, { passive: false });
 const audio = new Audio();
 const hud = new Hud();
 
@@ -488,7 +491,7 @@ function frame(now) {
   if (state.running) {
     hud.update(car, dt, marks()); hud.steer(-inp.steer);
     fuelHud -= dt;
-    if (fuelHud <= 0) { fuelHud = 0.5; $('fuelFill').style.width = (fuel.level * 100).toFixed(1) + '%'; $('fuelFill').parentElement.classList.toggle('low', fuel.level < 0.15); }
+    if (fuelHud <= 0) { fuelHud = 0.5; hud.fuel(fuel.level); }
     const p = placeAt(car.x, car.z);
     if (race.active) place = p.name;
     else if (p.name !== place) {

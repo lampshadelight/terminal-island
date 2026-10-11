@@ -7,11 +7,25 @@ const SHAPES = mapShapes();
 export class Hud {
   constructor() {
     this.notice = $('notice'); this.place = ''; this.dot = $('steerDot');
-    this.spd = $('spd'); this.gear = $('gear'); this.rpm = $('rpmFill'); this.nos = $('nosFill'); this.gearMode = $('gearMode');
+    this.spd = $('spd'); this.gear = $('gear'); this.gearMode = $('gearMode'); this.needle = $('tNeedle'); this.redline = 0;
     this.mini = $('mini'); this.mctx = this.mini.getContext('2d');
     this.noticeT = null; this.t = 0; this.defaultTicker = [];
   }
   setTicker() {}
+  // dial face for this car: numbers in thousands, red from the redline up
+  dial(redline) {
+    this.redline = redline; this.max = Math.ceil(redline / 1000 + 0.5) * 1000;
+    const ang = r => 135 + 270 * r / this.max, P = (a, rad) => [100 + rad * Math.cos(a * Math.PI / 180), 100 + rad * Math.sin(a * Math.PI / 180)];
+    let h = '';
+    for (let r = 0; r <= this.max; r += 500) {
+      const a = ang(r), major = r % 1000 === 0, [x1, y1] = P(a, 90), [x2, y2] = P(a, major ? 78 : 84);
+      h += `<line class="t-tick${major ? '' : ' minor'}" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"/>`;
+      if (major) { const [tx, ty] = P(a, 66); h += `<text class="t-num" x="${tx.toFixed(1)}" y="${ty.toFixed(1)}">${r / 1000}</text>`; }
+    }
+    $('tTicks').innerHTML = h;
+    $('tRed').setAttribute('d', arc(87, ang(redline), ang(this.max)));
+  }
+  fuel(level) { const f = $('tFuel'); f.setAttribute('d', arc(88, 130 - 35 * level, 130)); f.classList.toggle('low', level < 0.15); }
   // short notice under the steering bar, no banner
   say(msg, ms = 2600) {
     this.notice.textContent = msg; this.notice.classList.add('on');
@@ -24,15 +38,22 @@ export class Hud {
     this.t -= dt; if (this.t > 0) return; this.t = 0.05;
     this.spd.textContent = Math.round(car.kmh);
     this.gear.textContent = car.gearLabel;
+    if (car.spec.redline !== this.redline) this.dial(car.spec.redline);
     const x = Math.min(1, car.rpm / car.spec.redline);
-    this.rpm.style.width = (x * 100).toFixed(1) + '%';
+    this.needle.style.transform = `rotate(${(-135 + 270 * car.rpm / this.max).toFixed(1)}deg)`;
     this.gear.classList.toggle('shift-now', x > 0.9 && !car.auto && !car.reverse && car.gear < 6);
-    this.nos.style.width = Math.round(car.nitro * 100) + '%';
+    $('tNos').setAttribute('d', arc(88, 50, 50 + 35 * car.nitro));
     this.gearMode.textContent = car.auto ? 'auto' : 'manual';
     drawMap(this.mctx, this.mini.width, this.mini.height, car.x, car.z, this.mini.width / 420, [Math.sin(car.h), Math.cos(car.h)], car, false, 1, marks);
   }
 }
 
+// SVG arc on the dial, angles in degrees clockwise from 3 o'clock
+function arc(r, a0, a1) {
+  if (a1 - a0 < 0.5) return '';
+  const p = a => [100 + r * Math.cos(a * Math.PI / 180), 100 + r * Math.sin(a * Math.PI / 180)], [x0, y0] = p(a0), [x1, y1] = p(a1);
+  return `M${x0.toFixed(1)} ${y0.toFixed(1)}A${r} ${r} 0 ${a1 - a0 > 180 ? 1 : 0} 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`;
+}
 export function drawMap(ctx, w, h, cx, cz, s, up, car, full, k = 1, marks = []) {
   const [ux, uz] = up, rx = -uz, rz = ux;
   const a = s * rx, c = s * rz, b = -s * ux, d = -s * uz, e = w / 2 - a * cx - c * cz, f = h / 2 - b * cx - d * cz;

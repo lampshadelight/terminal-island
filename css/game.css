@@ -42,25 +42,25 @@ body.portrait .toast{top:calc(150px + var(--st))}
 
 #mini{position:fixed;top:calc(8px + var(--st));left:calc(10px + var(--sl));width:112px;height:112px;border-radius:16px;background:var(--lcd);border:1px solid var(--hair);pointer-events:auto;z-index:3}
 
-/* instrument cluster */
-.cluster{position:fixed;left:50%;bottom:calc(10px + var(--sb));transform:translateX(-50%);display:flex;gap:6px;align-items:stretch}
-.inst{background:var(--lcd);border-radius:12px;padding:6px 12px;display:flex;flex-direction:column;justify-content:center}
-.inst .unit{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--lcd-dim)}
-.speed{min-width:104px;align-items:flex-end}
-.speed .big{font-family:var(--f-display);font-weight:600;font-size:42px;line-height:1}
-.gearbox{align-items:center;min-width:64px}
-.gear{font-family:var(--f-display);font-weight:600;font-size:40px;line-height:1}
+/* rev counter */
+.cluster{position:fixed;left:50%;bottom:calc(6px + var(--sb));transform:translateX(-50%);pointer-events:none}
+.tacho{position:relative;width:170px;height:170px}
+.tacho svg{position:absolute;inset:0;width:100%;height:100%}
+.t-face{fill:rgba(5,7,10,.86);stroke:rgba(255,255,255,.14);stroke-width:1.5}
+.t-red{fill:none;stroke:var(--red);stroke-width:7}
+.t-nos{fill:none;stroke:var(--blue);stroke-width:4;stroke-linecap:round}
+.t-fuel{fill:none;stroke:var(--amber);stroke-width:4;stroke-linecap:round}
+.t-fuel.low{stroke:var(--red)}
+.t-tick{stroke:#fff;stroke-width:2}.t-tick.minor{stroke:rgba(255,255,255,.45);stroke-width:1.2}
+.t-num{fill:#fff;font:600 15px var(--f-display,Arial);text-anchor:middle;dominant-baseline:middle}
+.t-needle{stroke:var(--orange);stroke-width:3.5;stroke-linecap:round}
+.t-hub{fill:#111;stroke:var(--orange);stroke-width:2}
+#tNeedle{transform-origin:100px 100px;transition:transform 50ms linear}
+.t-read{position:absolute;left:0;right:0;top:52%;display:grid;justify-items:center;line-height:1}
+.t-spd{font-family:var(--f-display);font-weight:700;font-size:30px}
+.t-unit{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--lcd-dim)}
+.gear{font-family:var(--f-display);font-weight:700;font-size:22px;margin-top:4px;color:var(--amber)}
 .gear.shift-now{color:var(--red);text-shadow:0 0 12px rgba(191,0,3,.9)}
-.meters{gap:6px;min-width:150px}
-.meter{display:grid;grid-template-columns:36px 1fr;align-items:center;gap:6px}
-.meter .lab{font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--lcd-dim)}
-.meter i{display:block;height:8px;border-radius:4px;background:rgba(255,255,255,.12);overflow:hidden}
-.meter b{display:block;height:100%;width:0;background:#fff}
-.meter .rpm b{background:linear-gradient(90deg,#fff 0 78%,var(--amber) 78% 90%,var(--red) 90%)}
-.meter .rpm b{background-size:150px 100%}
-.meter .nos b{background:var(--blue)}
-.meter .fuel b{background:var(--amber)}
-.meter .fuel.low b{background:var(--red)}
 
 /* thumb controls */
 .ctrl{position:fixed;bottom:calc(12px + var(--sb));display:flex;gap:10px;align-items:flex-end;pointer-events:auto;z-index:2}
@@ -102,12 +102,11 @@ p{margin:0 0 10px;max-width:62ch;line-height:1.45}
 .pill{display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:14px;background:#000;color:#fff;border:1.5px solid var(--c,var(--red));font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
 .rotate{position:fixed;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);padding:24px;text-align:center}
 
-@media (max-height:420px){.pad{width:64px;height:64px}.pad.nos,.pad.gas{width:76px;height:76px}.pad.sm{height:46px}.speed .big{font-size:36px}.gear{font-size:34px}}
+@media (max-height:420px){.pad{width:64px;height:64px}.pad.nos,.pad.gas{width:76px;height:76px}.pad.sm{height:46px}}
 @media (prefers-reduced-motion:reduce){.ticker{animation:none}*{transition-duration:1ms!important}}
 /* touch buttons fill the bottom corners, so the cluster shrinks to fit between them */
-body.touch .cluster{transform:translateX(-50%) scale(.8);transform-origin:bottom center}
-body.touch .meters{display:none}
-@media (max-width:700px){body.touch .cluster{bottom:auto;top:calc(64px + var(--st));transform:translateX(-50%) scale(.7);transform-origin:top center}}
+body.touch .cluster{transform:translateX(-50%) scale(.85);transform-origin:bottom center}
+@media (max-height:420px){body.touch .cluster{transform:translateX(-50%) scale(.72)}}
 @media (max-height:500px){.mapwrap{flex-direction:row;align-items:center}.mapside{display:flex;flex-direction:column;gap:12px;align-items:flex-start}.mapside .pills{flex-direction:column;align-items:flex-start}}
 .mapside{display:flex;flex-direction:column;gap:12px;align-items:center}
 
@@ -146,7 +145,7 @@ body.portrait #mini,body.portrait .boost [data-k="drift"],body.portrait .steer{d
 body.portrait .racebox{top:calc(70px + var(--st));left:50%;right:auto;transform:translateX(-50%);width:min(320px,calc(100% - 32px));grid-template-columns:auto 1fr;align-items:center;column-gap:14px}
 body.portrait .racebox .rb-strip{grid-column:1/-1;margin:6px 4px 2px}
 body.portrait .cluster,body.portrait.touch .cluster{top:auto;bottom:calc(176px + var(--sb));transform:translateX(-50%) scale(.9);transform-origin:bottom center}
-body.portrait .meters{display:flex!important}
+
 body.portrait .pad{width:64px;height:64px}
 body.portrait .pad.nos,body.portrait .pad.gas{width:72px;height:72px}
 body.portrait .count{top:50%}
@@ -245,3 +244,8 @@ body.touch .pad.nos{box-shadow:inset 0 0 0 2px rgba(88,122,249,.7)}
 .field:focus{outline:none;border-color:var(--red)}
 .field.code{width:120px;margin:0;text-transform:uppercase;letter-spacing:.3em;font-weight:700;text-align:center}
 .bigcode{font-size:56px;font-weight:800;letter-spacing:.3em;text-align:center;margin:8px 0 14px;color:var(--amber,#FFC400)}
+
+/* stop the browser zooming or scrolling while you drive */
+html,body{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;overscroll-behavior:none}
+.overlay{touch-action:pan-y}
+input{-webkit-user-select:text;user-select:text}

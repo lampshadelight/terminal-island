@@ -49,19 +49,40 @@ export class Controls {
   calibrate() { this.tilt.roll0 = this.tilt.roll; this.tilt.pitch0 = this.tilt.pitch; }
   get tiltLive() { return this.tilt.ok && performance.now() - this.tilt.last < 1500; }
 
+  // Each finger presses whatever button is under it, and slides from one to the next
+  // without lifting, like real pedals and a gear lever under your thumbs.
   bindButtons(root) {
-    root.querySelectorAll('[data-k]').forEach(el => {
+    const fingers = new Map(); // pointer id -> button element
+    const keyEl = (x, y) => { const el = document.elementFromPoint(x, y); return el && root.contains(el) ? el.closest('[data-k]') : null; };
+    const press = el => {
+      el.classList.add('on'); const k = el.dataset.k;
+      if (k === 'up' || k === 'down') { this.shifts.push(k === 'up' ? 1 : -1); navigator.vibrate && navigator.vibrate(8); }
+      else this.btn[k] = (this.btn[k] || 0) + 1;
+    };
+    const release = el => {
       const k = el.dataset.k;
-      const on = e => {
-        e.preventDefault(); el.classList.add('on');
-        try { el.setPointerCapture(e.pointerId); } catch (_) {}
-        if (k === 'up' || k === 'down') { this.shifts.push(k === 'up' ? 1 : -1); navigator.vibrate && navigator.vibrate(8); }
-        else this.btn[k] = 1;
-      };
-      const off = () => { el.classList.remove('on'); if (k in this.btn) this.btn[k] = 0; };
-      el.addEventListener('pointerdown', on); el.addEventListener('pointerup', off); el.addEventListener('pointercancel', off); el.addEventListener('lostpointercapture', off);
-      el.addEventListener('contextmenu', e => e.preventDefault());
+      if (k in this.btn) this.btn[k] = Math.max(0, this.btn[k] - 1);
+      if (![...fingers.values()].includes(el)) el.classList.remove('on');
+    };
+    const move = e => {
+      if (!fingers.has(e.pointerId)) return;
+      const was = fingers.get(e.pointerId), now = keyEl(e.clientX, e.clientY);
+      if (now === was) return;
+      if (now) fingers.set(e.pointerId, now); else fingers.set(e.pointerId, null);
+      if (was) release(was);
+      if (now) press(now);
+    };
+    const up = e => { if (!fingers.has(e.pointerId)) return; const was = fingers.get(e.pointerId); fingers.delete(e.pointerId); if (was) release(was); };
+    root.addEventListener('pointerdown', e => {
+      const el = e.target.closest && e.target.closest('[data-k]'); if (!el || !root.contains(el)) return;
+      e.preventDefault();
+      try { e.target.releasePointerCapture && e.target.releasePointerCapture(e.pointerId); } catch (_) {}
+      fingers.set(e.pointerId, el); press(el);
     });
+    addEventListener('pointermove', move, { passive: true });
+    addEventListener('pointerup', up); addEventListener('pointercancel', up);
+    root.addEventListener('contextmenu', e => e.preventDefault());
+    this._fingers = fingers;
   }
   _bindKeys() {
     const map = { ArrowLeft: 'left', KeyA: 'left', ArrowRight: 'right', KeyD: 'right', ArrowUp: 'gas', KeyW: 'gas', ArrowDown: 'brake', KeyS: 'brake', ShiftLeft: 'nos', ShiftRight: 'nos', Space: 'drift' };
@@ -73,7 +94,7 @@ export class Controls {
     });
     addEventListener('keyup', e => { if (map[e.code]) this.keys[map[e.code]] = 0; });
   }
-  clear() { for (const o of [this.btn, this.keys]) for (const k in o) o[k] = 0; this.shifts.length = 0; document.querySelectorAll('.on[data-k]').forEach(el => el.classList.remove('on')); }
+  clear() { for (const o of [this.btn, this.keys]) for (const k in o) o[k] = 0; this.shifts.length = 0; this._fingers && this._fingers.clear(); document.querySelectorAll('.on[data-k]').forEach(el => el.classList.remove('on')); }
 
   update(dt) {
     const o = this.out, k = this.keys, b = this.btn;
