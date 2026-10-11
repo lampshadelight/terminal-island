@@ -7,7 +7,7 @@ import { carStats } from './garage.js';
 import { Controls } from './controls.js';
 import { Audio } from './audio.js';
 import { Hud, drawMap } from './hud.js';
-import { Race } from './race.js';
+import { Race, clubsHtml } from './race.js';
 import { WetRoads, makeBloom, Trails } from './fx.js';
 import { SHOPS, Shops, buildShopDoors, tunedSpec, looks } from './garage.js';
 import { Fuel, fmtLeft } from './fuel.js';
@@ -351,6 +351,7 @@ function checkShops() {
   }
 }
 $('shopClose').addEventListener('click', resume);
+$('pClubs').addEventListener('click', () => { show('pause', false); ui.modal('shop'); shops.show({ kind: 'clubs', label: 'Clubs', name: 'Street clubs', html: clubsHtml }); });
 $('pGarage').addEventListener('click', () => { show('pause', false); ui.modal('shop'); shops.show({ kind: 'garage', label: 'Garage', name: 'Your cars' }); });
 function renderFuel() {
   const lv = fuel.level, ch = fuel.charges, cost = fuel.boostCost();

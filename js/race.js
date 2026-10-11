@@ -35,8 +35,35 @@ export const EVENTS = [
     blurb: 'A quarter mile down the quay. Shift at the top of the rev bar for a perfect shift. Hold the phone upright and level.' },
   { id: 'runway-roll', type: 'roll', name: 'Runway Roll', where: 'Old Terminal', marker: { x: -1700, z: 225 }, prize: 1100, traffic: false,
     strip: { cz: 250, x0: -1630, len: 600, roll: 60 / 3.6 }, rivals: [{ name: 'Sable', spec: rivalSpec('dreier', 0.93), paint: '#FFFFFF' }],
-    blurb: 'Both cars roll down the old runway at 60 km/h. When the lights change, it is flat out for 600 metres. Hold the phone upright and level.' }
+    blurb: 'Both cars roll down the old runway at 60 km/h. When the lights change, it is flat out for 600 metres. Hold the phone upright and level.' },
+  // club boss races: hidden until you have won the club's qualifying races
+  { id: 'kings-crown', type: 'circuit', club: 'kings', needs: ['neon-loop'], name: 'Crown of Neon Row', where: 'Neon Row', marker: { x: 288, z: -150 }, laps: 3, prize: 4000, traffic: true,
+    path: P([[0, -288], [288, -288], [288, 96], [96, 96], [96, 288], [-192, 288], [-192, -96], [0, -96]]),
+    rivals: [{ name: 'Vex', boss: true, spec: rivalSpec('zephyr', 1.04), paint: '#1A1A1E' }, { name: 'Halo', spec: rivalSpec('vandal', 1), paint: '#BF0003' }, { name: 'Pike', spec: rivalSpec('solstice', 1), paint: '#FFC400' }],
+    blurb: 'The Kings run Neon Row. Three laps against their boss Vex and two of the crew. Beat Vex to take the crown.' },
+  { id: 'union-final', type: 'drift', club: 'union', needs: ['harbour-drift'], name: 'Union Final', where: 'Dockside', marker: { x: 240, z: 1320 }, laps: 3, prize: 3500, target: 11000, traffic: false,
+    path: P([[0, 1210], [240, 1210], [240, 1430], [0, 1430]]),
+    blurb: 'The Harbour Drift Union boss, Reika, set 11,000 points over three laps of the yards. Beat her score to join the Union.' },
+  { id: 'syndicate-long', type: 'drag', club: 'syndicate', needs: ['quay-quarter', 'runway-roll'], name: 'Syndicate Long Run', where: 'Old Terminal', marker: { x: -1720, z: 268 }, prize: 4500, traffic: false,
+    strip: { cz: 250, x0: -1645, len: 760 }, rivals: [{ name: 'Marlow', boss: true, spec: rivalSpec('zephyr', 1.02), paint: '#B8BCC4' }],
+    blurb: 'The Runway Syndicate only race the long way: 760 metres from a standing start against their boss, Marlow. Hold the phone upright and level.' }
 ];
+
+export const CLUBS = {
+  kings: { name: 'The Kings', where: 'Neon Row', boss: 'Vex', event: 'kings-crown', type: 'circuit', reward: 'Kings crown on your record and $4,000' },
+  union: { name: 'Harbour Drift Union', where: 'Dockside', boss: 'Reika', event: 'union-final', type: 'drift', reward: 'Union membership and $3,500' },
+  syndicate: { name: 'Runway Syndicate', where: 'Old Terminal', boss: 'Marlow', event: 'syndicate-long', type: 'drag', reward: 'Syndicate membership and $4,500' }
+};
+export const unlocked = ev => !ev.needs || ev.needs.every(id => save.wins[id]);
+const evById = id => EVENTS.find(e => e.id === id);
+export function clubsHtml() {
+  return Object.entries(CLUBS).map(([k, c]) => {
+    const ev = evById(c.event), open = unlocked(ev), beaten = !!save.clubs[k], col = TYPES[c.type].color;
+    const need = ev.needs.map(id => `${save.wins[id] ? '✓' : '○'} Win ${evById(id).name}`).join('<br>');
+    const state = beaten ? `<span class="pill" style="--c:${col}">Boss beaten</span>` : open ? `<span class="pill" style="--c:${col}">Boss race open · find the marker in ${c.where}</span>` : `<span class="pill">Locked</span>`;
+    return `<div class="item"><div class="item-main"><b>${c.name}</b><div class="small dim">${c.where} · boss: ${c.boss}</div><div class="small" style="margin-top:6px">${need}</div><div class="small dim" style="margin-top:6px">Reward: ${c.reward}</div></div><div>${state}</div></div>`;
+  }).join('');
+}
 
 const ordinal = n => n + (['th', 'st', 'nd', 'rd'][(n % 100 - 20) % 10] || ['th', 'st', 'nd', 'rd'][n % 100] || 'th');
 export const fmtTime = t => { const m = Math.floor(t / 60), s = t - m * 60; return `${m}:${s < 10 ? '0' : ''}${s.toFixed(2)}`; };
@@ -58,9 +85,11 @@ export class Race {
     Object.assign(this, ctx); // scene, T, car, model, hud, controls, audio, ui
     this.active = null; this.near = null; this.models = new Map(); this.temp = [];
     this.markers = EVENTS.map(ev => this._marker(ev));
+    this.showMarkers();
     this.gate = this._gate(); this.scene.add(this.gate); this.gate.visible = false;
     this.el = id => document.getElementById(id);
   }
+  showMarkers() { EVENTS.forEach((ev, i) => { this.markers[i].visible = unlocked(ev); }); }
   get portrait() { return !!(this.active && this.active.strip); }
   get locked() { return !!this.active && (this.phase === 'count' && !this.active.strip?.roll); }
 
@@ -72,16 +101,17 @@ export class Race {
     beam.position.y = 35; g.add(beam);
     const ring = new THREE.Mesh(new THREE.PlaneGeometry(14, 14), new THREE.MeshBasicMaterial({ map: this.T.glow, color: col, opacity: 0.9, ...add }));
     ring.rotation.x = -Math.PI / 2; ring.position.y = 0.08; g.add(ring);
+    if (ev.club) { const crown = new THREE.Mesh(new THREE.TorusGeometry(4.2, 0.25, 8, 32), new THREE.MeshBasicMaterial({ color: '#ffffff', ...add })); crown.rotation.x = Math.PI / 2; crown.position.y = 6; g.add(crown); beam.scale.set(1.3, 1.4, 1.3); }
     g.position.set(ev.marker.x, 0, ev.marker.z); this.scene.add(g);
     return g;
   }
   checkMarkers(car) {
     if (this.near) { if (Math.hypot(car.x - this.near.marker.x, car.z - this.near.marker.z) > 16) this.near = null; return; }
-    for (const ev of EVENTS) if (Math.hypot(car.x - ev.marker.x, car.z - ev.marker.z) < 7) { this.near = ev; this.offer(ev); return; }
+    for (const ev of EVENTS) if (unlocked(ev) && Math.hypot(car.x - ev.marker.x, car.z - ev.marker.z) < 7) { this.near = ev; this.offer(ev); return; }
   }
   offer(ev) {
     const t = TYPES[ev.type], $ = this.el;
-    $('evType').textContent = `${t.label} · ${ev.where}`; $('evType').style.color = t.color;
+    $('evType').textContent = ev.club ? `Boss race · ${CLUBS[ev.club].name}` : `${t.label} · ${ev.where}`; $('evType').style.color = t.color;
     $('evName').textContent = ev.name; $('evBlurb').textContent = ev.blurb;
     const pills = [];
     if (ev.laps) pills.push(`${ev.laps} laps`);
@@ -148,7 +178,7 @@ export class Race {
     this.temp = []; this.rivals = []; this.gate.visible = false;
     if (this.saveCalib) { this.controls.tilt.roll0 = this.saveCalib.r; this.controls.tilt.pitch0 = this.saveCalib.p; }
     this.active = null;
-    for (const m of this.markers) m.visible = true;
+    this.showMarkers();
     this.near = null; this.ui.setTraffic(true);
     if (!keepUi) { this.ui.raceUi(false); this.hud.setTicker(this.hud.defaultTicker); }
   }
@@ -386,7 +416,11 @@ export class Race {
       prize = win ? ev.prize : place === 2 ? Math.round(ev.prize * 0.35) : 0;
       if (!save.best[ev.id] || this.finishT < save.best[ev.id]) save.best[ev.id] = this.finishT;
     }
+    // a boss win only counts if you beat the boss (circuit) or the target/rival
+    if (win && ev.club && !save.clubs[ev.club]) { save.clubs[ev.club] = true; const c = CLUBS[ev.club]; title = `You beat ${c.boss}`; text += ` You are now part of ${c.name}.`; }
+    const before = EVENTS.filter(e => e.club && unlocked(e)).map(e => e.id);
     if (win) save.wins[ev.id] = (save.wins[ev.id] || 0) + 1;
+    for (const e of EVENTS) if (e.club && unlocked(e) && !before.includes(e.id)) { const c = CLUBS[e.club]; text += ` ${c.name} heard about this. ${c.boss}'s boss race is now on the map in ${c.where}.`; pills.push('Boss race unlocked'); }
     if (prize) { save.cash += prize; pills.push(`+${money(prize)}`); }
     persist();
     this.hud.say(win ? 'Finished: you won' : 'Finished', 2500);
@@ -410,7 +444,7 @@ export class Race {
     return info;
   }
   marks() {
-    if (!this.active) return EVENTS.map(ev => ({ x: ev.marker.x, z: ev.marker.z, c: TYPES[ev.type].color }));
+    if (!this.active) return EVENTS.filter(unlocked).map(ev => ({ x: ev.marker.x, z: ev.marker.z, c: TYPES[ev.type].color }));
     const out = this.rivals.map(r => ({ x: r.car.x, z: r.car.z, c: r.paint, small: true }));
     if (this.active.path && this.gate.visible) out.push({ x: this.gate.position.x, z: this.gate.position.z, c: '#ffffff', ring: true });
     return out;
