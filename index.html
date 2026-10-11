@@ -18,18 +18,13 @@
 <div id="speedfx" class="speedfx"></div>
 
 <div id="hud" class="hud">
-  <header class="topbar">
-    <div class="lcd">
-      <button class="round" id="pauseBtn" aria-label="Pause"><span class="dot"></span></button>
-      <div class="lines">
-        <div class="l1" id="l1"><span>Terminal Island</span></div>
-        <div class="l2" id="l2"><div class="ticker" id="ticker"></div><div class="notice" id="notice" aria-live="polite"></div></div>
-      </div>
-      <button class="square" id="mapBtn" aria-label="Open map">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5l5-2 6 2 5-2v12l-5 2-6-2-5 2z"/><path d="M7 3v12M13 5v12"/></svg>
-      </button>
-    </div>
-  </header>
+  <!-- in-game phone (menu), top right -->
+  <button class="phone" id="pauseBtn" aria-label="Phone menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>
+  </button>
+  <!-- steering position, top centre -->
+  <div class="steerbar" id="steerbar" aria-hidden="true"><i class="mid"></i><b id="steerDot"></b></div>
+  <div class="toast" id="notice" aria-live="polite"></div>
 
   <canvas id="mini" width="224" height="224" aria-label="Minimap. Tap for the full map."></canvas>
 

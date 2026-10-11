@@ -143,9 +143,10 @@ let camPos = new THREE.Vector3(), camLook = new THREE.Vector3(), camInit = false
 const isTouch = matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window;
 
 /* ---------------- graphics quality ---------------- */
-const GFX = ['Low', 'Medium', 'High'];
-let quality = isTouch ? 1 : 2, composer = null, composerLoading = false;
-try { const q = localStorage.getItem('ti.quality'); if (q !== null) quality = +q; } catch (e) {}
+// basic by default while we tune the driving; Medium adds wet roads, High adds glow
+const GFX = ['Basic', 'Medium', 'High'];
+let quality = 0, composer = null, composerLoading = false;
+try { const q = localStorage.getItem('ti.gfx'); if (q !== null) quality = +q; } catch (e) {}
 const wet = new WetRoads(renderer, scene, camera);
 for (const m of [M.road, M.inter, M.tarmac]) wet.patch(m);
 const trails = new Trails(scene);
@@ -155,7 +156,7 @@ function applyQuality() {
     composerLoading = true;
     makeBloom(renderer, scene, camera).then(c => { composer = c; composerLoading = false; resize(); }).catch(() => { composerLoading = false; });
   }
-  try { localStorage.setItem('ti.quality', String(quality)); } catch (e) {}
+  try { localStorage.setItem('ti.gfx', String(quality)); } catch (e) {}
 }
 
 function resize() {
@@ -270,7 +271,7 @@ function openMap() {
   drawMap(bctx, big.width, big.height, -300, 420, big.width / 3000, [0, -1], car, true, dpr * clamp(px / 520, 0.6, 1.1), marks());
   show('map', true); state.mapOpen = true;
 }
-$('mapBtn').addEventListener('click', openMap); $('pMap').addEventListener('click', openMap); $('mini').addEventListener('click', openMap);
+$('pMap').addEventListener('click', openMap); $('mini').addEventListener('click', openMap);
 $('mapClose').addEventListener('click', resume);
 document.addEventListener('visibilitychange', () => { if (document.hidden) pause(); });
 addEventListener('keydown', e => {
@@ -495,7 +496,7 @@ function frame(now) {
   for (const g of streamer.loaded.values()) if (g.userData.reds) g.userData.reds.visible = on;
 
   if (state.running) {
-    hud.update(car, dt, marks());
+    hud.update(car, dt, marks()); hud.steer(-inp.steer);
     fuelHud -= dt;
     if (fuelHud <= 0) { fuelHud = 0.5; $('fuelFill').style.width = (fuel.level * 100).toFixed(1) + '%'; $('fuelFill').parentElement.classList.toggle('low', fuel.level < 0.15); }
     const p = placeAt(car.x, car.z);

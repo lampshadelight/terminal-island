@@ -6,32 +6,20 @@ const SHAPES = mapShapes();
 
 export class Hud {
   constructor() {
-    this.l1 = $('l1'); this.l2 = $('l2'); this.notice = $('notice'); this.place = '';
+    this.notice = $('notice'); this.place = ''; this.dot = $('steerDot');
     this.spd = $('spd'); this.gear = $('gear'); this.rpm = $('rpmFill'); this.nos = $('nosFill'); this.gearMode = $('gearMode');
     this.mini = $('mini'); this.mctx = this.mini.getContext('2d');
-    this.noticeT = null; this.t = 0;
-    this.defaultTicker = ['Explore Terminal Island', 'Drive into a glowing marker to start a race', 'Neon Row, Dockside and Old Terminal are open',
-      'The Foundry, Highcliff and the Causeway are under construction', 'Inertia barriers active'];
-    this.setTicker(this.defaultTicker);
+    this.noticeT = null; this.t = 0; this.defaultTicker = [];
   }
-  setTicker(items) {
-    const run = items.map(t => `<span>${t}</span>`).join('');
-    $('ticker').innerHTML = run + run;
+  setTicker() {}
+  // short notice under the steering bar, no banner
+  say(msg, ms = 2600) {
+    this.notice.textContent = msg; this.notice.classList.add('on');
+    clearTimeout(this.noticeT); this.noticeT = setTimeout(() => this.notice.classList.remove('on'), ms);
   }
-  say(msg, ms = 3200) {
-    this.notice.textContent = msg; this.l2.classList.add('showing');
-    clearTimeout(this.noticeT); this.noticeT = setTimeout(() => this.l2.classList.remove('showing'), ms);
-  }
-  // line 1 swaps like a dash changing mode
-  setPlace(name) {
-    if (name === this.place) return;
-    this.place = name;
-    const olds = [...this.l1.querySelectorAll('span')], nu = document.createElement('span');
-    nu.textContent = name; nu.style.transform = 'translateY(100%)'; nu.style.opacity = '0';
-    this.l1.appendChild(nu);
-    for (const o of olds) { if (o.dataset.leaving) continue; o.dataset.leaving = '1'; setTimeout(() => o.remove(), 320); }
-    requestAnimationFrame(() => { nu.style.transform = ''; nu.style.opacity = ''; for (const o of olds) { o.style.transform = 'translateY(-100%)'; o.style.opacity = '0'; } });
-  }
+  setPlace(name) { if (name === this.place) return; const first = !this.place; this.place = name; if (!first) this.say(name, 1800); }
+  // where the steering wheel is pointing, -1 left to 1 right
+  steer(v) { this.dot.style.left = (50 + Math.max(-1, Math.min(1, v)) * 50).toFixed(1) + '%'; }
   update(car, dt, marks) {
     this.t -= dt; if (this.t > 0) return; this.t = 0.05;
     this.spd.textContent = Math.round(car.kmh);
