@@ -38,6 +38,7 @@
     <div class="inst meters">
       <div class="meter"><span class="lab">RPM</span><i class="rpm"><b id="rpmFill"></b></i></div>
       <div class="meter"><span class="lab">NOS</span><i class="nos"><b id="nosFill"></b></i></div>
+      <div class="meter"><span class="lab">FUEL</span><i class="fuel"><b id="fuelFill"></b></i></div>
     </div>
   </div>
 
@@ -109,16 +110,55 @@
   <div class="pane panel lit">
     <div class="label">Paused</div>
     <h2 id="pausePlace">Neon Row</h2>
+    <div class="readouts">
+      <div class="readout"><span class="lab">Cash</span><b class="num" id="pCash">$0</b></div>
+      <div class="readout"><span class="lab">Fuel</span><b class="num" id="pFuel">100%</b></div>
+      <div class="readout"><span class="lab">Charges</span><b class="num" id="pCharges">6 of 6</b></div>
+    </div>
     <div class="menu">
-      <button class="gbtn primary lit" id="pResume">Resume</button>
+      <button class="gbtn primary lit wide" id="pResume">Resume</button>
       <button class="gbtn lit" id="pRestart" hidden>Restart race</button>
       <button class="gbtn lit" id="pLeave" hidden>Leave race</button>
       <button class="gbtn lit" id="pMap">Map</button>
-      <button class="gbtn lit" id="pCalib">Recalibrate tilt</button>
+      <button class="gbtn lit" id="pGarage">Garage</button>
+      <button class="gbtn lit" id="pFuelBtn">Fuel</button>
       <button class="gbtn lit" id="pGears">Gears: manual</button>
       <button class="gbtn lit" id="pMode">Controls: tilt</button>
       <button class="gbtn lit" id="pInvert">Tilt to accelerate: forward</button>
+      <button class="gbtn lit" id="pCalib">Recalibrate tilt</button>
       <button class="gbtn lit" id="pSound">Sound: on</button>
+    </div>
+  </div>
+</div>
+
+<!-- Shop and garage -->
+<div class="overlay" id="shop" hidden>
+  <div class="pane panel lit shop">
+    <div class="shop-head">
+      <div><div class="label" id="shopLabel">Shop</div><h2 id="shopName">Shop</h2></div>
+      <div class="readout"><span class="lab">Cash</span><b class="num" id="shopCash">$0</b></div>
+    </div>
+    <div id="shopBody" class="shop-body"></div>
+    <div class="actions"><button class="gbtn primary lit" id="shopClose">Back to the streets</button></div>
+  </div>
+</div>
+
+<!-- Fuel -->
+<div class="overlay" id="fuel" hidden>
+  <div class="pane panel lit">
+    <div class="label">Ethanol synthesizer</div>
+    <h2 id="fuelTitle">Fuel</h2>
+    <div class="readouts">
+      <div class="readout"><span class="lab">Tank</span><b class="num" id="fTank">100%</b></div>
+      <div class="readout"><span class="lab">Charges today</span><b class="num" id="fCharges">6 of 6</b></div>
+    </div>
+    <div class="charges" id="fPips"></div>
+    <p id="fText"></p>
+    <p class="small dim">A full tank lasts 15 minutes of driving. Refilling takes 4 hours and uses 1 charge. Boosting the synthesizer refills the tank now but uses double the electricity. You get 6 charges a day.</p>
+    <div class="actions">
+      <button class="gbtn primary lit" id="fStart">Start refill · 1 charge</button>
+      <button class="gbtn lit" id="fBoost">Boost now · 2 charges</button>
+      <button class="gbtn lit" id="fClose">Close</button>
     </div>
   </div>
 </div>
@@ -155,6 +195,7 @@
       <span class="pill" style="--c:#BF0003">You</span>
       <span class="pill" style="--c:#FFC400">Open district</span>
       <span class="pill" style="--c:#FF4500">Race event</span>
+      <span class="pill" style="--c:#249689">Shop</span>
       <span class="pill" style="--c:rgba(255,255,255,.4)">Under construction</span>
     </div>
     <button class="gbtn primary lit" id="mapClose">Back to driving</button>

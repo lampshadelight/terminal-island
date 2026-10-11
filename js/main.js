@@ -2,11 +2,14 @@ import * as THREE from 'three';
 import { clamp, lerp, rng } from './util.js';
 import { makeTextures, makeMaterials } from './textures.js';
 import { DATA, collide, placeAt, Streamer, buildStatic } from './world.js';
-import { CARS, Car, buildCar, syncModel } from './car.js';
+import { CARS, Car, buildCar, syncModel, disposeCar } from './car.js';
 import { Controls } from './controls.js';
 import { Audio } from './audio.js';
 import { Hud, drawMap } from './hud.js';
 import { Race } from './race.js';
+import { SHOPS, Shops, buildShopDoors, tunedSpec, looks } from './garage.js';
+import { Fuel, fmtLeft } from './fuel.js';
+import { save, persist, money } from './save.js';
 
 const $ = id => document.getElementById(id);
 
@@ -26,9 +29,14 @@ buildStatic(scene, T, M);
 const streamer = new Streamer(scene, T, M);
 
 /* ---------------- player ---------------- */
-const car = new Car(CARS.zephyr);
-const model = buildCar(CARS.zephyr, '#BF0003', 0xff2a10, T);
-scene.add(model.g);
+const car = new Car(tunedSpec(save.current));
+function makeModel() {
+  const L = looks(save.current), m = buildCar(L.spec, L.paint, L.glow ? new THREE.Color(L.glow).getHex() : null, T, { rims: L.rims });
+  scene.add(m.g); return m;
+}
+let model = makeModel();
+// after buying, tuning or repainting: new numbers, new model
+function applyCar() { car.setSpec(tunedSpec(save.current)); disposeCar(model, T); model = makeModel(); }
 const sp = DATA.neon.spawn;
 car.reset(sp.x, sp.z, sp.h);
 
@@ -168,9 +176,11 @@ $('calibGo').addEventListener('click', () => {
 function pause() {
   if (!state.running || state.paused) return;
   state.paused = true; controls.clear(); audio.suspend();
-  $('pausePlace').textContent = hud.place || 'Terminal Island'; updateMenu(); show('pause', true);
+  $('pausePlace').textContent = hud.place || 'Terminal Island'; updateMenu();
+  $('pCash').textContent = money(save.cash); $('pFuel').textContent = Math.ceil(fuel.level * 100) + '%'; $('pCharges').textContent = `${fuel.charges} of 6`;
+  show('pause', true);
 }
-function resume() { show('pause', false); show('map', false); show('eventCard', false); state.mapOpen = false; state.paused = false; controls.clear(); audio.resume(); }
+function resume() { show('pause', false); show('map', false); show('eventCard', false); show('shop', false); show('fuel', false); clearInterval(fuelTimer); state.mapOpen = false; state.paused = false; controls.clear(); audio.resume(); }
 $('pauseBtn').addEventListener('click', () => state.paused ? resume() : pause());
 $('pResume').addEventListener('click', resume);
 $('pRestart').addEventListener('click', () => { if (race.active) { show('results', false); race.restart(); resume(); } });
@@ -208,7 +218,7 @@ function openMap() {
   const px = Math.max(200, Math.min(row ? innerWidth - 260 : innerWidth - 32, row ? innerHeight - 32 : innerHeight - 150, 640)), dpr = Math.min(2, devicePixelRatio || 1);
   big.style.width = big.style.height = px + 'px'; big.width = big.height = Math.round(px * dpr);
   // the whole island, including the unfinished roads out over the sea
-  drawMap(bctx, big.width, big.height, -300, 420, big.width / 3000, [0, -1], car, true, dpr * clamp(px / 520, 0.6, 1.1), race.marks());
+  drawMap(bctx, big.width, big.height, -300, 420, big.width / 3000, [0, -1], car, true, dpr * clamp(px / 520, 0.6, 1.1), marks());
   show('map', true); state.mapOpen = true;
 }
 $('mapBtn').addEventListener('click', openMap); $('pMap').addEventListener('click', openMap); $('mini').addEventListener('click', openMap);
@@ -235,7 +245,7 @@ const ui = {
     const was = document.body.classList.contains('portrait');
     document.body.classList.toggle('portrait', tall);
     show('raceBox', on); show('rbStrip', tall); show('balance', tall && controls.mode === 'tilt');
-    $('pRestart').hidden = $('pLeave').hidden = !on;
+    $('pRestart').hidden = $('pLeave').hidden = !on; $('pGarage').hidden = on;
     if (!on) { ui.count(null); place = ''; }
     if (tall) goPortrait(); else if (was) goLandscape();
     camInit = false; resize();
@@ -262,10 +272,56 @@ const ui = {
   }
 };
 const race = new Race({ scene, T, car, model, hud, controls, audio, ui });
-$('evStart').addEventListener('click', () => { show('eventCard', false); race.start(); resume(); });
+$('evStart').addEventListener('click', () => {
+  if (fuel.empty) { show('eventCard', false); hud.say('Your tank is empty'); openFuel(); return; }
+  show('eventCard', false); race.start(); resume();
+});
 $('evSkip').addEventListener('click', () => { show('eventCard', false); resume(); });
 $('resDone').addEventListener('click', () => { show('results', false); race.leave(); resume(); });
 $('resRetry').addEventListener('click', () => { show('results', false); race.restart(); resume(); });
+
+/* ---------------- shops, garage and fuel ---------------- */
+const fuel = new Fuel(msg => hud.say(msg, 3600));
+const shops = new Shops({ onChange: applyCar, say: msg => hud.say(msg) });
+const doors = buildShopDoors(scene, T);
+let nearShop = null, fuelPrompted = false, fuelTimer = 0, fuelHud = 0;
+function setRumours() {
+  hud.defaultTicker = [...hud.baseTicker, ...SHOPS.filter(s => !save.found[s.id]).map(s => s.rumour)];
+  if (!race.active) hud.setTicker(hud.defaultTicker);
+}
+hud.baseTicker = hud.defaultTicker; setRumours();
+function shopMarks() { return SHOPS.filter(s => save.found[s.id]).map(s => ({ x: s.x, z: s.z, c: '#249689' })); }
+function marks() { return race.active ? race.marks() : [...race.marks(), ...shopMarks()]; }
+function checkShops() {
+  for (const s of SHOPS) {
+    const d = Math.hypot(car.x - s.x, car.z - s.z);
+    if (!save.found[s.id] && d < 45) { save.found[s.id] = true; persist(); hud.say(`Found ${s.name}: ${s.label.toLowerCase()}`, 4000); audio.blip(660, 0.2, 'sine', 0.08); setRumours(); }
+    if (nearShop === s && d > 12) nearShop = null;
+    if (!nearShop && d < 6 && car.kmh < 40) {
+      nearShop = s; car.vx = car.vz = 0; refreshFL();
+      ui.modal('shop'); shops.show(s);
+    }
+  }
+}
+$('shopClose').addEventListener('click', resume);
+$('pGarage').addEventListener('click', () => { show('pause', false); ui.modal('shop'); shops.show({ kind: 'garage', label: 'Garage', name: 'Your cars' }); });
+function renderFuel() {
+  const lv = fuel.level, ch = fuel.charges, cost = fuel.boostCost();
+  $('fuelTitle').textContent = fuel.empty ? 'Your tank is empty' : fuel.refilling ? 'Refilling' : lv >= 1 ? 'Tank full' : 'Fuel';
+  $('fTank').textContent = Math.ceil(lv * 100) + '%'; $('fCharges').textContent = `${ch} of 6`;
+  $('fPips').innerHTML = Array.from({ length: 6 }, (_, i) => `<i class="${i < ch ? 'on' : ''}"></i>`).join('');
+  $('fText').textContent = fuel.refilling ? `The synthesizer will fill your tank in ${fmtLeft(fuel.msLeft)}.`
+    : fuel.empty ? 'Start the synthesizer to refill over 4 hours, or boost it to drive again now.'
+    : `About ${Math.max(1, Math.round(lv * 15))} minutes of driving left.`;
+  $('fStart').hidden = fuel.refilling || lv >= 1; $('fStart').disabled = ch < 1;
+  $('fBoost').hidden = lv >= 1 && !fuel.refilling; $('fBoost').disabled = ch < cost;
+  $('fBoost').textContent = `Boost now · ${cost} charge${cost > 1 ? 's' : ''}`;
+}
+function openFuel() { show('pause', false); ui.modal('fuel'); renderFuel(); clearInterval(fuelTimer); fuelTimer = setInterval(renderFuel, 1000); }
+$('pFuelBtn').addEventListener('click', openFuel);
+$('fStart').addEventListener('click', () => { if (fuel.startRefill()) hud.say('Synthesizer running'); renderFuel(); });
+$('fBoost').addEventListener('click', () => { if (fuel.boost()) { hud.say('Tank full'); fuelPrompted = false; } renderFuel(); });
+$('fClose').addEventListener('click', resume);
 
 /* ---------------- main loop ---------------- */
 let last = performance.now(), place = '';
@@ -276,6 +332,12 @@ function frame(now) {
   const live = state.running && !state.paused;
   const raw = controls.update(dt);
   const inp = live && race.active ? race.input(raw, dt) : raw;
+  fuel.tick(dt, live);
+  // out of fuel: the engine cuts, except mid-race where you are allowed to finish
+  if (fuel.empty && !race.active) {
+    inp.throttle = 0; inp.nos = false;
+    if (live && !fuelPrompted && car.kmh < 3) { fuelPrompted = true; openFuel(); }
+  } else if (!fuel.empty) fuelPrompted = false;
   if (live) {
     while (controls.shifts.length) {
       const d = controls.shifts.shift(), ratio = car.rpm / car.spec.redline;
@@ -288,7 +350,7 @@ function frame(now) {
     }
     stepTraffic(dt);
     race.update(dt);
-    if (!race.active) race.checkMarkers(car);
+    if (!race.active) { race.checkMarkers(car); checkShops(); }
   } else controls.shifts.length = 0;
   streamer.update(car.x, car.z, spawnTraffic, dropTraffic);
   syncModel(model, car, live ? dt : 0);
@@ -312,7 +374,9 @@ function frame(now) {
   for (const g of streamer.loaded.values()) if (g.userData.reds) g.userData.reds.visible = on;
 
   if (state.running) {
-    hud.update(car, dt, race.marks());
+    hud.update(car, dt, marks());
+    fuelHud -= dt;
+    if (fuelHud <= 0) { fuelHud = 0.5; $('fuelFill').style.width = (fuel.level * 100).toFixed(1) + '%'; $('fuelFill').parentElement.classList.toggle('low', fuel.level < 0.15); }
     const p = placeAt(car.x, car.z);
     if (race.active) place = p.name;
     else if (p.name !== place) {
@@ -331,4 +395,4 @@ function frame(now) {
 }
 resize();
 requestAnimationFrame(frame);
-window.__ti = { car, state, controls, streamer, traffic, race };
+window.__ti = { car, state, controls, streamer, traffic, race, fuel, save, shops, get model() { return model; } };

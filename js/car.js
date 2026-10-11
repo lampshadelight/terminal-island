@@ -43,8 +43,9 @@ function taper(w, h, l, top, fr, rr) {
 function box(w, h, l, mat, x, y, z, parent) { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, l), mat); m.position.set(x, y, z); parent.add(m); return m; }
 function plane(w, l, mat, y, z, parent) { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, l), mat); m.rotation.x = -Math.PI / 2; m.position.set(0, y, z); parent.add(m); return m; }
 
-export function buildCar(spec, paint, glow, T, { beam = true } = {}) {
+export function buildCar(spec, paint, glow, T, { beam = true, rims = null } = {}) {
   const S = sharedParts(T);
+  const rimMat = rims ? new THREE.MeshPhongMaterial({ color: rims, shininess: 90 }) : S.rimMat;
   const g = new THREE.Group(), body = new THREE.Group(); g.add(body);
   const pc = new THREE.Color(paint);
   const pm = new THREE.MeshPhongMaterial({ color: pc, shininess: 90, specular: 0x777777, emissive: pc.clone().multiplyScalar(0.12) });
@@ -69,7 +70,7 @@ export function buildCar(spec, paint, glow, T, { beam = true } = {}) {
   const wheels = [], pivots = [];
   for (const [x, z, front] of [[Wd / 2 - 0.1, L / 2 - 0.85, 1], [-(Wd / 2 - 0.1), L / 2 - 0.85, 1], [Wd / 2 - 0.1, -L / 2 + 0.82, 0], [-(Wd / 2 - 0.1), -L / 2 + 0.82, 0]]) {
     const piv = new THREE.Group(); piv.position.set(x, 0.37, z); g.add(piv);
-    const w = new THREE.Group(); w.add(new THREE.Mesh(S.wheelGeo, S.wheelMat)); w.add(new THREE.Mesh(S.rimGeo, S.rimMat)); piv.add(w);
+    const w = new THREE.Group(); w.add(new THREE.Mesh(S.wheelGeo, S.wheelMat)); w.add(new THREE.Mesh(S.rimGeo, rimMat)); piv.add(w);
     wheels.push(w); if (front) pivots.push(piv);
   }
   plane(Wd + 0.8, L + 0.9, S.shadowMat, 0.045, 0, g);
@@ -83,6 +84,12 @@ export function buildCar(spec, paint, glow, T, { beam = true } = {}) {
   shell.scale.set(Wd * 0.8, 0.95, L * 0.62); shell.position.y = 0.75; g.add(shell);
   return { g, body, wheels, pivots, tailMat, flames, shell };
 }
+// free everything a car model made for itself; the shared wheel and glass parts stay
+export function disposeCar(m, T) {
+  const S = sharedParts(T), keepGeo = new Set([S.wheelGeo, S.rimGeo, S.flameGeo]), keepMat = new Set([S.wheelMat, S.rimMat, S.glassMat, S.headMat, S.darkMat, S.shadowMat, S.flameMat, S.beamMat]);
+  m.g.parent && m.g.parent.remove(m.g);
+  m.g.traverse(o => { if (o.geometry && !keepGeo.has(o.geometry)) o.geometry.dispose(); if (o.material && !keepMat.has(o.material)) o.material.dispose(); });
+}
 
 /* ---------------- driving model ---------------- */
 export class Car {
@@ -95,7 +102,7 @@ export class Car {
   shift(d) {
     if (this.reverse) return;
     const g = clamp(this.gear + d, 1, 6);
-    if (g !== this.gear) { this.gear = g; this.shiftT = 0.16; return true; }
+    if (g !== this.gear) { this.gear = g; this.shiftT = this.spec.shiftT || 0.16; return true; }
     return false;
   }
   torque(x) { return clamp(0.38 + 1.3 * x - 0.85 * x * x, 0.22, 1); }
@@ -122,7 +129,7 @@ export class Car {
     } else {
       if (thr > 0 && this.shiftT <= 0 && !this.limiter) {
         const x = this.rpm / s.redline;
-        f += s.accel * 1.25 * this.torque(x) * Math.pow(ratio / RATIOS[0], 0.6) * thr * (nos ? 1.7 : 1) * dt;
+        f += s.accel * 1.25 * this.torque(x) * Math.pow(ratio / RATIOS[0], 0.6) * thr * (nos ? (s.nos || 1.7) : 1) * dt;
       }
       if (brk > 0) f = f > 0.5 ? f - 30 * brk * dt : Math.max(0, f - 6 * dt);
     }
@@ -139,7 +146,7 @@ export class Car {
     this.steer += (inp.steer - this.steer) * Math.min(1, dt * 8);
     const spdF = clamp(sp / 7, 0, 1) * (1 - 0.42 * clamp(sp / s.top, 0, 1));
     const yaw = this.steer * s.turn * spdF * (f >= 0 ? 1 : -1) * (hb ? 1.45 : 1);
-    this.nitro = nos ? Math.max(0, this.nitro - 0.27 * dt) : Math.min(1, this.nitro + 0.01 * dt);
+    this.nitro = nos ? Math.max(0, this.nitro - (s.nosDrain || 0.27) * dt) : Math.min(1, this.nitro + 0.01 * dt);
     this.vx = f * fx + l * fz; this.vz = f * fz - l * fx; this.h += yaw * dt;
     if (locked) { this.vx = this.vz = 0; f = l = 0; }
     this.x += this.vx * dt; this.z += this.vz * dt;
