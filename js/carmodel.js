@@ -37,6 +37,13 @@ export const SHAPES = {
     heads: [{ s: 'round', x: .46, y: .7, r: .085 }, { s: 'round', x: .64, y: .7, r: .085 }],
     tails: [{ s: 'rect', x: .56, y: .82, w: .46, h: .14 }],
     dark: [{ s: 'rect', x: .12, y: .7, w: .17, h: .17 }, { s: 'rect', x: 0, y: .44, w: .95, h: .1 }], spoiler: 'none' },
+  // inspired by the Toyota AE86: small, boxy hatch coupe, pop-up lamps, wide tail-lamp bar
+  ronin: { L: 4.2, W: 1.63, R: 0.29, axles: [0.19, 0.79], plan: 0.08, tumble: 0.17, cw: 0.86,
+    P: [[0, .33], [0, .62], [.005, .88], [.03, .9], [.18, .91], [.7, .9], [.86, .86], [.98, .78], [1, .66], [1, .42], [.985, .3]],
+    C: [[.04, .9], [.3, 1.3], [.6, 1.31], [.72, .9]],
+    heads: [{ s: 'rect', x: .55, y: .5, w: .3, h: .07 }], popups: true,
+    tails: [{ s: 'rect', x: 0, y: .74, w: 1.34, h: .13 }],
+    dark: [{ s: 'rect', x: 0, y: .62, w: 1.1, h: .05 }, { s: 'rect', x: 0, y: .4, w: .9, h: .1 }], spoiler: 'lip' },
   // inspired by the Mitsubishi Eclipse: rounded wedge, slim lamps, hoop wing
   solstice: { L: 4.38, W: 1.74, R: 0.31, axles: [0.19, 0.79], plan: 0.15, tumble: 0.22, cw: 0.83,
     P: [[0, .34], [0, .64], [.01, .86], [.05, .92], [.16, .93], [.62, .92], [.78, .85], [.92, .74], [.99, .62], [1, .42], [.985, .3]],

@@ -16,7 +16,7 @@ export const save = (() => {
   return s;
 })();
 
-export const START_PAINT = { kaze: '#BF0003', hornet: '#FFC400', vortex: '#587AF9', dreier: '#F2F2F2', solstice: '#FF4500', zephyr: '#6B6F78', vandal: '#E8B400', strix: '#3D7A36' };
+export const START_PAINT = { kaze: '#BF0003', hornet: '#FFC400', vortex: '#587AF9', dreier: '#B8BCC4', ronin: '#F2F2F2', solstice: '#FF4500', zephyr: '#6B6F78', vandal: '#E8B400', strix: '#3D7A36' };
 
 export function persist() {
   try { localStorage.setItem(KEY, JSON.stringify(save)); } catch (e) {}

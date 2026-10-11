@@ -24,7 +24,7 @@ export const PARTS = [
   { id: 'weight', name: 'Weight reduction', desc: 'Faster off the line and through corners.' }
 ];
 const PART_PRICE = [700, 1600, 3200];
-const CAR_FACTOR = { zephyr: 1.3, vandal: 1.4, strix: 1.8 };
+const CAR_FACTOR = { solstice: 1.15, zephyr: 1.3, vandal: 1.4, strix: 1.8 };
 export const partPrice = (carId, lvl) => Math.round(PART_PRICE[lvl] * (CAR_FACTOR[carId] || 1) / 50) * 50;
 
 export const PAINTS = ['#BF0003', '#FF4500', '#FFC400', '#249689', '#587AF9', '#FF5963', '#F2F2F2', '#1A1A1E', '#6B6F78', '#7A3FB0', '#00A6B8', '#3D7A36'];

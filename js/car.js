@@ -10,7 +10,8 @@ export const CARS = {
   hornet: { id: 'hornet', brand: 'Tachi', name: 'Hornet', cls: 'Hot hatch', starter: true, price: 2500, top: 50, accel: 13.2, grip: 6.9, turn: 2.75, redline: 8600, stripe: false },
   vortex: { id: 'vortex', brand: 'Mazura', name: 'Vortex', cls: 'Rotary coupe', starter: true, price: 3500, top: 53, accel: 13.6, grip: 7, turn: 2.6, redline: 9000, stripe: false },
   dreier: { id: 'dreier', brand: 'Brauer', name: 'Dreier', cls: 'Sports coupe', starter: true, price: 3500, top: 54, accel: 14, grip: 6.6, turn: 2.45, redline: 7000, stripe: false },
-  solstice: { id: 'solstice', brand: 'Sanko', name: 'Solstice', cls: 'Turbo coupe', starter: true, price: 3500, top: 54, accel: 14.2, grip: 6.4, turn: 2.4, redline: 7200, stripe: true },
+  ronin: { id: 'ronin', brand: 'Kagero', name: 'Ronin', cls: 'Lightweight drift hatch', starter: true, price: 3000, top: 50, accel: 12.9, grip: 6.0, turn: 2.85, redline: 7600, stripe: false },
+  solstice: { id: 'solstice', brand: 'Sanko', name: 'Solstice', cls: 'Turbo coupe', price: 5000, top: 54, accel: 14.2, grip: 6.4, turn: 2.4, redline: 7200, stripe: true },
   zephyr: { id: 'zephyr', brand: 'Hikari', name: 'Zephyr', cls: 'Tuner coupe', price: 8000, top: 58, accel: 16.5, grip: 7.4, turn: 2.5, redline: 8200, stripe: true },
   vandal: { id: 'vandal', brand: 'Brannock', name: 'Vandal', cls: 'Muscle', price: 9500, top: 61, accel: 17.5, grip: 5.8, turn: 2.25, redline: 6900, stripe: true },
   strix: { id: 'strix', brand: 'Ravelle', name: 'Strix', cls: 'Mid-engine exotic', price: 18000, top: 71, accel: 21, grip: 8, turn: 2.7, redline: 8800, stripe: false }

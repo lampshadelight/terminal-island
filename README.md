@@ -19,8 +19,8 @@ Play: https://lampshadelight.github.io/terminal-island/
 
 ## Cars
 Every car is an original design inspired by a real street car, with invented brands and no real badges.
-- Starters (pick one): Hikari Kaze (180SX-inspired), Tachi Hornet (Civic), Mazura Vortex (RX-8), Brauer Dreier (E36), Sanko Solstice (Eclipse)
-- At the dealer: Hikari Zephyr (Skyline R34), Brannock Vandal (Mustang), Ravelle Strix (mid-engine exotic)
+- Starters (pick one): Hikari Kaze (180SX-inspired), Tachi Hornet (Civic), Mazura Vortex (RX-8), Brauer Dreier (E36), Kagero Ronin (AE86)
+- At the dealer: Sanko Solstice (Eclipse), Hikari Zephyr (Skyline R34), Brannock Vandal (Mustang), Ravelle Strix (mid-engine exotic)
 
 ## Graphics
 Wet streets that reflect the city, glow around lights (High), light trails and speed streaks. Pause menu → Graphics switches Low / Medium / High.

@@ -34,7 +34,7 @@ export const EVENTS = [
     strip: { cz: 1650, x0: -440, len: 402 }, rivals: [{ name: 'Brick', spec: rivalSpec('kaze', 0.98), paint: '#FF4500' }],
     blurb: 'A quarter mile down the quay. Shift at the top of the rev bar for a perfect shift. Hold the phone upright and level.' },
   { id: 'runway-roll', type: 'roll', name: 'Runway Roll', where: 'Old Terminal', marker: { x: -1700, z: 225 }, prize: 1100, traffic: false,
-    strip: { cz: 250, x0: -1630, len: 600, roll: 60 / 3.6 }, rivals: [{ name: 'Sable', spec: rivalSpec('solstice', 0.95), paint: '#FFFFFF' }],
+    strip: { cz: 250, x0: -1630, len: 600, roll: 60 / 3.6 }, rivals: [{ name: 'Sable', spec: rivalSpec('dreier', 0.93), paint: '#FFFFFF' }],
     blurb: 'Both cars roll down the old runway at 60 km/h. When the lights change, it is flat out for 600 metres. Hold the phone upright and level.' }
 ];
 
