@@ -11,10 +11,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="css/game.css">
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.module.js"}}</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.149.0/examples/jsm/"}}</script>
 </head>
 <body>
 <canvas id="gl"></canvas>
+<div id="speedfx" class="speedfx"></div>
 
 <div id="hud" class="hud">
   <header class="topbar">
@@ -95,6 +96,17 @@
   </div>
 </div>
 
+<!-- First car -->
+<div class="overlay starter" id="starter" hidden>
+  <div class="pane panel lit">
+    <div class="label">Your first car</div>
+    <h2>Pick a car to start with</h2>
+    <p class="small dim">The others are for sale once you find the car dealer.</p>
+    <div id="starterList" class="shop-body"></div>
+    <div class="actions"><button class="gbtn primary lit" id="starterGo">Drive the Kaze</button></div>
+  </div>
+</div>
+
 <!-- Calibrate -->
 <div class="overlay" id="calib" hidden>
   <div class="pane panel lit">
@@ -127,6 +139,7 @@
       <button class="gbtn lit" id="pInvert">Tilt to accelerate: forward</button>
       <button class="gbtn lit" id="pCalib">Recalibrate tilt</button>
       <button class="gbtn lit" id="pSound">Sound: on</button>
+      <button class="gbtn lit" id="pGfx">Graphics: Medium</button>
     </div>
   </div>
 </div>

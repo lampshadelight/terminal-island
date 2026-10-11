@@ -3,13 +3,15 @@ import { clamp, lerp, rng } from './util.js';
 import { makeTextures, makeMaterials } from './textures.js';
 import { DATA, collide, placeAt, Streamer, buildStatic } from './world.js';
 import { CARS, Car, buildCar, syncModel, disposeCar } from './car.js';
+import { carStats } from './garage.js';
 import { Controls } from './controls.js';
 import { Audio } from './audio.js';
 import { Hud, drawMap } from './hud.js';
 import { Race } from './race.js';
+import { WetRoads, makeBloom, Trails } from './fx.js';
 import { SHOPS, Shops, buildShopDoors, tunedSpec, looks } from './garage.js';
 import { Fuel, fmtLeft } from './fuel.js';
-import { save, persist, money } from './save.js';
+import { save, persist, money, newCar, START_PAINT } from './save.js';
 
 const $ = id => document.getElementById(id);
 
@@ -19,24 +21,27 @@ renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.6));
 const scene = new THREE.Scene();
 const T = makeTextures(), M = makeMaterials(T);
 scene.background = T.sky;
-scene.fog = new THREE.FogExp2(0x1f1714, 0.0042);
+scene.fog = new THREE.FogExp2(0x26170f, 0.0046);
 scene.add(new THREE.HemisphereLight(0x8a7a90, 0x2a1a12, 0.55));
 const moon = new THREE.DirectionalLight(0xffd9b0, 0.35); moon.position.set(-0.4, 1, 0.3); scene.add(moon);
 const carLight = new THREE.PointLight(0xffb070, 1.1, 40, 1.6); scene.add(carLight);
 const camera = new THREE.PerspectiveCamera(62, 1, 0.3, 1400);
+camera.layers.enable(1);
 
 buildStatic(scene, T, M);
 const streamer = new Streamer(scene, T, M);
 
 /* ---------------- player ---------------- */
-const car = new Car(tunedSpec(save.current));
+let previewId = save.current || 'kaze';
+const shownId = () => save.current || previewId;
+const car = new Car(tunedSpec(shownId()));
 function makeModel() {
-  const L = looks(save.current), m = buildCar(L.spec, L.paint, L.glow ? new THREE.Color(L.glow).getHex() : null, T, { rims: L.rims });
+  const L = looks(shownId()), m = buildCar(L.spec, L.paint, L.glow ? new THREE.Color(L.glow).getHex() : null, T, { rims: L.rims });
   scene.add(m.g); return m;
 }
 let model = makeModel();
 // after buying, tuning or repainting: new numbers, new model
-function applyCar() { car.setSpec(tunedSpec(save.current)); disposeCar(model, T); model = makeModel(); }
+function applyCar() { car.setSpec(tunedSpec(shownId())); disposeCar(model, T); model = makeModel(); }
 const sp = DATA.neon.spawn;
 car.reset(sp.x, sp.z, sp.h);
 
@@ -135,9 +140,26 @@ let trafficOn = true;
 let camPos = new THREE.Vector3(), camLook = new THREE.Vector3(), camInit = false, blink = 0;
 const isTouch = matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window;
 
+/* ---------------- graphics quality ---------------- */
+const GFX = ['Low', 'Medium', 'High'];
+let quality = isTouch ? 1 : 2, composer = null, composerLoading = false;
+try { const q = localStorage.getItem('ti.quality'); if (q !== null) quality = +q; } catch (e) {}
+const wet = new WetRoads(renderer, scene, camera);
+for (const m of [M.road, M.inter, M.tarmac]) wet.patch(m);
+const trails = new Trails(scene);
+function applyQuality() {
+  wet.enabled = quality >= 1;
+  if (quality >= 2 && !composer && !composerLoading) {
+    composerLoading = true;
+    makeBloom(renderer, scene, camera).then(c => { composer = c; composerLoading = false; resize(); }).catch(() => { composerLoading = false; });
+  }
+  try { localStorage.setItem('ti.quality', String(quality)); } catch (e) {}
+}
+
 function resize() {
   const w = innerWidth, h = innerHeight;
   renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+  wet.setSize(w, h); if (composer) composer.setSize2(w, h);
   const tall = race && race.portrait, wrong = state.running && isTouch && (tall ? w > h : h > w);
   $('rotate').hidden = !wrong;
   $('rotTitle').textContent = tall ? 'Turn your phone upright' : 'Turn your phone sideways';
@@ -153,19 +175,42 @@ async function goLandscape() {
   try { screen.orientation && screen.orientation.lock && await screen.orientation.lock('landscape'); } catch (e) {}
 }
 function begin() {
-  show('title', false); state.running = true; state.paused = false; audio.start(); audio.setMuted(muted); resize(); hud.say('Welcome to Terminal Island', 3600);
+  show('title', false); state.running = true; document.body.classList.add('running'); state.paused = false; audio.start(); audio.setMuted(muted); resize(); hud.say('Welcome to Terminal Island', 3600);
 }
-$('startTilt').addEventListener('click', async () => {
+async function startWith(mode) {
   audio.start(); goLandscape();
+  if (mode === 'touch') { useTouch(); begin(); return; }
   const ok = await controls.enableTilt();
   if (!ok) {
     $('titleNote').textContent = 'Tilt is not available on this device or was not allowed, so touch buttons are on. You can switch in the pause menu.';
-    useTouch(); setTimeout(begin, 1400); return;
+    show('title', true); useTouch(); setTimeout(begin, 1400); return;
   }
   controls.mode = 'tilt'; document.body.classList.remove('touch');
   show('title', false); show('calib', true); state.calibThen = 'begin';
+}
+// first time only: pick one of the five starter cars in a slowly turning showroom
+function openStarter(mode) {
+  state.startMode = mode; state.showroom = true; show('title', false); show('starter', true); renderStarter();
+}
+function renderStarter() {
+  const ids = Object.keys(CARS).filter(k => CARS[k].starter);
+  $('starterList').innerHTML = ids.map(k => {
+    const c = CARS[k];
+    return `<button class="item pick${k === previewId ? ' on' : ''}" data-car="${k}"><div class="item-main"><div class="label dim">${c.brand} · ${c.cls}</div><h3>${c.name}</h3>${carStats(c)}</div></button>`;
+  }).join('');
+  $('starterGo').textContent = `Drive the ${CARS[previewId].name}`;
+}
+$('starterList').addEventListener('click', e => {
+  const b = e.target.closest('[data-car]'); if (!b || b.dataset.car === previewId) return;
+  previewId = b.dataset.car; applyCar(); renderStarter();
 });
-$('startTouch').addEventListener('click', () => { audio.start(); goLandscape(); useTouch(); begin(); });
+$('starterGo').addEventListener('click', () => {
+  save.cars[previewId] = newCar(START_PAINT[previewId]); save.current = previewId; persist();
+  state.showroom = false; show('starter', false); camInit = false; applyCar(); startWith(state.startMode);
+});
+const needStarter = () => !save.current;
+$('startTilt').addEventListener('click', () => needStarter() ? openStarter('tilt') : startWith('tilt'));
+$('startTouch').addEventListener('click', () => needStarter() ? openStarter('touch') : startWith('touch'));
 function useTouch() { controls.mode = 'touch'; document.body.classList.add('touch'); $('tiltHint').hidden = true; updateMenu(); }
 $('calibGo').addEventListener('click', () => {
   controls.calibrate(); show('calib', false); controls.clear();
@@ -199,11 +244,13 @@ $('pInvert').addEventListener('click', () => { controls.invert = !controls.inver
 let muted = false;
 try { muted = localStorage.getItem('ti.muted') === '1'; car.auto = localStorage.getItem('ti.auto') === '1'; controls.invert = localStorage.getItem('ti.invert') === '1'; } catch (e) {}
 $('pSound').addEventListener('click', () => { muted = !muted; audio.setMuted(muted); updateMenu(); });
+$('pGfx').addEventListener('click', () => { quality = (quality + 2) % 3; applyQuality(); updateMenu(); });
 function updateMenu() {
   $('pGears').textContent = 'Gears: ' + (car.auto ? 'automatic' : 'manual');
   $('pMode').textContent = 'Controls: ' + (controls.mode === 'tilt' ? 'tilt' : 'touch buttons');
   $('pInvert').textContent = 'Tilt to accelerate: ' + (controls.invert ? 'toward you' : 'away from you');
   $('pSound').textContent = 'Sound: ' + (muted ? 'off' : 'on');
+  $('pGfx').textContent = 'Graphics: ' + GFX[quality];
   $('pCalib').hidden = $('pInvert').hidden = controls.mode !== 'tilt';
   try { localStorage.setItem('ti.muted', muted ? '1' : '0'); localStorage.setItem('ti.auto', car.auto ? '1' : '0'); localStorage.setItem('ti.invert', controls.invert ? '1' : '0'); } catch (e) {}
 }
@@ -324,7 +371,7 @@ $('fBoost').addEventListener('click', () => { if (fuel.boost()) { hud.say('Tank 
 $('fClose').addEventListener('click', resume);
 
 /* ---------------- main loop ---------------- */
-let last = performance.now(), place = '';
+let last = performance.now(), place = '', speedFx = 0;
 const tmp = new THREE.Vector3();
 function frame(now) {
   requestAnimationFrame(frame);
@@ -354,6 +401,10 @@ function frame(now) {
   } else controls.shifts.length = 0;
   streamer.update(car.x, car.z, spawnTraffic, dropTraffic);
   syncModel(model, car, live ? dt : 0);
+  trails.update(model, car, live && quality >= 1);
+  // speed streaks at the edge of the screen
+  const sfx = clamp((car.kmh - 130) / 110, 0, 0.7) + (car.nos && live ? 0.3 : 0);
+  if (Math.abs(sfx - speedFx) > 0.02) { speedFx = sfx; $('speedfx').style.opacity = sfx.toFixed(2); }
   carLight.position.set(car.x + Math.sin(car.h) * 6, 5, car.z + Math.cos(car.h) * 6);
 
   // chase camera: drops back and widens with speed
@@ -365,6 +416,10 @@ function frame(now) {
   camPos.lerp(tmp, 1 - Math.exp(-dt * 7));
   camLook.lerp(new THREE.Vector3(car.x + fx * ahead, 1.1, car.z + fz * ahead), 1 - Math.exp(-dt * 12));
   camera.position.copy(camPos); camera.lookAt(camLook);
+  if (state.showroom) {
+    const a = now / 4000;
+    camera.position.set(car.x + Math.sin(a) * 6.5, 1.9, car.z + Math.cos(a) * 6.5); camera.lookAt(car.x, 0.7, car.z);
+  }
   const fov = (tall ? 74 : 62) + clamp(v / car.spec.top, 0, 1) * (tall ? 12 : 14) + (car.nos ? 6 : 0);
   if (Math.abs(camera.fov - fov) > 0.05) { camera.fov = lerp(camera.fov, fov, Math.min(1, dt * 4)); camera.updateProjectionMatrix(); }
 
@@ -391,8 +446,10 @@ function frame(now) {
     }
   }
   audio.update(car, inp.throttle, !live);
-  renderer.render(scene, camera);
+  if (window.__cam) { camera.position.copy(window.__cam.p); camera.lookAt(window.__cam.t); camera.fov = window.__cam.fov || 40; camera.updateProjectionMatrix(); }
+  wet.update();
+  if (composer && quality >= 2) composer.render(); else renderer.render(scene, camera);
 }
-resize();
+applyQuality(); resize();
 requestAnimationFrame(frame);
-window.__ti = { car, state, controls, streamer, traffic, race, fuel, save, shops, get model() { return model; } };
+window.__ti = { scene, T, camera, THREE, car, state, controls, streamer, traffic, race, fuel, save, shops, get model() { return model; } };

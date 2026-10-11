@@ -233,8 +233,10 @@ function finalize(B, M, T, name) {
   const g = new THREE.Group(); g.name = name;
   const add = (gb, mat, order) => { if (!gb.empty) { const m = new THREE.Mesh(gb.build(), mat); if (order) m.renderOrder = order; g.add(m); } };
   add(B.road, M.road); add(B.inter, M.inter); add(B.tarmac, M.tarmac); add(B.paint, M.paint, 1);
+  // the ground goes on its own layer so the wet-road mirror doesn't reflect the road itself
+  for (const m of g.children) m.layers.set(1);
   add(B.s, M.solid); add(B.b, M.building); add(B.e, M.emissive); add(B.hoard, M.hoarding); add(B.rock, M.rock);
-  add(B.sign, M.signs, 2); add(B.pool, M.pools, 2);
+  add(B.sign, M.signs, 2); add(B.pool, M.pools, 2); g.children[g.children.length - 1].material === M.pools && g.children[g.children.length - 1].layers.set(1);
   const pts = (arr, size, color) => {
     if (!arr.length) return;
     const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(arr, 3));
@@ -549,9 +551,9 @@ export function buildStatic(scene, T, M) {
   scene.add(g);
   // sea
   const sea = new THREE.Mesh(new THREE.PlaneGeometry(12000, 12000), new THREE.MeshPhongMaterial({ color: 0x07090b, specular: 0x3a2412, shininess: 40 }));
-  sea.rotation.x = -Math.PI / 2; sea.position.set(-400, -1.6, 600); scene.add(sea);
+  sea.rotation.x = -Math.PI / 2; sea.position.set(-400, -1.6, 600); sea.layers.set(1); scene.add(sea);
   // island ground under the berms and tunnels
-  for (const r of BERMS) { const m = new THREE.Mesh(new THREE.PlaneGeometry(r.x1 - r.x0, r.z1 - r.z0), new THREE.MeshLambertMaterial({ color: 0x15161a })); m.rotation.x = -Math.PI / 2; m.position.set((r.x0 + r.x1) / 2, -0.05, (r.z0 + r.z1) / 2); scene.add(m); }
+  for (const r of BERMS) { const m = new THREE.Mesh(new THREE.PlaneGeometry(r.x1 - r.x0, r.z1 - r.z0), new THREE.MeshLambertMaterial({ color: 0x15161a })); m.rotation.x = -Math.PI / 2; m.position.set((r.x0 + r.x1) / 2, -0.05, (r.z0 + r.z1) / 2); m.layers.set(1); scene.add(m); }
   return g;
 }
 

@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { CARS } from './car.js';
 import { PAL } from './textures.js';
-import { save, persist, money, newCar } from './save.js';
+import { save, persist, money, newCar, START_PAINT } from './save.js';
 
 /* ------------------------------------------------------------------
    Shops are hidden around the island. They are not on the map until
@@ -24,7 +24,7 @@ export const PARTS = [
   { id: 'weight', name: 'Weight reduction', desc: 'Faster off the line and through corners.' }
 ];
 const PART_PRICE = [700, 1600, 3200];
-const CAR_FACTOR = { zephyr: 1, vandal: 1.25, strix: 1.6 };
+const CAR_FACTOR = { zephyr: 1.3, vandal: 1.4, strix: 1.8 };
 export const partPrice = (carId, lvl) => Math.round(PART_PRICE[lvl] * (CAR_FACTOR[carId] || 1) / 50) * 50;
 
 export const PAINTS = ['#BF0003', '#FF4500', '#FFC400', '#249689', '#587AF9', '#FF5963', '#F2F2F2', '#1A1A1E', '#6B6F78', '#7A3FB0', '#00A6B8', '#3D7A36'];
@@ -35,7 +35,7 @@ const PRICE = { paint: 250, glow: 300, rims: 250, spoiler: 400, scoop: 300, stri
 
 // driving numbers after upgrades
 export function tunedSpec(id) {
-  const b = CARS[id], p = save.cars[id].parts;
+  const b = CARS[id], p = (save.cars[id] || newCar()).parts;
   return { ...b,
     accel: b.accel * (1 + 0.08 * p.engine + 0.05 * p.turbo + 0.04 * p.weight),
     top: b.top * (1 + 0.04 * p.turbo + 0.015 * p.gearbox),
@@ -44,7 +44,7 @@ export function tunedSpec(id) {
 }
 // how it looks: body kit choices replace the factory parts
 export function looks(id) {
-  const b = CARS[id], c = save.cars[id];
+  const b = CARS[id], c = save.cars[id] || newCar(START_PAINT[id]);
   return { spec: { ...tunedSpec(id), spoiler: c.spoiler ?? b.spoiler, scoop: c.scoop ?? b.scoop, stripe: c.stripe ?? b.stripe }, paint: c.paint, glow: c.glow, rims: c.rims };
 }
 
@@ -66,6 +66,7 @@ export function buildShopDoors(scene, T) {
 }
 
 /* ---------- shop screens ---------- */
+export const carStats = t => `<div class="stats"><span>Speed</span>${bar(t.top, 75)}<span>Power</span>${bar(t.accel, 24)}<span>Grip</span>${bar(t.grip, 9)}</div>`;
 const bar = (v, max) => `<i class="stat"><b style="width:${Math.min(100, v / max * 100).toFixed(0)}%"></b></i>`;
 const swatch = (col, on, act, val, label) => `<button class="swatch${on ? ' on' : ''}" data-act="${act}" data-v="${val ?? ''}" aria-label="${label || col}" style="--sw:${col || 'transparent'}">${col ? '' : '<span>Off</span>'}</button>`;
 
@@ -83,7 +84,7 @@ export class Shops {
         const btn = cur ? `<button class="gbtn small" disabled>Driving</button>` : owned ? `<button class="gbtn small lit" data-act="drive" data-v="${k}">Drive</button>`
           : `<button class="gbtn small primary lit" data-act="buycar" data-v="${k}" ${save.cash < b.price ? 'disabled' : ''}>Buy ${money(b.price)}</button>`;
         return `<div class="item"><div class="item-main"><div class="label dim">${b.brand} · ${b.cls}</div><h3>${b.name}</h3>
-          <div class="stats"><span>Speed</span>${bar(t.top, 85)}<span>Power</span>${bar(t.accel, 30)}<span>Grip</span>${bar(t.grip, 10)}</div></div>${btn}</div>`;
+          ${carStats(t)}</div>${btn}</div>`;
       }).join('');
       if (s.kind === 'garage') h += `<p class="small dim">Your cars: ${Object.keys(save.cars).length} of ${Object.keys(CARS).length}. Kinetic Motors sells the rest, if you can find it.</p>`;
     }
@@ -115,7 +116,7 @@ export class Shops {
     const b = e.target.closest('[data-act]'); if (!b || b.disabled) return;
     const act = b.dataset.act, v = b.dataset.v === '' ? null : b.dataset.v, id = save.current, c = save.cars[id];
     let changed = false;
-    if (act === 'buycar') { const car = CARS[v]; if (!save.cars[v] && this._pay(car.price)) { save.cars[v] = newCar(PAINTS[Object.keys(save.cars).length % PAINTS.length]); save.current = v; changed = true; this.say(`The ${car.brand} ${car.name} is yours`); } }
+    if (act === 'buycar') { const car = CARS[v]; if (!save.cars[v] && this._pay(car.price)) { save.cars[v] = newCar(START_PAINT[v]); save.current = v; changed = true; this.say(`The ${car.brand} ${car.name} is yours`); } }
     if (act === 'drive') { save.current = v; changed = true; }
     if (act === 'part') { const lvl = c.parts[v]; if (lvl < 3 && this._pay(partPrice(id, lvl))) { c.parts[v]++; changed = true; this.say(`${PARTS.find(p => p.id === v).name} stage ${lvl + 1} fitted`); } }
     const look = (key, val) => { if (c[key] === val) return; if (this._pay(PRICE[key])) { c[key] = val; changed = true; } };

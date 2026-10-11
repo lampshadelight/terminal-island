@@ -1,15 +1,21 @@
 import * as THREE from 'three';
 import { clamp } from './util.js';
+import { SHAPES, buildBody } from './carmodel.js';
 
-/* Original cars. Brands and names are invented for this game. */
+/* Cars. Brands and names are invented for this game; each one is
+   inspired by a real street car (see carmodel.js) without copying badges.
+   starter: true means you can pick it as your first car. */
 export const CARS = {
-  zephyr: { id: 'zephyr', brand: 'Hikari', name: 'Zephyr', cls: 'Tuner coupe', price: 0, top: 54, accel: 15, grip: 7, turn: 2.5, redline: 8200,
-    L: 4.3, Wd: 1.86, H: 0.5, cab: [0.8, 0.46, 0.44, -0.2], spoiler: 'wing', scoop: false, stripe: true },
-  vandal: { id: 'vandal', brand: 'Brannock', name: 'Vandal', cls: 'Muscle', price: 4000, top: 61, accel: 17.5, grip: 5.8, turn: 2.25, redline: 6900,
-    L: 4.8, Wd: 2.0, H: 0.56, cab: [0.8, 0.44, 0.36, -0.65], spoiler: 'lip', scoop: true, stripe: true },
-  strix: { id: 'strix', brand: 'Ravelle', name: 'Strix', cls: 'Mid-engine exotic', price: 9000, top: 71, accel: 21, grip: 8, turn: 2.7, redline: 8800,
-    L: 4.55, Wd: 2.06, H: 0.42, cab: [0.72, 0.4, 0.38, 0.05], spoiler: 'ducktail', scoop: false, stripe: false }
+  kaze: { id: 'kaze', brand: 'Hikari', name: 'Kaze', cls: 'Drift coupe', starter: true, price: 3000, top: 52, accel: 13.6, grip: 6.2, turn: 2.65, redline: 7400, stripe: false },
+  hornet: { id: 'hornet', brand: 'Tachi', name: 'Hornet', cls: 'Hot hatch', starter: true, price: 2500, top: 50, accel: 13.2, grip: 6.9, turn: 2.75, redline: 8600, stripe: false },
+  vortex: { id: 'vortex', brand: 'Mazura', name: 'Vortex', cls: 'Rotary coupe', starter: true, price: 3500, top: 53, accel: 13.6, grip: 7, turn: 2.6, redline: 9000, stripe: false },
+  dreier: { id: 'dreier', brand: 'Brauer', name: 'Dreier', cls: 'Sports coupe', starter: true, price: 3500, top: 54, accel: 14, grip: 6.6, turn: 2.45, redline: 7000, stripe: false },
+  solstice: { id: 'solstice', brand: 'Sanko', name: 'Solstice', cls: 'Turbo coupe', starter: true, price: 3500, top: 54, accel: 14.2, grip: 6.4, turn: 2.4, redline: 7200, stripe: true },
+  zephyr: { id: 'zephyr', brand: 'Hikari', name: 'Zephyr', cls: 'Tuner coupe', price: 8000, top: 58, accel: 16.5, grip: 7.4, turn: 2.5, redline: 8200, stripe: true },
+  vandal: { id: 'vandal', brand: 'Brannock', name: 'Vandal', cls: 'Muscle', price: 9500, top: 61, accel: 17.5, grip: 5.8, turn: 2.25, redline: 6900, stripe: true },
+  strix: { id: 'strix', brand: 'Ravelle', name: 'Strix', cls: 'Mid-engine exotic', price: 18000, top: 71, accel: 21, grip: 8, turn: 2.7, redline: 8800, stripe: false }
 };
+for (const c of Object.values(CARS)) { c.L = SHAPES[c.id].L; c.Wd = SHAPES[c.id].W; }
 export const RATIOS = [3.4, 2.3, 1.7, 1.32, 1.06, 0.88];
 const IDLE = 900;
 
@@ -25,7 +31,8 @@ function sharedParts(T) {
     wheelGeo, rimGeo, flameGeo,
     wheelMat: new THREE.MeshLambertMaterial({ color: 0x0b0b10 }),
     rimMat: new THREE.MeshPhongMaterial({ color: 0xb8bccc, shininess: 90 }),
-    glassMat: new THREE.MeshPhongMaterial({ color: 0x0d1015, shininess: 120, specular: 0x998877 }),
+    glassMat: new THREE.MeshPhongMaterial({ color: 0x0d1015, shininess: 120, specular: 0x998877, side: THREE.DoubleSide, envMap: T.env, reflectivity: 0.45, combine: THREE.MixOperation }),
+    env: T.env,
     headMat: new THREE.MeshBasicMaterial({ color: 0xfff3d6 }),
     darkMat: new THREE.MeshLambertMaterial({ color: 0x111116 }),
     shadowMat: new THREE.MeshBasicMaterial({ map: T.glow, color: 0x000000, transparent: true, opacity: 0.75, depthWrite: false }),
@@ -35,55 +42,37 @@ function sharedParts(T) {
   };
   return shared;
 }
-function taper(w, h, l, top, fr, rr) {
-  const g = new THREE.BoxGeometry(w, h, l), p = g.attributes.position;
-  for (let k = 0; k < p.count; k++) if (p.getY(k) > 0) { p.setX(k, p.getX(k) * top); const z = p.getZ(k); p.setZ(k, z > 0 ? z - fr : z + rr); }
-  g.computeVertexNormals(); return g;
-}
-function box(w, h, l, mat, x, y, z, parent) { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, l), mat); m.position.set(x, y, z); parent.add(m); return m; }
-function plane(w, l, mat, y, z, parent) { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, l), mat); m.rotation.x = -Math.PI / 2; m.position.set(0, y, z); parent.add(m); return m; }
-
 export function buildCar(spec, paint, glow, T, { beam = true, rims = null } = {}) {
-  const S = sharedParts(T);
-  const rimMat = rims ? new THREE.MeshPhongMaterial({ color: rims, shininess: 90 }) : S.rimMat;
-  const g = new THREE.Group(), body = new THREE.Group(); g.add(body);
-  const pc = new THREE.Color(paint);
-  const pm = new THREE.MeshPhongMaterial({ color: pc, shininess: 90, specular: 0x777777, emissive: pc.clone().multiplyScalar(0.12) });
-  const { L, Wd, H } = spec, base = 0.36, top = base + H;
-  const ch = new THREE.Mesh(taper(Wd, H, L, 0.94, 0.3, 0.12), pm); ch.position.y = base + H / 2; body.add(ch);
-  const [cw, chh, cl, cz] = spec.cab;
-  const cab = new THREE.Mesh(taper(Wd * cw, chh, L * cl + 0.6, 0.8, 0.45, 0.35), S.glassMat); cab.position.set(0, top + chh / 2 - 0.02, cz); body.add(cab);
-  box(Wd * cw * 0.78, 0.05, L * cl - 0.3, pm, 0, top + chh - 0.01, cz - 0.05, body);
-  if (spec.spoiler === 'wing') { box(Wd * 0.96, 0.06, 0.42, pm, 0, top + 0.48, -L / 2 + 0.28, body); box(0.06, 0.46, 0.14, S.darkMat, Wd * 0.3, top + 0.22, -L / 2 + 0.3, body); box(0.06, 0.46, 0.14, S.darkMat, -Wd * 0.3, top + 0.22, -L / 2 + 0.3, body); }
-  if (spec.spoiler === 'lip') box(Wd * 0.82, 0.09, 0.2, pm, 0, top + 0.04, -L / 2 + 0.14, body);
-  if (spec.spoiler === 'ducktail') { const d = box(Wd * 0.86, 0.14, 0.36, pm, 0, top + 0.05, -L / 2 + 0.2, body); d.rotation.x = -0.35; }
-  if (spec.scoop) { box(0.72, 0.15, 0.95, pm, 0, top + 0.06, L / 2 - 1.25, body); box(0.5, 0.08, 0.04, S.darkMat, 0, top + 0.08, L / 2 - 0.78, body); }
-  if (spec.stripe) {
-    const sm = new THREE.MeshPhongMaterial({ color: pc.getHSL({}).l > 0.6 ? 0x15131f : 0xf3f0ff, shininess: 60 });
-    box(0.16, 0.02, L * 0.9, sm, 0.16, top + 0.005, 0, body); box(0.16, 0.02, L * 0.9, sm, -0.16, top + 0.005, 0, body);
-  }
-  box(Wd * 0.98, 0.06, 0.3, S.darkMat, 0, base + 0.02, L / 2 - 0.1, body);
-  box(0.08, 0.12, L * 0.6, S.darkMat, Wd / 2, base + 0.04, 0, body); box(0.08, 0.12, L * 0.6, S.darkMat, -Wd / 2, base + 0.04, 0, body);
+  const S = sharedParts(T), sh = SHAPES[spec.id];
+  const g = new THREE.Group(), pc = new THREE.Color(paint);
+  const pm = new THREE.MeshPhongMaterial({ color: pc, shininess: 110, specular: 0x8a8a8a, emissive: pc.clone().multiplyScalar(pc.getHSL({}).l > 0.6 ? 0.02 : 0.08), envMap: S.env, reflectivity: 0.25, combine: THREE.MixOperation });
   const tailMat = new THREE.MeshBasicMaterial({ color: 0x7a0010 });
-  for (const s of [1, -1]) { box(0.44, 0.12, 0.05, S.headMat, s * (Wd / 2 - 0.36), base + H * 0.62, L / 2 - 0.12, body); box(0.52, 0.1, 0.05, tailMat, s * (Wd / 2 - 0.38), base + H * 0.68, -L / 2 + 0.03, body); }
-  box(Wd * 0.5, 0.05, 0.05, tailMat, 0, base + H * 0.68, -L / 2 + 0.03, body);
-  const wheels = [], pivots = [];
-  for (const [x, z, front] of [[Wd / 2 - 0.1, L / 2 - 0.85, 1], [-(Wd / 2 - 0.1), L / 2 - 0.85, 1], [Wd / 2 - 0.1, -L / 2 + 0.82, 0], [-(Wd / 2 - 0.1), -L / 2 + 0.82, 0]]) {
-    const piv = new THREE.Group(); piv.position.set(x, 0.37, z); g.add(piv);
-    const w = new THREE.Group(); w.add(new THREE.Mesh(S.wheelGeo, S.wheelMat)); w.add(new THREE.Mesh(S.rimGeo, rimMat)); piv.add(w);
+  const stripe = new THREE.MeshPhongMaterial({ color: pc.getHSL({}).l > 0.6 ? 0x15131f : 0xf3f0ff, shininess: 60, side: THREE.DoubleSide });
+  const { group: body } = buildBody(sh, { paint: pm, glass: S.glassMat, head: S.headMat, tail: tailMat, dark: S.darkMat, stripe }, spec);
+  g.add(body);
+  const rimMat = rims ? new THREE.MeshPhongMaterial({ color: rims, shininess: 90 }) : S.rimMat;
+  const { L, W, R } = sh, wheels = [], pivots = [], Z = u => u * L - L / 2;
+  for (const [u, front] of [[sh.axles[1], 1], [sh.axles[0], 0]]) for (const sx of [1, -1]) {
+    const piv = new THREE.Group(); piv.position.set(sx * (W / 2 - 0.14), R, Z(u)); g.add(piv);
+    const w = new THREE.Group(), t = new THREE.Mesh(S.wheelGeo, S.wheelMat), r = new THREE.Mesh(S.rimGeo, rimMat);
+    t.scale.set(1, R / 0.37, R / 0.37); r.scale.set(1, R / 0.37, R / 0.37); w.add(t); w.add(r); piv.add(w);
     wheels.push(w); if (front) pivots.push(piv);
   }
-  plane(Wd + 0.8, L + 0.9, S.shadowMat, 0.045, 0, g);
-  if (glow) plane(Wd + 1.8, L + 2, new THREE.MeshBasicMaterial({ map: T.glow, color: glow, ...S.add }), 0.07, 0, g);
+  plane(W + 0.8, L + 0.9, S.shadowMat, 0.045, 0, g);
+  if (glow) plane(W + 1.8, L + 2, new THREE.MeshBasicMaterial({ map: T.glow, color: glow, ...S.add }), 0.07, 0, g);
   if (beam) plane(10, 24, S.beamMat, 0.065, L / 2 + 11.8, g);
   const flames = [];
-  for (const s of [1, -1]) { const f = new THREE.Mesh(S.flameGeo, S.flameMat); f.position.set(s * 0.35, base + 0.12, -L / 2); f.visible = false; g.add(f); flames.push(f); }
+  for (const s of [1, -1]) { const f = new THREE.Mesh(S.flameGeo, S.flameMat); f.position.set(s * 0.35, 0.36, -L / 2); f.visible = false; g.add(f); flames.push(f); }
   // inertia barrier: an invisible shell that shimmers when something hits it too fast
   const shellMat = new THREE.MeshBasicMaterial({ color: 0xff4500, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false, wireframe: true });
   const shell = new THREE.Mesh(new THREE.IcosahedronGeometry(1, 2), shellMat);
-  shell.scale.set(Wd * 0.8, 0.95, L * 0.62); shell.position.y = 0.75; g.add(shell);
-  return { g, body, wheels, pivots, tailMat, flames, shell };
+  shell.scale.set(W * 0.8, 0.95, L * 0.62); shell.position.y = 0.75; g.add(shell);
+  // tail lamp positions for light trails
+  const tails = [new THREE.Vector3(0.6, 0.8, -L / 2), new THREE.Vector3(-0.6, 0.8, -L / 2)];
+  return { g, body, wheels, pivots, tailMat, flames, shell, tails, R };
 }
+function plane(w, l, mat, y, z, parent) { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, l), mat); m.rotation.x = -Math.PI / 2; m.position.set(0, y, z); parent.add(m); return m; }
+
 // free everything a car model made for itself; the shared wheel and glass parts stay
 export function disposeCar(m, T) {
   const S = sharedParts(T), keepGeo = new Set([S.wheelGeo, S.rimGeo, S.flameGeo]), keepMat = new Set([S.wheelMat, S.rimMat, S.glassMat, S.headMat, S.darkMat, S.shadowMat, S.flameMat, S.beamMat]);
@@ -162,7 +151,7 @@ export class Car {
 export function syncModel(m, car, dt) {
   m.g.position.set(car.x, 0, car.z); m.g.rotation.y = car.h;
   m.body.rotation.z = clamp(-car.l * 0.012, -0.08, 0.08);
-  for (const w of m.wheels) w.rotation.x += car.f * dt / 0.37;
+  for (const w of m.wheels) w.rotation.x += car.f * dt / (m.R || 0.37);
   for (const p of m.pivots) p.rotation.y = car.steer * 0.45;
   m.tailMat.color.setHex(car.braking || car.reverse ? 0xff2030 : 0x7a0010);
   for (const f of m.flames) { f.visible = car.nos; f.scale.set(1, 1, 0.7 + Math.random() * 0.7); }

@@ -119,6 +119,19 @@ export function makeTextures() {
     gr.addColorStop(0, '#050608'); gr.addColorStop(0.4, '#0f1114'); gr.addColorStop(0.56, '#2a1712'); gr.addColorStop(1, '#2a1712');
     g.fillStyle = gr; g.fillRect(0, 0, w, h);
   });
+  // what shiny paint and glass reflect: a night city wrapped around the car
+  T.env = canvasTex(512, 256, (g, w, h) => {
+    const gr = g.createLinearGradient(0, 0, 0, h);
+    gr.addColorStop(0, '#05060a'); gr.addColorStop(0.38, '#1a120e'); gr.addColorStop(0.5, '#6a3414'); gr.addColorStop(0.52, '#1a1210'); gr.addColorStop(1, '#0a0a0c');
+    g.fillStyle = gr; g.fillRect(0, 0, w, h);
+    for (let k = 0; k < 60; k++) { const x = r() * w, bw = 8 + r() * 26, bh = 20 + r() * 70; g.fillStyle = '#0b0b0e'; g.fillRect(x, h * 0.5 - bh, bw, bh);
+      for (let j = 0; j < 12; j++) { g.fillStyle = ['#FFC97A', '#FFB066', '#FF5963', '#FFF4E0'][Math.floor(r() * 4)]; g.globalAlpha = 0.5 + r() * 0.5; g.fillRect(x + r() * bw, h * 0.5 - r() * bh, 2, 2); } g.globalAlpha = 1; }
+    for (let k = 0; k < 40; k++) { const x = r() * w, y = h * 0.42 + r() * h * 0.08, c = ['#FFB066', '#FF4500', '#FFC400', '#BF0003'][Math.floor(r() * 4)];
+      const rg = g.createRadialGradient(x, y, 0, x, y, 7); rg.addColorStop(0, c); rg.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = rg; g.fillRect(x - 7, y - 7, 14, 14); }
+    // the wet street below mirrors the glow in streaks
+    for (let k = 0; k < 50; k++) { const x = r() * w; g.fillStyle = ['rgba(255,176,102,.35)', 'rgba(255,69,0,.3)', 'rgba(255,196,0,.25)'][Math.floor(r() * 3)]; g.fillRect(x, h * 0.53, 2, 10 + r() * 40); }
+  });
+  T.env.mapping = THREE.EquirectangularReflectionMapping;
   return T;
 }
 

@@ -25,16 +25,16 @@ export const TYPES = {
 export const EVENTS = [
   { id: 'neon-loop', type: 'circuit', name: 'Neon Loop', where: 'Neon Row', marker: { x: 60, z: -288 }, laps: 2, prize: 1200, traffic: true,
     path: P([[0, -288], [288, -288], [288, 96], [96, 96], [96, 288], [-192, 288], [-192, -96], [0, -96]]),
-    rivals: [{ name: 'Kestrel', spec: rivalSpec('vandal', 0.86), paint: '#FFC400' }, { name: 'Mox', spec: rivalSpec('zephyr', 0.98), paint: '#249689' }, { name: 'Juno', spec: rivalSpec('strix', 0.72), paint: '#587AF9' }],
+    rivals: [{ name: 'Kestrel', spec: rivalSpec('hornet', 1), paint: '#FFC400' }, { name: 'Mox', spec: rivalSpec('dreier', 0.98), paint: '#249689' }, { name: 'Juno', spec: rivalSpec('vortex', 0.96), paint: '#587AF9' }],
     blurb: 'Two laps through the towers of Neon Row against three local drivers. Drive through every checkpoint gate.' },
   { id: 'harbour-drift', type: 'drift', name: 'Harbour Drift', where: 'Dockside', marker: { x: 60, z: 1210 }, laps: 2, prize: 1000, target: 6000, traffic: false,
     path: P([[0, 1210], [240, 1210], [240, 1430], [0, 1430]]),
     blurb: 'Two laps around the container yards. Slide the car to score: the longer the drift, the higher the multiplier. Touching a barrier mid-drift loses the points you were building.' },
   { id: 'quay-quarter', type: 'drag', name: 'Quay Quarter', where: 'Dockside', marker: { x: -400, z: 1650 }, prize: 900, traffic: false,
-    strip: { cz: 1650, x0: -440, len: 402 }, rivals: [{ name: 'Brick', spec: rivalSpec('vandal', 0.93), paint: '#FF4500' }],
+    strip: { cz: 1650, x0: -440, len: 402 }, rivals: [{ name: 'Brick', spec: rivalSpec('kaze', 0.98), paint: '#FF4500' }],
     blurb: 'A quarter mile down the quay. Shift at the top of the rev bar for a perfect shift. Hold the phone upright and level.' },
   { id: 'runway-roll', type: 'roll', name: 'Runway Roll', where: 'Old Terminal', marker: { x: -1700, z: 225 }, prize: 1100, traffic: false,
-    strip: { cz: 250, x0: -1630, len: 600, roll: 60 / 3.6 }, rivals: [{ name: 'Sable', spec: rivalSpec('vandal', 0.8), paint: '#FFFFFF' }],
+    strip: { cz: 250, x0: -1630, len: 600, roll: 60 / 3.6 }, rivals: [{ name: 'Sable', spec: rivalSpec('solstice', 0.95), paint: '#FFFFFF' }],
     blurb: 'Both cars roll down the old runway at 60 km/h. When the lights change, it is flat out for 600 metres. Hold the phone upright and level.' }
 ];
 
