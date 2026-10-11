@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#161B1F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Terminal Island</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/game.css">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.module.js"}}</script>
+</head>
+<body>
+<canvas id="gl"></canvas>
+
+<div id="hud" class="hud">
+  <header class="topbar">
+    <div class="lcd">
+      <button class="round" id="pauseBtn" aria-label="Pause"><span class="dot"></span></button>
+      <div class="lines">
+        <div class="l1" id="l1"><span>Terminal Island</span></div>
+        <div class="l2" id="l2"><div class="ticker" id="ticker"></div><div class="notice" id="notice" aria-live="polite"></div></div>
+      </div>
+      <button class="square" id="mapBtn" aria-label="Open map">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5l5-2 6 2 5-2v12l-5 2-6-2-5 2z"/><path d="M7 3v12M13 5v12"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <canvas id="mini" width="224" height="224" aria-label="Minimap. Tap for the full map."></canvas>
+
+  <div class="cluster" id="cluster">
+    <div class="inst speed"><div class="big num" id="spd">0</div><div class="unit">km/h</div></div>
+    <div class="inst gearbox"><div class="gear num" id="gear">1</div><div class="unit" id="gearMode">manual</div></div>
+    <div class="inst meters">
+      <div class="meter"><span class="lab">RPM</span><i class="rpm"><b id="rpmFill"></b></i></div>
+      <div class="meter"><span class="lab">NOS</span><i class="nos"><b id="nosFill"></b></i></div>
+    </div>
+  </div>
+
+  <div class="ctrl left" id="ctrlLeft">
+    <div class="steer touch-only">
+      <button class="pad" data-k="left" aria-label="Steer left"><svg viewBox="0 0 24 24"><path d="M15.5 4 7 12l8.5 8z"/></svg></button>
+      <button class="pad" data-k="right" aria-label="Steer right"><svg viewBox="0 0 24 24"><path d="M8.5 4 17 12l-8.5 8z"/></svg></button>
+    </div>
+    <div class="gears">
+      <button class="pad shift lit" data-k="up" aria-label="Shift up"><svg viewBox="0 0 24 24"><path d="M12 5 4 15h16z"/></svg><span>UP</span></button>
+      <button class="pad shift lit" data-k="down" aria-label="Shift down"><svg viewBox="0 0 24 24"><path d="M12 19 4 9h16z"/></svg><span>DOWN</span></button>
+    </div>
+  </div>
+  <div class="ctrl right" id="ctrlRight">
+    <div class="pedals touch-only">
+      <button class="pad" data-k="brake">BRAKE</button>
+      <button class="pad gas" data-k="gas">GAS</button>
+    </div>
+    <div class="boost">
+      <button class="pad sm lit" data-k="drift">DRIFT</button>
+      <button class="pad nos lit" data-k="nos">NOS</button>
+    </div>
+  </div>
+  <div id="tiltHint" class="hint" hidden>Tip the top of the phone away from you to accelerate</div>
+</div>
+
+<!-- Title -->
+<div class="overlay" id="title">
+  <div class="pane panel lit">
+    <div class="label">The Induction Club presents</div>
+    <h1>Terminal Island</h1>
+    <p class="lede">Twenty years from now, almost every car drives itself. Inertia barriers make crashes impossible. On a half-built island at the edge of the city, the last people who still drive by hand come out at night to race.</p>
+    <p class="small">Three districts are open: Neon Row, Dockside and Old Terminal. The rest of the island is still under construction.</p>
+    <div class="actions">
+      <button class="gbtn primary lit" id="startTilt">Drive with tilt</button>
+      <button class="gbtn lit" id="startTouch">Use touch buttons</button>
+    </div>
+    <p class="small dim" id="titleNote">Hold the phone sideways. Tilt it like a steering wheel to turn. Tip the top away from you to accelerate and toward you to brake.</p>
+  </div>
+</div>
+
+<!-- Calibrate -->
+<div class="overlay" id="calib" hidden>
+  <div class="pane panel lit">
+    <div class="label">Tilt controls</div>
+    <h2>Hold the phone the way you want to drive</h2>
+    <p>Sideways, with the screen tipped toward you. When it feels comfortable, tap Ready. That position becomes "no gas, straight ahead".</p>
+    <div class="actions"><button class="gbtn primary lit" id="calibGo">Ready</button></div>
+  </div>
+</div>
+
+<!-- Pause -->
+<div class="overlay" id="pause" hidden>
+  <div class="pane panel lit">
+    <div class="label">Paused</div>
+    <h2 id="pausePlace">Neon Row</h2>
+    <div class="menu">
+      <button class="gbtn primary lit" id="pResume">Resume</button>
+      <button class="gbtn lit" id="pMap">Map</button>
+      <button class="gbtn lit" id="pCalib">Recalibrate tilt</button>
+      <button class="gbtn lit" id="pGears">Gears: manual</button>
+      <button class="gbtn lit" id="pMode">Controls: tilt</button>
+      <button class="gbtn lit" id="pInvert">Tilt to accelerate: forward</button>
+      <button class="gbtn lit" id="pSound">Sound: on</button>
+    </div>
+  </div>
+</div>
+
+<!-- Map -->
+<div class="overlay" id="map" hidden>
+  <div class="mapwrap">
+    <canvas id="bigMap" width="600" height="600" aria-label="Map of Terminal Island"></canvas>
+    <div class="mapside">
+    <div class="pills">
+      <span class="pill" style="--c:#BF0003">You</span>
+      <span class="pill" style="--c:#FFC400">Open district</span>
+      <span class="pill" style="--c:rgba(255,255,255,.4)">Under construction</span>
+    </div>
+    <button class="gbtn primary lit" id="mapClose">Back to driving</button>
+    </div>
+  </div>
+</div>
+
+<div id="rotate" class="rotate" hidden><div class="pane lit"><h3>Turn your phone sideways</h3><p class="small">Free roam is played in landscape.</p></div></div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
