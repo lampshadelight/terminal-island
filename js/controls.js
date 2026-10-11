@@ -89,7 +89,8 @@ export class Controls {
       if (!brk) brk = clamp((-pitch - 4) / 14, 0, 1);
     }
     const a = Math.min(1, dt * 14);
-    o.steer += (steer - o.steer) * a; o.throttle += (thr - o.throttle) * a; o.brake += (brk - o.brake) * a;
+    // buttons are all-or-nothing, so ease the wheel in like a thumb rolling onto it
+    o.steer += (steer - o.steer) * (this.mode === 'tilt' ? a : Math.min(1, dt * (steer ? 5 : 9))); o.throttle += (thr - o.throttle) * a; o.brake += (brk - o.brake) * a;
     o.nos = !!(k.nos || b.nos); o.drift = !!(k.drift || b.drift);
     return o;
   }

@@ -207,3 +207,31 @@ body.portrait .count{top:50%}
 @keyframes streak{from{transform:scale(1)}to{transform:scale(1.06)}}
 @media (prefers-reduced-motion:reduce){.speedfx{display:none}}
 body:not(.running) .hud{display:none}
+
+/* Button controls, laid out like the big street racers: steering arrows bottom-left with the
+   gear paddles above them; brake and a tall gas pedal bottom-right, handbrake and nitro above. */
+body.touch:not(.portrait) .ctrl.left{flex-direction:column-reverse;align-items:flex-start}
+body.touch:not(.portrait) .ctrl.left .gears{flex-direction:row}
+body.touch:not(.portrait) .ctrl.left .gears .pad{width:60px;height:48px;border-radius:14px}
+body.touch:not(.portrait) .ctrl.left .gears .pad svg{width:20px;height:20px}
+body.touch:not(.portrait) .steer .pad{width:92px;height:80px;border-radius:22px}
+body.touch:not(.portrait) .steer .pad svg{width:36px;height:36px}
+body.touch:not(.portrait) .ctrl.right{display:grid;grid-template-columns:auto auto;grid-template-areas:"hb nos" "brake gas";gap:10px;align-items:end;justify-items:center}
+body.touch:not(.portrait) .ctrl.right > div{display:contents}
+body.touch [data-k="drift"]{grid-area:hb}
+body.touch [data-k="nos"]{grid-area:nos}
+body.touch [data-k="brake"]{grid-area:brake}
+body.touch [data-k="gas"]{grid-area:gas}
+body.touch:not(.portrait) .pad.nos,body.touch:not(.portrait) [data-k="drift"]{width:68px;height:68px;border-radius:50%}
+body.touch .pad.brake{width:92px;height:80px;border-radius:16px}
+body.touch .pad.gas{width:70px;height:124px;border-radius:16px}
+/* pedals get a ribbed rubber face */
+body.touch .pad.brake,body.touch .pad.gas{background:repeating-linear-gradient(0deg,rgba(255,255,255,.14) 0 6px,rgba(255,255,255,.06) 6px 12px);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+body.touch .pad.brake.on,body.touch .pad.gas.on{background:var(--glass-btn-primary)}
+body.touch .pad.nos{box-shadow:inset 0 0 0 2px rgba(88,122,249,.7)}
+@media (max-height:420px){
+  body.touch:not(.portrait) .steer .pad{width:84px;height:70px}
+  body.touch .pad.brake{width:84px;height:70px}
+  body.touch .pad.gas{width:64px;height:108px}
+  body.touch:not(.portrait) .pad.nos,body.touch:not(.portrait) [data-k="drift"]{width:60px;height:60px}
+}

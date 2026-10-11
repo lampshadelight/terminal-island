@@ -247,7 +247,7 @@ $('pSound').addEventListener('click', () => { muted = !muted; audio.setMuted(mut
 $('pGfx').addEventListener('click', () => { quality = (quality + 2) % 3; applyQuality(); updateMenu(); });
 function updateMenu() {
   $('pGears').textContent = 'Gears: ' + (car.auto ? 'automatic' : 'manual');
-  $('pMode').textContent = 'Controls: ' + (controls.mode === 'tilt' ? 'tilt' : 'touch buttons');
+  $('pMode').textContent = 'Controls: ' + (controls.mode === 'tilt' ? 'tilt' : 'buttons');
   $('pInvert').textContent = 'Tilt to accelerate: ' + (controls.invert ? 'toward you' : 'away from you');
   $('pSound').textContent = 'Sound: ' + (muted ? 'off' : 'on');
   $('pGfx').textContent = 'Graphics: ' + GFX[quality];
