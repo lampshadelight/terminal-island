@@ -1,3 +1,4 @@
+import { clamp } from './util.js';
 import { mapShapes } from './world.js';
 
 const $ = id => document.getElementById(id);
@@ -9,8 +10,9 @@ export class Hud {
     this.spd = $('spd'); this.gear = $('gear'); this.rpm = $('rpmFill'); this.nos = $('nosFill'); this.gearMode = $('gearMode');
     this.mini = $('mini'); this.mctx = this.mini.getContext('2d');
     this.noticeT = null; this.t = 0;
-    this.setTicker(['Explore Terminal Island', 'Neon Row, Dockside and Old Terminal are open',
-      'The Foundry, Highcliff and the Causeway are under construction', 'Races and shops arrive in the next update', 'Inertia barriers active']);
+    this.defaultTicker = ['Explore Terminal Island', 'Drive into a glowing marker to start a race', 'Neon Row, Dockside and Old Terminal are open',
+      'The Foundry, Highcliff and the Causeway are under construction', 'Inertia barriers active'];
+    this.setTicker(this.defaultTicker);
   }
   setTicker(items) {
     const run = items.map(t => `<span>${t}</span>`).join('');
@@ -24,12 +26,13 @@ export class Hud {
   setPlace(name) {
     if (name === this.place) return;
     this.place = name;
-    const old = this.l1.querySelector('span'), nu = document.createElement('span');
+    const olds = [...this.l1.querySelectorAll('span')], nu = document.createElement('span');
     nu.textContent = name; nu.style.transform = 'translateY(100%)'; nu.style.opacity = '0';
     this.l1.appendChild(nu);
-    requestAnimationFrame(() => { nu.style.transform = ''; nu.style.opacity = ''; if (old) { old.style.transform = 'translateY(-100%)'; old.style.opacity = '0'; setTimeout(() => old.remove(), 300); } });
+    for (const o of olds) { if (o.dataset.leaving) continue; o.dataset.leaving = '1'; setTimeout(() => o.remove(), 320); }
+    requestAnimationFrame(() => { nu.style.transform = ''; nu.style.opacity = ''; for (const o of olds) { o.style.transform = 'translateY(-100%)'; o.style.opacity = '0'; } });
   }
-  update(car, dt) {
+  update(car, dt, marks) {
     this.t -= dt; if (this.t > 0) return; this.t = 0.05;
     this.spd.textContent = Math.round(car.kmh);
     this.gear.textContent = car.gearLabel;
@@ -38,11 +41,11 @@ export class Hud {
     this.gear.classList.toggle('shift-now', x > 0.9 && !car.auto && !car.reverse && car.gear < 6);
     this.nos.style.width = Math.round(car.nitro * 100) + '%';
     this.gearMode.textContent = car.auto ? 'auto' : 'manual';
-    drawMap(this.mctx, this.mini.width, this.mini.height, car.x, car.z, this.mini.width / 420, [Math.sin(car.h), Math.cos(car.h)], car, false);
+    drawMap(this.mctx, this.mini.width, this.mini.height, car.x, car.z, this.mini.width / 420, [Math.sin(car.h), Math.cos(car.h)], car, false, 1, marks);
   }
 }
 
-export function drawMap(ctx, w, h, cx, cz, s, up, car, full, k = 1) {
+export function drawMap(ctx, w, h, cx, cz, s, up, car, full, k = 1, marks = []) {
   const [ux, uz] = up, rx = -uz, rz = ux;
   const a = s * rx, c = s * rz, b = -s * ux, d = -s * uz, e = w / 2 - a * cx - c * cz, f = h / 2 - b * cx - d * cz;
   const pt = (x, z) => [a * x + c * z + e, b * x + d * z + f];
@@ -68,6 +71,18 @@ export function drawMap(ctx, w, h, cx, cz, s, up, car, full, k = 1) {
       ctx.font = `600 ${14 * k}px "Inter Tight", Arial, sans-serif`; ctx.fillStyle = 'rgba(255,255,255,.55)';
       ctx.fillText(cl.name.toUpperCase(), px, py - 9 * k); ctx.font = `500 ${12 * k}px Inter, Arial, sans-serif`; ctx.fillText('Under construction', px, py + 9 * k);
     }
+  }
+  // events, rivals and the next checkpoint
+  for (const m of marks) {
+    const [mx, my] = pt(m.x, m.z);
+    if (!full && (mx < -8 || my < -8 || mx > w + 8 || my > h + 8)) {
+      // off the minimap: pin it to the edge so you know which way to go
+      if (!m.ring) continue;
+    }
+    const ex = clamp(mx, 8, w - 8), ey = clamp(my, 8, h - 8);
+    ctx.beginPath(); ctx.arc(ex, ey, (m.small ? 4.5 : m.ring ? 8 : 7) * k * (full ? 1.2 : 1), 0, Math.PI * 2);
+    if (m.ring) { ctx.lineWidth = 3 * k; ctx.strokeStyle = m.c; ctx.stroke(); }
+    else { ctx.fillStyle = m.c; ctx.fill(); if (!m.small) { ctx.lineWidth = 2 * k; ctx.strokeStyle = '#000'; ctx.stroke(); } }
   }
   // you: a red arrow, the one thing that glows
   const [px, py] = pt(car.x, car.z);

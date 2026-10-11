@@ -6,6 +6,7 @@ import { CARS, Car, buildCar, syncModel } from './car.js';
 import { Controls } from './controls.js';
 import { Audio } from './audio.js';
 import { Hud, drawMap } from './hud.js';
+import { Race } from './race.js';
 
 const $ = id => document.getElementById(id);
 
@@ -56,7 +57,7 @@ function spawnTraffic(id) {
     const spec = Object.values(CARS)[k % 3];
     let m = pool.pop();
     if (!m) { m = buildCar(spec, TRAFFIC_PAINT[k % TRAFFIC_PAINT.length], null, T, { beam: false }); scene.add(m.g); }
-    m.g.visible = true;
+    m.g.visible = trafficOn;
     bots.push({ a, b, t: rnd(), v: 9 + rnd() * 5, m, x: a.x, z: a.z, vx: 0, vz: 0, h: 0, lane: (d.RW || 16) * 0.25, barrier: 0, wait: 0 });
   }
   traffic.set(id, bots);
@@ -68,6 +69,7 @@ function dropTraffic(id) {
   traffic.delete(id);
 }
 function stepTraffic(dt) {
+  if (!trafficOn) return;
   for (const bots of traffic.values()) for (const b of bots) {
     const dx = b.b.x - b.a.x, dz = b.b.z - b.a.z, L = Math.hypot(dx, dz) || 1;
     // slow down when the player is right in front
@@ -121,18 +123,23 @@ function barrierNote() {
 
 /* ---------------- state ---------------- */
 const state = { running: false, paused: true, mapOpen: false };
+let trafficOn = true;
 let camPos = new THREE.Vector3(), camLook = new THREE.Vector3(), camInit = false, blink = 0;
 const isTouch = matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window;
 
 function resize() {
   const w = innerWidth, h = innerHeight;
   renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
-  $('rotate').hidden = !(state.running && isTouch && h > w);
+  const tall = race && race.portrait, wrong = state.running && isTouch && (tall ? w > h : h > w);
+  $('rotate').hidden = !wrong;
+  $('rotTitle').textContent = tall ? 'Turn your phone upright' : 'Turn your phone sideways';
+  $('rotText').textContent = tall ? 'Drag and roll races are played in portrait.' : 'Free roam is played in landscape.';
 }
 addEventListener('resize', resize); addEventListener('orientationchange', () => setTimeout(resize, 200));
 
 /* ---------------- overlays ---------------- */
 function show(id, on) { $(id).hidden = !on; }
+async function goPortrait() { try { screen.orientation && screen.orientation.lock && await screen.orientation.lock('portrait'); } catch (e) {} }
 async function goLandscape() {
   try { if (isTouch && document.documentElement.requestFullscreen && !document.fullscreenElement) await document.documentElement.requestFullscreen({ navigationUI: 'hide' }); } catch (e) {}
   try { screen.orientation && screen.orientation.lock && await screen.orientation.lock('landscape'); } catch (e) {}
@@ -163,9 +170,11 @@ function pause() {
   state.paused = true; controls.clear(); audio.suspend();
   $('pausePlace').textContent = hud.place || 'Terminal Island'; updateMenu(); show('pause', true);
 }
-function resume() { show('pause', false); show('map', false); state.mapOpen = false; state.paused = false; controls.clear(); audio.resume(); }
+function resume() { show('pause', false); show('map', false); show('eventCard', false); state.mapOpen = false; state.paused = false; controls.clear(); audio.resume(); }
 $('pauseBtn').addEventListener('click', () => state.paused ? resume() : pause());
 $('pResume').addEventListener('click', resume);
+$('pRestart').addEventListener('click', () => { if (race.active) { show('results', false); race.restart(); resume(); } });
+$('pLeave').addEventListener('click', () => { show('results', false); race.leave(); resume(); });
 $('pCalib').addEventListener('click', async () => {
   if (controls.mode !== 'tilt') { const ok = await controls.enableTilt(); if (!ok) { hud.say('Tilt is not available here'); return; } controls.mode = 'tilt'; document.body.classList.remove('touch'); }
   show('pause', false); show('calib', true); state.calibThen = 'resume';
@@ -199,16 +208,64 @@ function openMap() {
   const px = Math.max(200, Math.min(row ? innerWidth - 260 : innerWidth - 32, row ? innerHeight - 32 : innerHeight - 150, 640)), dpr = Math.min(2, devicePixelRatio || 1);
   big.style.width = big.style.height = px + 'px'; big.width = big.height = Math.round(px * dpr);
   // the whole island, including the unfinished roads out over the sea
-  drawMap(bctx, big.width, big.height, -300, 420, big.width / 3000, [0, -1], car, true, dpr * clamp(px / 520, 0.6, 1.1));
+  drawMap(bctx, big.width, big.height, -300, 420, big.width / 3000, [0, -1], car, true, dpr * clamp(px / 520, 0.6, 1.1), race.marks());
   show('map', true); state.mapOpen = true;
 }
 $('mapBtn').addEventListener('click', openMap); $('pMap').addEventListener('click', openMap); $('mini').addEventListener('click', openMap);
 $('mapClose').addEventListener('click', resume);
 document.addEventListener('visibilitychange', () => { if (document.hidden) pause(); });
 addEventListener('keydown', e => {
+  if (!$('results').hidden) return;
   if (e.code === 'Escape' || e.code === 'KeyP') { state.paused ? (state.mapOpen ? resume() : (state.running && resume())) : pause(); }
   if (e.code === 'KeyM') state.mapOpen ? resume() : openMap();
 });
+
+/* ---------------- races ---------------- */
+const ui = {
+  modal(id) { if (!state.paused) { state.paused = true; controls.clear(); } show(id, true); },
+  setTraffic(on) { trafficOn = on; for (const bots of traffic.values()) for (const b of bots) b.m.g.visible = on; },
+  needRotate: () => isTouch && innerWidth > innerHeight,
+  count(text, go) {
+    const el = $('count');
+    if (text == null) { el.hidden = true; return; }
+    el.hidden = false; el.textContent = text; el.classList.toggle('go', !!go);
+  },
+  raceUi(on, ev) {
+    const tall = !!(on && ev.strip);
+    const was = document.body.classList.contains('portrait');
+    document.body.classList.toggle('portrait', tall);
+    show('raceBox', on); show('rbStrip', tall); show('balance', tall && controls.mode === 'tilt');
+    $('pRestart').hidden = $('pLeave').hidden = !on;
+    if (!on) { ui.count(null); place = ''; }
+    if (tall) goPortrait(); else if (was) goLandscape();
+    camInit = false; resize();
+  },
+  raceHud(i) {
+    $('rbBig').textContent = i.big; $('rbUnit').textContent = i.unit; $('rbL1').textContent = i.l1; $('rbV1').textContent = i.v1;
+    $('rbTime').textContent = i.time; $('rbPend').textContent = i.pending || '';
+    if (i.you != null) { $('stripYou').style.left = (i.you * 100).toFixed(1) + '%'; $('stripRival').style.left = (i.rival * 100).toFixed(1) + '%'; }
+    if (i.tilt) {
+      const span = 25, zw = clamp(i.dz / span, 0, 1) * 50;
+      $('balZone').style.left = (50 - zw) + '%'; $('balZone').style.right = (50 - zw) + '%';
+      $('balDot').style.left = (50 - clamp(i.roll / span, -1, 1) * 50).toFixed(1) + '%';
+      const out = Math.abs(i.roll) > i.dz;
+      $('balance').classList.toggle('out', out); $('balWarn').textContent = out ? 'Level the phone' : '';
+      $('balWob').style.width = (i.wobble * 100).toFixed(0) + '%';
+    }
+  },
+  results(r) {
+    if (!race.active) return;
+    $('resLabel').textContent = r.label; $('resLabel').style.color = r.color || '';
+    $('resTitle').textContent = r.title; $('resText').textContent = r.text;
+    $('resPills').innerHTML = r.pills.map(p => `<span class="pill" style="--c:${r.color || '#BF0003'}">${p}</span>`).join('');
+    ui.modal('results');
+  }
+};
+const race = new Race({ scene, T, car, model, hud, controls, audio, ui });
+$('evStart').addEventListener('click', () => { show('eventCard', false); race.start(); resume(); });
+$('evSkip').addEventListener('click', () => { show('eventCard', false); resume(); });
+$('resDone').addEventListener('click', () => { show('results', false); race.leave(); resume(); });
+$('resRetry').addEventListener('click', () => { show('results', false); race.restart(); resume(); });
 
 /* ---------------- main loop ---------------- */
 let last = performance.now(), place = '';
@@ -217,15 +274,21 @@ function frame(now) {
   requestAnimationFrame(frame);
   const dt = Math.min(0.05, (now - last) / 1000); last = now;
   const live = state.running && !state.paused;
-  const inp = controls.update(dt);
+  const raw = controls.update(dt);
+  const inp = live && race.active ? race.input(raw, dt) : raw;
   if (live) {
-    while (controls.shifts.length) { const d = controls.shifts.shift(); if (car.shift(d)) audio.blip(d > 0 ? 520 : 380, 0.06, 'square', 0.05); }
+    while (controls.shifts.length) {
+      const d = controls.shifts.shift(), ratio = car.rpm / car.spec.redline;
+      if (car.shift(d)) { audio.blip(d > 0 ? 520 : 380, 0.06, 'square', 0.05); race.onShift(d, ratio); }
+    }
     for (let s = 0; s < 2; s++) {
-      car.step(dt / 2, inp, false);
+      car.step(dt / 2, inp, race.locked);
       const hit = collide(car, 1.7);
-      if (hit) { refreshFL(); if (hit > 3) { car.hit(hit); audio.thump(hit); barrierNote(); navigator.vibrate && hit > 8 && navigator.vibrate(20); } }
+      if (hit) { refreshFL(); if (hit > 3) { car.hit(hit); audio.thump(hit); barrierNote(); race.onHit(hit); navigator.vibrate && hit > 8 && navigator.vibrate(20); } }
     }
     stepTraffic(dt);
+    race.update(dt);
+    if (!race.active) race.checkMarkers(car);
   } else controls.shifts.length = 0;
   streamer.update(car.x, car.z, spawnTraffic, dropTraffic);
   syncModel(model, car, live ? dt : 0);
@@ -233,13 +296,14 @@ function frame(now) {
 
   // chase camera: drops back and widens with speed
   const v = Math.abs(car.f), fx = Math.sin(car.h), fz = Math.cos(car.h);
-  const back = 7.2 + v * 0.05, up = 2.7 + v * 0.012;
+  const tall = race.portrait;
+  const back = tall ? 6.4 + v * 0.03 : 7.2 + v * 0.05, up = tall ? 2.4 + v * 0.008 : 2.7 + v * 0.012, ahead = tall ? 14 : 6;
   tmp.set(car.x - fx * back, up, car.z - fz * back);
   if (!camInit) { camPos.copy(tmp); camLook.set(car.x, 1, car.z); camInit = true; }
   camPos.lerp(tmp, 1 - Math.exp(-dt * 7));
-  camLook.lerp(new THREE.Vector3(car.x + fx * 6, 1.1, car.z + fz * 6), 1 - Math.exp(-dt * 12));
+  camLook.lerp(new THREE.Vector3(car.x + fx * ahead, 1.1, car.z + fz * ahead), 1 - Math.exp(-dt * 12));
   camera.position.copy(camPos); camera.lookAt(camLook);
-  const fov = 62 + clamp(v / car.spec.top, 0, 1) * 14 + (car.nos ? 6 : 0);
+  const fov = (tall ? 74 : 62) + clamp(v / car.spec.top, 0, 1) * (tall ? 12 : 14) + (car.nos ? 6 : 0);
   if (Math.abs(camera.fov - fov) > 0.05) { camera.fov = lerp(camera.fov, fov, Math.min(1, dt * 4)); camera.updateProjectionMatrix(); }
 
   // blinking red beacons on towers and cranes
@@ -248,9 +312,10 @@ function frame(now) {
   for (const g of streamer.loaded.values()) if (g.userData.reds) g.userData.reds.visible = on;
 
   if (state.running) {
-    hud.update(car, dt);
+    hud.update(car, dt, race.marks());
     const p = placeAt(car.x, car.z);
-    if (p.name !== place) {
+    if (race.active) place = p.name;
+    else if (p.name !== place) {
       if (place && p.kind === 'district') hud.say('Entering ' + p.name);
       if (p.kind === 'closed') hud.say(p.c.name + ' is still under construction');
       place = p.name; hud.setPlace(p.name);
@@ -266,4 +331,4 @@ function frame(now) {
 }
 resize();
 requestAnimationFrame(frame);
-window.__ti = { car, state, controls, streamer, traffic };
+window.__ti = { car, state, controls, streamer, traffic, race };

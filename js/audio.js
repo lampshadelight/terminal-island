@@ -21,6 +21,7 @@ export class Audio {
   update(car, throttle, paused) {
     if (!this.n) return;
     const t = this.ctx.currentTime, x = car.rpm / car.spec.redline;
+    if (!Number.isFinite(x)) return;
     const fr = 40 + x * 150 + (car.limiter ? Math.random() * 12 : 0);
     this.n.o1.frequency.setTargetAtTime(fr, t, 0.03); this.n.o2.frequency.setTargetAtTime(fr, t, 0.03);
     this.n.filt.frequency.setTargetAtTime(400 + x * 1300 + throttle * 600 + (car.nos ? 700 : 0), t, 0.06);

@@ -110,5 +110,45 @@ p{margin:0 0 10px;max-width:62ch;line-height:1.45}
 body.touch .cluster{transform:translateX(-50%) scale(.8);transform-origin:bottom center}
 body.touch .meters{display:none}
 @media (max-width:700px){body.touch .cluster{bottom:auto;top:calc(64px + var(--st));transform:translateX(-50%) scale(.7);transform-origin:top center}}
-@media (max-height:500px){.mapwrap{flex-direction:row;align-items:center}.mapside{display:flex;flex-direction:column;gap:12px;align-items:flex-start}.pills{flex-direction:column;align-items:flex-start}}
+@media (max-height:500px){.mapwrap{flex-direction:row;align-items:center}.mapside{display:flex;flex-direction:column;gap:12px;align-items:flex-start}.mapside .pills{flex-direction:column;align-items:flex-start}}
 .mapside{display:flex;flex-direction:column;gap:12px;align-items:center}
+
+/* race readouts */
+.racebox{position:fixed;top:calc(8px + var(--st));right:calc(10px + var(--sr));width:140px;background:var(--lcd);border-radius:16px;padding:8px 12px;display:grid;gap:4px;z-index:3}
+.rb-main{display:flex;align-items:baseline;gap:6px}
+.rb-main .big{font-family:var(--f-display);font-weight:600;font-size:30px;line-height:1}
+.rb-main .unit,.rb-row .lab{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--lcd-dim)}
+.rb-rows{display:grid;gap:2px}
+.rb-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.rb-row b{font-family:var(--f-display);font-weight:600;font-size:15px}
+.rb-pend{font-family:var(--f-display);font-weight:600;font-size:15px;color:var(--amber);min-height:0}
+.rb-pend:empty{display:none}
+.rb-strip{position:relative;height:8px;border-radius:4px;background:rgba(255,255,255,.12)}
+.rb-strip i{position:absolute;top:-3px;width:14px;height:14px;border-radius:50%;margin-left:-7px;left:0}
+.rb-strip .you{background:var(--red);box-shadow:0 0 8px var(--red);z-index:1}
+.rb-strip .rival{background:#fff;opacity:.8}
+.balance{position:fixed;left:50%;transform:translateX(-50%);top:calc(176px + var(--st));width:min(320px,calc(100% - 32px));background:var(--lcd);border-radius:16px;padding:10px 12px;display:grid;gap:6px;z-index:3}
+.bal-track{position:relative;height:16px;border-radius:8px;background:rgba(255,255,255,.1);overflow:hidden}
+.bal-track i{position:absolute;top:0;bottom:0;left:50%;background:rgba(36,150,137,.55);border-left:1.5px solid var(--teal);border-right:1.5px solid var(--teal)}
+.bal-track b{position:absolute;top:2px;width:12px;height:12px;border-radius:50%;margin-left:-6px;left:50%;background:#fff}
+.balance.out .bal-track b{background:var(--red);box-shadow:0 0 10px var(--red)}
+.bal-lab{display:flex;justify-content:space-between;font-size:13px;font-weight:600;letter-spacing:.1em;color:var(--lcd-dim)}
+#balWarn{color:var(--soft-red)}
+.bal-wob{height:4px;border-radius:2px;background:rgba(255,255,255,.08);overflow:hidden}
+.bal-wob i{display:block;height:100%;width:0;background:var(--red)}
+.count{position:fixed;left:50%;top:42%;transform:translate(-50%,-50%);min-width:120px;padding:10px 26px;border-radius:20px;background:var(--lcd);text-align:center;
+  font-family:var(--f-display);font-weight:600;font-size:64px;line-height:1.1;color:var(--amber);z-index:5;pointer-events:none}
+.count.go{color:#fff;background:var(--glass-btn-primary)}
+.count:empty{display:none}
+.pills.left{justify-content:flex-start;margin:4px 0 10px}
+
+/* portrait races: drag and roll */
+body.portrait .topbar{width:calc(100% - 24px);min-width:0}
+body.portrait #mini,body.portrait .boost [data-k="drift"],body.portrait .steer{display:none!important}
+body.portrait .racebox{top:calc(70px + var(--st));left:50%;right:auto;transform:translateX(-50%);width:min(320px,calc(100% - 32px));grid-template-columns:auto 1fr;align-items:center;column-gap:14px}
+body.portrait .racebox .rb-strip{grid-column:1/-1;margin:6px 4px 2px}
+body.portrait .cluster,body.portrait.touch .cluster{top:auto;bottom:calc(176px + var(--sb));transform:translateX(-50%) scale(.9);transform-origin:bottom center}
+body.portrait .meters{display:flex!important}
+body.portrait .pad{width:64px;height:64px}
+body.portrait .pad.nos,body.portrait .pad.gas{width:72px;height:72px}
+body.portrait .count{top:50%}

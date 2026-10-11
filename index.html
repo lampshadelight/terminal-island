@@ -61,6 +61,21 @@
       <button class="pad nos lit" data-k="nos">NOS</button>
     </div>
   </div>
+  <div id="raceBox" class="racebox" hidden>
+    <div class="rb-main"><div class="big num" id="rbBig">1st</div><div class="unit" id="rbUnit">of 4</div></div>
+    <div class="rb-rows">
+      <div class="rb-row"><span class="lab" id="rbL1">LAP</span><b class="num" id="rbV1">1/2</b></div>
+      <div class="rb-row"><span class="lab">TIME</span><b class="num" id="rbTime">0:00.00</b></div>
+      <div class="rb-pend num" id="rbPend"></div>
+    </div>
+    <div class="rb-strip" id="rbStrip" hidden><i class="you" id="stripYou"></i><i class="rival" id="stripRival"></i></div>
+  </div>
+  <div id="balance" class="balance" hidden>
+    <div class="bal-track"><i id="balZone"></i><b id="balDot"></b></div>
+    <div class="bal-lab"><span>BALANCE</span><span id="balWarn"></span></div>
+    <div class="bal-wob"><i id="balWob"></i></div>
+  </div>
+  <div id="count" class="count" hidden></div>
   <div id="tiltHint" class="hint" hidden>Tip the top of the phone away from you to accelerate</div>
 </div>
 
@@ -96,6 +111,8 @@
     <h2 id="pausePlace">Neon Row</h2>
     <div class="menu">
       <button class="gbtn primary lit" id="pResume">Resume</button>
+      <button class="gbtn lit" id="pRestart" hidden>Restart race</button>
+      <button class="gbtn lit" id="pLeave" hidden>Leave race</button>
       <button class="gbtn lit" id="pMap">Map</button>
       <button class="gbtn lit" id="pCalib">Recalibrate tilt</button>
       <button class="gbtn lit" id="pGears">Gears: manual</button>
@@ -103,6 +120,29 @@
       <button class="gbtn lit" id="pInvert">Tilt to accelerate: forward</button>
       <button class="gbtn lit" id="pSound">Sound: on</button>
     </div>
+  </div>
+</div>
+
+<!-- Event card -->
+<div class="overlay" id="eventCard" hidden>
+  <div class="pane panel lit">
+    <div class="label" id="evType">Circuit race</div>
+    <h2 id="evName">Event</h2>
+    <p id="evBlurb"></p>
+    <div class="pills left" id="evPills"></div>
+    <p class="small dim" id="evNote"></p>
+    <div class="actions"><button class="gbtn primary lit" id="evStart">Start race</button><button class="gbtn lit" id="evSkip">Not now</button></div>
+  </div>
+</div>
+
+<!-- Results -->
+<div class="overlay" id="results" hidden>
+  <div class="pane panel lit">
+    <div class="label" id="resLabel">Result</div>
+    <h2 id="resTitle">Finished</h2>
+    <p id="resText"></p>
+    <div class="pills left" id="resPills"></div>
+    <div class="actions"><button class="gbtn primary lit" id="resDone">Back to the streets</button><button class="gbtn lit" id="resRetry">Race again</button></div>
   </div>
 </div>
 
@@ -114,6 +154,7 @@
     <div class="pills">
       <span class="pill" style="--c:#BF0003">You</span>
       <span class="pill" style="--c:#FFC400">Open district</span>
+      <span class="pill" style="--c:#FF4500">Race event</span>
       <span class="pill" style="--c:rgba(255,255,255,.4)">Under construction</span>
     </div>
     <button class="gbtn primary lit" id="mapClose">Back to driving</button>
@@ -121,7 +162,7 @@
   </div>
 </div>
 
-<div id="rotate" class="rotate" hidden><div class="pane lit"><h3>Turn your phone sideways</h3><p class="small">Free roam is played in landscape.</p></div></div>
+<div id="rotate" class="rotate" hidden><div class="pane lit"><h3 id="rotTitle">Turn your phone sideways</h3><p class="small" id="rotText">Free roam is played in landscape.</p></div></div>
 
 <script type="module" src="js/main.js"></script>
 </body>
