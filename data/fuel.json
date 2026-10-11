@@ -1,0 +1,8 @@
+{
+ "_about": "Ethanol synthesizer. One tank lasts tankMinutes of driving; a refill takes refillHours and one charge; refilling now costs boostCost charges.",
+ "tankMinutes": 15,
+ "refillHours": 4,
+ "dailyCharges": 6,
+ "boostCost": 2,
+ "startCash": 1500
+}

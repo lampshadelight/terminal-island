@@ -1,9 +1,10 @@
+import { D } from './data.js';
 // Player progress, kept on the phone for now. Later this moves to TIC's Supabase.
 const KEY = 'ti.save.v2';
 export const newCar = paint => ({ paint, glow: '#FF2A10', rims: null, spoiler: null, scoop: null, stripe: null,
   vinyl: null, vinylColor: '#FFC400', decals: false, tune: { height: 0, camber: 0, final: 0, lock: 0 },
   parts: { engine: 0, turbo: 0, gearbox: 0, tyres: 0, nitrous: 0, weight: 0 } });
-const fresh = () => ({ cash: 1500, wins: {}, best: {}, found: {}, clubs: {}, current: null, cars: {},
+const fresh = () => ({ cash: D.fuel.startCash, wins: {}, best: {}, found: {}, clubs: {}, current: null, cars: {},
   fuel: { level: 1, refillAt: null, refillStart: null, charges: 6, day: '' } });
 
 export const save = (() => {
@@ -17,7 +18,7 @@ export const save = (() => {
   return s;
 })();
 
-export const START_PAINT = { kaze: '#BF0003', hornet: '#FFC400', vortex: '#587AF9', dreier: '#B8BCC4', ronin: '#F2F2F2', solstice: '#FF4500', zephyr: '#6B6F78', vandal: '#E8B400', strix: '#3D7A36' };
+export const START_PAINT = Object.fromEntries(Object.entries(D.cars.cars).map(([id, c]) => [id, c.paint]));
 
 export function persist() {
   try { localStorage.setItem(KEY, JSON.stringify(save)); } catch (e) {}

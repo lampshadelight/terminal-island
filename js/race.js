@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { clamp, lerp, wrapA, DEG, canvasTex } from './util.js';
 import { CARS, RATIOS, Car, buildCar, syncModel } from './car.js';
 import { collide, ROUTES } from './world.js';
+import { D } from './data.js';
 import { PAL } from './textures.js';
 import { save, persist, money } from './save.js';
 
@@ -12,7 +13,6 @@ import { save, persist, money } from './save.js';
    Drag and roll races are played in portrait: hold the phone level,
    tip it forward for gas, and keep your lane.
    ------------------------------------------------------------------ */
-const P = pts => pts.map(([x, z]) => ({ x, z }));
 const rivalSpec = (id, k) => ({ ...CARS[id], accel: CARS[id].accel * k });
 
 export const TYPES = {
@@ -22,40 +22,15 @@ export const TYPES = {
   roll: { label: 'Roll race', color: PAL.teal }
 };
 
-export const EVENTS = [
-  { id: 'neon-loop', type: 'circuit', name: 'Neon Loop', where: 'Neon Row', marker: ROUTES.town[1], laps: 2, prize: 1200, traffic: true,
-    path: ROUTES.town,
-    rivals: [{ name: 'Kestrel', spec: rivalSpec('hornet', 1), paint: '#FFC400' }, { name: 'Mox', spec: rivalSpec('dreier', 0.98), paint: '#249689' }, { name: 'Juno', spec: rivalSpec('vortex', 0.96), paint: '#587AF9' }],
-    blurb: 'Two laps round the streets of Neon Row against three local drivers. Drive through every checkpoint gate.' },
-  { id: 'harbour-drift', type: 'drift', name: 'Harbour Drift', where: 'Dockside', marker: ROUTES.dock[1], laps: 2, prize: 1000, target: 6000, traffic: false,
-    path: ROUTES.dock,
-    blurb: 'Two laps round the harbour loop in the port. Slide the car to score: the longer the drift, the higher the multiplier. Touching a barrier mid-drift loses the points you were building.' },
-  { id: 'quay-quarter', type: 'drag', name: 'Quay Quarter', where: 'Dockside', marker: { x: -215, z: 880 }, prize: 900, traffic: false,
-    strip: { cz: 880, x0: -180, len: 402 }, rivals: [{ name: 'Brick', spec: rivalSpec('kaze', 0.98), paint: '#FF4500' }],
-    blurb: 'A quarter mile down the quay. Shift at the top of the rev bar for a perfect shift. Hold the phone upright and level.' },
-  { id: 'runway-roll', type: 'roll', name: 'Runway Roll', where: 'Old Terminal', marker: { x: -1080, z: 225 }, prize: 1100, traffic: false,
-    strip: { cz: 250, x0: -1000, len: 600, roll: 60 / 3.6 }, rivals: [{ name: 'Sable', spec: rivalSpec('dreier', 0.93), paint: '#FFFFFF' }],
-    blurb: 'Both cars roll down the old runway at 60 km/h. When the lights change, it is flat out for 600 metres. Hold the phone upright and level.' },
-  // club boss races: hidden until you have won the club's qualifying races
-  { id: 'kings-crown', type: 'circuit', club: 'kings', needs: ['neon-loop'], name: 'Crown of Neon Row', where: 'Neon Row', marker: ROUTES.town[Math.floor(ROUTES.town.length / 2)], laps: 3, prize: 4000, traffic: true,
-    path: ROUTES.town,
-    rivals: [{ name: 'Vex', boss: true, spec: rivalSpec('zephyr', 1.04), paint: '#1A1A1E' }, { name: 'Halo', spec: rivalSpec('vandal', 1), paint: '#BF0003' }, { name: 'Pike', spec: rivalSpec('solstice', 1), paint: '#FFC400' }],
-    blurb: 'The Kings run Neon Row. Three laps against their boss Vex and two of the crew. Beat Vex to take the crown.' },
-  { id: 'union-final', type: 'drift', club: 'union', needs: ['harbour-drift'], name: 'Union Final', where: 'Dockside', marker: ROUTES.dock[Math.floor(ROUTES.dock.length / 2)], laps: 3, prize: 3500, target: 11000, traffic: false,
-    path: ROUTES.dock,
-    blurb: 'The Harbour Drift Union boss, Reika, set 11,000 points over three laps of the yards. Beat her score to join the Union.' },
-  { id: 'syndicate-long', type: 'drag', club: 'syndicate', needs: ['quay-quarter', 'runway-roll'], name: 'Syndicate Long Run', where: 'Old Terminal', marker: { x: -1080, z: 290 }, prize: 4500, traffic: false,
-    strip: { cz: 250, x0: -1050, len: 760 }, rivals: [{ name: 'Marlow', boss: true, spec: rivalSpec('zephyr', 1.02), paint: '#B8BCC4' }],
-    blurb: 'The Runway Syndicate only race the long way: 760 metres from a standing start against their boss, Marlow. Hold the phone upright and level.' }
-];
-
-export const CLUBS = {
-  kings: { name: 'The Kings', where: 'Neon Row', boss: 'Vex', event: 'kings-crown', type: 'circuit', reward: 'Kings crown on your record and $4,000' },
-  union: { name: 'Harbour Drift Union', where: 'Dockside', boss: 'Reika', event: 'union-final', type: 'drift', reward: 'Union membership and $3,500' },
-  syndicate: { name: 'Runway Syndicate', where: 'Old Terminal', boss: 'Marlow', event: 'syndicate-long', type: 'drag', reward: 'Syndicate membership and $4,500' }
-};
+const markerOf = m => (m.route ? ROUTES[m.route][m.index ?? Math.floor(ROUTES[m.route].length * m.at)] : { x: m.x, z: m.z });
+export const EVENTS = D.events.events.map(e => ({ ...e,
+  marker: markerOf(e.marker),
+  path: e.path ? ROUTES[e.path] : undefined,
+  strip: e.strip ? { ...e.strip, roll: e.strip.rollKmh ? e.strip.rollKmh / 3.6 : undefined } : undefined,
+  rivals: e.rivals ? e.rivals.map(r => ({ ...r, spec: rivalSpec(r.car, r.k) })) : undefined }));
+export const CLUBS = D.events.clubs;
 // live races: the friend's car is a puppet moved by their phone
-export const LIVE_EVENTS = ['neon-loop', 'quay-quarter', 'runway-roll'];
+export const LIVE_EVENTS = D.events.liveEvents;
 export function liveEvent(id, friend) {
   const base = EVENTS.find(e => e.id === id), f = friend.car;
   return { ...base, live: true, prize: 0, traffic: false, rivals: [{ name: friend.name || 'Your friend', live: true, spec: f.spec, paint: f.paint, glow: f.glow, opts: f.opts }],

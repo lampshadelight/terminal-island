@@ -1,4 +1,5 @@
 import { save, persist } from './save.js';
+import { D } from './data.js';
 
 /* ------------------------------------------------------------------
    The ethanol synthesizer. A full tank lasts 15 minutes of driving.
@@ -6,9 +7,9 @@ import { save, persist } from './save.js';
    synthesizer to refill now costs double (2 charges). You get 6 charges
    a day. Stored on the phone for now; TIC's Supabase later.
    ------------------------------------------------------------------ */
-export const TANK_SECONDS = 15 * 60;
-export const REFILL_MS = 4 * 3600 * 1000;
-export const DAILY_CHARGES = 6;
+export const TANK_SECONDS = D.fuel.tankMinutes * 60;
+export const REFILL_MS = D.fuel.refillHours * 3600 * 1000;
+export const DAILY_CHARGES = D.fuel.dailyCharges;
 
 const today = () => { const d = new Date(); return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; };
 
@@ -37,7 +38,7 @@ export class Fuel {
     f.charges -= 1; f.refillStart = Date.now(); f.refillAt = f.refillStart + REFILL_MS; persist(); return true;
   }
   // refill right now: double the electricity, so 2 charges (1 more if a refill is already running)
-  boostCost() { return this.f.refillAt ? 1 : 2; }
+  boostCost() { return this.f.refillAt ? 1 : D.fuel.boostCost; }
   boost() {
     const f = this.f, cost = this.boostCost();
     if (f.level >= 1 && !f.refillAt) return false;

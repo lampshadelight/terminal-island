@@ -1,0 +1,264 @@
+{
+ "_about": "Shops, parts, prices and tuning ranges. Part prices are per stage and scaled by carFactor.",
+ "shops": [
+  {
+   "id": "cars",
+   "kind": "cars",
+   "name": "Kinetic Motors",
+   "label": "Car dealer",
+   "sign": "MOTORS",
+   "rumour": "Word is there is a car dealer on the main street of Neon Row"
+  },
+  {
+   "id": "parts",
+   "kind": "parts",
+   "name": "Torque Works",
+   "label": "Performance parts",
+   "sign": "TORQUE",
+   "rumour": "Someone is selling turbos out of the port in Dockside"
+  },
+  {
+   "id": "paint",
+   "kind": "paint",
+   "name": "Spectra Paint",
+   "label": "Paint shop",
+   "sign": "PAINT",
+   "rumour": "There is a paint booth on the road to the old airport"
+  },
+  {
+   "id": "body",
+   "kind": "body",
+   "name": "Panel & Line",
+   "label": "Body kits",
+   "sign": "BODY",
+   "rumour": "A body shop hides on the back streets of Neon Row"
+  },
+  {
+   "id": "acc",
+   "kind": "acc",
+   "name": "Glowline",
+   "label": "Accessories",
+   "sign": "GLOW",
+   "rumour": "Underglow kits are sold beside the coast road on the east side"
+  }
+ ],
+ "parts": [
+  {
+   "id": "engine",
+   "name": "Engine",
+   "desc": "More power across the rev range."
+  },
+  {
+   "id": "turbo",
+   "name": "Turbo",
+   "desc": "More power and a higher top speed."
+  },
+  {
+   "id": "gearbox",
+   "name": "Gearbox",
+   "desc": "Quicker gear changes."
+  },
+  {
+   "id": "tyres",
+   "name": "Tyres",
+   "desc": "More grip and sharper turning."
+  },
+  {
+   "id": "nitrous",
+   "name": "Nitrous",
+   "desc": "Stronger boost that lasts longer."
+  },
+  {
+   "id": "weight",
+   "name": "Weight reduction",
+   "desc": "Faster off the line and through corners."
+  }
+ ],
+ "partPrice": [
+  700,
+  1600,
+  3200
+ ],
+ "carFactor": {
+  "solstice": 1.15,
+  "zephyr": 1.3,
+  "vandal": 1.4,
+  "strix": 1.8
+ },
+ "paints": [
+  "#BF0003",
+  "#FF4500",
+  "#FFC400",
+  "#249689",
+  "#587AF9",
+  "#FF5963",
+  "#F2F2F2",
+  "#1A1A1E",
+  "#6B6F78",
+  "#7A3FB0",
+  "#00A6B8",
+  "#3D7A36"
+ ],
+ "glows": [
+  [
+   null,
+   "Off"
+  ],
+  [
+   "#FF2A10",
+   "Red"
+  ],
+  [
+   "#FF4500",
+   "Orange"
+  ],
+  [
+   "#FFC400",
+   "Amber"
+  ],
+  [
+   "#249689",
+   "Teal"
+  ],
+  [
+   "#587AF9",
+   "Blue"
+  ],
+  [
+   "#FFFFFF",
+   "White"
+  ]
+ ],
+ "rims": [
+  [
+   null,
+   "Silver"
+  ],
+  [
+   "#1B1B1F",
+   "Black"
+  ],
+  [
+   "#C9A227",
+   "Gold"
+  ],
+  [
+   "#BF0003",
+   "Red"
+  ],
+  [
+   "#EDEDED",
+   "White"
+  ]
+ ],
+ "spoilers": [
+  [
+   "wing",
+   "Wing"
+  ],
+  [
+   "lip",
+   "Lip"
+  ],
+  [
+   "ducktail",
+   "Ducktail"
+  ],
+  [
+   "none",
+   "None"
+  ]
+ ],
+ "prices": {
+  "paint": 250,
+  "glow": 300,
+  "rims": 250,
+  "spoiler": 400,
+  "scoop": 300,
+  "stripe": 150,
+  "vinyl": 350,
+  "vinylColor": 100,
+  "decals": 150
+ },
+ "tunes": [
+  {
+   "id": "height",
+   "name": "Ride height",
+   "lo": "Low",
+   "hi": "High",
+   "min": -1,
+   "max": 1,
+   "tip": "Lower sits flatter in corners."
+  },
+  {
+   "id": "camber",
+   "name": "Camber",
+   "lo": "0°",
+   "hi": "-4°",
+   "min": 0,
+   "max": 1,
+   "tip": "More camber grips harder in corners but costs a little launch."
+  },
+  {
+   "id": "final",
+   "name": "Final drive",
+   "lo": "Short",
+   "hi": "Long",
+   "min": -1,
+   "max": 1,
+   "tip": "Short gears pull harder, long gears reach a higher top speed."
+  },
+  {
+   "id": "lock",
+   "name": "Steering lock",
+   "lo": "Less",
+   "hi": "More",
+   "min": -1,
+   "max": 1,
+   "tip": "More lock turns tighter and suits drifting."
+  }
+ ],
+ "vinyls": [
+  [
+   null,
+   "None"
+  ],
+  [
+   "flames",
+   "Flames"
+  ],
+  [
+   "band",
+   "Side band"
+  ],
+  [
+   "speed",
+   "Speed slashes"
+  ],
+  [
+   "splatter",
+   "Splatter"
+  ],
+  [
+   "checker",
+   "Checker"
+  ]
+ ],
+ "vinylColors": [
+  "#FFC400",
+  "#FF4500",
+  "#BF0003",
+  "#F2F2F2",
+  "#1A1A1E",
+  "#249689",
+  "#587AF9"
+ ],
+ "sponsors": [
+  "VOLTA",
+  "KAIDO OIL",
+  "NOVA",
+  "TIC",
+  "REDLINE",
+  "ORBIT TYRES"
+ ]
+}

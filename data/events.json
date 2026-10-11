@@ -1,0 +1,232 @@
+{
+ "_about": "Race events. k scales a rival's pulling power. Markers are either a point or a place along a race route.",
+ "events": [
+  {
+   "id": "neon-loop",
+   "type": "circuit",
+   "name": "Neon Loop",
+   "where": "Neon Row",
+   "marker": {
+    "route": "town",
+    "index": 1
+   },
+   "laps": 2,
+   "prize": 1200,
+   "traffic": true,
+   "path": "town",
+   "rivals": [
+    {
+     "name": "Kestrel",
+     "car": "hornet",
+     "k": 1,
+     "paint": "#FFC400"
+    },
+    {
+     "name": "Mox",
+     "car": "dreier",
+     "k": 0.98,
+     "paint": "#249689"
+    },
+    {
+     "name": "Juno",
+     "car": "vortex",
+     "k": 0.96,
+     "paint": "#587AF9"
+    }
+   ],
+   "blurb": "Two laps round the streets of Neon Row against three local drivers. Drive through every checkpoint gate."
+  },
+  {
+   "id": "harbour-drift",
+   "type": "drift",
+   "name": "Harbour Drift",
+   "where": "Dockside",
+   "marker": {
+    "route": "dock",
+    "index": 1
+   },
+   "laps": 2,
+   "prize": 1000,
+   "target": 6000,
+   "traffic": false,
+   "path": "dock",
+   "blurb": "Two laps round the harbour loop in the port. Slide the car to score: the longer the drift, the higher the multiplier. Touching a barrier mid-drift loses the points you were building."
+  },
+  {
+   "id": "quay-quarter",
+   "type": "drag",
+   "name": "Quay Quarter",
+   "where": "Dockside",
+   "marker": {
+    "x": -215,
+    "z": 880
+   },
+   "prize": 900,
+   "traffic": false,
+   "strip": {
+    "cz": 880,
+    "x0": -180,
+    "len": 402
+   },
+   "rivals": [
+    {
+     "name": "Brick",
+     "car": "kaze",
+     "k": 0.98,
+     "paint": "#FF4500"
+    }
+   ],
+   "blurb": "A quarter mile down the quay. Shift at the top of the rev bar for a perfect shift. Hold the phone upright and level."
+  },
+  {
+   "id": "runway-roll",
+   "type": "roll",
+   "name": "Runway Roll",
+   "where": "Old Terminal",
+   "marker": {
+    "x": -1080,
+    "z": 225
+   },
+   "prize": 1100,
+   "traffic": false,
+   "strip": {
+    "cz": 250,
+    "x0": -1000,
+    "len": 600,
+    "rollKmh": 60
+   },
+   "rivals": [
+    {
+     "name": "Sable",
+     "car": "dreier",
+     "k": 0.93,
+     "paint": "#FFFFFF"
+    }
+   ],
+   "blurb": "Both cars roll down the old runway at 60 km/h. When the lights change, it is flat out for 600 metres. Hold the phone upright and level."
+  },
+  {
+   "id": "kings-crown",
+   "type": "circuit",
+   "club": "kings",
+   "needs": [
+    "neon-loop"
+   ],
+   "name": "Crown of Neon Row",
+   "where": "Neon Row",
+   "marker": {
+    "route": "town",
+    "at": 0.5
+   },
+   "laps": 3,
+   "prize": 4000,
+   "traffic": true,
+   "path": "town",
+   "rivals": [
+    {
+     "name": "Vex",
+     "boss": true,
+     "car": "zephyr",
+     "k": 1.04,
+     "paint": "#1A1A1E"
+    },
+    {
+     "name": "Halo",
+     "car": "vandal",
+     "k": 1,
+     "paint": "#BF0003"
+    },
+    {
+     "name": "Pike",
+     "car": "solstice",
+     "k": 1,
+     "paint": "#FFC400"
+    }
+   ],
+   "blurb": "The Kings run Neon Row. Three laps against their boss Vex and two of the crew. Beat Vex to take the crown."
+  },
+  {
+   "id": "union-final",
+   "type": "drift",
+   "club": "union",
+   "needs": [
+    "harbour-drift"
+   ],
+   "name": "Union Final",
+   "where": "Dockside",
+   "marker": {
+    "route": "dock",
+    "at": 0.5
+   },
+   "laps": 3,
+   "prize": 3500,
+   "target": 11000,
+   "traffic": false,
+   "path": "dock",
+   "blurb": "The Harbour Drift Union boss, Reika, set 11,000 points over three laps of the yards. Beat her score to join the Union."
+  },
+  {
+   "id": "syndicate-long",
+   "type": "drag",
+   "club": "syndicate",
+   "needs": [
+    "quay-quarter",
+    "runway-roll"
+   ],
+   "name": "Syndicate Long Run",
+   "where": "Old Terminal",
+   "marker": {
+    "x": -1080,
+    "z": 290
+   },
+   "prize": 4500,
+   "traffic": false,
+   "strip": {
+    "cz": 250,
+    "x0": -1050,
+    "len": 760
+   },
+   "rivals": [
+    {
+     "name": "Marlow",
+     "boss": true,
+     "car": "zephyr",
+     "k": 1.02,
+     "paint": "#B8BCC4"
+    }
+   ],
+   "blurb": "The Runway Syndicate only race the long way: 760 metres from a standing start against their boss, Marlow. Hold the phone upright and level."
+  }
+ ],
+ "clubs": {
+  "kings": {
+   "name": "The Kings",
+   "where": "Neon Row",
+   "boss": "Vex",
+   "event": "kings-crown",
+   "type": "circuit",
+   "reward": "Kings crown on your record and $4,000"
+  },
+  "union": {
+   "name": "Harbour Drift Union",
+   "where": "Dockside",
+   "boss": "Reika",
+   "event": "union-final",
+   "type": "drift",
+   "reward": "Union membership and $3,500"
+  },
+  "syndicate": {
+   "name": "Runway Syndicate",
+   "where": "Old Terminal",
+   "boss": "Marlow",
+   "event": "syndicate-long",
+   "type": "drag",
+   "reward": "Syndicate membership and $4,500"
+  }
+ },
+ "liveEvents": [
+  "neon-loop",
+  "quay-quarter",
+  "runway-roll"
+ ]
+}

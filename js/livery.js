@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { rng } from './util.js';
+import { D } from './data.js';
 
 /* ------------------------------------------------------------------
    Vinyls and sponsor decals. A vinyl is painted onto a canvas that
@@ -7,9 +8,9 @@ import { rng } from './util.js';
    Sponsor decals are invented brands, stuck on as separate panels so
    their text reads the right way round on both sides.
    ------------------------------------------------------------------ */
-export const VINYLS = [[null, 'None'], ['flames', 'Flames'], ['band', 'Side band'], ['speed', 'Speed slashes'], ['splatter', 'Splatter'], ['checker', 'Checker']];
-export const VINYL_COLORS = ['#FFC400', '#FF4500', '#BF0003', '#F2F2F2', '#1A1A1E', '#249689', '#587AF9'];
-export const SPONSORS = ['VOLTA', 'KAIDO OIL', 'NOVA', 'TIC', 'REDLINE', 'ORBIT TYRES'];
+export const VINYLS = D.garage.vinyls;
+export const VINYL_COLORS = D.garage.vinylColors;
+export const SPONSORS = D.garage.sponsors;
 
 const W = 1024, H = 256;
 // car height 0.25 m at the bottom of the canvas to 1.45 m at the top; the body sits roughly in rows 110-245

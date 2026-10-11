@@ -1,4 +1,6 @@
 import { SPOTS } from './world.js';
+import { D } from './data.js';
+const G = D.garage;
 import * as THREE from 'three';
 import { CARS } from './car.js';
 import { PAL } from './textures.js';
@@ -9,37 +11,18 @@ import { VINYLS, VINYL_COLORS } from './livery.js';
    Shops are hidden around the island. They are not on the map until
    you find one by driving past it. Drive slowly into the doorway to go in.
    ------------------------------------------------------------------ */
-export const SHOPS = [
-  { id: 'cars', kind: 'cars', name: 'Kinetic Motors', label: 'Car dealer', sign: 'MOTORS', ...SPOTS.cars, rumour: 'Word is there is a car dealer on the main street of Neon Row' },
-  { id: 'parts', kind: 'parts', name: 'Torque Works', label: 'Performance parts', sign: 'TORQUE', ...SPOTS.parts, rumour: 'Someone is selling turbos out of the port in Dockside' },
-  { id: 'paint', kind: 'paint', name: 'Spectra Paint', label: 'Paint shop', sign: 'PAINT', ...SPOTS.paint, rumour: 'There is a paint booth on the road to the old airport' },
-  { id: 'body', kind: 'body', name: 'Panel & Line', label: 'Body kits', sign: 'BODY', ...SPOTS.body, rumour: 'A body shop hides on the back streets of Neon Row' },
-  { id: 'acc', kind: 'acc', name: 'Glowline', label: 'Accessories', sign: 'GLOW', ...SPOTS.acc, rumour: 'Underglow kits are sold beside the coast road on the east side' }
-];
+export const SHOPS = G.shops.map(s => ({ ...s, ...SPOTS[s.id] }));
 
-export const PARTS = [
-  { id: 'engine', name: 'Engine', desc: 'More power across the rev range.' },
-  { id: 'turbo', name: 'Turbo', desc: 'More power and a higher top speed.' },
-  { id: 'gearbox', name: 'Gearbox', desc: 'Quicker gear changes.' },
-  { id: 'tyres', name: 'Tyres', desc: 'More grip and sharper turning.' },
-  { id: 'nitrous', name: 'Nitrous', desc: 'Stronger boost that lasts longer.' },
-  { id: 'weight', name: 'Weight reduction', desc: 'Faster off the line and through corners.' }
-];
-const PART_PRICE = [700, 1600, 3200];
-const CAR_FACTOR = { solstice: 1.15, zephyr: 1.3, vandal: 1.4, strix: 1.8 };
+export const PARTS = G.parts;
+const PART_PRICE = G.partPrice, CAR_FACTOR = G.carFactor;
 export const partPrice = (carId, lvl) => Math.round(PART_PRICE[lvl] * (CAR_FACTOR[carId] || 1) / 50) * 50;
 
-export const PAINTS = ['#BF0003', '#FF4500', '#FFC400', '#249689', '#587AF9', '#FF5963', '#F2F2F2', '#1A1A1E', '#6B6F78', '#7A3FB0', '#00A6B8', '#3D7A36'];
-export const GLOWS = [[null, 'Off'], ['#FF2A10', 'Red'], ['#FF4500', 'Orange'], ['#FFC400', 'Amber'], ['#249689', 'Teal'], ['#587AF9', 'Blue'], ['#FFFFFF', 'White']];
-export const RIMS = [[null, 'Silver'], ['#1B1B1F', 'Black'], ['#C9A227', 'Gold'], ['#BF0003', 'Red'], ['#EDEDED', 'White']];
-export const SPOILERS = [['wing', 'Wing'], ['lip', 'Lip'], ['ducktail', 'Ducktail'], ['none', 'None']];
-const PRICE = { paint: 250, glow: 300, rims: 250, spoiler: 400, scoop: 300, stripe: 150, vinyl: 350, vinylColor: 100, decals: 150 };
-export const TUNES = [
-  { id: 'height', name: 'Ride height', lo: 'Low', hi: 'High', min: -1, max: 1, tip: 'Lower sits flatter in corners.' },
-  { id: 'camber', name: 'Camber', lo: '0°', hi: '-4°', min: 0, max: 1, tip: 'More camber grips harder in corners but costs a little launch.' },
-  { id: 'final', name: 'Final drive', lo: 'Short', hi: 'Long', min: -1, max: 1, tip: 'Short gears pull harder, long gears reach a higher top speed.' },
-  { id: 'lock', name: 'Steering lock', lo: 'Less', hi: 'More', min: -1, max: 1, tip: 'More lock turns tighter and suits drifting.' }
-];
+export const PAINTS = G.paints;
+export const GLOWS = G.glows;
+export const RIMS = G.rims;
+export const SPOILERS = G.spoilers;
+const PRICE = G.prices;
+export const TUNES = G.tunes;
 
 // driving numbers after upgrades
 export function tunedSpec(id) {

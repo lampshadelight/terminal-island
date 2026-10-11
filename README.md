@@ -32,6 +32,9 @@ Every car is an original design inspired by a real street car, with invented bra
 Wet streets that reflect the city, glow around lights (High), light trails and speed streaks. Pause menu → Graphics switches Low / Medium / High.
 
 ## Code
+Game data lives in plain JSON under `data/` (island layout, cars, shops and prices, races and clubs, fuel rules), so an engine version (Unity or Godot) can load the same files later.
+
+- `js/data.js` loads the JSON files
 Plain JavaScript modules and three.js, no build step.
 - `js/world.js` the island: coast, curved roads, town, port, airfield, trees, hills and collision
 - `js/car.js` car list and driving model

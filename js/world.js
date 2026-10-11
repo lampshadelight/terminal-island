@@ -1,6 +1,9 @@
 import * as THREE from 'three';
 import { R, GB, rng, inRect, hexToRgb, clamp } from './util.js';
 import { PAL } from './textures.js';
+import { D } from './data.js';
+
+const W = D.world;
 
 /* ------------------------------------------------------------------
    Terminal Island, natural layout.
@@ -14,8 +17,8 @@ import { PAL } from './textures.js';
    ------------------------------------------------------------------ */
 
 /* ---------------- shapes ---------------- */
-const AX = 1500, AZ = 1150;
-const coastK = a => 1 + 0.06 * Math.sin(3 * a + 0.7) + 0.04 * Math.sin(5 * a + 2.1) + 0.025 * Math.sin(9 * a + 0.3);
+const { ax: AX, az: AZ, waves } = W.coast;
+const coastK = a => 1 + waves.reduce((t, [amp, f, ph]) => t + amp * Math.sin(f * a + ph), 0);
 export const coastAt = (a, inset = 0) => { const k = coastK(a); return { x: Math.cos(a) * (AX * k - inset), z: Math.sin(a) * (AZ * k - inset) }; };
 
 // Catmull-Rom through control points, one sample every few metres
@@ -52,35 +55,26 @@ const C = (x, z) => ({ x, z });
 const shift = (pts, dx, dz) => pts.map(([x, z]) => C(x + dx, z + dz));
 
 /* ---------------- the road network ---------------- */
-const TOWN = C(520, -380), YARD = R(-230, 590, 470, 935), APRON = R(-1110, 140, -190, 425);
-export const ZONES = [
-  { id: 'neon', name: 'Neon Row', x: TOWN.x, z: TOWN.z, r: 360 },
-  { id: 'dock', name: 'Dockside', x: 120, z: 760, rect: YARD },
-  { id: 'terminal', name: 'Old Terminal', x: -650, z: 250, rect: R(-1150, 20, -150, 470) }
-];
+const TOWN = C(...W.town), RECT = r => R(...r), YARD = RECT(W.paved.yard), APRON = RECT(W.paved.apron);
+export const ZONES = W.zones.map(z => (z.rect ? { ...z, rect: RECT(z.rect) } : z));
 const ROADS = [];
 const add = (id, name, w, ctrl, closed = false) => { const r = { id, name, w, closed, pts: spline(ctrl, closed) }; measure(r); ROADS.push(r); return r; };
-const coast = add('coast', 'Coast Road', 14, Array.from({ length: 30 }, (_, i) => coastAt(i / 30 * Math.PI * 2, 160)), true);
-const town = add('town', 'Neon Row', 16, shift([[-240, -60], [-190, -200], [-30, -250], [130, -210], [250, -90], [240, 80], [130, 200], [-30, 160], [-120, 235], [-250, 130]], TOWN.x, TOWN.z), true);
-const avenue = add('avenue', 'Neon Row', 18, shift([[-330, 0], [-150, 10], [0, 0], [150, -10], [330, 0]], TOWN.x, TOWN.z));
-const dockLoop = add('dock', 'Dockside', 18, [C(-160, 650), C(120, 630), C(390, 660), C(410, 760), C(300, 825), C(0, 832), C(-180, 790)], true);
-// links snap their ends onto the roads they join
+const byId = id => ROADS.find(r => r.id === id);
+// links snap their ends onto the roads they join (or end at a fixed point)
 function link(id, name, w, from, via, to) {
   const a = from.pts[nearestIdx(from, via[0][0], via[0][1])], b = to.pts[nearestIdx(to, via[via.length - 1][0], via[via.length - 1][1])];
   return add(id, name, w, [C(a.x, a.z), ...via.map(([x, z]) => C(x, z)), C(b.x, b.z)]);
 }
-const ridge = link('ridge', 'Ridge Road', 12, town, [[220, -280], [110, -170], [200, -60], [70, 40], [190, 150], [40, 250], [170, 360], [90, 470]], dockLoop);
-link('north', 'Neon Row', 14, town, [[500, -660], [480, -760]], coast);
-link('townEast', 'Neon Row', 14, avenue, [[900, -380], [1050, -360]], coast);
-link('dockEast', 'Harbour Road', 14, dockLoop, [[560, 700], [720, 820]], coast);
-link('dockWest', 'Harbour Road', 14, dockLoop, [[-330, 800], [-520, 880]], coast);
-const airSouth = link('airSouth', 'Airport Road', 14, coast, [[-860, 720], [-760, 560]], { pts: [C(-700, 430)] });
-const terminalRd = link('terminalRd', 'Airport Road', 14, ridge, [[60, -60], [-120, -60], [-320, 40], [-520, 60], [-760, 60]], { pts: [C(-980, 70)] });
-link('apronEast', 'Airport Road', 12, ridge, [[-40, 260], [-140, 290]], { pts: [C(-190, 300)] });
+for (const r of W.roads) {
+  if (r.ring) add(r.id, r.name, r.w, Array.from({ length: r.ring.points }, (_, i) => coastAt(i / r.ring.points * Math.PI * 2, r.ring.inset)), true);
+  else if (r.ctrl) add(r.id, r.name, r.w, shift(r.ctrl, ...(r.offset || [0, 0])), !!r.closed);
+  else link(r.id, r.name, r.w, byId(r.from), r.via, typeof r.to === 'string' ? byId(r.to) : { pts: [C(...r.to)] });
+}
+const coast = byId('coast'), town = byId('town'), avenue = byId('avenue'), dockLoop = byId('dock');
 export { ROADS };
 
 // unfinished roads out over the sea, closed at construction barriers
-export const CLOSED = [['The Foundry', 0], ['Highcliff', -Math.PI / 2 + 0.25], ['Causeway', Math.PI / 4]].map(([name, a]) => {
+export const CLOSED = W.closedRoads.map(({ name, angle: a }) => {
   const s = coast.pts[nearestIdx(coast, coastAt(a, 160).x, coastAt(a, 160).z)], c = coastAt(a), dx = c.x - s.x, dz = c.z - s.z, L = Math.hypot(dx, dz), ux = dx / L, uz = dz / L;
   const end = C(c.x + ux * 170, c.z + uz * 170), road = { id: 'closed', name: `Road to ${name}`, w: 14, closed: false, pts: spline([C(s.x, s.z), end], false) };
   measure(road); ROADS.push(road);
@@ -89,20 +83,16 @@ export const CLOSED = [['The Foundry', 0], ['Highcliff', -Math.PI / 2 + 0.25], [
 
 // races: checkpoints every 70 m round the town and the docks
 const sampleLoop = (road, every) => { const n = Math.round(road.len / every), out = []; for (let i = 0; i < n; i++) { const p = roadPose(road, i * road.len / n); out.push(C(Math.round(p.x), Math.round(p.z))); } return out; };
-export const ROUTES = { town: sampleLoop(town, 70), dock: sampleLoop(dockLoop, 55) };
-export const STRIPS = { quay: { cz: 880, x0: -180 }, runway: { cz: 250 } };
+export const ROUTES = Object.fromEntries(Object.entries(W.routes).map(([k, v]) => [k, sampleLoop(byId(v.road), v.every)]));
 
 // shop doors sit just off the road
 function roadside(road, frac, side, off = 8) {
   const p = roadPose(road, road.len * frac), nx = Math.cos(p.h) * side, nz = -Math.sin(p.h) * side;
   return { x: p.x + nx * (road.w / 2 + off), z: p.z + nz * (road.w / 2 + off), h: Math.atan2(-nx, -nz) };
 }
-export const SPOTS = {
-  cars: roadside(avenue, 0.3, 1), parts: roadside(dockLoop, 0.47, -1), paint: roadside(terminalRd, 0.55, 1),
-  body: roadside(town, 0.62, -1), acc: roadside(coast, 0.06, -1)
-};
+export const SPOTS = Object.fromEntries(Object.entries(W.spots).map(([k, v]) => [k, roadside(byId(v.road), v.frac, v.side)]));
 
-export const DATA = { neon: { spawn: (() => { const p = roadPose(avenue, avenue.len * 0.62); return { x: p.x, z: p.z, h: p.h }; })() } };
+export const DATA = { neon: { spawn: (() => { const r = byId(W.spawn.road), p = roadPose(r, r.len * W.spawn.frac); return { x: p.x, z: p.z, h: p.h }; })() } };
 
 /* ---------------- what is where ---------------- */
 const CELL = 40, RHASH = new Map(), SHASH = new Map();
@@ -140,7 +130,7 @@ function addSolid(s) {
 }
 const blocked = (x, z, r) => { const l = SHASH.get(Math.floor(x / CELL) + ',' + Math.floor(z / CELL)) || []; return l.some(s => s.t !== 's' && Math.hypot(s.x - x, s.z - z) < r + (s.t === 'c' ? s.r : Math.max(s.hx, s.hz))); };
 const nearSpot = (x, z, r) => Object.values(SPOTS).some(s => Math.hypot(s.x - x, s.z - z) < r);
-const STRIP_CLEAR = [R(-260, 862, 420, 898), R(-1180, 222, -40, 278)];
+const STRIP_CLEAR = W.keepClear.map(RECT);
 // distance to the edge of any road, checking them all (only used while laying out the island)
 function farEdge(x, z) { let best = 1e9; for (const road of ROADS) for (const q of road.pts) { const d = Math.hypot(q.x - x, q.z - z) - road.w / 2 - 2; if (d < best) best = d; } return best; }
 const clearOf = (x, z, r) => (r > 6 ? farEdge(x, z) : roadEdge(x, z).d) > r && !nearSpot(x, z, r + 12) && !STRIP_CLEAR.some(c => inRect(c, x, z, r));
@@ -148,7 +138,7 @@ const clearOf = (x, z, r) => (r > 6 ? farEdge(x, z) : roadEdge(x, z).d) > r && !
 const LAYOUT = (() => {
   const rnd = rng(4242), L = { buildings: [], containers: [], hills: [], trees: [], hangars: [], lamps: [] };
   // town: buildings line the streets, taller in the middle
-  for (const road of [avenue, town, ROADS.find(r => r.id === 'north')]) {
+  for (const road of [avenue, town, byId('north')]) {
     for (let s = 6; s < road.len; s += 19 + rnd() * 6) for (const side of [-1, 1]) {
       if (rnd() < 0.15) continue;
       const p = roadPose(road, s), nx = Math.cos(p.h) * side, nz = -Math.sin(p.h) * side;
@@ -163,24 +153,23 @@ const LAYOUT = (() => {
   // the port: container stacks and warehouses inside the yard
   for (let x = YARD.x0 + 12; x < YARD.x1 - 12; x += 16) for (let z = YARD.z0 + 10; z < YARD.z1 - 10; z += 8) {
     if (rnd() < 0.35) continue;
-    const c = { t: 'o', x, z, hx: 6.1, hz: 1.25, a: 0, ux: 1, uz: 0, stack: 1 + Math.floor(rnd() * 3) };
+    const c = { t: 'o', x, z, hx: 6.1, hz: 1.25, ux: 1, uz: 0, stack: 1 + Math.floor(rnd() * 3) };
     if (!clearOf(x, z, 9) || blocked(x, z, 5)) continue;
     addSolid(c); L.containers.push(c);
   }
   // the airfield: hangars north of the runway
-  for (const x of [-940, -700, -460]) { const h = { t: 'o', x, z: 395, hx: 50, hz: 22, a: 0, ux: 1, uz: 0 }; addSolid(h); L.hangars.push(h); }
-  L.terminal = [{ t: 'o', x: -700, z: 100, hx: 130, hz: 18, a: 0, ux: 1, uz: 0, h: 16 }, { t: 'o', x: -460, z: 110, hx: 8, hz: 8, a: 0, ux: 1, uz: 0, h: 44, tower: true }];
+  for (const [x, z, hx, hz] of W.hangars) { const h = { t: 'o', x, z, hx, hz, ux: 1, uz: 0 }; addSolid(h); L.hangars.push(h); }
+  L.terminal = W.terminal.map(b => ({ t: 'o', ux: 1, uz: 0, ...b }));
   for (const b of L.terminal) if (clearOf(b.x, b.z, 4)) addSolid(b);
   // hills in the open country
-  const HILLS = [[-450, -300, 150, 120], [-180, -560, 170, 150], [-700, -380, 120, 90], [-950, -200, 110, 80], [380, 280, 90, 70], [880, 120, 150, 120], [700, 420, 100, 80], [-450, 600, 110, 70], [-1000, 650, 90, 60], [1150, -600, 80, 60], [-300, 300, 90, 60], [-650, -700, 120, 90], [150, -750, 90, 70]];
-  for (const [x, z, r, h] of HILLS) {
+  for (const [x, z, r, h] of W.hills) {
     if (farEdge(x, z) < r + 10 || PAVED.some(p => inRect(p, x, z, r))) continue;
     const s = { t: 'c', x, z, r: r * 0.82, vr: r, h, seed: x * 3 + z }; addSolid(s); L.hills.push(s);
   }
   // trees everywhere else
-  for (let k = 0; k < 2600; k++) {
+  for (let k = 0; k < W.trees; k++) {
     const a = rnd() * Math.PI * 2, rr = Math.sqrt(rnd()), c = coastAt(a, 50), x = c.x * rr, z = c.z * rr;
-    if (Math.hypot(x - TOWN.x, z - TOWN.z) < 300 || PAVED.some(p => inRect(p, x, z, 25)) || inRect(R(-1150, 20, -150, 470), x, z)) continue;
+    if (Math.hypot(x - TOWN.x, z - TOWN.z) < 300 || PAVED.some(p => inRect(p, x, z, 25)) || inRect(ZONES.find(z => z.id === 'terminal').rect, x, z)) continue;
     if (!clearOf(x, z, 5) || blocked(x, z, 2)) continue;
     const t = { t: 'c', x, z, r: 1.1, s: 0.8 + rnd() * 0.7 }; addSolid(t); L.trees.push(t);
   }
