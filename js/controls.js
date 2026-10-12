@@ -11,6 +11,7 @@ export class Controls {
     this.out = { steer: 0, throttle: 0, brake: 0, nos: false, drift: false };
     this.shifts = [];
     this.invert = false;
+    this.sens = 1; this.dz = 2.5; // tilt sensitivity and dead zone, set in Settings
     this._bindKeys();
   }
 
@@ -103,8 +104,8 @@ export class Controls {
     if (this.mode === 'tilt' && this.tiltLive) {
       const t = this.tilt;
       const roll = (t.roll - t.roll0) / DEG, pitch = ((t.pitch - t.pitch0) / DEG) * (this.invert ? -1 : 1);
-      const dz = 2.5;
-      const sr = Math.abs(roll) < dz ? 0 : (roll - Math.sign(roll) * dz) / 24;
+      const dz = this.dz;
+      const sr = Math.abs(roll) < dz ? 0 : (roll - Math.sign(roll) * dz) * this.sens / 24;
       if (!steer) steer = clamp(sr, -1, 1);
       // tip the top of the phone away from you to accelerate, toward you to brake
       if (!thr) thr = clamp((pitch - 3) / 16, 0, 1);

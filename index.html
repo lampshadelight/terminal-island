@@ -30,6 +30,8 @@
   <div class="toast" id="notice" aria-live="polite"></div>
 
   <canvas id="mini" width="224" height="224" aria-label="Minimap. Tap for the full map."></canvas>
+  <div class="minidist num" id="miniDist" hidden></div>
+  <button class="cambtn" id="camBtn" aria-label="Change camera"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h4l2-3h6l2 3h4v11H3z"/><circle cx="12" cy="13" r="3.5"/></svg></button>
 
   <!-- rev counter, NFS style: needle over a 270 degree dial, speed and gear in the middle -->
   <div class="cluster" id="cluster">
@@ -123,31 +125,43 @@
   </div>
 </div>
 
-<!-- Pause -->
-<div class="overlay" id="pause" hidden>
-  <div class="pane panel lit">
-    <div class="label">Paused</div>
-    <h2 id="pausePlace">Neon Row</h2>
-    <div class="readouts">
-      <div class="readout"><span class="lab">Cash</span><b class="num" id="pCash">$0</b></div>
-      <div class="readout"><span class="lab">Fuel</span><b class="num" id="pFuel">100%</b></div>
-      <div class="readout"><span class="lab">Charges</span><b class="num" id="pCharges">6 of 6</b></div>
+<!-- Pause: the in-game phone, top right -->
+<div class="overlay phoneov" id="pause" hidden>
+  <div class="phonepanel pane lit">
+    <div class="ph-status"><b class="num" id="phClock">00:00</b><span class="pill" style="--c:#FFC400" id="pFuel">Fuel 100%</span><span class="pill" id="pCharges">6 of 6</span></div>
+    <div class="ph-head"><div class="label dim" id="pausePlace">Neon Row · paused</div><div class="ph-cash num" id="pCash">$0</div></div>
+    <div class="apps">
+      <button class="app" id="pResume" data-red><i><svg viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z"/></svg></i><span>Resume</span></button>
+      <button class="app" id="pRestart" hidden><i><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.3-5.7M4 4v4h4"/></svg></i><span>Restart</span></button>
+      <button class="app" id="pLeave" hidden><i><svg viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg></i><span>Leave race</span></button>
+      <button class="app" id="pMap"><i><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg></i><span>Map</span></button>
+      <button class="app" id="pGarage"><i><svg viewBox="0 0 24 24"><path d="M3 15l2-5c.4-1 1.2-2 2.6-2h8.8c1.4 0 2.2 1 2.6 2l2 5v3H3z"/><circle cx="7.5" cy="16" r="1.6"/><circle cx="16.5" cy="16" r="1.6"/></svg></i><span>Garage</span></button>
+      <button class="app" id="pClubs"><i><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></i><span>Clubs</span></button>
+      <button class="app" id="pLive"><i><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M15 14.5c3 0 6 2 6 5.5"/></svg></i><span>Friend</span></button>
+      <button class="app" id="pFuelBtn"><i><svg viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></i><span>Fuel</span></button>
+      <button class="app" id="pMsgs"><i><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg></i><span>Messages</span></button>
+      <button class="app" id="pSettings"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></i><span>Settings</span></button>
     </div>
-    <div class="menu">
-      <button class="gbtn primary lit wide" id="pResume">Resume</button>
-      <button class="gbtn lit" id="pRestart" hidden>Restart race</button>
-      <button class="gbtn lit" id="pLeave" hidden>Leave race</button>
-      <button class="gbtn lit" id="pMap">Map</button>
-      <button class="gbtn lit" id="pGarage">Garage</button>
-      <button class="gbtn lit" id="pClubs">Clubs</button>
-      <button class="gbtn lit" id="pLive">Race a friend</button>
-      <button class="gbtn lit" id="pFuelBtn">Fuel</button>
-      <button class="gbtn lit" id="pGears">Gears: manual</button>
-      <button class="gbtn lit" id="pMode">Controls: tilt</button>
-      <button class="gbtn lit" id="pInvert">Tilt to accelerate: forward</button>
-      <button class="gbtn lit" id="pCalib">Recalibrate tilt</button>
-      <button class="gbtn lit" id="pSound">Sound: on</button>
-      <button class="gbtn lit" id="pGfx">Graphics: Medium</button>
+    <div class="ph-msg" id="phMsg" hidden></div>
+  </div>
+</div>
+
+<!-- Settings -->
+<div class="overlay" id="settings" hidden>
+  <div class="pane panel lit settings">
+    <div class="shop-head"><div><div class="label dim">Phone · Settings</div><h2>Controls and display</h2></div><button class="gbtn primary small" id="setDone">Done</button></div>
+    <div class="setgrid">
+      <div class="setrow"><span class="small dim">Controls</span><button class="gbtn lit small" id="pMode">Controls: tilt</button></div>
+      <div class="setrow tilt-only"><span class="small dim">Tilt sensitivity</span><input type="range" id="sSens" min="0.5" max="2" step="0.05" value="1"><span class="small num" id="sSensV">100%</span></div>
+      <div class="setrow tilt-only"><span class="small dim">Dead zone</span><input type="range" id="sDz" min="0" max="8" step="0.5" value="2.5"><span class="small num" id="sDzV">2.5°</span></div>
+      <div class="setrow tilt-only"><span class="small dim">Throttle</span><button class="gbtn lit small" id="pInvert">Tip away to accelerate</button></div>
+      <div class="setrow"><span class="small dim">Gears</span><button class="gbtn lit small" id="pGears">Gears: manual</button></div>
+      <div class="setrow"><span class="small dim">Camera</span><button class="gbtn lit small" id="pCam">Camera: chase</button></div>
+      <div class="setrow"><span class="small dim">Button size</span><input type="range" id="sBtn" min="0.8" max="1.35" step="0.05" value="1"><span class="small num" id="sBtnV">100%</span></div>
+      <div class="setrow"><span class="small dim">Button height</span><input type="range" id="sLift" min="0" max="120" step="5" value="0"><span class="small num" id="sLiftV">0 px</span></div>
+      <div class="setrow"><span class="small dim">Graphics</span><button class="gbtn lit small" id="pGfx">Graphics: Basic</button></div>
+      <div class="setrow"><span class="small dim">Sound</span><button class="gbtn lit small" id="pSound">Sound: on</button></div>
+      <div class="setrow tilt-only"><span class="small dim">Tilt centre</span><button class="gbtn lit small" id="pCalib">Recalibrate tilt</button></div>
     </div>
   </div>
 </div>
@@ -226,21 +240,19 @@
   </div>
 </div>
 
-<!-- Map -->
-<div class="overlay" id="map" hidden>
-  <div class="mapwrap">
-    <canvas id="bigMap" width="600" height="600" aria-label="Map of Terminal Island"></canvas>
-    <div class="mapside">
-    <div class="pills">
-      <span class="pill" style="--c:#BF0003">You</span>
-      <span class="pill" style="--c:#FFC400">Open district</span>
-      <span class="pill" style="--c:#FF4500">Race event</span>
-      <span class="pill" style="--c:#249689">Shop</span>
-      <span class="pill" style="--c:rgba(255,255,255,.4)">Under construction</span>
-    </div>
-    <button class="gbtn primary lit" id="mapClose">Back to driving</button>
-    </div>
+<!-- Map: grows out of the minimap, CarX style -->
+<div class="mapov" id="map" hidden>
+  <canvas id="bigMap" aria-label="Map of Terminal Island. Pinch to zoom, drag to move, tap a marker."></canvas>
+  <button class="mapx" id="mapClose" aria-label="Close the map">✕</button>
+  <div class="maptitle" id="mapTitle"><div class="label dim">Terminal Island</div><b id="mapPlace">Terminal Island</b></div>
+  <div class="mapfilters" id="mapFilters"><button class="chip on" data-f="race">Races</button><button class="chip on" data-f="shop">Shops</button><button class="chip on" data-f="boss">Clubs</button></div>
+  <div class="mapcard pane lit" id="mapCard" hidden>
+    <div class="label dim" id="mcType"></div><h3 id="mcName"></h3><p class="small" id="mcText"></p>
+    <div class="pills left" id="mcPills"></div>
+    <div class="actions"><button class="gbtn primary small" id="mcRoute">Set route</button></div>
   </div>
+  <div class="mapzoom" id="mapZoom"><button class="chip" id="mzIn" aria-label="Zoom in">+</button><button class="chip" id="mzOut" aria-label="Zoom out">−</button></div>
+  <div class="maphint small dim" id="mapHint">Pinch to zoom · drag to move · tap a marker</div>
 </div>
 
 <div id="rotate" class="rotate" hidden><div class="pane lit"><h3 id="rotTitle">Turn your phone sideways</h3><p class="small" id="rotText">Free roam is played in landscape.</p></div></div>
