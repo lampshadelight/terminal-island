@@ -44,7 +44,7 @@ export class Hud {
     this.gear.classList.toggle('shift-now', x > 0.9 && !car.auto && !car.reverse && car.gear < 6);
     $('tNos').setAttribute('d', arc(88, 50, 50 + 35 * car.nitro));
     this.gearMode.textContent = car.auto ? 'auto' : 'manual';
-    drawMap(this.mctx, this.mini.width, this.mini.height, car.x, car.z, this.mini.width / 420, [Math.sin(car.h), Math.cos(car.h)], car, false, 1, marks);
+    drawMap(this.mctx, this.mini.width, this.mini.height, car.x, car.z, this.mini.width / 420, [Math.sin(car.h), Math.cos(car.h)], car, false, 1, marks, { route: this.route });
   }
 }
 
@@ -54,13 +54,14 @@ function arc(r, a0, a1) {
   const p = a => [100 + r * Math.cos(a * Math.PI / 180), 100 + r * Math.sin(a * Math.PI / 180)], [x0, y0] = p(a0), [x1, y1] = p(a1);
   return `M${x0.toFixed(1)} ${y0.toFixed(1)}A${r} ${r} 0 ${a1 - a0 > 180 ? 1 : 0} 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`;
 }
-export function drawMap(ctx, w, h, cx, cz, s, up, car, full, k = 1, marks = []) {
+export function drawMap(ctx, w, h, cx, cz, s, up, car, full, k = 1, marks = [], o = {}) {
+  const ox = o.ox || 0, oy = o.oy || 0;
   const [ux, uz] = up, rx = -uz, rz = ux;
   const a = s * rx, c = s * rz, b = -s * ux, d = -s * uz, e = w / 2 - a * cx - c * cz, f = h / 2 - b * cx - d * cz;
   const pt = (x, z) => [a * x + c * z + e, b * x + d * z + f];
-  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.setTransform(1, 0, 0, 1, ox, oy);
   ctx.fillStyle = '#05070a'; ctx.fillRect(0, 0, w, h);
-  ctx.setTransform(a, b, c, d, e, f);
+  ctx.setTransform(a, b, c, d, e + ox, f + oy);
   const rect = (r, col) => { ctx.fillStyle = col; ctx.fillRect(r.x0, r.z0, r.x1 - r.x0, r.z1 - r.z0); };
   const poly = (pts, closed) => { ctx.beginPath(); pts.forEach((q, i) => (i ? ctx.lineTo(q.x, q.z) : ctx.moveTo(q.x, q.z))); if (closed) ctx.closePath(); };
   poly(SHAPES.coast, true); ctx.fillStyle = '#121a13'; ctx.fill();
@@ -69,12 +70,14 @@ export function drawMap(ctx, w, h, cx, cz, s, up, car, full, k = 1, marks = []) 
   for (const r of SHAPES.paved) rect(r, '#262a30');
   ctx.lineCap = 'round'; ctx.lineJoin = 'round';
   for (const r of SHAPES.roads) { poly(r.pts, r.closed); ctx.lineWidth = Math.max(r.w, 2.2 / s); ctx.strokeStyle = r.id === 'closed' ? '#3a3d42' : '#5a5f66'; ctx.stroke(); }
-  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  // the route: an amber line along the roads
+  if (o.route && o.route.length > 1) { poly(o.route, false); ctx.lineWidth = Math.max(9, 5 * k / s); ctx.strokeStyle = '#FFC400'; ctx.globalAlpha = 0.95; ctx.stroke(); ctx.globalAlpha = 1; }
+  ctx.setTransform(1, 0, 0, 1, ox, oy);
   if (full) {
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     for (const zn of SHAPES.zones) {
       const [px, py] = pt(zn.x, zn.z);
-      ctx.font = `600 ${18 * k}px "Inter Tight", Arial, sans-serif`; ctx.fillStyle = '#FFC400'; ctx.fillText(zn.name.toUpperCase(), px, py);
+      ctx.font = `700 ${16 * k}px "Inter Tight", Arial, sans-serif`; ctx.lineWidth = 4 * k; ctx.strokeStyle = 'rgba(0,0,0,.8)'; ctx.strokeText(zn.name.toUpperCase(), px, py - 34 * k); ctx.fillStyle = '#fff'; ctx.fillText(zn.name.toUpperCase(), px, py - 34 * k);
     }
     for (const cl of SHAPES.closed) {
       const [px, py] = pt(cl.x + cl.ux * 90, cl.z + cl.uz * 90);
@@ -90,6 +93,14 @@ export function drawMap(ctx, w, h, cx, cz, s, up, car, full, k = 1, marks = []) 
       if (!m.ring) continue;
     }
     const ex = clamp(mx, 8, w - 8), ey = clamp(my, 8, h - 8);
+    const R = 7 * k * (full ? 1.5 : 1);
+    if (o.sel && m.id === o.sel.id) { ctx.beginPath(); ctx.arc(ex, ey, R * 2, 0, Math.PI * 2); ctx.fillStyle = 'rgba(255,255,255,.18)'; ctx.fill(); ctx.lineWidth = 2 * k; ctx.strokeStyle = '#fff'; ctx.stroke(); }
+    if (m.kind === 'race' || m.kind === 'shop') {
+      ctx.save(); ctx.translate(ex, ey); if (m.kind === 'race') ctx.rotate(Math.PI / 4);
+      ctx.beginPath(); ctx.rect(-R * .8, -R * .8, R * 1.6, R * 1.6); ctx.fillStyle = m.c; ctx.fill(); ctx.lineWidth = 2 * k; ctx.strokeStyle = '#000'; ctx.stroke(); ctx.restore();
+      if (m.kind === 'shop' && full) { ctx.fillStyle = '#fff'; ctx.font = `800 ${R * 1.1}px "Inter Tight", Arial, sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(m.letter || '', ex, ey + R * .05); }
+      continue;
+    }
     ctx.beginPath(); ctx.arc(ex, ey, (m.small ? 4.5 : m.ring ? 8 : 7) * k * (full ? 1.2 : 1), 0, Math.PI * 2);
     if (m.ring) { ctx.lineWidth = 3 * k; ctx.strokeStyle = m.c; ctx.stroke(); }
     else { ctx.fillStyle = m.c; ctx.fill(); if (!m.small) { ctx.lineWidth = 2 * k; ctx.strokeStyle = '#000'; ctx.stroke(); } }

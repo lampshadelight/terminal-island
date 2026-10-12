@@ -7,7 +7,8 @@ import { carStats } from './garage.js';
 import { Controls } from './controls.js';
 import { Audio } from './audio.js';
 import { Hud, drawMap } from './hud.js';
-import { Race, clubsHtml, LIVE_EVENTS, liveEvent, EVENTS, TYPES } from './race.js';
+import { Race, clubsHtml, LIVE_EVENTS, liveEvent, EVENTS, TYPES, CLUBS, unlocked } from './race.js';
+import { WorldMap, findRoute, fmtDist } from './map.js';
 import { Live } from './live.js';
 import { WetRoads, makeBloom, Trails } from './fx.js';
 import { SHOPS, Shops, buildShopDoors, tunedSpec, looks } from './garage.js';
@@ -216,23 +217,26 @@ $('calibGo').addEventListener('click', () => {
 function pause() {
   if (!state.running || state.paused) return;
   state.paused = true; controls.clear(); audio.suspend();
-  $('pausePlace').textContent = hud.place || 'Terminal Island'; updateMenu();
-  $('pCash').textContent = money(save.cash); $('pFuel').textContent = Math.ceil(fuel.level * 100) + '%'; $('pCharges').textContent = `${fuel.charges} of 6`;
+  $('pausePlace').textContent = (race.active ? race.active.name : hud.place || 'Terminal Island') + ' · paused'; updateMenu();
+  $('pCash').textContent = money(save.cash); $('pFuel').textContent = 'Fuel ' + Math.ceil(fuel.level * 100) + '%'; $('pCharges').textContent = `${fuel.charges} of 6`;
+  $('phClock').textContent = new Date().toTimeString().slice(0, 5);
+  const rumour = SHOPS.find(s => !save.found[s.id]);
+  $('phMsg').hidden = !rumour || !!race.active; if (rumour) $('phMsg').innerHTML = `<div class="label dim">Message · Unknown</div>${rumour.rumour}`;
   show('pause', true);
 }
-function resume() { show('live', false); show('pause', false); show('map', false); show('eventCard', false); show('shop', false); show('fuel', false); clearInterval(fuelTimer); state.mapOpen = false; state.paused = false; controls.clear(); audio.resume(); }
+function resume() { show('live', false); show('pause', false); show('map', false); show('settings', false); worldMap.hide(); show('eventCard', false); show('shop', false); show('fuel', false); clearInterval(fuelTimer); state.mapOpen = false; state.paused = false; controls.clear(); audio.resume(); }
 $('pauseBtn').addEventListener('click', () => state.paused ? resume() : pause());
 $('pResume').addEventListener('click', resume);
 $('pRestart').addEventListener('click', () => { if (race.active) { show('results', false); race.restart(); resume(); } });
 $('pLeave').addEventListener('click', () => { show('results', false); race.leave(); resume(); });
 $('pCalib').addEventListener('click', async () => {
   if (controls.mode !== 'tilt') { const ok = await controls.enableTilt(); if (!ok) { hud.say('Tilt is not available here'); return; } controls.mode = 'tilt'; document.body.classList.remove('touch'); }
-  show('pause', false); show('calib', true); state.calibThen = 'resume';
+  show('pause', false); show('settings', false); show('calib', true); state.calibThen = 'resume';
 });
 $('pGears').addEventListener('click', () => { car.auto = !car.auto; updateMenu(); });
 $('pMode').addEventListener('click', async () => {
   if (controls.mode === 'tilt') useTouch();
-  else { const ok = await controls.enableTilt(); if (!ok) { hud.say('Tilt is not available here'); return; } controls.mode = 'tilt'; document.body.classList.remove('touch'); show('pause', false); show('calib', true); state.calibThen = 'resume'; }
+  else { const ok = await controls.enableTilt(); if (!ok) { hud.say('Tilt is not available here'); return; } controls.mode = 'tilt'; document.body.classList.remove('touch'); show('pause', false); show('settings', false); show('calib', true); state.calibThen = 'resume'; }
   updateMenu();
 });
 $('pInvert').addEventListener('click', () => { controls.invert = !controls.invert; updateMenu(); });
@@ -243,7 +247,7 @@ $('pGfx').addEventListener('click', () => { quality = (quality + 2) % 3; applyQu
 function updateMenu() {
   $('pGears').textContent = 'Gears: ' + (car.auto ? 'automatic' : 'manual');
   $('pMode').textContent = 'Controls: ' + (controls.mode === 'tilt' ? 'tilt' : 'buttons');
-  $('pInvert').textContent = 'Tilt to accelerate: ' + (controls.invert ? 'toward you' : 'away from you');
+  $('pInvert').textContent = controls.invert ? 'Tip toward you to accelerate' : 'Tip away to accelerate';
   $('pSound').textContent = 'Sound: ' + (muted ? 'off' : 'on');
   $('pGfx').textContent = 'Graphics: ' + GFX[quality];
   $('pCalib').hidden = $('pInvert').hidden = controls.mode !== 'tilt';
@@ -251,17 +255,59 @@ function updateMenu() {
 }
 updateMenu();
 
-const big = $('bigMap'), bctx = big.getContext('2d');
+/* ---------------- settings: tilt, buttons, camera ---------------- */
+const SET_KEY = 'ti.settings', CAMS = ['chase', 'far chase', 'bumper'];
+const settings = { sens: 1, dz: 2.5, btn: 1, lift: 0, cam: 0 };
+try { Object.assign(settings, JSON.parse(localStorage.getItem(SET_KEY) || '{}')); } catch (e) {}
+function applySettings() {
+  controls.sens = settings.sens; controls.dz = settings.dz;
+  const r = document.documentElement.style; r.setProperty('--btn-scale', settings.btn); r.setProperty('--btn-lift', settings.lift + 'px');
+  $('sSens').value = settings.sens; $('sSensV').textContent = Math.round(settings.sens * 100) + '%';
+  $('sDz').value = settings.dz; $('sDzV').textContent = settings.dz + '°';
+  $('sBtn').value = settings.btn; $('sBtnV').textContent = Math.round(settings.btn * 100) + '%';
+  $('sLift').value = settings.lift; $('sLiftV').textContent = settings.lift + ' px';
+  $('pCam').textContent = 'Camera: ' + CAMS[settings.cam];
+  try { localStorage.setItem(SET_KEY, JSON.stringify(settings)); } catch (e) {}
+}
+for (const [id, k] of [['sSens', 'sens'], ['sDz', 'dz'], ['sBtn', 'btn'], ['sLift', 'lift']]) $(id).addEventListener('input', e => { settings[k] = +e.target.value; applySettings(); });
+function cycleCam() { settings.cam = (settings.cam + 1) % CAMS.length; camInit = false; applySettings(); if (state.running) hud.say('Camera: ' + CAMS[settings.cam], 1400); }
+$('pCam').addEventListener('click', cycleCam); $('camBtn').addEventListener('click', cycleCam);
+$('pSettings').addEventListener('click', () => { show('pause', false); ui.modal('settings'); });
+$('setDone').addEventListener('click', () => { show('settings', false); show('pause', true); });
+applySettings();
+
+/* ---------------- map and routes ---------------- */
+const LETTER = { cars: 'K', parts: 'T', paint: 'S', body: 'B', acc: 'G' };
+function mapMarks() {
+  const out = [];
+  for (const ev of EVENTS) if (unlocked(ev)) {
+    const club = ev.club && CLUBS[ev.club];
+    out.push({ id: ev.id, x: ev.marker.x, z: ev.marker.z, kind: club ? 'boss' : 'race', c: club ? '#FFC400' : TYPES[ev.type].color,
+      type: club ? `Boss race · ${club.name}` : `${TYPES[ev.type].label} · ${ev.where}`, title: ev.name, text: ev.blurb.split('. ')[0].replace(/\.$/, '') + '.',
+      pills: [ev.prize ? money(ev.prize) : null, save.wins[ev.id] ? 'Won' : null].filter(Boolean) });
+  }
+  for (const s of SHOPS) if (save.found[s.id]) out.push({ id: s.id, x: s.x, z: s.z, kind: 'shop', c: '#249689', letter: LETTER[s.id], type: s.label, title: s.name, text: 'Drive up slowly to go in.' });
+  return out;
+}
+let route = null, routeT = 0;
+function setRoute(m) {
+  if (!m) { route = null; hud.route = null; worldMap.setRoute(null); $('miniDist').hidden = true; return; }
+  route = { target: m }; updateRoute(); if (route) hud.say('Route set: ' + m.title, 2000);
+}
+function updateRoute() {
+  if (!route) return;
+  const t = route.target;
+  if (Math.hypot(car.x - t.x, car.z - t.z) < 25) { hud.say('You have arrived: ' + t.title, 3000); setRoute(null); return; }
+  const r = findRoute(car.x, car.z, t.x, t.z); route.pts = r.pts; route.len = r.len;
+  hud.route = r.pts; worldMap.setRoute(route);
+  $('miniDist').hidden = false; $('miniDist').textContent = fmtDist(r.len);
+}
+const worldMap = new WorldMap({ car, getMarks: mapMarks, onRoute: m => { setRoute(m); worldMap.draw(); } });
 function openMap() {
   if (!state.running) return;
   if (!state.paused) { state.paused = true; controls.clear(); audio.suspend(); }
-  show('pause', false);
-  const row = innerHeight <= 500;
-  const px = Math.max(200, Math.min(row ? innerWidth - 260 : innerWidth - 32, row ? innerHeight - 32 : innerHeight - 150, 640)), dpr = Math.min(2, devicePixelRatio || 1);
-  big.style.width = big.style.height = px + 'px'; big.width = big.height = Math.round(px * dpr);
-  // the whole island, including the unfinished roads out over the sea
-  drawMap(bctx, big.width, big.height, 0, 0, big.width / 3700, [0, -1], car, true, dpr * clamp(px / 520, 0.6, 1.1), marks());
-  show('map', true); state.mapOpen = true;
+  show('pause', false); show('settings', false);
+  show('map', true); state.mapOpen = true; worldMap.show(hud.place);
 }
 $('pMap').addEventListener('click', openMap); $('mini').addEventListener('click', openMap);
 $('mapClose').addEventListener('click', resume);
@@ -270,6 +316,7 @@ addEventListener('keydown', e => {
   if (!$('results').hidden || (e.target && e.target.tagName === 'INPUT')) return;
   if (e.code === 'Escape' || e.code === 'KeyP') { state.paused ? (state.mapOpen ? resume() : (state.running && resume())) : pause(); }
   if (e.code === 'KeyM') state.mapOpen ? resume() : openMap();
+  if (e.code === 'KeyC' && state.running) cycleCam();
 });
 
 /* ---------------- races ---------------- */
@@ -379,7 +426,7 @@ $('lvLeave').addEventListener('click', () => { live.close(); lvState = 'idle'; r
 $('lvClose').addEventListener('click', resume);
 $('evStart').addEventListener('click', () => {
   if (fuel.empty) { show('eventCard', false); hud.say('Your tank is empty'); openFuel(); return; }
-  show('eventCard', false); race.start(); resume();
+  show('eventCard', false); setRoute(null); race.start(); resume();
 });
 $('evSkip').addEventListener('click', () => { show('eventCard', false); resume(); });
 $('resDone').addEventListener('click', () => { show('results', false); race.leave(); resume(); });
@@ -395,8 +442,7 @@ function setRumours() {
   if (!race.active) hud.setTicker(hud.defaultTicker);
 }
 hud.baseTicker = hud.defaultTicker; setRumours();
-function shopMarks() { return SHOPS.filter(s => save.found[s.id]).map(s => ({ x: s.x, z: s.z, c: '#249689' })); }
-function marks() { return race.active ? race.marks() : [...race.marks(), ...shopMarks()]; }
+function marks() { return race.active ? race.marks() : mapMarks(); }
 function checkShops() {
   for (const s of SHOPS) {
     const d = Math.hypot(car.x - s.x, car.z - s.z);
@@ -410,6 +456,13 @@ function checkShops() {
 }
 $('shopClose').addEventListener('click', resume);
 $('pClubs').addEventListener('click', () => { show('pause', false); ui.modal('shop'); shops.show({ kind: 'clubs', label: 'Clubs', name: 'Street clubs', html: clubsHtml }); });
+function msgsHtml() {
+  const bosses = Object.entries(CLUBS).map(([k, c]) => { const ev = EVENTS.find(e => e.id === c.event); return ev && unlocked(ev) && !save.clubs[k] ? { from: `${c.boss} · ${c.name}`, text: `I hear you're quick. Come and race me. Find my marker in ${c.where}.` } : null; }).filter(Boolean);
+  const rumours = SHOPS.filter(s => !save.found[s.id]).map(s => ({ from: 'Unknown', text: s.rumour }));
+  const all = [...bosses, ...rumours];
+  return all.length ? all.map(m => `<div class="item"><div class="item-main"><div class="label dim">${m.from}</div><div>${m.text}</div></div></div>`).join('') : '<p class="dim">No new messages. You have found every shop on the island.</p>';
+}
+$('pMsgs').addEventListener('click', () => { show('pause', false); ui.modal('shop'); shops.show({ kind: 'clubs', label: 'Phone', name: 'Messages', html: msgsHtml }); });
 $('pGarage').addEventListener('click', () => { show('pause', false); ui.modal('shop'); shops.show({ kind: 'garage', label: 'Garage', name: 'Your cars' }); });
 function renderFuel() {
   const lv = fuel.level, ch = fuel.charges, cost = fuel.boostCost();
@@ -458,6 +511,7 @@ function frame(now) {
     stepTraffic(dt);
     race.update(dt);
     if (!race.active) { race.checkMarkers(car); checkShops(); }
+    if (route && (routeT -= dt) <= 0) { routeT = 1; updateRoute(); }
   } else controls.shifts.length = 0;
   streamer.update(car.x, car.z, spawnTraffic, dropTraffic);
   syncModel(model, car, live ? dt : 0);
@@ -469,12 +523,19 @@ function frame(now) {
 
   // chase camera: drops back and widens with speed
   const v = Math.abs(car.f), fx = Math.sin(car.h), fz = Math.cos(car.h);
-  const tall = race.portrait;
-  const back = tall ? 6.4 + v * 0.03 : 7.2 + v * 0.05, up = tall ? 2.4 + v * 0.008 : 2.7 + v * 0.012, ahead = tall ? 14 : 6;
-  tmp.set(car.x - fx * back, up, car.z - fz * back);
-  if (!camInit) { camPos.copy(tmp); camLook.set(car.x, 1, car.z); camInit = true; }
-  camPos.lerp(tmp, 1 - Math.exp(-dt * 7));
-  camLook.lerp(new THREE.Vector3(car.x + fx * ahead, 1.1, car.z + fz * ahead), 1 - Math.exp(-dt * 12));
+  const tall = race.portrait, cam = tall ? 0 : settings.cam;
+  if (cam === 2) {
+    // bumper: low on the front of the car, the car itself hidden
+    camPos.set(car.x + fx * 1.5, 1.0, car.z + fz * 1.5); camLook.set(car.x + fx * 30, 0.9, car.z + fz * 30); camInit = true;
+  } else {
+    const far = cam === 1 ? 1.55 : 1;
+    const back = (tall ? 6.4 + v * 0.03 : 7.2 + v * 0.05) * far, up = (tall ? 2.4 + v * 0.008 : 2.7 + v * 0.012) * (cam === 1 ? 1.5 : 1), ahead = tall ? 14 : 6;
+    tmp.set(car.x - fx * back, up, car.z - fz * back);
+    if (!camInit) { camPos.copy(tmp); camLook.set(car.x, 1, car.z); camInit = true; }
+    camPos.lerp(tmp, 1 - Math.exp(-dt * 7));
+    camLook.lerp(new THREE.Vector3(car.x + fx * ahead, 1.1, car.z + fz * ahead), 1 - Math.exp(-dt * 12));
+  }
+  model.g.visible = cam !== 2 || !!state.showroom || !state.running;
   camera.position.copy(camPos); camera.lookAt(camLook);
   if (state.showroom) {
     const a = now / 4000;
@@ -512,4 +573,4 @@ function frame(now) {
 }
 applyQuality(); resize();
 requestAnimationFrame(frame);
-window.__ti = { live, scene, T, camera, THREE, car, state, controls, streamer, traffic, race, fuel, save, shops, get model() { return model; } };
+window.__ti = { worldMap, settings, hud, live, scene, T, camera, THREE, car, state, controls, streamer, traffic, race, fuel, save, shops, get model() { return model; } };
