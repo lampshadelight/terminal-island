@@ -111,10 +111,13 @@ export class Controls {
       if (!thr) thr = clamp((pitch - 3) / 16, 0, 1);
       if (!brk) brk = clamp((-pitch - 4) / 14, 0, 1);
     }
+    // NOS holds the accelerator down too, so one thumb can boost while the other steers
+    const nos = !!(k.nos || b.nos);
+    if (nos && !brk) thr = 1;
     const a = Math.min(1, dt * 14);
     // buttons are all-or-nothing, so ease the wheel in like a thumb rolling onto it
     o.steer += (steer - o.steer) * (this.mode === 'tilt' ? a : Math.min(1, dt * (steer ? 5 : 9))); o.throttle += (thr - o.throttle) * a; o.brake += (brk - o.brake) * a;
-    o.nos = !!(k.nos || b.nos); o.drift = !!(k.drift || b.drift);
+    o.nos = nos; o.drift = !!(k.drift || b.drift);
     return o;
   }
 }
