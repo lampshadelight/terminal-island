@@ -32,6 +32,8 @@
   <canvas id="mini" width="224" height="224" aria-label="Minimap. Tap for the full map."></canvas>
   <div class="minidist num" id="miniDist" hidden></div>
   <button class="cambtn" id="camBtn" aria-label="Change camera"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h4l2-3h6l2 3h4v11H3z"/><circle cx="12" cy="13" r="3.5"/></svg></button>
+  <!-- an event you drove through: tap to see it, or just keep driving -->
+  <button class="evprompt" id="evPrompt" hidden><span class="ep-type" id="epType">Circuit race</span><b id="epName">Event</b><span class="ep-go">View event</span></button>
 
   <!-- digital readout: speed and gear as numbers, revs and turbo boost as filling bars -->
   <div class="cluster dig" id="cluster">

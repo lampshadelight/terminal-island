@@ -87,9 +87,10 @@ export class Race {
     g.position.set(ev.marker.x, 0, ev.marker.z); this.scene.add(g);
     return g;
   }
+  // driving through a marker never stops you: it puts a "View event" prompt top right instead
   checkMarkers(car) {
-    if (this.near) { if (Math.hypot(car.x - this.near.marker.x, car.z - this.near.marker.z) > 16) this.near = null; return; }
-    for (const ev of EVENTS) if (unlocked(ev) && Math.hypot(car.x - ev.marker.x, car.z - ev.marker.z) < 7) { this.near = ev; this.offer(ev); return; }
+    if (this.near) { if (Math.hypot(car.x - this.near.marker.x, car.z - this.near.marker.z) > 20) { this.near = null; this.ui.eventPrompt(null); } return; }
+    for (const ev of EVENTS) if (unlocked(ev) && Math.hypot(car.x - ev.marker.x, car.z - ev.marker.z) < 9) { this.near = ev; this.ui.eventPrompt(ev, TYPES[ev.type]); return; }
   }
   offer(ev) {
     const t = TYPES[ev.type], $ = this.el;
@@ -106,7 +107,7 @@ export class Race {
     $('evNote').textContent = ev.strip
       ? (this.controls.mode === 'tilt' ? 'Turn the phone upright. Keep it level: if it tips past the zone on the balance bar, the car drifts out of its lane. The zone gets smaller as you go faster. Leaving your lane, getting too close to the wall or losing balance ends the run.'
         : 'Touch controls: the car holds its lane by itself. Gas and NOS on the right, gears on the left.')
-      : 'Gears are manual unless you switched to automatic in the pause menu.';
+      : 'Your gearbox setting (Manumatic, Manual or Auto) is in Settings on the phone.';
     this.ui.modal('eventCard');
     this.pending = ev;
   }
