@@ -86,7 +86,7 @@ export class Controls {
     this._fingers = fingers;
   }
   _bindKeys() {
-    const map = { ArrowLeft: 'left', KeyA: 'left', ArrowRight: 'right', KeyD: 'right', ArrowUp: 'gas', KeyW: 'gas', ArrowDown: 'brake', KeyS: 'brake', ShiftLeft: 'nos', ShiftRight: 'nos', Space: 'drift' };
+    const map = { ArrowLeft: 'left', KeyA: 'left', ArrowRight: 'right', KeyD: 'right', ArrowUp: 'gas', KeyW: 'gas', ArrowDown: 'brake', KeyS: 'brake', ShiftLeft: 'nos', ShiftRight: 'nos', Space: 'drift', KeyR: 'rev' };
     addEventListener('keydown', e => {
       if (e.target && e.target.tagName === 'INPUT') return;
       if (map[e.code]) { this.keys[map[e.code]] = 1; e.preventDefault(); }
@@ -101,6 +101,9 @@ export class Controls {
     const o = this.out, k = this.keys, b = this.btn;
     let steer = (k.left || b.left ? 1 : 0) - (k.right || b.right ? 1 : 0);
     let thr = (k.gas || b.gas) ? 1 : 0, brk = (k.brake || b.brake) ? 1 : 0;
+    // reverse: brakes to a stop, then backs up (the car reverses when stopped on the brake)
+    const rev = !!(k.rev || b.rev);
+    if (rev && !thr) brk = 1;
     if (this.mode === 'tilt' && this.tiltLive) {
       const t = this.tilt;
       const roll = (t.roll - t.roll0) / DEG, pitch = ((t.pitch - t.pitch0) / DEG) * (this.invert ? -1 : 1);
@@ -111,13 +114,14 @@ export class Controls {
       if (!thr) thr = clamp((pitch - 3) / 16, 0, 1);
       if (!brk) brk = clamp((-pitch - 4) / 14, 0, 1);
     }
-    // NOS holds the accelerator down too, so one thumb can boost while the other steers
-    const nos = !!(k.nos || b.nos);
-    if (nos && !brk) thr = 1;
+    // NOS and the handbrake hold the accelerator down too, so the right thumb can slide off
+    // the gas onto either and keep the power on, while the left thumb steers
+    const nos = !!(k.nos || b.nos), hb = !!(k.drift || b.drift);
+    if ((nos || b.drift) && !brk) thr = 1;
     const a = Math.min(1, dt * 14);
     // buttons are all-or-nothing, so ease the wheel in like a thumb rolling onto it
     o.steer += (steer - o.steer) * (this.mode === 'tilt' ? a : Math.min(1, dt * (steer ? 5 : 9))); o.throttle += (thr - o.throttle) * a; o.brake += (brk - o.brake) * a;
-    o.nos = nos; o.drift = !!(k.drift || b.drift);
+    o.nos = nos; o.drift = hb;
     return o;
   }
 }
