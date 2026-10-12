@@ -10,6 +10,19 @@ export class Hud {
     this.spd = $('spd'); this.gear = $('gear'); this.gearMode = $('gearMode'); this.needle = $('tNeedle'); this.redline = 0;
     this.mini = $('mini'); this.mctx = this.mini.getContext('2d');
     this.noticeT = null; this.t = 0; this.defaultTicker = [];
+    this.bG = $('boostG'); this.bNeedle = $('bNeedle'); this.bVal = $('bVal'); this.bTurbo = undefined;
+    // boost dial: -1 to 2 bar over 240 degrees
+    const ang = v => 150 + 240 * (v + 1) / 3, P = (a, r) => [50 + r * Math.cos(a * Math.PI / 180), 50 + r * Math.sin(a * Math.PI / 180)];
+    let h = '';
+    for (let v = -1; v <= 2; v += 0.5) {
+      const [x1, y1] = P(ang(v), 44), [x2, y2] = P(ang(v), Number.isInteger(v) ? 37 : 40);
+      h += `<line class="b-tick" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"/>`;
+      if (Number.isInteger(v)) { const [tx, ty] = P(ang(v), 29); h += `<text class="b-num" x="${tx.toFixed(1)}" y="${ty.toFixed(1)}">${v}</text>`; }
+    }
+    $('bTicks').innerHTML = h;
+    $('bVac').setAttribute('d', arcAt(50, 50, 45, ang(-1), ang(0)));
+    $('bArc').setAttribute('d', arcAt(50, 50, 45, ang(0), ang(2)));
+    this.bAng = ang;
   }
   setTicker() {}
   // dial face for this car: numbers in thousands, red from the redline up
@@ -44,11 +57,21 @@ export class Hud {
     this.gear.classList.toggle('shift-now', x > 0.9 && !car.auto && !car.reverse && car.gear < 6);
     $('tNos').setAttribute('d', arc(88, 50, 50 + 35 * car.nitro));
     this.gearMode.textContent = car.auto ? 'auto' : 'manual';
+    const tb = car.spec.turbo;
+    if (tb !== this.bTurbo) { this.bTurbo = tb; this.bG.hidden = !tb; }
+    if (tb) {
+      this.bNeedle.style.transform = `rotate(${(this.bAng(Math.max(-1, Math.min(2, car.boost))) - 270).toFixed(1)}deg)`;
+      this.bVal.textContent = car.boost.toFixed(1); this.bG.classList.toggle('peak', car.boost > tb.peak * 0.9);
+    }
     drawMap(this.mctx, this.mini.width, this.mini.height, car.x, car.z, this.mini.width / 420, [Math.sin(car.h), Math.cos(car.h)], car, false, 1, marks, { route: this.route });
   }
 }
 
 // SVG arc on the dial, angles in degrees clockwise from 3 o'clock
+function arcAt(cx, cy, r, a0, a1) {
+  const p = a => [cx + r * Math.cos(a * Math.PI / 180), cy + r * Math.sin(a * Math.PI / 180)], [x0, y0] = p(a0), [x1, y1] = p(a1);
+  return `M${x0.toFixed(1)} ${y0.toFixed(1)}A${r} ${r} 0 ${a1 - a0 > 180 ? 1 : 0} 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`;
+}
 function arc(r, a0, a1) {
   if (a1 - a0 < 0.5) return '';
   const p = a => [100 + r * Math.cos(a * Math.PI / 180), 100 + r * Math.sin(a * Math.PI / 180)], [x0, y0] = p(a0), [x1, y1] = p(a1);

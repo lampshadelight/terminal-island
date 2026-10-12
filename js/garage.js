@@ -23,13 +23,22 @@ export const RIMS = G.rims;
 export const SPOILERS = G.spoilers;
 const PRICE = G.prices;
 export const TUNES = G.tunes;
+export const TURBOS = G.turbos;
+// turbo size fitted: 0 none, 1 small, 2 medium, 3 large. Buying one never fits a smaller one than the factory did.
+export const turboSize = id => Math.max((save.cars[id] || newCar()).parts.turbo, CARS[id].turbo || 0);
+// how much of its peak boost a turbo makes at a fraction x of the redline, at full throttle once spooled
+export function boostAt(tb, x) {
+  if (!tb) return 0;
+  const u = Math.min(1, Math.max(0, (x - tb.onset) / (tb.full - tb.onset)));
+  return u * u * (3 - 2 * u) * (1 - tb.taper * Math.max(0, x - 0.8) / 0.2);
+}
 
 // driving numbers after upgrades
 export function tunedSpec(id) {
-  const b = CARS[id], c = save.cars[id] || newCar(), p = c.parts, t = { ...newCar().tune, ...(c.tune || {}) };
-  return { ...b,
-    accel: b.accel * (1 + 0.08 * p.engine + 0.05 * p.turbo + 0.04 * p.weight) * (1 - 0.09 * t.final) * (1 - 0.03 * t.camber),
-    top: b.top * (1 + 0.04 * p.turbo + 0.015 * p.gearbox) * (1 + 0.08 * t.final),
+  const b = CARS[id], c = save.cars[id] || newCar(), p = c.parts, t = { ...newCar().tune, ...(c.tune || {}) }, ts = turboSize(id);
+  return { ...b, turbo: ts ? TURBOS[ts - 1] : null,
+    accel: b.accel * (1 + 0.08 * p.engine + 0.04 * p.weight) * (1 - 0.09 * t.final) * (1 - 0.03 * t.camber),
+    top: b.top * (1 + 0.04 * Math.max(0, ts - (b.turbo || 0)) + 0.015 * p.gearbox) * (1 + 0.08 * t.final),
     grip: b.grip * (1 + 0.1 * p.tyres) * (1 + 0.12 * t.camber) * (1 - 0.06 * t.height), turn: b.turn * (1 + 0.04 * p.tyres + 0.03 * p.weight) * (1 + 0.1 * t.lock),
     rideH: t.height * 0.06, camber: t.camber,
     shiftT: 0.16 - 0.035 * p.gearbox, nos: 1.7 + 0.12 * p.nitrous, nosDrain: 0.27 * (1 - 0.12 * p.nitrous) };
@@ -62,8 +71,9 @@ const torqueAt = x => Math.min(1, Math.max(0.22, 0.38 + 1.3 * x - 0.85 * x * x))
 export function dynoCurve(spec) {
   const pts = [];
   for (let i = 0; i <= 40; i++) {
-    const x = 0.12 + 0.88 * i / 40, rpm = x * spec.redline, hp = Math.pow(spec.accel, 1.5) * torqueAt(x) * x * 5.1 * (spec.redline / 8000);
-    pts.push({ rpm, hp, nm: hp * 7120 / rpm });
+    const x = 0.12 + 0.88 * i / 40, rpm = x * spec.redline, b = boostAt(spec.turbo, x);
+    const hp = Math.pow(spec.accel, 1.5) * torqueAt(x) * x * 5.1 * (spec.redline / 8000) * (1 + (spec.turbo ? spec.turbo.gain * b : 0));
+    pts.push({ rpm, hp, nm: hp * 7120 / rpm, bar: spec.turbo ? spec.turbo.peak * b : 0 });
   }
   return pts;
 }
@@ -78,6 +88,11 @@ export function drawDyno(cv, spec, t = 1) {
     g.strokeStyle = col; g.lineWidth = 3; g.beginPath();
     pts.slice(0, n).forEach((p, i) => i ? g.lineTo(X(p.rpm), Y(p[key], m)) : g.moveTo(X(p.rpm), Y(p[key], m))); g.stroke();
   }
+  // boost in teal, dashed, on its own 0 to 2 bar scale
+  if (spec.turbo) {
+    g.strokeStyle = '#249689'; g.lineWidth = 2.5; g.setLineDash([7, 5]); g.beginPath();
+    pts.slice(0, n).forEach((p, i) => i ? g.lineTo(X(p.rpm), Y(p.bar, 2)) : g.moveTo(X(p.rpm), Y(p.bar, 2))); g.stroke(); g.setLineDash([]);
+  }
   g.fillStyle = 'rgba(255,255,255,.6)'; g.font = '600 13px Inter, Arial'; g.fillText('RPM', w - 44, h - 8);
   for (let r = 2000; r <= 8000; r += 2000) g.fillText(r / 1000 + 'k', X(r) - 8, h - 8);
   const shown = pts.slice(0, n), pk = shown.reduce((a, b) => b.hp > a.hp ? b : a), tq = shown.reduce((a, b) => b.nm > a.nm ? b : a);
@@ -86,6 +101,7 @@ export function drawDyno(cv, spec, t = 1) {
 
 /* ---------- shop screens ---------- */
 export const carStats = t => `<div class="stats"><span>Speed</span>${bar(t.top, 75)}<span>Power</span>${bar(t.accel, 24)}<span>Grip</span>${bar(t.grip, 9)}</div>`;
+const rpmAt = (spec, x) => (Math.round(x * spec.redline / 100) * 100).toLocaleString();
 const bar = (v, max) => `<i class="stat"><b style="width:${Math.min(100, v / max * 100).toFixed(0)}%"></b></i>`;
 const swatch = (col, on, act, val, label) => `<button class="swatch${on ? ' on' : ''}" data-act="${act}" data-v="${val ?? ''}" aria-label="${label || col}" style="--sw:${col || 'transparent'}">${col ? '' : '<span>Off</span>'}</button>`;
 
@@ -128,15 +144,19 @@ export class Shops {
       if (s.kind === 'garage') h += `<p class="small dim">Your cars: ${Object.keys(save.cars).length} of ${Object.keys(CARS).length}. Kinetic Motors sells the rest, if you can find it.</p>`;
     }
     if (s.kind === 'parts') {
+      const tSpec = tunedSpec(id);
       h += `<p class="small dim">Upgrading your ${car.brand} ${car.name}.</p>`;
       h += PARTS.map(p => {
-        const lvl = c.parts[p.id], pips = [0, 1, 2].map(i => `<i class="pip${i < lvl ? ' on' : ''}"></i>`).join('');
-        const btn = lvl >= 3 ? `<button class="gbtn small" disabled>Maxed</button>` : `<button class="gbtn small primary lit" data-act="part" data-v="${p.id}" ${save.cash < partPrice(id, lvl) ? 'disabled' : ''}>Stage ${lvl + 1} · ${money(partPrice(id, lvl))}</button>`;
-        return `<div class="item"><div class="item-main"><h3>${p.name} <span class="pips">${pips}</span></h3><p class="small dim">${p.desc}</p></div>${btn}</div>`;
+        const tb = p.id === 'turbo', lvl = tb ? turboSize(id) : c.parts[p.id], pips = [0, 1, 2].map(i => `<i class="pip${i < lvl ? ' on' : ''}"></i>`).join('');
+        const what = tb && lvl < 3 ? TURBOS[lvl].name.replace(' turbo', '') : `Stage ${lvl + 1}`;
+        const btn = lvl >= 3 ? `<button class="gbtn small" disabled>Maxed</button>` : `<button class="gbtn small primary lit" data-act="part" data-v="${p.id}" ${save.cash < partPrice(id, lvl) ? 'disabled' : ''}>${what} · ${money(partPrice(id, lvl))}</button>`;
+        const now = tb ? `<p class="small">Fitted: ${lvl ? TURBOS[lvl - 1].name : 'none'}</p>` : '';
+        return `<div class="item"><div class="item-main"><h3>${p.name} <span class="pips">${pips}</span></h3><p class="small dim">${p.desc}</p>${now}</div>${btn}</div>`;
       }).join('');
       h += `<h3>Dyno</h3><div class="dyno"><canvas id="dynoCv" width="560" height="220"></canvas>
         <div class="readouts"><div class="readout"><span class="lab">Power</span><b class="num" id="dynoHp">-</b></div><div class="readout"><span class="lab">Torque</span><b class="num" id="dynoNm">-</b></div></div>
-        <div class="dyno-key"><span style="color:#FF5963">● Power (hp)</span><span style="color:#FFC400">● Torque (Nm)</span></div>
+        <div class="dyno-key"><span style="color:#FF5963">● Power (hp)</span><span style="color:#FFC400">● Torque (Nm)</span>${tSpec.turbo ? `<span style="color:#249689">● Boost (bar)</span>` : ''}</div>
+        <p class="small dim">${tSpec.turbo ? `${tSpec.turbo.name}: boost starts at ${rpmAt(tSpec, tSpec.turbo.onset)} rpm and peaks at ${tSpec.turbo.peak.toFixed(1)} bar from ${rpmAt(tSpec, tSpec.turbo.full)} rpm.` : 'No turbo fitted.'}</p>
         <button class="gbtn small primary lit" data-act="dyno">Run the dyno</button></div>`;
       h += `<h3>Tuning</h3><p class="small dim">Free to adjust. Changes apply as soon as you leave the slider.</p>` + TUNES.map(t => {
         const v = (c.tune || {})[t.id] || 0;
@@ -171,7 +191,10 @@ export class Shops {
     let changed = false;
     if (act === 'buycar') { const car = CARS[v]; if (!save.cars[v] && this._pay(car.price)) { save.cars[v] = newCar(START_PAINT[v]); save.current = v; changed = true; this.say(`The ${car.brand} ${car.name} is yours`); } }
     if (act === 'drive') { save.current = v; changed = true; }
-    if (act === 'part') { const lvl = c.parts[v]; if (lvl < 3 && this._pay(partPrice(id, lvl))) { c.parts[v]++; changed = true; this.say(`${PARTS.find(p => p.id === v).name} stage ${lvl + 1} fitted`); } }
+    if (act === 'part') {
+      const tb = v === 'turbo', lvl = tb ? turboSize(id) : c.parts[v];
+      if (lvl < 3 && this._pay(partPrice(id, lvl))) { c.parts[v] = lvl + 1; changed = true; this.say(tb ? `${TURBOS[lvl].name} fitted` : `${PARTS.find(p => p.id === v).name} stage ${lvl + 1} fitted`); }
+    }
     const look = (key, val) => { if (c[key] === val) return; if (this._pay(PRICE[key])) { c[key] = val; changed = true; } };
     if (act === 'paint') look('paint', v);
     if (act === 'glow') look('glow', v);

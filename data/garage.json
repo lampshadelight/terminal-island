@@ -51,7 +51,7 @@
   {
    "id": "turbo",
    "name": "Turbo",
-   "desc": "More power and a higher top speed."
+   "desc": "Small, medium or large. A small turbo comes on early, a large one comes on late with lag but hits harder."
   },
   {
    "id": "gearbox",
@@ -260,5 +260,38 @@
   "TIC",
   "REDLINE",
   "ORBIT TYRES"
- ]
+ ],
+ "turbos": [
+  {
+   "id": "small",
+   "name": "Small turbo",
+   "onset": 0.22,
+   "full": 0.45,
+   "peak": 0.6,
+   "gain": 0.16,
+   "lag": 0.25,
+   "taper": 0.25
+  },
+  {
+   "id": "medium",
+   "name": "Medium turbo",
+   "onset": 0.38,
+   "full": 0.62,
+   "peak": 1.0,
+   "gain": 0.27,
+   "lag": 0.45,
+   "taper": 0.1
+  },
+  {
+   "id": "large",
+   "name": "Large turbo",
+   "onset": 0.52,
+   "full": 0.8,
+   "peak": 1.5,
+   "gain": 0.4,
+   "lag": 0.8,
+   "taper": 0
+  }
+ ],
+ "_turbos": "Turbo sizes. onset/full are fractions of the redline where boost starts and reaches its peak (bar). gain is extra power at full boost. lag is spool time in seconds. taper is how much boost a small turbo loses near the redline."
 }

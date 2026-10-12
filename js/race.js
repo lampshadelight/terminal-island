@@ -13,7 +13,7 @@ import { save, persist, money } from './save.js';
    Drag and roll races are played in portrait: hold the phone level,
    tip it forward for gas, and keep your lane.
    ------------------------------------------------------------------ */
-const rivalSpec = (id, k) => ({ ...CARS[id], accel: CARS[id].accel * k });
+const rivalSpec = (id, k) => ({ ...CARS[id], turbo: null, accel: CARS[id].accel * k });
 
 export const TYPES = {
   circuit: { label: 'Circuit race', color: PAL.orange },

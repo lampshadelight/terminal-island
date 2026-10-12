@@ -13,7 +13,10 @@ export class Audio {
     const ns = c.createBufferSource(); ns.buffer = buf; ns.loop = true;
     const bp = c.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 2300; bp.Q.value = 5;
     const sg = c.createGain(); sg.gain.value = 0; ns.connect(bp); bp.connect(sg); sg.connect(master); ns.start();
-    this.n = { master, o1, o2, filt, g, sg, buf };
+    // turbo: a faint whistle that rises with boost
+    const tw = c.createOscillator(); tw.type = 'sine'; tw.frequency.value = 1800;
+    const tg = c.createGain(); tg.gain.value = 0; tw.connect(tg); tg.connect(master); tw.start();
+    this.n = { master, o1, o2, filt, g, sg, buf, tw, tg }; this.bov = 0;
   }
   setMuted(m) { this.muted = m; if (this.n) this.n.master.gain.value = m ? 0 : 0.5; }
   suspend() { this.ctx && this.ctx.suspend && this.ctx.suspend(); }
@@ -26,6 +29,9 @@ export class Audio {
     this.n.o1.frequency.setTargetAtTime(fr, t, 0.03); this.n.o2.frequency.setTargetAtTime(fr, t, 0.03);
     this.n.filt.frequency.setTargetAtTime(400 + x * 1300 + throttle * 600 + (car.nos ? 700 : 0), t, 0.06);
     this.n.g.gain.setTargetAtTime(paused ? 0 : 0.05 + throttle * 0.07, t, 0.08);
+    const b = car.spec.turbo ? Math.max(0, car.boost) / 2 : 0;
+    this.n.tw.frequency.setTargetAtTime(1500 + b * 2500, t, 0.1); this.n.tg.gain.setTargetAtTime(paused ? 0 : b * 0.035, t, 0.1);
+    if (car.bov !== this.bov) { if (car.bov > this.bov && !paused) this.psst(); this.bov = car.bov; }
     this.n.sg.gain.setTargetAtTime(paused ? 0 : (car.drifting ? Math.min(0.1, Math.abs(car.l) * 0.012) : 0), t, 0.05);
   }
   thump(v) {
@@ -34,6 +40,14 @@ export class Audio {
     const f = c.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 520; f.Q.value = 2;
     const g = c.createGain(); g.gain.setValueAtTime(Math.min(0.8, v * 0.05), c.currentTime); g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 0.45);
     s.connect(f); f.connect(g); g.connect(this.n.master); s.start(); s.stop(c.currentTime + 0.5);
+  }
+  // blow-off valve: a short hiss when you lift off at high boost
+  psst() {
+    if (!this.n || this.muted) return;
+    const c = this.ctx, s = c.createBufferSource(); s.buffer = this.n.buf;
+    const f = c.createBiquadFilter(); f.type = 'highpass'; f.frequency.value = 2500;
+    const g = c.createGain(); g.gain.setValueAtTime(0.12, c.currentTime); g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 0.35);
+    s.connect(f); f.connect(g); g.connect(this.n.master); s.start(); s.stop(c.currentTime + 0.4);
   }
   blip(freq, dur = 0.15, type = 'square', vol = 0.1) {
     if (!this.n || this.muted) return;

@@ -323,3 +323,18 @@ body .xpad .pad.gas.on{background:rgba(36,150,137,.4)!important}
 .xpad .pad span{font-size:12px}
 @media (max-height:420px){.xpad{--c:56px}}
 @media (max-height:340px){.xpad{--c:48px}}
+
+/* turbo boost gauge, beside the rev counter */
+.boostg{position:absolute;left:calc(100% - 14px);bottom:0;width:86px;height:86px}
+.boostg svg{position:absolute;inset:0;width:100%;height:100%}
+.b-arc{fill:none;stroke:#249689;stroke-width:5}
+.b-vac{fill:none;stroke:rgba(255,255,255,.3);stroke-width:5}
+.b-tick{stroke:#fff;stroke-width:1.5}
+.b-num{fill:rgba(255,255,255,.8);font:600 9px var(--f-display,Arial);text-anchor:middle;dominant-baseline:middle}
+.b-read{position:absolute;left:0;right:0;bottom:12px;text-align:center;line-height:1}
+.b-read b{display:block;font:700 16px var(--f-display,Arial);color:#fff}
+.b-read span{font-size:8px;letter-spacing:.12em;color:rgba(255,255,255,.65)}
+.boostg.peak .b-read b{color:#3fd1bf}
+body.portrait .boostg{left:auto;right:calc(100% - 14px)}
+#bNeedle{transform-origin:50px 50px;transition:transform 50ms linear}
+#bNeedle .t-needle{stroke-width:2.5}
