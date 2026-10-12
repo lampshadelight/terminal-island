@@ -324,7 +324,19 @@ addEventListener('keydown', e => {
 });
 
 /* ---------------- races ---------------- */
+// the drive-through event prompt stays a few seconds after you pass, so you can still tap it
+let promptEv = null, promptT = null;
+function eventPrompt(ev, t) {
+  clearTimeout(promptT);
+  if (ev) {
+    promptEv = ev; $('epType').textContent = ev.club ? 'Boss race' : t.label; $('epName').textContent = ev.name;
+    $('evPrompt').style.setProperty('--c', t.color); show('evPrompt', true);
+  } else promptT = setTimeout(() => { show('evPrompt', false); promptEv = null; }, 6000);
+}
+function hidePrompt() { clearTimeout(promptT); show('evPrompt', false); promptEv = null; }
+$('evPrompt').addEventListener('click', () => { if (promptEv && !race.active) race.offer(promptEv); });
 const ui = {
+  eventPrompt,
   modal(id) { if (!state.paused) { state.paused = true; controls.clear(); } show(id, true); },
   setTraffic(on) { trafficOn = on; for (const bots of traffic.values()) for (const b of bots) b.m.g.visible = on; },
   needRotate: () => isTouch && innerWidth > innerHeight,
@@ -430,7 +442,7 @@ $('lvLeave').addEventListener('click', () => { live.close(); lvState = 'idle'; r
 $('lvClose').addEventListener('click', resume);
 $('evStart').addEventListener('click', () => {
   if (fuel.empty) { show('eventCard', false); hud.say('Your tank is empty'); openFuel(); return; }
-  show('eventCard', false); setRoute(null); race.start(); resume();
+  show('eventCard', false); hidePrompt(); setRoute(null); race.start(); resume();
 });
 $('evSkip').addEventListener('click', () => { show('eventCard', false); resume(); });
 $('resDone').addEventListener('click', () => { show('results', false); race.leave(); resume(); });

@@ -354,3 +354,12 @@ body.touch .cluster.dig{transform:translateX(-50%) scale(.9)}
 @media (max-height:420px){body.touch .cluster.dig{transform:translateX(-50%) scale(.82)}}
 /* Auto gearbox: no gear buttons */
 body.gb-auto [data-k="up"],body.gb-auto [data-k="down"]{visibility:hidden}
+/* drive-through event prompt, top right beside the phone */
+.evprompt{position:fixed;top:calc(10px + var(--st));right:calc(68px + var(--sr));max-width:220px;display:grid;justify-items:start;gap:1px;padding:7px 12px 8px;border-radius:12px;
+  background:rgba(5,7,10,.72);border:1px solid rgba(255,255,255,.14);border-left:4px solid var(--c,#FFC400);color:#fff;text-align:left;pointer-events:auto;z-index:4;animation:epIn .2s var(--ease,ease-out)}
+.evprompt .ep-type{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c,#FFC400)}
+.evprompt b{font:700 14px var(--f-display,Arial);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:196px}
+.evprompt .ep-go{font-size:11px;font-weight:600;color:rgba(255,255,255,.75)}
+.evprompt:active{transform:scale(.97)}
+@keyframes epIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+body:not(.running) .evprompt,body.portrait .evprompt{display:none}
