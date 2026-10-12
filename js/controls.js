@@ -50,11 +50,23 @@ export class Controls {
   calibrate() { this.tilt.roll0 = this.tilt.roll; this.tilt.pitch0 = this.tilt.pitch; }
   get tiltLive() { return this.tilt.ok && performance.now() - this.tilt.last < 1500; }
 
-  // Each finger presses whatever button is under it, and slides from one to the next
-  // without lifting, like real pedals and a gear lever under your thumbs.
+  // Each finger presses every button under the pad of the thumb, not just one point, so a thumb
+  // where buttons meet presses all of them (brake, gas and NOS together). Sliding without lifting
+  // moves the press, like real pedals and a gear lever under your thumbs. A gear shifts once each
+  // time the thumb lands or slides onto it, so holding it never shifts twice.
   bindButtons(root) {
-    const fingers = new Map(); // pointer id -> button element
-    const keyEl = (x, y) => { const el = document.elementFromPoint(x, y); return el && root.contains(el) ? el.closest('[data-k]') : null; };
+    const fingers = new Map(); // pointer id -> Set of pressed button elements
+    const R = 11; // how far round the touch point a thumb reaches, in px
+    const under = (x, y) => {
+      const out = new Set();
+      for (const el of root.querySelectorAll('[data-k]')) {
+        const r = el.getBoundingClientRect(); if (!r.width) continue;
+        const dx = Math.max(r.left - x, 0, x - r.right), dy = Math.max(r.top - y, 0, y - r.bottom);
+        if (dx * dx + dy * dy <= R * R) out.add(el);
+      }
+      return out;
+    };
+    const held = el => { for (const set of fingers.values()) if (set.has(el)) return true; return false; };
     const press = el => {
       el.classList.add('on'); const k = el.dataset.k;
       if (k === 'up' || k === 'down') { this.shifts.push(k === 'up' ? 1 : -1); navigator.vibrate && navigator.vibrate(8); }
@@ -63,22 +75,21 @@ export class Controls {
     const release = el => {
       const k = el.dataset.k;
       if (k in this.btn) this.btn[k] = Math.max(0, this.btn[k] - 1);
-      if (![...fingers.values()].includes(el)) el.classList.remove('on');
+      if (!held(el)) el.classList.remove('on');
     };
-    const move = e => {
-      if (!fingers.has(e.pointerId)) return;
-      const was = fingers.get(e.pointerId), now = keyEl(e.clientX, e.clientY);
-      if (now === was) return;
-      if (now) fingers.set(e.pointerId, now); else fingers.set(e.pointerId, null);
-      if (was) release(was);
-      if (now) press(now);
+    const set = (id, now) => {
+      const was = fingers.get(id) || new Set();
+      fingers.set(id, now);
+      for (const el of was) if (!now.has(el)) release(el);
+      for (const el of now) if (!was.has(el)) press(el);
     };
-    const up = e => { if (!fingers.has(e.pointerId)) return; const was = fingers.get(e.pointerId); fingers.delete(e.pointerId); if (was) release(was); };
+    const move = e => { if (fingers.has(e.pointerId)) set(e.pointerId, under(e.clientX, e.clientY)); };
+    const up = e => { if (!fingers.has(e.pointerId)) return; const was = fingers.get(e.pointerId); fingers.delete(e.pointerId); for (const el of was) release(el); };
     root.addEventListener('pointerdown', e => {
       const el = e.target.closest && e.target.closest('[data-k]'); if (!el || !root.contains(el)) return;
       e.preventDefault();
       try { e.target.releasePointerCapture && e.target.releasePointerCapture(e.pointerId); } catch (_) {}
-      fingers.set(e.pointerId, el); press(el);
+      const now = under(e.clientX, e.clientY); now.add(el); set(e.pointerId, now);
     });
     addEventListener('pointermove', move, { passive: true });
     addEventListener('pointerup', up); addEventListener('pointercancel', up);
@@ -86,7 +97,7 @@ export class Controls {
     this._fingers = fingers;
   }
   _bindKeys() {
-    const map = { ArrowLeft: 'left', KeyA: 'left', ArrowRight: 'right', KeyD: 'right', ArrowUp: 'gas', KeyW: 'gas', ArrowDown: 'brake', KeyS: 'brake', ShiftLeft: 'nos', ShiftRight: 'nos', Space: 'drift' };
+    const map = { ArrowLeft: 'left', KeyA: 'left', ArrowRight: 'right', KeyD: 'right', ArrowUp: 'gas', KeyW: 'gas', ArrowDown: 'brake', KeyS: 'brake', ShiftLeft: 'nos', ShiftRight: 'nos', Space: 'drift', KeyR: 'rev' };
     addEventListener('keydown', e => {
       if (e.target && e.target.tagName === 'INPUT') return;
       if (map[e.code]) { this.keys[map[e.code]] = 1; e.preventDefault(); }
@@ -101,6 +112,9 @@ export class Controls {
     const o = this.out, k = this.keys, b = this.btn;
     let steer = (k.left || b.left ? 1 : 0) - (k.right || b.right ? 1 : 0);
     let thr = (k.gas || b.gas) ? 1 : 0, brk = (k.brake || b.brake) ? 1 : 0;
+    // reverse: brakes to a stop, then backs up (the car reverses when stopped on the brake)
+    const rev = !!(k.rev || b.rev);
+    if (rev && !thr) brk = 1;
     if (this.mode === 'tilt' && this.tiltLive) {
       const t = this.tilt;
       const roll = (t.roll - t.roll0) / DEG, pitch = ((t.pitch - t.pitch0) / DEG) * (this.invert ? -1 : 1);
@@ -111,13 +125,14 @@ export class Controls {
       if (!thr) thr = clamp((pitch - 3) / 16, 0, 1);
       if (!brk) brk = clamp((-pitch - 4) / 14, 0, 1);
     }
-    // NOS holds the accelerator down too, so one thumb can boost while the other steers
-    const nos = !!(k.nos || b.nos);
-    if (nos && !brk) thr = 1;
+    // NOS and the handbrake hold the accelerator down too, so the right thumb can slide off
+    // the gas onto either and keep the power on, while the left thumb steers
+    const nos = !!(k.nos || b.nos), hb = !!(k.drift || b.drift);
+    if ((nos || b.drift) && !brk) thr = 1;
     const a = Math.min(1, dt * 14);
     // buttons are all-or-nothing, so ease the wheel in like a thumb rolling onto it
     o.steer += (steer - o.steer) * (this.mode === 'tilt' ? a : Math.min(1, dt * (steer ? 5 : 9))); o.throttle += (thr - o.throttle) * a; o.brake += (brk - o.brake) * a;
-    o.nos = nos; o.drift = !!(k.drift || b.drift);
+    o.nos = nos; o.drift = hb;
     return o;
   }
 }

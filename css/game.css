@@ -304,3 +304,22 @@ body:not(.running) .cambtn,body.portrait .cambtn{display:none}
 .setrow .gbtn{grid-column:2/-1;justify-self:start}
 .setrow input[type=range]{width:100%;accent-color:var(--red)}
 body.touch .tilt-only{display:none}
+
+/* Thumb pads, from Hass's sketch: the left thumb rests on a dead zone and slides out to steer
+   left or right, or up and down to shift. The right thumb rests on the gas: brake and NOS above,
+   handbrake and reverse below. A thumb where three buttons meet presses all three. */
+.xpad{display:none;--c:64px}
+body.touch:not(.portrait) .ctrl > div.xpad{display:grid;grid-template-columns:repeat(3,var(--c));grid-template-rows:repeat(3,var(--c));gap:4px}
+body.touch:not(.portrait) .ctrl > div:not(.xpad){display:none!important}
+body.touch:not(.portrait) .ctrl.right{display:flex}
+.xpad .pad{width:100%!important;height:100%!important;min-width:0;padding:0}
+.xpad.xl{grid-template-areas:"up up up" "left dz right" "down down down"}
+body.touch:not(.portrait) .ctrl > div.xpad.xr{grid-template-columns:repeat(2,calc(var(--c) * 1.5 + 2px));grid-template-areas:"brake nos" "gas gas" "hb rev"}
+.xpad [data-k="up"]{grid-area:up}.xpad [data-k="down"]{grid-area:down}
+.xpad [data-k="left"]{grid-area:left}.xpad [data-k="right"]{grid-area:right}
+.xpad [data-k="dz"]{grid-area:dz}.xpad [data-k="rev"]{grid-area:rev}
+body .xpad .pad.dz{background:rgba(255,255,255,.02)!important;border-style:dashed!important;border-color:rgba(255,255,255,.25)!important;transform:none}
+body .xpad .pad.gas.on{background:rgba(36,150,137,.4)!important}
+.xpad .pad span{font-size:12px}
+@media (max-height:420px){.xpad{--c:56px}}
+@media (max-height:340px){.xpad{--c:48px}}
