@@ -33,31 +33,15 @@
   <div class="minidist num" id="miniDist" hidden></div>
   <button class="cambtn" id="camBtn" aria-label="Change camera"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h4l2-3h6l2 3h4v11H3z"/><circle cx="12" cy="13" r="3.5"/></svg></button>
 
-  <!-- rev counter, NFS style: needle over a 270 degree dial, speed and gear in the middle -->
-  <div class="cluster" id="cluster">
-    <div class="tacho">
-      <svg viewBox="0 0 200 200" aria-hidden="true">
-        <circle cx="100" cy="100" r="96" class="t-face"/>
-        <path id="tRed" class="t-red"/>
-        <g id="tTicks"></g>
-        <path id="tNos" class="t-nos"/>
-        <path id="tFuel" class="t-fuel"/>
-        <g id="tNeedle"><line x1="100" y1="100" x2="100" y2="22" class="t-needle"/><circle cx="100" cy="100" r="7" class="t-hub"/></g>
-      </svg>
-      <div class="t-read">
-        <div class="t-spd num" id="spd">0</div><div class="t-unit">km/h</div>
-        <div class="gear num" id="gear">1</div><div class="t-unit" id="gearMode">manual</div>
-      </div>
+  <!-- digital readout: speed and gear as numbers, revs and turbo boost as filling bars -->
+  <div class="cluster dig" id="cluster">
+    <div class="d-top">
+      <div class="d-spd"><b class="num" id="spd">0</b><span>km/h</span></div>
+      <div class="d-gear"><b class="num gear" id="gear">1</b><span id="gearMode">manumatic</span></div>
     </div>
-    <!-- turbo boost, only shown when a turbo is fitted: vacuum on the left, boost to 2 bar -->
-    <div class="boostg" id="boostG" hidden>
-      <svg viewBox="0 0 100 100" aria-hidden="true">
-        <circle cx="50" cy="50" r="47" class="t-face"/>
-        <path id="bArc" class="b-arc"/><path id="bVac" class="b-vac"/><g id="bTicks"></g>
-        <g id="bNeedle"><line x1="50" y1="50" x2="50" y2="12" class="t-needle"/><circle cx="50" cy="50" r="4" class="t-hub"/></g>
-      </svg>
-      <div class="b-read"><b class="num" id="bVal">0.0</b><span>BOOST</span></div>
-    </div>
+    <div class="d-row"><span class="d-lab">RPM</span><div class="d-bar rev" id="revBar"><i class="d-red" id="revRed"></i><b id="revFill"></b></div><span class="d-val num" id="revVal">1.0</span></div>
+    <div class="d-row" id="boostRow" hidden><span class="d-lab">BOOST</span><div class="d-bar boost"><b id="boostFill"></b></div><span class="d-val num" id="boostVal">0.0</span></div>
+    <div class="d-small"><div class="d-row"><span class="d-lab">NOS</span><div class="d-bar thin nos"><b id="nosFill"></b></div></div><div class="d-row"><span class="d-lab">FUEL</span><div class="d-bar thin fuel" id="fuelBar"><b id="fuelFill"></b></div></div></div>
   </div>
 
   <div class="ctrl left" id="ctrlLeft">
@@ -178,7 +162,7 @@
       <div class="setrow tilt-only"><span class="small dim">Tilt sensitivity</span><input type="range" id="sSens" min="0.5" max="2" step="0.05" value="1"><span class="small num" id="sSensV">100%</span></div>
       <div class="setrow tilt-only"><span class="small dim">Dead zone</span><input type="range" id="sDz" min="0" max="8" step="0.5" value="2.5"><span class="small num" id="sDzV">2.5°</span></div>
       <div class="setrow tilt-only"><span class="small dim">Throttle</span><button class="gbtn lit small" id="pInvert">Tip away to accelerate</button></div>
-      <div class="setrow"><span class="small dim">Gears</span><button class="gbtn lit small" id="pGears">Gears: manual</button></div>
+      <div class="setrow"><span class="small dim">Gearbox</span><button class="gbtn lit small" id="pGears">Gearbox: manumatic</button></div>
       <div class="setrow"><span class="small dim">Camera</span><button class="gbtn lit small" id="pCam">Camera: chase</button></div>
       <div class="setrow"><span class="small dim">Button size</span><input type="range" id="sBtn" min="0.8" max="1.35" step="0.05" value="1"><span class="small num" id="sBtnV">100%</span></div>
       <div class="setrow"><span class="small dim">Button height</span><input type="range" id="sLift" min="0" max="120" step="5" value="0"><span class="small num" id="sLiftV">0 px</span></div>

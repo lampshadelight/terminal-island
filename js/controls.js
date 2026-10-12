@@ -57,12 +57,14 @@ export class Controls {
   bindButtons(root) {
     const fingers = new Map(); // pointer id -> Set of pressed button elements
     const R = 11; // how far round the touch point a thumb reaches, in px
-    const under = (x, y) => {
+    // a button the finger already holds lets go a little further out, so a thumb wobbling on the
+    // edge of a gear button can't shift twice
+    const under = (x, y, had = new Set()) => {
       const out = new Set();
       for (const el of root.querySelectorAll('[data-k]')) {
         const r = el.getBoundingClientRect(); if (!r.width) continue;
-        const dx = Math.max(r.left - x, 0, x - r.right), dy = Math.max(r.top - y, 0, y - r.bottom);
-        if (dx * dx + dy * dy <= R * R) out.add(el);
+        const dx = Math.max(r.left - x, 0, x - r.right), dy = Math.max(r.top - y, 0, y - r.bottom), rr = had.has(el) ? R + 8 : R;
+        if (dx * dx + dy * dy <= rr * rr) out.add(el);
       }
       return out;
     };
@@ -83,7 +85,7 @@ export class Controls {
       for (const el of was) if (!now.has(el)) release(el);
       for (const el of now) if (!was.has(el)) press(el);
     };
-    const move = e => { if (fingers.has(e.pointerId)) set(e.pointerId, under(e.clientX, e.clientY)); };
+    const move = e => { if (fingers.has(e.pointerId)) set(e.pointerId, under(e.clientX, e.clientY, fingers.get(e.pointerId))); };
     const up = e => { if (!fingers.has(e.pointerId)) return; const was = fingers.get(e.pointerId); fingers.delete(e.pointerId); for (const el of was) release(el); };
     root.addEventListener('pointerdown', e => {
       const el = e.target.closest && e.target.closest('[data-k]'); if (!el || !root.contains(el)) return;
