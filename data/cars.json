@@ -1,5 +1,5 @@
 {
- "_about": "Car stats. top: top speed in m/s. accel: pulling power. grip: how fast sideways slip dies away. turn: steering rate. Brands and names are invented.",
+ "_about": "Car stats. top: top speed in m/s. accel: pulling power. grip: how fast sideways slip dies away. turn: steering rate. Brands and names are invented. turbo: the size fitted at the factory (1 small, 2 medium, 3 large), none if missing.",
  "ratios": [
   3.4,
   2.3,
@@ -22,7 +22,8 @@
    "turn": 2.65,
    "redline": 7400,
    "stripe": false,
-   "paint": "#BF0003"
+   "paint": "#BF0003",
+   "turbo": 1
   },
   "hornet": {
    "brand": "Tachi",
@@ -91,7 +92,8 @@
    "turn": 2.4,
    "redline": 7200,
    "stripe": true,
-   "paint": "#FF4500"
+   "paint": "#FF4500",
+   "turbo": 1
   },
   "zephyr": {
    "brand": "Hikari",
@@ -104,7 +106,8 @@
    "turn": 2.5,
    "redline": 8200,
    "stripe": true,
-   "paint": "#6B6F78"
+   "paint": "#6B6F78",
+   "turbo": 2
   },
   "vandal": {
    "brand": "Brannock",

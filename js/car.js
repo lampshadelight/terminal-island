@@ -82,7 +82,7 @@ export class Car {
   setSpec(spec) { this.spec = spec; this.k = spec.redline / (spec.top * RATIOS[5]); }
   reset(x, z, h) {
     Object.assign(this, { x, z, h, vx: 0, vz: 0, f: 0, l: 0, steer: 0, gear: 1, rpm: IDLE, shiftT: 0, nitro: 0.6, nos: false, braking: false,
-      reverse: false, limiter: false, barrier: 0, drifting: false });
+      reverse: false, limiter: false, barrier: 0, drifting: false, boost: 0, bov: 0, _thr: 0 });
   }
   shift(d) {
     if (this.reverse) return;
@@ -114,10 +114,11 @@ export class Car {
     } else {
       if (thr > 0 && this.shiftT <= 0 && !this.limiter) {
         const x = this.rpm / s.redline;
-        f += s.accel * 1.25 * this.torque(x) * Math.pow(ratio / RATIOS[0], 0.6) * thr * (nos ? (s.nos || 1.7) : 1) * dt;
+        f += s.accel * 1.25 * this.torque(x) * Math.pow(ratio / RATIOS[0], 0.6) * thr * (nos ? (s.nos || 1.7) : 1) * (1 + (s.turbo ? s.turbo.gain * Math.max(0, this.boost) / s.turbo.peak : 0)) * dt;
       }
       if (brk > 0) f = f > 0.5 ? f - 30 * brk * dt : Math.max(0, f - 6 * dt);
     }
+    this._turbo(dt, thr);
     if (this.limiter) this.rpm = s.redline * (0.97 + Math.random() * 0.03);
     // rolling resistance and air drag
     const roll = (1.1 + Math.abs(f) * 0.03) * dt * (thr > 0 ? 0.4 : 1);
@@ -144,6 +145,17 @@ export class Car {
   }
   hit(speed) { if (speed > 3) this.barrier = Math.min(1, 0.35 + speed * 0.05); }
   get kmh() { return Math.abs(this.f) * 3.6; }
+  // Turbo boost in bar. It builds with revs on the throttle, slower for a bigger turbo (lag), and
+  // drops to a little vacuum when you lift. Lifting off high boost vents it: bov counts the blow-offs.
+  _turbo(dt, thr) {
+    const tb = this.spec.turbo;
+    if (!tb) { this.boost = 0; return; }
+    const x = this.rpm / this.spec.redline, u = Math.min(1, Math.max(0, (x - tb.onset) / (tb.full - tb.onset)));
+    const want = thr > 0.1 && !this.reverse ? tb.peak * thr * u * u * (3 - 2 * u) * (1 - tb.taper * Math.max(0, x - 0.8) / 0.2) : -0.5;
+    if (thr > 0.5 && this.boost > 0.35 * tb.peak) this._thr = 1;
+    else if (thr < 0.2 && this._thr) { this._thr = 0; this.bov++; }
+    this.boost += (want - this.boost) * Math.min(1, dt / (want > this.boost ? tb.lag : 0.12));
+  }
   get gearLabel() { return this.reverse ? 'R' : String(this.gear); }
 }
 
