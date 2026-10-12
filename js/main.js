@@ -233,7 +233,10 @@ $('pCalib').addEventListener('click', async () => {
   if (controls.mode !== 'tilt') { const ok = await controls.enableTilt(); if (!ok) { hud.say('Tilt is not available here'); return; } controls.mode = 'tilt'; document.body.classList.remove('touch'); }
   show('pause', false); show('settings', false); show('calib', true); state.calibThen = 'resume';
 });
-$('pGears').addEventListener('click', () => { car.auto = !car.auto; updateMenu(); });
+// gearbox: Manumatic (the game shifts, your Up and Down override it), Manual, or Auto (no gear buttons)
+const BOXES = ['manumatic', 'manual', 'auto'];
+function setBox(b) { car.box = BOXES.includes(b) ? b : 'manumatic'; document.body.classList.toggle('gb-auto', car.box === 'auto'); }
+$('pGears').addEventListener('click', () => { setBox(BOXES[(BOXES.indexOf(car.box) + 1) % 3]); updateMenu(); });
 $('pMode').addEventListener('click', async () => {
   if (controls.mode === 'tilt') useTouch();
   else { const ok = await controls.enableTilt(); if (!ok) { hud.say('Tilt is not available here'); return; } controls.mode = 'tilt'; document.body.classList.remove('touch'); show('pause', false); show('settings', false); show('calib', true); state.calibThen = 'resume'; }
@@ -241,17 +244,18 @@ $('pMode').addEventListener('click', async () => {
 });
 $('pInvert').addEventListener('click', () => { controls.invert = !controls.invert; updateMenu(); });
 let muted = false;
-try { muted = localStorage.getItem('ti.muted') === '1'; car.auto = localStorage.getItem('ti.auto') === '1'; controls.invert = localStorage.getItem('ti.invert') === '1'; } catch (e) {}
+try { muted = localStorage.getItem('ti.muted') === '1'; setBox(localStorage.getItem('ti.box')); controls.invert = localStorage.getItem('ti.invert') === '1'; } catch (e) {}
+if (!car.box) setBox();
 $('pSound').addEventListener('click', () => { muted = !muted; audio.setMuted(muted); updateMenu(); });
 $('pGfx').addEventListener('click', () => { quality = (quality + 2) % 3; applyQuality(); updateMenu(); });
 function updateMenu() {
-  $('pGears').textContent = 'Gears: ' + (car.auto ? 'automatic' : 'manual');
+  $('pGears').textContent = 'Gearbox: ' + car.box;
   $('pMode').textContent = 'Controls: ' + (controls.mode === 'tilt' ? 'tilt' : 'buttons');
   $('pInvert').textContent = controls.invert ? 'Tip toward you to accelerate' : 'Tip away to accelerate';
   $('pSound').textContent = 'Sound: ' + (muted ? 'off' : 'on');
   $('pGfx').textContent = 'Graphics: ' + GFX[quality];
   $('pCalib').hidden = $('pInvert').hidden = controls.mode !== 'tilt';
-  try { localStorage.setItem('ti.muted', muted ? '1' : '0'); localStorage.setItem('ti.auto', car.auto ? '1' : '0'); localStorage.setItem('ti.invert', controls.invert ? '1' : '0'); } catch (e) {}
+  try { localStorage.setItem('ti.muted', muted ? '1' : '0'); localStorage.setItem('ti.box', car.box); localStorage.setItem('ti.invert', controls.invert ? '1' : '0'); } catch (e) {}
 }
 updateMenu();
 
@@ -500,7 +504,7 @@ function frame(now) {
   if (live) {
     while (controls.shifts.length) {
       const d = controls.shifts.shift(), ratio = car.rpm / car.spec.redline;
-      if (car.shift(d)) { audio.blip(d > 0 ? 520 : 380, 0.06, 'square', 0.05); race.onShift(d, ratio); }
+      if (car.manualShift(d)) { audio.blip(d > 0 ? 520 : 380, 0.06, 'square', 0.05); race.onShift(d, ratio); }
     }
     car.offroad = !onRoad(car.x, car.z);
     for (let s = 0; s < 2; s++) {

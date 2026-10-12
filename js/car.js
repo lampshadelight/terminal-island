@@ -78,7 +78,7 @@ export function disposeCar(m, T) {
 
 /* ---------------- driving model ---------------- */
 export class Car {
-  constructor(spec) { this.setSpec(spec); this.reset(0, 0, 0); this.auto = false; }
+  constructor(spec) { this.setSpec(spec); this.reset(0, 0, 0); this.auto = false; this.box = null; this.holdT = 0; }
   setSpec(spec) { this.spec = spec; this.k = spec.redline / (spec.top * RATIOS[5]); }
   reset(x, z, h) {
     Object.assign(this, { x, z, h, vx: 0, vz: 0, f: 0, l: 0, steer: 0, gear: 1, rpm: IDLE, shiftT: 0, nitro: 0.6, nos: false, braking: false,
@@ -89,6 +89,13 @@ export class Car {
     const g = clamp(this.gear + d, 1, 6);
     if (g !== this.gear) { this.gear = g; this.shiftT = this.spec.shiftT || 0.16; return true; }
     return false;
+  }
+  // a shift from the Up and Down buttons: ignored in Auto; in Manumatic it holds your gear for a moment
+  manualShift(d) {
+    if (this.box === 'auto') return false;
+    const ok = this.shift(d);
+    if (ok && this.box === 'manumatic') this.holdT = 2.5;
+    return ok;
   }
   torque(x) { return clamp(0.38 + 1.3 * x - 0.85 * x * x, 0.22, 1); }
   // in = { steer -1..1 (+ = left), throttle 0..1, brake 0..1, nos, drift }
@@ -101,7 +108,9 @@ export class Car {
     if (thr > 0.1 && f > -0.6) this.reverse = false;
     const ratio = RATIOS[this.gear - 1];
     this.rpm = this.reverse ? IDLE + Math.abs(f) * 3.4 * this.k : Math.max(IDLE, Math.abs(f) * ratio * this.k);
-    if (this.auto && !this.reverse) {
+    // the game shifts for rivals, in Auto, and in Manumatic unless you just shifted yourself
+    if (this.holdT > 0) this.holdT -= dt;
+    if ((this.auto || this.box === 'auto' || (this.box === 'manumatic' && this.holdT <= 0)) && !this.reverse) {
       if (this.rpm > s.redline * 0.93 && this.gear < 6) this.shift(1);
       else if (this.rpm < s.redline * 0.42 && this.gear > 1) this.shift(-1);
     }
