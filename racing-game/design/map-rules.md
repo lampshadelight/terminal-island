@@ -62,6 +62,8 @@ Sealed road, dirt, sand, wet sand, rock, loose rock, grass and snow. The export'
 
 ## 8. Metal banks (steep corners)
 
+**Where they go (Hass ruling, 22 Oct):** metal banks go only on the outside of large turns. Never at an intersection, never in the middle of a road. A large turn is 60° of turn or more (TBC). Intersections are any point within 40 m of a junction (TBC).
+
 **When one is needed.** A corner needs a metal bank when the bank it needs to hold the road's target speed is 45° or more. The index marks these as `steep_bank`. On 22 Oct the 400 km/h roads have 16 such corners, needing 45° to 49.5°. The steepest need is still under the 51.3° grip limit, so grip can hold every one. The bank exists so the car can ride the steep part of the corner, not because grip fails. If a future target needs more than 51.3°, the audit flags it for a wall-ride design review.
 
 **Shape.** A separate steel ramp, built on the outside of the corner, that the road surface rises into. Its lower edge sits exactly on the road's outside edge, with no step. It rises at the corner's needed bank and follows the corner's radius. Its top edge is a drop, so it always gets a rail along it (section 4 and the firm rule on edges).
@@ -124,4 +126,6 @@ Hass asked for metal banks on the exits and for each bank to stay clear of other
 - **Footprint rule:** the bank takes 4 m beyond the outer edge, plus 2 m clearance. No other road may be inside that band or within 2 m of it, if its height is within 3 m or it is a tunnel. No trail point may be inside it.
 - **Result:** seven of eight records are clear. The one that clashes is c_harbour_out-c01, a 28 m quick right at 43°. Its outer band would cover c_harbour_in, a one-way slip. **Decided (Hass, 22 Oct): move c_harbour_in.** This is a map change for the export owner. The bank stays at 43° and the corner keeps its speed. The c_harbour_out record stays blocked until the move is in the export and the footprint check passes again.
 - **Airport:** not checked or changed.
+
+**Recheck, 22 Oct (after the rule above).** Of the seven remaining exit records, only c_bellavista-c07 (85° turn, 78 m from its junction, 36° bank) is a metal bank. c_harbour_out-c01 is dropped as an intersection. The others are not metal banks: c_arrivals-c01 and c_yard_back-c03 are at intersections, and the rest are turns under 60°. Those keep a normal bank only (not metal). Hass to confirm whether ordinary banks on those turns are fine.
 

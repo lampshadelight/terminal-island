@@ -1,29 +1,8 @@
 {
  "version": "v42",
- "what": "Metal bank records for the exit corners (Hass, 22 Oct). Banked for the 150 km/h exit target. Footprint = 4 m bank plus 2 m clearance beyond the outer edge. The airport is not changed.",
+ "what": "Metal bank records for exit corners (Hass, 22 Oct). Rule: metal banks only on the outside of large turns (turn at least 60 deg, TBC), never at intersections or mid-road. c_harbour_out-c01 dropped (intersection, Hass ruling in the export thread). Bank angles banked for the 150 km/h exit target. Footprint = 4 m bank plus 2 m clearance.",
  "footprint_rule": "no other road within 2 m of the footprint, or inside it, at a height within 3 m (tunnel sections count as blocking), and no trail point inside it",
  "records": [
-  {
-   "road": "c_harbour_out",
-   "corner": "c_harbour_out-c01",
-   "junction_at_m": [
-    4252,
-    5488
-   ],
-   "s_from_m": 4,
-   "s_to_m": 23,
-   "min_radius_m": 27.8,
-   "target_kmh": 150,
-   "bank_deg": 43,
-   "bank_actual_deg": -2.7,
-   "metal_bank": true,
-   "top_rail": true,
-   "ramp_deg_per_10m_max": 3,
-   "footprint_clear": false,
-   "footprint_clashes": [
-    "c_harbour_in"
-   ]
-  },
   {
    "road": "c_bellavista",
    "corner": "c_bellavista-c06",
@@ -37,11 +16,14 @@
    "target_kmh": 150,
    "bank_deg": 12,
    "bank_actual_deg": -0.0,
-   "metal_bank": true,
-   "top_rail": true,
+   "metal_bank": false,
+   "top_rail": false,
    "ramp_deg_per_10m_max": 3,
    "footprint_clear": true,
-   "footprint_clashes": []
+   "footprint_clashes": [],
+   "turn_deg": 0.0,
+   "distance_to_junction_m": 119,
+   "metal_bank_reason": "turn 0.0 deg is under 60 deg"
   },
   {
    "road": "c_bellavista",
@@ -60,7 +42,10 @@
    "top_rail": true,
    "ramp_deg_per_10m_max": 3,
    "footprint_clear": true,
-   "footprint_clashes": []
+   "footprint_clashes": [],
+   "turn_deg": 85.1,
+   "distance_to_junction_m": 78,
+   "metal_bank_reason": "large turn, outside edge"
   },
   {
    "road": "c_arrivals",
@@ -75,11 +60,14 @@
    "target_kmh": 150,
    "bank_deg": 8,
    "bank_actual_deg": 0.0,
-   "metal_bank": true,
-   "top_rail": true,
+   "metal_bank": false,
+   "top_rail": false,
    "ramp_deg_per_10m_max": 3,
    "footprint_clear": true,
-   "footprint_clashes": []
+   "footprint_clashes": [],
+   "turn_deg": 0.0,
+   "distance_to_junction_m": 28,
+   "metal_bank_reason": "at an intersection"
   },
   {
    "road": "c_arrivals",
@@ -94,11 +82,14 @@
    "target_kmh": 150,
    "bank_deg": 28,
    "bank_actual_deg": 0.0,
-   "metal_bank": true,
-   "top_rail": true,
+   "metal_bank": false,
+   "top_rail": false,
    "ramp_deg_per_10m_max": 3,
    "footprint_clear": true,
-   "footprint_clashes": []
+   "footprint_clashes": [],
+   "turn_deg": 33.0,
+   "distance_to_junction_m": 67,
+   "metal_bank_reason": "turn 33.0 deg is under 60 deg"
   },
   {
    "road": "c_arrivals",
@@ -113,11 +104,14 @@
    "target_kmh": 150,
    "bank_deg": 9,
    "bank_actual_deg": 0.0,
-   "metal_bank": true,
-   "top_rail": true,
+   "metal_bank": false,
+   "top_rail": false,
    "ramp_deg_per_10m_max": 3,
    "footprint_clear": true,
-   "footprint_clashes": []
+   "footprint_clashes": [],
+   "turn_deg": 1.4,
+   "distance_to_junction_m": 104,
+   "metal_bank_reason": "turn 1.4 deg is under 60 deg"
   },
   {
    "road": "m_redwater",
@@ -132,11 +126,14 @@
    "target_kmh": 150,
    "bank_deg": 28,
    "bank_actual_deg": 0.0,
-   "metal_bank": true,
-   "top_rail": true,
+   "metal_bank": false,
+   "top_rail": false,
    "ramp_deg_per_10m_max": 3,
    "footprint_clear": true,
-   "footprint_clashes": []
+   "footprint_clashes": [],
+   "turn_deg": 8.4,
+   "distance_to_junction_m": 124,
+   "metal_bank_reason": "turn 8.4 deg is under 60 deg"
   },
   {
    "road": "c_yard_back",
@@ -151,11 +148,18 @@
    "target_kmh": 150,
    "bank_deg": 7,
    "bank_actual_deg": -1.6,
-   "metal_bank": true,
-   "top_rail": true,
+   "metal_bank": false,
+   "top_rail": false,
    "ramp_deg_per_10m_max": 3,
    "footprint_clear": true,
-   "footprint_clashes": []
+   "footprint_clashes": [],
+   "turn_deg": 2.4,
+   "distance_to_junction_m": 18,
+   "metal_bank_reason": "at an intersection"
   }
- ]
+ ],
+ "rule": {
+  "large_turn_deg": 60.0,
+  "intersection_m": 40.0
+ }
 }
