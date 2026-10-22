@@ -54,7 +54,8 @@ Sealed road, dirt, sand, wet sand, rock, loose rock, grass and snow. The export'
 
 ## 7. Open items
 
-- Confirm the expressway list and whether airside and slip roads stay at 150 km/h.
+- Confirm whether airside roads stay at 150 km/h (see section 9).
+- Fix the expressway gap at c_seafront_e (section 9). This is a map change, not made in this pass.
 - Main and minor widths, and off-road grip values (Hass).
 - Sign check of the bank convention.
 - Trail audit: the trail index is not built yet. It needs trail widths and clearance checks.
@@ -83,3 +84,34 @@ Sealed road, dirt, sand, wet sand, rock, loose rock, grass and snow. The export'
 6. Any bank needing more than 51.3° is flagged for design review.
 
 **Status.** The current export has no metal bank records. The audit lists the 16 steep corners as the work to do, and the checks above are written but not yet run against any records.
+
+## 9. Expressway continuity, exits and airside
+
+**Continuity.** The 400 km/h ring must be one unbroken chain. Hass (22 Oct) found a regular road joining two sections. On the v42 export the chain is:
+- Bayline (c_bayline) to Corniche (c_corniche) at the south-west end, then Corniche to Marina Parade (c_marina, M4, 20 m) at (4151, 5500).
+- Marina to Seafront East (c_seafront_e, minor C, 14 m, 1107 m) at (5972, 5397).
+- Seafront East to East Sea Wall (c_seawall_e) and the Neon Row Bypass tunnel at (6505, 4456).
+- East Sea Wall to Dockside Quay, then the Sea Wall Viaduct back to Bayline.
+
+**The gap is c_seafront_e.** It is a minor 14 m road between two expressway sections. Two fixes, both map changes for the export owner: upgrade it to a 16 m highway (preferred, one 400 km/h chain), or put a new highway section in its place. Marina (M4) is treated as part of the ring here, so confirm that too.
+
+**Exits and slip roads.** Any road that leaves the 400 km/h ring must slow the car first. Braking from 400 km/h at the wet grip figure of 0.8 g needs this much road before the corner:
+
+    brake distance = (400 km/h)² − (corner speed)²) / (2 × 0.8 × 9.81)
+
+- The exit's corner is designed for the speed the car arrives at after braking, not for 400 km/h.
+- The expressway needs a braking zone of that length before each exit, with a speed sign.
+- The exit's own corner gets the bank that speed needs.
+
+On v42 there are five exits with a corner under 150 m radius:
+| Exit | Corner radius | Corner speed (no bank) | Brake zone from 400 km/h |
+|---|---|---|---|
+| c_harbour_out (a quick right, 4 m after the junction) | 28 m | 53 km/h | about 773 m |
+| c_bellavista | 111 m | 106 km/h | about 731 m |
+| c_arrivals | 112 m | 107 km/h | about 730 m |
+| m_redwater | 115 m | 108 km/h | about 729 m |
+| c_yard_back | 29 m | 54 km/h | about 772 m |
+
+The brake zone is 730 to 770 m. Some exits have no road like that before them. These are the first design problems to fix.
+
+**Airside.** Airside roads are the airport's own roads: the runway, taxiways, rapid exits, apron loops and the gymkhana apron. They are closed in free roam. They are not on the public network. They stay at 150 km/h for now. Hass to say whether the runway needs a higher value.
