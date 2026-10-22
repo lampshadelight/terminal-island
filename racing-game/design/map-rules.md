@@ -58,3 +58,28 @@ Sealed road, dirt, sand, wet sand, rock, loose rock, grass and snow. The export'
 - Main and minor widths, and off-road grip values (Hass).
 - Sign check of the bank convention.
 - Trail audit: the trail index is not built yet. It needs trail widths and clearance checks.
+
+## 8. Metal banks (steep corners)
+
+**When one is needed.** A corner needs a metal bank when the bank it needs to hold the road's target speed is 45° or more. The index marks these as `steep_bank`. On 22 Oct the 400 km/h roads have 16 such corners, needing 45° to 49.5°. The steepest need is still under the 51.3° grip limit, so grip can hold every one. The bank exists so the car can ride the steep part of the corner, not because grip fails. If a future target needs more than 51.3°, the audit flags it for a wall-ride design review.
+
+**Shape.** A separate steel ramp, built on the outside of the corner, that the road surface rises into. Its lower edge sits exactly on the road's outside edge, with no step. It rises at the corner's needed bank and follows the corner's radius. Its top edge is a drop, so it always gets a rail along it (section 4 and the firm rule on edges).
+
+**Entry and exit.** The bank angle ramps up from the road's own cross-fall to the full angle, and back down at the exit. The ramp must not change angle faster than **TBC: 3° per 10 m** of road. The ramp runs at least one road width before the corner's start and after its end.
+
+**Joins.**
+- Road edge: the bank's lower edge is the road's outside edge. The road mesh is cut along it, so there is no gap or step (same rule as the road joins in the export README).
+- Walls and rails: a steel rail along the top edge. Where the bank is steep, the inside of the road keeps its normal edge or barrier. No invisible walls.
+- Off road: the same shape and joins apply to off-road edges (Hass, 22 Oct). Grip for those is TBC.
+
+**Adding them to the map.** A bank is an edit to the road's outside edge. It is not a new road. The exporter takes each `steep_bank` corner and writes a bank record: road id, start and end distance, side, maximum angle, ramp length and rail on or off. The Unity side builds the ramp and rail from that record. Nothing else on the road moves.
+
+**How the audit checks them.**
+1. Every `steep_bank` corner has a bank record. Missing = error.
+2. The bank's maximum angle is at least the bank needed at the road's target. Short = error.
+3. The ramp's angle change rate is within the TBC limit. Too fast = error.
+4. The ramp runs at least one road width past each end of the corner. Short = error.
+5. The top edge has a rail. Missing = error.
+6. Any bank needing more than 51.3° is flagged for design review.
+
+**Status.** The current export has no metal bank records. The audit lists the 16 steep corners as the work to do, and the checks above are written but not yet run against any records.
