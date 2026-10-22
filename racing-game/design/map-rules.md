@@ -133,9 +133,9 @@ Hass asked for metal banks on the exits and for each bank to stay clear of other
 
 Hass asked for banking across the whole road, not just a raised outside edge, so the entire carriageway is banked through each corner.
 
-- **Rule (proposed):** each corner's carriageway is tilted across its full width, with the outside edge higher than the inside edge, at the bank needed for the road's target speed (section 2). No flat strip in the middle of the road.
+- **Rule:** each corner's carriageway is tilted across its full width, with the outside edge higher than the inside edge, at the bank needed for the road's target speed (section 2). No flat strip in the middle of the road.
 - **Metal banks sit on top:** section 8 still applies. A metal bank is an extra ramp on the outside of a large turn, and it is added to the whole-road bank, not in place of it.
 - **Ramp in and out:** the whole-road bank eases in and out at 3° per 10 m, as in section 8.
 - **Audit:** at every corner sample the cross-fall across the full width (outside minus inside edge height) must match the bank needed, within 2°. Short = flag. This check is not in the audit yet; the index still uses the edge-height data that is there now.
-- **Open:** whether the inside edge drops below the centreline, or the bank is spread across the whole road width. Hass to confirm.
+- **Shape (Hass, 22 Oct, confirmed):** the road pivots on its centreline. The inside edge drops below the centre, and the outside edge rises above it. The centre height stays where the export puts it. The audit should check that the outside rise and the inside drop are about equal, within 2 cm, around each centre sample.
 
