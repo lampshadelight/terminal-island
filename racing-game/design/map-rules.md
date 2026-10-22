@@ -115,3 +115,13 @@ On v42 there are five exits with a corner under 150 m radius:
 The brake zone is 730 to 770 m. Some exits have no road like that before them. These are the first design problems to fix.
 
 **Airside.** Airside roads are the airport's own roads: the runway, taxiways, rapid exits, apron loops and the gymkhana apron. They are closed in free roam. They are not on the public network. They stay at 150 km/h for now. Hass to say whether the runway needs a higher value.
+
+## 10. Exit metal banks (Hass, 22 Oct)
+
+Hass asked for metal banks on the exits and for each bank to stay clear of other roads and paths. The airport is not changed.
+
+- **Records:** `map-index/exit-metal-banks.json`. Eight records covering the exit corner on five exits. Each is banked for the 150 km/h exit target, rounded up to whole degrees.
+- **Footprint rule:** the bank takes 4 m beyond the outer edge, plus 2 m clearance. No other road may be inside that band or within 2 m of it, if its height is within 3 m or it is a tunnel. No trail point may be inside it.
+- **Result:** seven of eight records are clear. The one that clashes is c_harbour_out-c01, a 28 m quick right at 43°. Its outer band would cover c_harbour_in, a one-way slip. Hass has to choose a fix: move c_harbour_in (map change, export owner), lower c_harbour_out's target and bank it less, or drop its metal bank and sign the corner.
+- **Airport:** not checked or changed.
+

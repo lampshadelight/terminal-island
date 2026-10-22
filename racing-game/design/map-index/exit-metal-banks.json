@@ -1,0 +1,161 @@
+{
+ "version": "v42",
+ "what": "Metal bank records for the exit corners (Hass, 22 Oct). Banked for the 150 km/h exit target. Footprint = 4 m bank plus 2 m clearance beyond the outer edge. The airport is not changed.",
+ "footprint_rule": "no other road within 2 m of the footprint, or inside it, at a height within 3 m (tunnel sections count as blocking), and no trail point inside it",
+ "records": [
+  {
+   "road": "c_harbour_out",
+   "corner": "c_harbour_out-c01",
+   "junction_at_m": [
+    4252,
+    5488
+   ],
+   "s_from_m": 4,
+   "s_to_m": 23,
+   "min_radius_m": 27.8,
+   "target_kmh": 150,
+   "bank_deg": 43,
+   "bank_actual_deg": -2.7,
+   "metal_bank": true,
+   "top_rail": true,
+   "ramp_deg_per_10m_max": 3,
+   "footprint_clear": false,
+   "footprint_clashes": [
+    "c_harbour_in"
+   ]
+  },
+  {
+   "road": "c_bellavista",
+   "corner": "c_bellavista-c06",
+   "junction_at_m": [
+    2595,
+    5703
+   ],
+   "s_from_m": 562,
+   "s_to_m": 566,
+   "min_radius_m": 149.6,
+   "target_kmh": 150,
+   "bank_deg": 12,
+   "bank_actual_deg": -0.0,
+   "metal_bank": true,
+   "top_rail": true,
+   "ramp_deg_per_10m_max": 3,
+   "footprint_clear": true,
+   "footprint_clashes": []
+  },
+  {
+   "road": "c_bellavista",
+   "corner": "c_bellavista-c07",
+   "junction_at_m": [
+    2595,
+    5703
+   ],
+   "s_from_m": 574,
+   "s_to_m": 674,
+   "min_radius_m": 50.6,
+   "target_kmh": 150,
+   "bank_deg": 36,
+   "bank_actual_deg": 0.1,
+   "metal_bank": true,
+   "top_rail": true,
+   "ramp_deg_per_10m_max": 3,
+   "footprint_clear": true,
+   "footprint_clashes": []
+  },
+  {
+   "road": "c_arrivals",
+   "corner": "c_arrivals-c01",
+   "junction_at_m": [
+    1177,
+    2758
+   ],
+   "s_from_m": 32,
+   "s_to_m": 36,
+   "min_radius_m": 168.9,
+   "target_kmh": 150,
+   "bank_deg": 8,
+   "bank_actual_deg": 0.0,
+   "metal_bank": true,
+   "top_rail": true,
+   "ramp_deg_per_10m_max": 3,
+   "footprint_clear": true,
+   "footprint_clashes": []
+  },
+  {
+   "road": "c_arrivals",
+   "corner": "c_arrivals-c02",
+   "junction_at_m": [
+    1177,
+    2758
+   ],
+   "s_from_m": 44,
+   "s_to_m": 104,
+   "min_radius_m": 77.7,
+   "target_kmh": 150,
+   "bank_deg": 28,
+   "bank_actual_deg": 0.0,
+   "metal_bank": true,
+   "top_rail": true,
+   "ramp_deg_per_10m_max": 3,
+   "footprint_clear": true,
+   "footprint_clashes": []
+  },
+  {
+   "road": "c_arrivals",
+   "corner": "c_arrivals-c03",
+   "junction_at_m": [
+    1177,
+    2758
+   ],
+   "s_from_m": 116,
+   "s_to_m": 116,
+   "min_radius_m": 162.5,
+   "target_kmh": 150,
+   "bank_deg": 9,
+   "bank_actual_deg": 0.0,
+   "metal_bank": true,
+   "top_rail": true,
+   "ramp_deg_per_10m_max": 3,
+   "footprint_clear": true,
+   "footprint_clashes": []
+  },
+  {
+   "road": "m_redwater",
+   "corner": "m_redwater-c17",
+   "junction_at_m": [
+    3055,
+    5694
+   ],
+   "s_from_m": 1458,
+   "s_to_m": 1474,
+   "min_radius_m": 76.4,
+   "target_kmh": 150,
+   "bank_deg": 28,
+   "bank_actual_deg": 0.0,
+   "metal_bank": true,
+   "top_rail": true,
+   "ramp_deg_per_10m_max": 3,
+   "footprint_clear": true,
+   "footprint_clashes": []
+  },
+  {
+   "road": "c_yard_back",
+   "corner": "c_yard_back-c03",
+   "junction_at_m": [
+    6827,
+    2395
+   ],
+   "s_from_m": 604,
+   "s_to_m": 616,
+   "min_radius_m": 174.7,
+   "target_kmh": 150,
+   "bank_deg": 7,
+   "bank_actual_deg": -1.6,
+   "metal_bank": true,
+   "top_rail": true,
+   "ramp_deg_per_10m_max": 3,
+   "footprint_clear": true,
+   "footprint_clashes": []
+  }
+ ]
+}
