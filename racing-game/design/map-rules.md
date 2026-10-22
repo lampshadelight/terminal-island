@@ -55,7 +55,7 @@ Sealed road, dirt, sand, wet sand, rock, loose rock, grass and snow. The export'
 ## 7. Open items
 
 - Confirm whether airside roads stay at 150 km/h (see section 9).
-- Fix the expressway gap at c_seafront_e (section 9). This is a map change, not made in this pass.
+- Expressway gap at c_seafront_e: Hass approved upgrading it to a highway (22 Oct). It is a map change for the export owner, so it is not made in this pass.
 - Main and minor widths, and off-road grip values (Hass).
 - Sign check of the bank convention.
 - Trail audit: the trail index is not built yet. It needs trail widths and clearance checks.
@@ -95,7 +95,7 @@ Sealed road, dirt, sand, wet sand, rock, loose rock, grass and snow. The export'
 - Seafront East to East Sea Wall (c_seawall_e) and the Neon Row Bypass tunnel at (6505, 4456).
 - East Sea Wall to Dockside Quay, then the Sea Wall Viaduct back to Bayline.
 
-**The gap is c_seafront_e.** It is a minor 14 m road between two expressway sections. Two fixes, both map changes for the export owner: upgrade it to a 16 m highway (preferred, one 400 km/h chain), or put a new highway section in its place. Marina (M4) is treated as part of the ring here, so confirm that too.
+**The gap is c_seafront_e.** It is a minor 14 m road between two expressway sections. Hass approved upgrading it to a highway (22 Oct), which makes one 400 km/h chain. This is a map change for the export owner. Marina (M4) is treated as part of the ring here, so confirm that too.
 
 **Exits and slip roads.** Any road that leaves the 400 km/h ring must slow the car first. Braking from 400 km/h at the wet grip figure of 0.8 g needs this much road before the corner:
 
