@@ -8,7 +8,7 @@ The rules are checked by `map-index/audit_roads.py`, which reads the export and 
 
 - **Grip for sealed roads: μ = 0.8** (wet). Hass set this and will fine tune it later.
 - **Speeds are what the car can reach**, not class labels. A highway may carry 330 km/h. The car tops out at 440 km/h (speed3 model).
-- **Target speed per road (TBC):** the audit sets it to the best speed the car carries on the road's straight samples (radius 500 m or more), capped at 440 km/h. Hass sets the real per-road figure. The index has `target_override_kmh` for this.
+- **Target speed per road (Hass, 22 Oct):** 400 km/h for the island expressway (the M1/M2 ring: Bayline, Corniche, Sea Wall Viaduct, Dockside Quay, East Sea Wall) and for every road with a tunnel section (Neon Row Bypass, Bayline and Corniche tunnels, Terminal Link). Every other road is 150 km/h. The 400 km/h roads use metal banks on their near-vertical corners. Airside roads and slip roads are on the 150 km/h rule for now (**TBC**: airside may need its own value).
 - **Corner speed cap** for a corner with radius R and bank θ: v = √(gR·(tanθ + μ) / (1 − μ·tanθ)).
 
 ## 2. Banking
@@ -17,7 +17,7 @@ The rules are checked by `map-index/audit_roads.py`, which reads the export and 
 - **Grip-only limit:** with μ = 0.8, the bank needed never passes 51.3°, whatever the speed. Steeper banks are only needed if you want a car to ride the bank with no grip.
 - **Steep bank (45° or more):** noted in the index as a steep bank. These are the near-vertical banks Hass wants to flag. Each one gets a metal bank (hot-wheels style) attached to the road edge, with the edge, side and wall edits that go with it.
 - **Short bank:** actual bank more than 2° under need, or a speed cap under 90% of the target. Fix by raising the bank, widening, or lowering the target for that road.
-- **Speed bands** (in every corner record, `bank_needed_by_kmh`): bank needed at 100, 150, 200, 250, 330 and 440 km/h. Use these to set per-road targets.
+- **Speed bands** (in every corner record, `bank_needed_by_kmh`): bank needed at 100, 150, 200, 250, 330 and 400 km/h. Use these to set per-road targets.
 - **Bank sign:** "inside" is the side the corner centre is on. Bank is measured as inside edge height minus outside edge height. The sign convention still needs a check against a known banked road before it is trusted.
 
 ## 3. Widths
@@ -54,7 +54,7 @@ Sealed road, dirt, sand, wet sand, rock, loose rock, grass and snow. The export'
 
 ## 7. Open items
 
-- Per-road target speeds (Hass).
+- Confirm the expressway list and whether airside and slip roads stay at 150 km/h.
 - Main and minor widths, and off-road grip values (Hass).
 - Sign check of the bank convention.
 - Trail audit: the trail index is not built yet. It needs trail widths and clearance checks.

@@ -13,6 +13,7 @@ d = json.load(open(EXP + 'roads.json'))
 nums = json.load(open(EXP + 'road-numbers.json'))
 flares = json.load(open(EXP + 'junction-flares.json'))
 cls = {r['road']: r for r in nums['roads']}
+EXPRESS = {'c_bayline', 'c_corniche', 'c_seawall_n', 'c_dock_quay', 'c_seawall_e'}  # M1/M2 ring highways around the island
 
 def circum(p, q, r):
     ax, ay = p; bx, by = q; cx, cy = r
@@ -60,11 +61,12 @@ for r in d['roads']:
         return math.degrees(math.atan((zin-zout)/w))
     # the road's target speed: best speed the car carries on its straight samples
     straight_caps = [cap_kmh(radii[q], bank_at(q)) for q in range(n) if radii[q] is None or radii[q] >= STRAIGHT_R]
-    target = round(max(straight_caps) if straight_caps else TOP, 0)
-    target = min(target, TOP)
+    has_tunnel = any(q == 2 for q in r['struct'])
+    target = 400 if (rid in EXPRESS or has_tunnel) else 150
+    target_src = 'expressway or tunnel: 400 km/h, metal banks' if target == 400 else 'other road: 150 km/h'
     rec = {'id': rid, 'name': r['name'], 'class': k, 'route': c.get('route'), 'kind': r['kind'],
            'closed': r['closed'], 'length_m': r['length_m'], 'width_m': r['width_m'],
-           'target_kmh': target, 'target_override_kmh': None, 'corners': [], 'steep_bank': []}
+           'target_kmh': target, 'target_source': target_src, 'corners': [], 'steep_bank': []}
     sm = {0: 0.0, 1: 0.0, 2: 0.0}
     for i in range(n-1): sm[r['struct'][i]] += math.hypot(X[i+1]-X[i], Y[i+1]-Y[i])
     rec['struct_m'] = {'ground': round(sm[0]), 'bridge': round(sm[1]), 'tunnel': round(sm[2])}
@@ -95,7 +97,7 @@ for r in d['roads']:
                                    'inside': 'left' if side[i] > 0 else 'right',
                                    'bank_actual_deg': round(bank_act, 1), 'bank_needed_for_target_deg': round(need, 1),
                                    'speed_cap_kmh': round(cap), 'target_kmh': target,
-                                   'bank_needed_by_kmh': {str(v): round(bank_needed(v, Rmin), 1) for v in (100, 150, 200, 250, 330, 440)}})
+                                   'bank_needed_by_kmh': {str(v): round(bank_needed(v, Rmin), 1) for v in (100, 150, 200, 250, 330, 400)}})
             if need >= STEEP:
                 rec['steep_bank'].append(cid)
                 flag('steep_bank', cid, f'{rid} s={r["s"][i]:.0f} m: radius {Rmin:.0f} m needs {need:.1f} deg bank for {target} km/h. Note for metal bank.', 'note')
