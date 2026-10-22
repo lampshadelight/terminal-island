@@ -65,7 +65,7 @@ Sealed road, dirt, sand, wet sand, rock, loose rock, grass and snow. The export'
 
 **Shape.** A separate steel ramp, built on the outside of the corner, that the road surface rises into. Its lower edge sits exactly on the road's outside edge, with no step. It rises at the corner's needed bank and follows the corner's radius. Its top edge is a drop, so it always gets a rail along it (section 4 and the firm rule on edges).
 
-**Entry and exit.** The bank angle ramps up from the road's own cross-fall to the full angle, and back down at the exit. The ramp must not change angle faster than **TBC: 3° per 10 m** of road. The ramp runs at least one road width before the corner's start and after its end.
+**Entry and exit.** The bank angle ramps up from the road's own cross-fall to the full angle, and back down at the exit. The ramp must not change angle faster than **3° per 10 m** of road (Hass, 22 Oct). The ramp runs at least one road width before the corner's start and after its end.
 
 **Joins.**
 - Road edge: the bank's lower edge is the road's outside edge. The road mesh is cut along it, so there is no gap or step (same rule as the road joins in the export README).
