@@ -122,6 +122,6 @@ Hass asked for metal banks on the exits and for each bank to stay clear of other
 
 - **Records:** `map-index/exit-metal-banks.json`. Eight records covering the exit corner on five exits. Each is banked for the 150 km/h exit target, rounded up to whole degrees.
 - **Footprint rule:** the bank takes 4 m beyond the outer edge, plus 2 m clearance. No other road may be inside that band or within 2 m of it, if its height is within 3 m or it is a tunnel. No trail point may be inside it.
-- **Result:** seven of eight records are clear. The one that clashes is c_harbour_out-c01, a 28 m quick right at 43°. Its outer band would cover c_harbour_in, a one-way slip. Hass has to choose a fix: move c_harbour_in (map change, export owner), lower c_harbour_out's target and bank it less, or drop its metal bank and sign the corner.
+- **Result:** seven of eight records are clear. The one that clashes is c_harbour_out-c01, a 28 m quick right at 43°. Its outer band would cover c_harbour_in, a one-way slip. **Decided (Hass, 22 Oct): move c_harbour_in.** This is a map change for the export owner. The bank stays at 43° and the corner keeps its speed. The c_harbour_out record stays blocked until the move is in the export and the footprint check passes again.
 - **Airport:** not checked or changed.
 
