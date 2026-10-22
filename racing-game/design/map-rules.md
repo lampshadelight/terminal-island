@@ -18,7 +18,7 @@ The rules are checked by `map-index/audit_roads.py`, which reads the export and 
 - **Steep bank (45° or more):** noted in the index as a steep bank. These are the near-vertical banks Hass wants to flag. Each one gets a metal bank (hot-wheels style) attached to the road edge, with the edge, side and wall edits that go with it.
 - **Short bank:** actual bank more than 2° under need, or a speed cap under 90% of the target. Fix by raising the bank, widening, or lowering the target for that road.
 - **Speed bands** (in every corner record, `bank_needed_by_kmh`): bank needed at 100, 150, 200, 250, 330 and 400 km/h. Use these to set per-road targets.
-- **Bank sign:** "inside" is the side the corner centre is on. Bank is measured as inside edge height minus outside edge height. The sign convention still needs a check against a known banked road before it is trusted.
+- **Bank sign (fixed 22 Oct):** bank is positive when the outside edge is higher than the inside edge, the way a real corner is banked. The earlier audit had this backwards, so its speed caps were slightly off. The index and exit records are recalculated.
 
 ## 3. Widths
 
@@ -128,4 +128,14 @@ Hass asked for metal banks on the exits and for each bank to stay clear of other
 - **Airport:** not checked or changed.
 
 **Recheck, 22 Oct (after the rule above).** Of the seven remaining exit records, only c_bellavista-c07 (85° turn, 78 m from its junction, 36° bank) is a metal bank. c_harbour_out-c01 is dropped as an intersection. The others are not metal banks: c_arrivals-c01 and c_yard_back-c03 are at intersections, and the rest are turns under 60°. Those keep a normal bank only (not metal). Hass to confirm whether ordinary banks on those turns are fine.
+
+## 11. Whole-road banking (Hass, 22 Oct)
+
+Hass asked for banking across the whole road, not just a raised outside edge, so the entire carriageway is banked through each corner.
+
+- **Rule (proposed):** each corner's carriageway is tilted across its full width, with the outside edge higher than the inside edge, at the bank needed for the road's target speed (section 2). No flat strip in the middle of the road.
+- **Metal banks sit on top:** section 8 still applies. A metal bank is an extra ramp on the outside of a large turn, and it is added to the whole-road bank, not in place of it.
+- **Ramp in and out:** the whole-road bank eases in and out at 3° per 10 m, as in section 8.
+- **Audit:** at every corner sample the cross-fall across the full width (outside minus inside edge height) must match the bank needed, within 2°. Short = flag. This check is not in the audit yet; the index still uses the edge-height data that is there now.
+- **Open:** whether the inside edge drops below the centreline, or the bank is spread across the whole road width. Hass to confirm.
 

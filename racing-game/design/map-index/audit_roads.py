@@ -58,7 +58,8 @@ for r in d['roads']:
     def bank_at(q):
         w = math.hypot(r['xl'][q]-r['xr'][q], r['yl'][q]-r['yr'][q]) or r['width_m']
         zin, zout = (r['zl'][q], r['zr'][q]) if side[q] > 0 else (r['zr'][q], r['zl'][q])
-        return math.degrees(math.atan((zin-zout)/w))
+        # positive = banked the right way: outside edge higher than inside edge
+        return math.degrees(math.atan((zout-zin)/w))
     # the road's target speed: best speed the car carries on its straight samples
     straight_caps = [cap_kmh(radii[q], bank_at(q)) for q in range(n) if radii[q] is None or radii[q] >= STRAIGHT_R]
     has_tunnel = any(q == 2 for q in r['struct'])

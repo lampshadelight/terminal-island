@@ -250,7 +250,7 @@
      "min_radius_m": 187.4,
      "turn_deg": 1.2,
      "inside": "left",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 42.9,
      "speed_cap_kmh": 138,
      "target_kmh": 400,
@@ -291,9 +291,9 @@
      "min_radius_m": 126.6,
      "turn_deg": 1.8,
      "inside": "right",
-     "bank_actual_deg": 1.1,
+     "bank_actual_deg": -1.1,
      "bank_needed_for_target_deg": 45.6,
-     "speed_cap_kmh": 116,
+     "speed_cap_kmh": 111,
      "target_kmh": 400,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -311,9 +311,9 @@
      "min_radius_m": 174.1,
      "turn_deg": 3.9,
      "inside": "right",
-     "bank_actual_deg": 1.1,
+     "bank_actual_deg": -1.1,
      "bank_needed_for_target_deg": 43.5,
-     "speed_cap_kmh": 136,
+     "speed_cap_kmh": 130,
      "target_kmh": 400,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -331,9 +331,9 @@
      "min_radius_m": 197.0,
      "turn_deg": 1.2,
      "inside": "right",
-     "bank_actual_deg": 0.4,
+     "bank_actual_deg": -0.4,
      "bank_needed_for_target_deg": 42.4,
-     "speed_cap_kmh": 143,
+     "speed_cap_kmh": 140,
      "target_kmh": 400,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -351,9 +351,9 @@
      "min_radius_m": 178.6,
      "turn_deg": 0.0,
      "inside": "right",
-     "bank_actual_deg": 0.3,
+     "bank_actual_deg": -0.3,
      "bank_needed_for_target_deg": 43.3,
-     "speed_cap_kmh": 135,
+     "speed_cap_kmh": 134,
      "target_kmh": 400,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -371,9 +371,9 @@
      "min_radius_m": 199.0,
      "turn_deg": 1.2,
      "inside": "right",
-     "bank_actual_deg": 0.2,
+     "bank_actual_deg": -0.2,
      "bank_needed_for_target_deg": 42.4,
-     "speed_cap_kmh": 143,
+     "speed_cap_kmh": 142,
      "target_kmh": 400,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -391,7 +391,7 @@
      "min_radius_m": 179.4,
      "turn_deg": 0.0,
      "inside": "right",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 43.2,
      "speed_cap_kmh": 135,
      "target_kmh": 400,
@@ -411,7 +411,7 @@
      "min_radius_m": 173.7,
      "turn_deg": 0.0,
      "inside": "right",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 43.5,
      "speed_cap_kmh": 133,
      "target_kmh": 400,
@@ -431,7 +431,7 @@
      "min_radius_m": 173.9,
      "turn_deg": 1.3,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 43.5,
      "speed_cap_kmh": 133,
      "target_kmh": 400,
@@ -451,7 +451,7 @@
      "min_radius_m": 168.7,
      "turn_deg": 1.4,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 43.7,
      "speed_cap_kmh": 131,
      "target_kmh": 400,
@@ -471,7 +471,7 @@
      "min_radius_m": 169.1,
      "turn_deg": 1.4,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 43.7,
      "speed_cap_kmh": 131,
      "target_kmh": 400,
@@ -491,7 +491,7 @@
      "min_radius_m": 187.4,
      "turn_deg": 1.2,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 42.9,
      "speed_cap_kmh": 138,
      "target_kmh": 400,
@@ -511,7 +511,7 @@
      "min_radius_m": 199.2,
      "turn_deg": 1.2,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 42.3,
      "speed_cap_kmh": 142,
      "target_kmh": 400,
@@ -531,7 +531,7 @@
      "min_radius_m": 188.3,
      "turn_deg": 1.2,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 42.8,
      "speed_cap_kmh": 138,
      "target_kmh": 400,
@@ -571,7 +571,7 @@
      "min_radius_m": 179.9,
      "turn_deg": 1.2,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 43.2,
      "speed_cap_kmh": 135,
      "target_kmh": 400,
@@ -771,9 +771,9 @@
      "min_radius_m": 106.1,
      "turn_deg": 0.0,
      "inside": "right",
-     "bank_actual_deg": -3.6,
+     "bank_actual_deg": 3.6,
      "bank_needed_for_target_deg": 46.5,
-     "speed_cap_kmh": 97,
+     "speed_cap_kmh": 111,
      "target_kmh": 400,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -791,9 +791,9 @@
      "min_radius_m": 39.9,
      "turn_deg": 5.7,
      "inside": "left",
-     "bank_actual_deg": 3.6,
+     "bank_actual_deg": -3.6,
      "bank_needed_for_target_deg": 49.5,
-     "speed_cap_kmh": 68,
+     "speed_cap_kmh": 60,
      "target_kmh": 400,
      "bank_needed_by_kmh": {
       "100": 24.5,
@@ -1481,7 +1481,7 @@
      "min_radius_m": 66.2,
      "turn_deg": 16.8,
      "inside": "left",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 30.8,
      "speed_cap_kmh": 82,
      "target_kmh": 150,
@@ -1890,9 +1890,9 @@
      "min_radius_m": 193.8,
      "turn_deg": 1.2,
      "inside": "right",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 42.6,
-     "speed_cap_kmh": 141,
+     "speed_cap_kmh": 140,
      "target_kmh": 400,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -1910,7 +1910,7 @@
      "min_radius_m": 162.6,
      "turn_deg": 1.4,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 44.0,
      "speed_cap_kmh": 129,
      "target_kmh": 400,
@@ -1930,7 +1930,7 @@
      "min_radius_m": 179.3,
      "turn_deg": 1.3,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 43.2,
      "speed_cap_kmh": 135,
      "target_kmh": 400,
@@ -2031,9 +2031,9 @@
      "min_radius_m": 174.1,
      "turn_deg": 0.0,
      "inside": "right",
-     "bank_actual_deg": 0.5,
+     "bank_actual_deg": -0.5,
      "bank_needed_for_target_deg": 43.5,
-     "speed_cap_kmh": 134,
+     "speed_cap_kmh": 132,
      "target_kmh": 400,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -2051,7 +2051,7 @@
      "min_radius_m": 98.8,
      "turn_deg": 11.8,
      "inside": "right",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 46.9,
      "speed_cap_kmh": 100,
      "target_kmh": 400,
@@ -2094,9 +2094,9 @@
      "min_radius_m": 28.5,
      "turn_deg": 6.9,
      "inside": "right",
-     "bank_actual_deg": 0.7,
+     "bank_actual_deg": -0.7,
      "bank_needed_for_target_deg": 42.2,
-     "speed_cap_kmh": 55,
+     "speed_cap_kmh": 53,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 31.4,
@@ -2114,9 +2114,9 @@
      "min_radius_m": 199.6,
      "turn_deg": 1.1,
      "inside": "left",
-     "bank_actual_deg": -0.8,
+     "bank_actual_deg": 0.8,
      "bank_needed_for_target_deg": 2.9,
-     "speed_cap_kmh": 141,
+     "speed_cap_kmh": 144,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -2134,9 +2134,9 @@
      "min_radius_m": 174.7,
      "turn_deg": 2.4,
      "inside": "left",
-     "bank_actual_deg": -1.6,
+     "bank_actual_deg": 1.6,
      "bank_needed_for_target_deg": 6.7,
-     "speed_cap_kmh": 130,
+     "speed_cap_kmh": 136,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -2175,9 +2175,9 @@
      "min_radius_m": 175.5,
      "turn_deg": 1.3,
      "inside": "right",
-     "bank_actual_deg": 1.2,
+     "bank_actual_deg": -1.2,
      "bank_needed_for_target_deg": 6.6,
-     "speed_cap_kmh": 136,
+     "speed_cap_kmh": 131,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -2195,9 +2195,9 @@
      "min_radius_m": 44.5,
      "turn_deg": 22.1,
      "inside": "left",
-     "bank_actual_deg": -0.5,
+     "bank_actual_deg": 0.5,
      "bank_needed_for_target_deg": 37.2,
-     "speed_cap_kmh": 67,
+     "speed_cap_kmh": 68,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 21.9,
@@ -2215,7 +2215,7 @@
      "min_radius_m": 26.8,
      "turn_deg": 48.5,
      "inside": "right",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 42.7,
      "speed_cap_kmh": 52,
      "target_kmh": 150,
@@ -2235,7 +2235,7 @@
      "min_radius_m": 26.7,
      "turn_deg": 59.6,
      "inside": "left",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 42.8,
      "speed_cap_kmh": 52,
      "target_kmh": 150,
@@ -2255,7 +2255,7 @@
      "min_radius_m": 30.2,
      "turn_deg": 47.8,
      "inside": "right",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 41.7,
      "speed_cap_kmh": 55,
      "target_kmh": 150,
@@ -2275,7 +2275,7 @@
      "min_radius_m": 52.4,
      "turn_deg": 20.6,
      "inside": "left",
-     "bank_actual_deg": -0.5,
+     "bank_actual_deg": 0.5,
      "bank_needed_for_target_deg": 34.8,
      "speed_cap_kmh": 73,
      "target_kmh": 150,
@@ -2295,9 +2295,9 @@
      "min_radius_m": 193.3,
      "turn_deg": 1.2,
      "inside": "right",
-     "bank_actual_deg": 1.5,
+     "bank_actual_deg": -1.5,
      "bank_needed_for_target_deg": 3.8,
-     "speed_cap_kmh": 144,
+     "speed_cap_kmh": 136,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -2356,9 +2356,9 @@
      "min_radius_m": 137.2,
      "turn_deg": 0.0,
      "inside": "left",
-     "bank_actual_deg": -1.6,
+     "bank_actual_deg": 1.6,
      "bank_needed_for_target_deg": 13.6,
-     "speed_cap_kmh": 115,
+     "speed_cap_kmh": 122,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -2376,7 +2376,7 @@
      "min_radius_m": 179.0,
      "turn_deg": 1.3,
      "inside": "right",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 6.0,
      "speed_cap_kmh": 135,
      "target_kmh": 150,
@@ -2396,7 +2396,7 @@
      "min_radius_m": 45.7,
      "turn_deg": 46.3,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 36.9,
      "speed_cap_kmh": 68,
      "target_kmh": 150,
@@ -2416,7 +2416,7 @@
      "min_radius_m": 26.3,
      "turn_deg": 113.3,
      "inside": "left",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 42.9,
      "speed_cap_kmh": 52,
      "target_kmh": 150,
@@ -2436,9 +2436,9 @@
      "min_radius_m": 35.0,
      "turn_deg": 152.2,
      "inside": "right",
-     "bank_actual_deg": 0.9,
+     "bank_actual_deg": -0.9,
      "bank_needed_for_target_deg": 40.1,
-     "speed_cap_kmh": 61,
+     "speed_cap_kmh": 59,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 27.3,
@@ -2456,9 +2456,9 @@
      "min_radius_m": 91.4,
      "turn_deg": 6.4,
      "inside": "left",
-     "bank_actual_deg": -0.1,
+     "bank_actual_deg": 0.1,
      "bank_needed_for_target_deg": 24.0,
-     "speed_cap_kmh": 96,
+     "speed_cap_kmh": 97,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 2.1,
@@ -2476,9 +2476,9 @@
      "min_radius_m": 186.0,
      "turn_deg": 1.2,
      "inside": "left",
-     "bank_actual_deg": -0.2,
+     "bank_actual_deg": 0.2,
      "bank_needed_for_target_deg": 4.9,
-     "speed_cap_kmh": 137,
+     "speed_cap_kmh": 138,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -2496,9 +2496,9 @@
      "min_radius_m": 75.1,
      "turn_deg": 6.9,
      "inside": "left",
-     "bank_actual_deg": -0.1,
+     "bank_actual_deg": 0.1,
      "bank_needed_for_target_deg": 28.3,
-     "speed_cap_kmh": 87,
+     "speed_cap_kmh": 88,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 7.7,
@@ -2516,7 +2516,7 @@
      "min_radius_m": 21.5,
      "turn_deg": 57.3,
      "inside": "left",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 44.4,
      "speed_cap_kmh": 47,
      "target_kmh": 150,
@@ -2536,7 +2536,7 @@
      "min_radius_m": 37.2,
      "turn_deg": 29.8,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 39.5,
      "speed_cap_kmh": 61,
      "target_kmh": 150,
@@ -2556,7 +2556,7 @@
      "min_radius_m": 24.4,
      "turn_deg": 63.5,
      "inside": "left",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 43.5,
      "speed_cap_kmh": 50,
      "target_kmh": 150,
@@ -2956,7 +2956,7 @@
      "min_radius_m": 16.1,
      "turn_deg": 128.0,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 46.2,
      "speed_cap_kmh": 40,
      "target_kmh": 150,
@@ -2976,7 +2976,7 @@
      "min_radius_m": 57.8,
      "turn_deg": 9.4,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 33.2,
      "speed_cap_kmh": 77,
      "target_kmh": 150,
@@ -2996,9 +2996,9 @@
      "min_radius_m": 43.5,
      "turn_deg": 32.7,
      "inside": "left",
-     "bank_actual_deg": -0.2,
+     "bank_actual_deg": 0.2,
      "bank_needed_for_target_deg": 37.5,
-     "speed_cap_kmh": 66,
+     "speed_cap_kmh": 67,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 22.4,
@@ -3016,9 +3016,9 @@
      "min_radius_m": 93.2,
      "turn_deg": 9.8,
      "inside": "right",
-     "bank_actual_deg": 1.2,
+     "bank_actual_deg": -1.2,
      "bank_needed_for_target_deg": 23.6,
-     "speed_cap_kmh": 99,
+     "speed_cap_kmh": 95,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 1.5,
@@ -3036,7 +3036,7 @@
      "min_radius_m": 20.7,
      "turn_deg": 118.9,
      "inside": "left",
-     "bank_actual_deg": -0.1,
+     "bank_actual_deg": 0.1,
      "bank_needed_for_target_deg": 44.7,
      "speed_cap_kmh": 46,
      "target_kmh": 150,
@@ -3256,7 +3256,7 @@
      "min_radius_m": 64.7,
      "turn_deg": 12.0,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 31.3,
      "speed_cap_kmh": 81,
      "target_kmh": 150,
@@ -3276,7 +3276,7 @@
      "min_radius_m": 49.2,
      "turn_deg": 22.2,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 35.8,
      "speed_cap_kmh": 71,
      "target_kmh": 150,
@@ -3320,9 +3320,9 @@
      "min_radius_m": 75.4,
      "turn_deg": 63.6,
      "inside": "left",
-     "bank_actual_deg": -1.6,
+     "bank_actual_deg": 1.6,
      "bank_needed_for_target_deg": 28.3,
-     "speed_cap_kmh": 87,
+     "speed_cap_kmh": 88,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 7.5,
@@ -3360,9 +3360,9 @@
      "min_radius_m": 190.9,
      "turn_deg": 0.0,
      "inside": "left",
-     "bank_actual_deg": 0.3,
+     "bank_actual_deg": -0.3,
      "bank_needed_for_target_deg": 4.2,
-     "speed_cap_kmh": 140,
+     "speed_cap_kmh": 139,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -3380,9 +3380,9 @@
      "min_radius_m": 146.2,
      "turn_deg": 5.1,
      "inside": "left",
-     "bank_actual_deg": 0.3,
+     "bank_actual_deg": -0.3,
      "bank_needed_for_target_deg": 11.8,
-     "speed_cap_kmh": 123,
+     "speed_cap_kmh": 121,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -3400,9 +3400,9 @@
      "min_radius_m": 135.3,
      "turn_deg": 26.5,
      "inside": "left",
-     "bank_actual_deg": 0.5,
+     "bank_actual_deg": -0.5,
      "bank_needed_for_target_deg": 13.9,
-     "speed_cap_kmh": 118,
+     "speed_cap_kmh": 117,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -3420,9 +3420,9 @@
      "min_radius_m": 189.9,
      "turn_deg": 1.2,
      "inside": "left",
-     "bank_actual_deg": 0.5,
+     "bank_actual_deg": -0.5,
      "bank_needed_for_target_deg": 4.3,
-     "speed_cap_kmh": 140,
+     "speed_cap_kmh": 138,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -3440,9 +3440,9 @@
      "min_radius_m": 195.1,
      "turn_deg": 1.2,
      "inside": "left",
-     "bank_actual_deg": 0.6,
+     "bank_actual_deg": -0.6,
      "bank_needed_for_target_deg": 3.5,
-     "speed_cap_kmh": 142,
+     "speed_cap_kmh": 139,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -3481,9 +3481,9 @@
      "min_radius_m": 122.7,
      "turn_deg": 1.9,
      "inside": "right",
-     "bank_actual_deg": 0.6,
+     "bank_actual_deg": -0.6,
      "bank_needed_for_target_deg": 16.6,
-     "speed_cap_kmh": 113,
+     "speed_cap_kmh": 111,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -3501,7 +3501,7 @@
      "min_radius_m": 50.0,
      "turn_deg": 47.1,
      "inside": "left",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 35.6,
      "speed_cap_kmh": 71,
      "target_kmh": 150,
@@ -3521,7 +3521,7 @@
      "min_radius_m": 186.0,
      "turn_deg": 1.2,
      "inside": "left",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 4.9,
      "speed_cap_kmh": 138,
      "target_kmh": 150,
@@ -3622,9 +3622,9 @@
      "min_radius_m": 89.7,
      "turn_deg": 2.6,
      "inside": "right",
-     "bank_actual_deg": -0.1,
+     "bank_actual_deg": 0.1,
      "bank_needed_for_target_deg": 24.5,
-     "speed_cap_kmh": 95,
+     "speed_cap_kmh": 96,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 2.6,
@@ -3642,7 +3642,7 @@
      "min_radius_m": 34.3,
      "turn_deg": 32.5,
      "inside": "left",
-     "bank_actual_deg": -0.4,
+     "bank_actual_deg": 0.4,
      "bank_needed_for_target_deg": 40.4,
      "speed_cap_kmh": 59,
      "target_kmh": 150,
@@ -3662,7 +3662,7 @@
      "min_radius_m": 39.4,
      "turn_deg": 21.0,
      "inside": "right",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 38.8,
      "speed_cap_kmh": 63,
      "target_kmh": 150,
@@ -3682,7 +3682,7 @@
      "min_radius_m": 71.1,
      "turn_deg": 3.2,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 29.4,
      "speed_cap_kmh": 85,
      "target_kmh": 150,
@@ -3722,7 +3722,7 @@
      "min_radius_m": 17.6,
      "turn_deg": 132.7,
      "inside": "left",
-     "bank_actual_deg": -0.1,
+     "bank_actual_deg": 0.1,
      "bank_needed_for_target_deg": 45.7,
      "speed_cap_kmh": 42,
      "target_kmh": 150,
@@ -3742,7 +3742,7 @@
      "min_radius_m": 108.2,
      "turn_deg": 0.0,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 19.9,
      "speed_cap_kmh": 105,
      "target_kmh": 150,
@@ -3762,7 +3762,7 @@
      "min_radius_m": 56.6,
      "turn_deg": 11.4,
      "inside": "left",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 33.6,
      "speed_cap_kmh": 76,
      "target_kmh": 150,
@@ -3806,9 +3806,9 @@
      "min_radius_m": 72.9,
      "turn_deg": 7.5,
      "inside": "left",
-     "bank_actual_deg": -2.1,
+     "bank_actual_deg": 2.1,
      "bank_needed_for_target_deg": 29.0,
-     "speed_cap_kmh": 84,
+     "speed_cap_kmh": 89,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 8.5,
@@ -3826,9 +3826,9 @@
      "min_radius_m": 178.9,
      "turn_deg": 1.3,
      "inside": "left",
-     "bank_actual_deg": -0.3,
+     "bank_actual_deg": 0.3,
      "bank_needed_for_target_deg": 6.0,
-     "speed_cap_kmh": 134,
+     "speed_cap_kmh": 136,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -3886,7 +3886,7 @@
      "min_radius_m": 66.5,
      "turn_deg": 2.9,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 30.7,
      "speed_cap_kmh": 82,
      "target_kmh": 150,
@@ -3906,7 +3906,7 @@
      "min_radius_m": 149.6,
      "turn_deg": 0.0,
      "inside": "left",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 11.1,
      "speed_cap_kmh": 123,
      "target_kmh": 150,
@@ -3926,9 +3926,9 @@
      "min_radius_m": 50.6,
      "turn_deg": 85.1,
      "inside": "right",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 35.4,
-     "speed_cap_kmh": 72,
+     "speed_cap_kmh": 71,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 18.6,
@@ -3967,9 +3967,9 @@
      "min_radius_m": 120.0,
      "turn_deg": 20.8,
      "inside": "left",
-     "bank_actual_deg": 0.8,
+     "bank_actual_deg": -0.8,
      "bank_needed_for_target_deg": 17.2,
-     "speed_cap_kmh": 113,
+     "speed_cap_kmh": 107,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -3987,9 +3987,9 @@
      "min_radius_m": 150.5,
      "turn_deg": 5.6,
      "inside": "left",
-     "bank_actual_deg": 0.3,
+     "bank_actual_deg": -0.3,
      "bank_needed_for_target_deg": 11.0,
-     "speed_cap_kmh": 124,
+     "speed_cap_kmh": 123,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4007,9 +4007,9 @@
      "min_radius_m": 160.8,
      "turn_deg": 0.0,
      "inside": "left",
-     "bank_actual_deg": 0.7,
+     "bank_actual_deg": -0.7,
      "bank_needed_for_target_deg": 9.1,
-     "speed_cap_kmh": 129,
+     "speed_cap_kmh": 126,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4027,9 +4027,9 @@
      "min_radius_m": 148.2,
      "turn_deg": 4.2,
      "inside": "left",
-     "bank_actual_deg": 0.8,
+     "bank_actual_deg": -0.8,
      "bank_needed_for_target_deg": 11.4,
-     "speed_cap_kmh": 124,
+     "speed_cap_kmh": 121,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4047,9 +4047,9 @@
      "min_radius_m": 149.3,
      "turn_deg": 0.0,
      "inside": "left",
-     "bank_actual_deg": 0.3,
+     "bank_actual_deg": -0.3,
      "bank_needed_for_target_deg": 11.2,
-     "speed_cap_kmh": 124,
+     "speed_cap_kmh": 123,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4088,9 +4088,9 @@
      "min_radius_m": 104.4,
      "turn_deg": 8.7,
      "inside": "right",
-     "bank_actual_deg": -0.7,
+     "bank_actual_deg": 0.7,
      "bank_needed_for_target_deg": 20.8,
-     "speed_cap_kmh": 102,
+     "speed_cap_kmh": 104,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4108,9 +4108,9 @@
      "min_radius_m": 168.1,
      "turn_deg": 0.0,
      "inside": "right",
-     "bank_actual_deg": -0.2,
+     "bank_actual_deg": 0.2,
      "bank_needed_for_target_deg": 7.8,
-     "speed_cap_kmh": 130,
+     "speed_cap_kmh": 131,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4128,7 +4128,7 @@
      "min_radius_m": 199.0,
      "turn_deg": 1.2,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 3.0,
      "speed_cap_kmh": 142,
      "target_kmh": 150,
@@ -4148,7 +4148,7 @@
      "min_radius_m": 199.4,
      "turn_deg": 1.1,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 2.9,
      "speed_cap_kmh": 142,
      "target_kmh": 150,
@@ -4168,9 +4168,9 @@
      "min_radius_m": 196.1,
      "turn_deg": 1.2,
      "inside": "right",
-     "bank_actual_deg": -0.4,
+     "bank_actual_deg": 0.4,
      "bank_needed_for_target_deg": 3.4,
-     "speed_cap_kmh": 140,
+     "speed_cap_kmh": 142,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4188,9 +4188,9 @@
      "min_radius_m": 71.8,
      "turn_deg": 14.3,
      "inside": "right",
-     "bank_actual_deg": -1.5,
+     "bank_actual_deg": 1.5,
      "bank_needed_for_target_deg": 29.2,
-     "speed_cap_kmh": 82,
+     "speed_cap_kmh": 89,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 8.9,
@@ -4229,9 +4229,9 @@
      "min_radius_m": 188.9,
      "turn_deg": 1.2,
      "inside": "right",
-     "bank_actual_deg": 0.4,
+     "bank_actual_deg": -0.4,
      "bank_needed_for_target_deg": 4.5,
-     "speed_cap_kmh": 139,
+     "speed_cap_kmh": 138,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4249,9 +4249,9 @@
      "min_radius_m": 56.2,
      "turn_deg": 30.1,
      "inside": "left",
-     "bank_actual_deg": 0.2,
+     "bank_actual_deg": -0.2,
      "bank_needed_for_target_deg": 33.7,
-     "speed_cap_kmh": 76,
+     "speed_cap_kmh": 75,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 15.8,
@@ -4309,7 +4309,7 @@
      "min_radius_m": 106.5,
      "turn_deg": 1.8,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 20.3,
      "speed_cap_kmh": 104,
      "target_kmh": 150,
@@ -4350,9 +4350,9 @@
      "min_radius_m": 197.9,
      "turn_deg": 1.2,
      "inside": "left",
-     "bank_actual_deg": 4.7,
+     "bank_actual_deg": -4.7,
      "bank_needed_for_target_deg": 3.1,
-     "speed_cap_kmh": 154,
+     "speed_cap_kmh": 130,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4370,7 +4370,7 @@
      "min_radius_m": 129.1,
      "turn_deg": 4.6,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 15.2,
      "speed_cap_kmh": 115,
      "target_kmh": 150,
@@ -4390,7 +4390,7 @@
      "min_radius_m": 113.9,
      "turn_deg": 23.0,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 18.6,
      "speed_cap_kmh": 108,
      "target_kmh": 150,
@@ -4410,7 +4410,7 @@
      "min_radius_m": 187.1,
      "turn_deg": 1.2,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 4.7,
      "speed_cap_kmh": 138,
      "target_kmh": 150,
@@ -4430,7 +4430,7 @@
      "min_radius_m": 171.4,
      "turn_deg": 1.3,
      "inside": "left",
-     "bank_actual_deg": 0.2,
+     "bank_actual_deg": -0.2,
      "bank_needed_for_target_deg": 7.3,
      "speed_cap_kmh": 132,
      "target_kmh": 150,
@@ -4450,9 +4450,9 @@
      "min_radius_m": 93.9,
      "turn_deg": 41.3,
      "inside": "left",
-     "bank_actual_deg": 1.2,
+     "bank_actual_deg": -1.2,
      "bank_needed_for_target_deg": 23.4,
-     "speed_cap_kmh": 102,
+     "speed_cap_kmh": 94,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 1.3,
@@ -4470,9 +4470,9 @@
      "min_radius_m": 169.6,
      "turn_deg": 0.0,
      "inside": "left",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 7.6,
-     "speed_cap_kmh": 132,
+     "speed_cap_kmh": 131,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4490,7 +4490,7 @@
      "min_radius_m": 132.2,
      "turn_deg": 0.0,
      "inside": "right",
-     "bank_actual_deg": -0.1,
+     "bank_actual_deg": 0.1,
      "bank_needed_for_target_deg": 14.6,
      "speed_cap_kmh": 116,
      "target_kmh": 150,
@@ -4510,9 +4510,9 @@
      "min_radius_m": 101.1,
      "turn_deg": 25.7,
      "inside": "right",
-     "bank_actual_deg": -0.8,
+     "bank_actual_deg": 0.8,
      "bank_needed_for_target_deg": 21.6,
-     "speed_cap_kmh": 101,
+     "speed_cap_kmh": 102,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4530,9 +4530,9 @@
      "min_radius_m": 153.8,
      "turn_deg": 0.0,
      "inside": "right",
-     "bank_actual_deg": -2.3,
+     "bank_actual_deg": 2.3,
      "bank_needed_for_target_deg": 10.4,
-     "speed_cap_kmh": 120,
+     "speed_cap_kmh": 130,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4550,7 +4550,7 @@
      "min_radius_m": 144.6,
      "turn_deg": 3.0,
      "inside": "left",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 12.1,
      "speed_cap_kmh": 121,
      "target_kmh": 150,
@@ -4570,7 +4570,7 @@
      "min_radius_m": 131.0,
      "turn_deg": 22.1,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 14.8,
      "speed_cap_kmh": 115,
      "target_kmh": 150,
@@ -4630,9 +4630,9 @@
      "min_radius_m": 99.3,
      "turn_deg": 50.8,
      "inside": "right",
-     "bank_actual_deg": -0.1,
+     "bank_actual_deg": 0.1,
      "bank_needed_for_target_deg": 22.0,
-     "speed_cap_kmh": 100,
+     "speed_cap_kmh": 101,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4650,9 +4650,9 @@
      "min_radius_m": 70.4,
      "turn_deg": 13.8,
      "inside": "right",
-     "bank_actual_deg": -1.7,
+     "bank_actual_deg": 1.7,
      "bank_needed_for_target_deg": 29.6,
-     "speed_cap_kmh": 82,
+     "speed_cap_kmh": 88,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 9.5,
@@ -4691,9 +4691,9 @@
      "min_radius_m": 189.7,
      "turn_deg": 1.2,
      "inside": "right",
-     "bank_actual_deg": -0.6,
+     "bank_actual_deg": 0.6,
      "bank_needed_for_target_deg": 4.3,
-     "speed_cap_kmh": 137,
+     "speed_cap_kmh": 140,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4711,9 +4711,9 @@
      "min_radius_m": 131.9,
      "turn_deg": 1.5,
      "inside": "left",
-     "bank_actual_deg": 0.3,
+     "bank_actual_deg": -0.3,
      "bank_needed_for_target_deg": 14.6,
-     "speed_cap_kmh": 117,
+     "speed_cap_kmh": 115,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4731,9 +4731,9 @@
      "min_radius_m": 157.7,
      "turn_deg": 1.5,
      "inside": "left",
-     "bank_actual_deg": 0.6,
+     "bank_actual_deg": -0.6,
      "bank_needed_for_target_deg": 9.6,
-     "speed_cap_kmh": 128,
+     "speed_cap_kmh": 125,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4751,9 +4751,9 @@
      "min_radius_m": 144.7,
      "turn_deg": 10.0,
      "inside": "left",
-     "bank_actual_deg": 1.6,
+     "bank_actual_deg": -1.6,
      "bank_needed_for_target_deg": 12.1,
-     "speed_cap_kmh": 125,
+     "speed_cap_kmh": 118,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4771,9 +4771,9 @@
      "min_radius_m": 129.7,
      "turn_deg": 4.6,
      "inside": "left",
-     "bank_actual_deg": 2.0,
+     "bank_actual_deg": -2.0,
      "bank_needed_for_target_deg": 15.1,
-     "speed_cap_kmh": 119,
+     "speed_cap_kmh": 110,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4791,7 +4791,7 @@
      "min_radius_m": 168.8,
      "turn_deg": 1.4,
      "inside": "right",
-     "bank_actual_deg": 0.2,
+     "bank_actual_deg": -0.2,
      "bank_needed_for_target_deg": 7.7,
      "speed_cap_kmh": 131,
      "target_kmh": 150,
@@ -4811,9 +4811,9 @@
      "min_radius_m": 104.5,
      "turn_deg": 39.7,
      "inside": "right",
-     "bank_actual_deg": -1.4,
+     "bank_actual_deg": 1.4,
      "bank_needed_for_target_deg": 20.8,
-     "speed_cap_kmh": 100,
+     "speed_cap_kmh": 106,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4831,7 +4831,7 @@
      "min_radius_m": 179.1,
      "turn_deg": 0.0,
      "inside": "right",
-     "bank_actual_deg": -0.2,
+     "bank_actual_deg": 0.2,
      "bank_needed_for_target_deg": 6.0,
      "speed_cap_kmh": 135,
      "target_kmh": 150,
@@ -4851,9 +4851,9 @@
      "min_radius_m": 112.1,
      "turn_deg": 6.6,
      "inside": "left",
-     "bank_actual_deg": 0.5,
+     "bank_actual_deg": -0.5,
      "bank_needed_for_target_deg": 19.0,
-     "speed_cap_kmh": 108,
+     "speed_cap_kmh": 106,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4871,9 +4871,9 @@
      "min_radius_m": 132.1,
      "turn_deg": 1.7,
      "inside": "left",
-     "bank_actual_deg": 1.2,
+     "bank_actual_deg": -1.2,
      "bank_needed_for_target_deg": 14.6,
-     "speed_cap_kmh": 118,
+     "speed_cap_kmh": 113,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4912,9 +4912,9 @@
      "min_radius_m": 133.9,
      "turn_deg": 1.7,
      "inside": "right",
-     "bank_actual_deg": -2.2,
+     "bank_actual_deg": 2.2,
      "bank_needed_for_target_deg": 14.2,
-     "speed_cap_kmh": 112,
+     "speed_cap_kmh": 121,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4932,9 +4932,9 @@
      "min_radius_m": 30.9,
      "turn_deg": 58.5,
      "inside": "left",
-     "bank_actual_deg": 1.9,
+     "bank_actual_deg": -1.9,
      "bank_needed_for_target_deg": 41.4,
-     "speed_cap_kmh": 58,
+     "speed_cap_kmh": 54,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 29.9,
@@ -4952,9 +4952,9 @@
      "min_radius_m": 120.0,
      "turn_deg": 11.5,
      "inside": "left",
-     "bank_actual_deg": 0.4,
+     "bank_actual_deg": -0.4,
      "bank_needed_for_target_deg": 17.2,
-     "speed_cap_kmh": 111,
+     "speed_cap_kmh": 110,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -4972,7 +4972,7 @@
      "min_radius_m": 158.5,
      "turn_deg": 0.0,
      "inside": "left",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 9.5,
      "speed_cap_kmh": 127,
      "target_kmh": 150,
@@ -4992,7 +4992,7 @@
      "min_radius_m": 171.2,
      "turn_deg": 1.3,
      "inside": "left",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 7.3,
      "speed_cap_kmh": 132,
      "target_kmh": 150,
@@ -5012,7 +5012,7 @@
      "min_radius_m": 34.1,
      "turn_deg": 112.7,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 40.4,
      "speed_cap_kmh": 59,
      "target_kmh": 150,
@@ -5032,9 +5032,9 @@
      "min_radius_m": 85.6,
      "turn_deg": 2.7,
      "inside": "left",
-     "bank_actual_deg": -0.2,
+     "bank_actual_deg": 0.2,
      "bank_needed_for_target_deg": 25.5,
-     "speed_cap_kmh": 93,
+     "speed_cap_kmh": 94,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 3.9,
@@ -5052,9 +5052,9 @@
      "min_radius_m": 199.7,
      "turn_deg": 1.2,
      "inside": "right",
-     "bank_actual_deg": 0.2,
+     "bank_actual_deg": -0.2,
      "bank_needed_for_target_deg": 2.9,
-     "speed_cap_kmh": 143,
+     "speed_cap_kmh": 142,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -5072,7 +5072,7 @@
      "min_radius_m": 144.3,
      "turn_deg": 1.6,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 12.2,
      "speed_cap_kmh": 121,
      "target_kmh": 150,
@@ -5113,9 +5113,9 @@
      "min_radius_m": 26.2,
      "turn_deg": 25.1,
      "inside": "right",
-     "bank_actual_deg": 0.2,
+     "bank_actual_deg": -0.2,
      "bank_needed_for_target_deg": 42.9,
-     "speed_cap_kmh": 52,
+     "speed_cap_kmh": 51,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 32.9,
@@ -5213,9 +5213,9 @@
      "min_radius_m": 100.9,
      "turn_deg": 2.3,
      "inside": "left",
-     "bank_actual_deg": 2.8,
+     "bank_actual_deg": -2.8,
      "bank_needed_for_target_deg": 21.6,
-     "speed_cap_kmh": 106,
+     "speed_cap_kmh": 97,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -5254,7 +5254,7 @@
      "min_radius_m": 65.8,
      "turn_deg": 11.3,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 31.0,
      "speed_cap_kmh": 82,
      "target_kmh": 150,
@@ -5274,7 +5274,7 @@
      "min_radius_m": 66.3,
      "turn_deg": 10.6,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 30.8,
      "speed_cap_kmh": 82,
      "target_kmh": 150,
@@ -5294,7 +5294,7 @@
      "min_radius_m": 81.3,
      "turn_deg": 2.8,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 26.7,
      "speed_cap_kmh": 91,
      "target_kmh": 150,
@@ -6314,9 +6314,9 @@
      "min_radius_m": 111.3,
      "turn_deg": 3.5,
      "inside": "left",
-     "bank_actual_deg": -0.1,
+     "bank_actual_deg": 0.1,
      "bank_needed_for_target_deg": 19.2,
-     "speed_cap_kmh": 106,
+     "speed_cap_kmh": 107,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -6334,9 +6334,9 @@
      "min_radius_m": 137.5,
      "turn_deg": 0.0,
      "inside": "right",
-     "bank_actual_deg": 0.2,
+     "bank_actual_deg": -0.2,
      "bank_needed_for_target_deg": 13.5,
-     "speed_cap_kmh": 119,
+     "speed_cap_kmh": 118,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -6354,9 +6354,9 @@
      "min_radius_m": 155.7,
      "turn_deg": 1.5,
      "inside": "left",
-     "bank_actual_deg": -0.7,
+     "bank_actual_deg": 0.7,
      "bank_needed_for_target_deg": 10.0,
-     "speed_cap_kmh": 124,
+     "speed_cap_kmh": 127,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -6395,9 +6395,9 @@
      "min_radius_m": 114.3,
      "turn_deg": 2.0,
      "inside": "right",
-     "bank_actual_deg": 2.1,
+     "bank_actual_deg": -2.1,
      "bank_needed_for_target_deg": 18.5,
-     "speed_cap_kmh": 112,
+     "speed_cap_kmh": 104,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -6415,9 +6415,9 @@
      "min_radius_m": 32.6,
      "turn_deg": 49.3,
      "inside": "left",
-     "bank_actual_deg": -1.2,
+     "bank_actual_deg": 1.2,
      "bank_needed_for_target_deg": 40.9,
-     "speed_cap_kmh": 56,
+     "speed_cap_kmh": 59,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 28.8,
@@ -6435,7 +6435,7 @@
      "min_radius_m": 29.0,
      "turn_deg": 85.4,
      "inside": "right",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 42.0,
      "speed_cap_kmh": 54,
      "target_kmh": 150,
@@ -6455,7 +6455,7 @@
      "min_radius_m": 51.5,
      "turn_deg": 11.4,
      "inside": "left",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 35.1,
      "speed_cap_kmh": 72,
      "target_kmh": 150,
@@ -6475,7 +6475,7 @@
      "min_radius_m": 52.9,
      "turn_deg": 11.1,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 34.7,
      "speed_cap_kmh": 73,
      "target_kmh": 150,
@@ -6955,7 +6955,7 @@
      "min_radius_m": 31.8,
      "turn_deg": 88.8,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 41.1,
      "speed_cap_kmh": 57,
      "target_kmh": 150,
@@ -6975,7 +6975,7 @@
      "min_radius_m": 49.3,
      "turn_deg": 21.1,
      "inside": "left",
-     "bank_actual_deg": 0.2,
+     "bank_actual_deg": -0.2,
      "bank_needed_for_target_deg": 35.8,
      "speed_cap_kmh": 71,
      "target_kmh": 150,
@@ -6995,9 +6995,9 @@
      "min_radius_m": 34.0,
      "turn_deg": 41.1,
      "inside": "right",
-     "bank_actual_deg": -1.6,
+     "bank_actual_deg": 1.6,
      "bank_needed_for_target_deg": 40.5,
-     "speed_cap_kmh": 58,
+     "speed_cap_kmh": 60,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 28.0,
@@ -7015,9 +7015,9 @@
      "min_radius_m": 122.7,
      "turn_deg": 0.0,
      "inside": "left",
-     "bank_actual_deg": 3.5,
+     "bank_actual_deg": -3.5,
      "bank_needed_for_target_deg": 16.6,
-     "speed_cap_kmh": 118,
+     "speed_cap_kmh": 105,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -7058,9 +7058,9 @@
      "min_radius_m": 28.0,
      "turn_deg": 65.2,
      "inside": "right",
-     "bank_actual_deg": -0.2,
+     "bank_actual_deg": 0.2,
      "bank_needed_for_target_deg": 42.3,
-     "speed_cap_kmh": 53,
+     "speed_cap_kmh": 54,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 31.7,
@@ -7078,7 +7078,7 @@
      "min_radius_m": 26.7,
      "turn_deg": 46.8,
      "inside": "left",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 42.8,
      "speed_cap_kmh": 52,
      "target_kmh": 150,
@@ -7098,7 +7098,7 @@
      "min_radius_m": 58.0,
      "turn_deg": 0.0,
      "inside": "right",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 33.2,
      "speed_cap_kmh": 77,
      "target_kmh": 150,
@@ -7139,7 +7139,7 @@
      "min_radius_m": 25.9,
      "turn_deg": 70.1,
      "inside": "left",
-     "bank_actual_deg": -0.1,
+     "bank_actual_deg": 0.1,
      "bank_needed_for_target_deg": 43.0,
      "speed_cap_kmh": 51,
      "target_kmh": 150,
@@ -7159,7 +7159,7 @@
      "min_radius_m": 23.9,
      "turn_deg": 31.2,
      "inside": "right",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 43.6,
      "speed_cap_kmh": 49,
      "target_kmh": 150,
@@ -7179,9 +7179,9 @@
      "min_radius_m": 65.6,
      "turn_deg": 0.0,
      "inside": "left",
-     "bank_actual_deg": -0.9,
+     "bank_actual_deg": 0.9,
      "bank_needed_for_target_deg": 31.0,
-     "speed_cap_kmh": 80,
+     "speed_cap_kmh": 83,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 11.5,
@@ -7220,7 +7220,7 @@
      "min_radius_m": 26.7,
      "turn_deg": 66.1,
      "inside": "right",
-     "bank_actual_deg": 0.5,
+     "bank_actual_deg": -0.5,
      "bank_needed_for_target_deg": 42.8,
      "speed_cap_kmh": 52,
      "target_kmh": 150,
@@ -7240,9 +7240,9 @@
      "min_radius_m": 21.6,
      "turn_deg": 67.6,
      "inside": "left",
-     "bank_actual_deg": -1.1,
+     "bank_actual_deg": 1.1,
      "bank_needed_for_target_deg": 44.4,
-     "speed_cap_kmh": 46,
+     "speed_cap_kmh": 48,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 36.0,
@@ -7260,9 +7260,9 @@
      "min_radius_m": 28.6,
      "turn_deg": 28.7,
      "inside": "right",
-     "bank_actual_deg": 4.9,
+     "bank_actual_deg": -4.9,
      "bank_needed_for_target_deg": 42.2,
-     "speed_cap_kmh": 59,
+     "speed_cap_kmh": 49,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 31.4,
@@ -7280,9 +7280,9 @@
      "min_radius_m": 107.1,
      "turn_deg": 2.1,
      "inside": "left",
-     "bank_actual_deg": -6.0,
+     "bank_actual_deg": 6.0,
      "bank_needed_for_target_deg": 20.2,
-     "speed_cap_kmh": 93,
+     "speed_cap_kmh": 116,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -7321,9 +7321,9 @@
      "min_radius_m": 25.0,
      "turn_deg": 32.4,
      "inside": "left",
-     "bank_actual_deg": -0.7,
+     "bank_actual_deg": 0.7,
      "bank_needed_for_target_deg": 43.3,
-     "speed_cap_kmh": 49,
+     "speed_cap_kmh": 51,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 33.7,
@@ -7362,7 +7362,7 @@
      "min_radius_m": 39.3,
      "turn_deg": 27.1,
      "inside": "right",
-     "bank_actual_deg": -0.1,
+     "bank_actual_deg": 0.1,
      "bank_needed_for_target_deg": 38.8,
      "speed_cap_kmh": 63,
      "target_kmh": 150,
@@ -7382,7 +7382,7 @@
      "min_radius_m": 132.5,
      "turn_deg": 1.7,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 14.5,
      "speed_cap_kmh": 116,
      "target_kmh": 150,
@@ -7402,7 +7402,7 @@
      "min_radius_m": 132.5,
      "turn_deg": 1.7,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 14.5,
      "speed_cap_kmh": 116,
      "target_kmh": 150,
@@ -7422,7 +7422,7 @@
      "min_radius_m": 25.3,
      "turn_deg": 137.2,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 43.2,
      "speed_cap_kmh": 51,
      "target_kmh": 150,
@@ -7442,7 +7442,7 @@
      "min_radius_m": 135.0,
      "turn_deg": 1.3,
      "inside": "left",
-     "bank_actual_deg": 0.2,
+     "bank_actual_deg": -0.2,
      "bank_needed_for_target_deg": 14.0,
      "speed_cap_kmh": 117,
      "target_kmh": 150,
@@ -7462,9 +7462,9 @@
      "min_radius_m": 97.9,
      "turn_deg": 8.0,
      "inside": "left",
-     "bank_actual_deg": 0.7,
+     "bank_actual_deg": -0.7,
      "bank_needed_for_target_deg": 22.4,
-     "speed_cap_kmh": 101,
+     "speed_cap_kmh": 98,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.1,
@@ -7503,7 +7503,7 @@
      "min_radius_m": 123.1,
      "turn_deg": 1.9,
      "inside": "left",
-     "bank_actual_deg": 0.2,
+     "bank_actual_deg": -0.2,
      "bank_needed_for_target_deg": 16.5,
      "speed_cap_kmh": 112,
      "target_kmh": 150,
@@ -7523,9 +7523,9 @@
      "min_radius_m": 31.3,
      "turn_deg": 99.3,
      "inside": "right",
-     "bank_actual_deg": -0.8,
+     "bank_actual_deg": 0.8,
      "bank_needed_for_target_deg": 41.3,
-     "speed_cap_kmh": 55,
+     "speed_cap_kmh": 57,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 29.7,
@@ -7543,7 +7543,7 @@
      "min_radius_m": 79.2,
      "turn_deg": 2.9,
      "inside": "left",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 27.2,
      "speed_cap_kmh": 90,
      "target_kmh": 150,
@@ -7563,7 +7563,7 @@
      "min_radius_m": 59.4,
      "turn_deg": 21.6,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 32.8,
      "speed_cap_kmh": 78,
      "target_kmh": 150,
@@ -7583,7 +7583,7 @@
      "min_radius_m": 91.7,
      "turn_deg": 2.5,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 23.9,
      "speed_cap_kmh": 97,
      "target_kmh": 150,
@@ -7603,7 +7603,7 @@
      "min_radius_m": 97.8,
      "turn_deg": 2.3,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 22.4,
      "speed_cap_kmh": 100,
      "target_kmh": 150,
@@ -8063,7 +8063,7 @@
      "min_radius_m": 145.0,
      "turn_deg": 1.6,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 12.0,
      "speed_cap_kmh": 121,
      "target_kmh": 150,
@@ -8083,7 +8083,7 @@
      "min_radius_m": 198.5,
      "turn_deg": 1.2,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 3.1,
      "speed_cap_kmh": 142,
      "target_kmh": 150,
@@ -8163,7 +8163,7 @@
      "min_radius_m": 46.0,
      "turn_deg": 61.6,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 36.8,
      "speed_cap_kmh": 68,
      "target_kmh": 150,
@@ -8183,9 +8183,9 @@
      "min_radius_m": 169.8,
      "turn_deg": 1.4,
      "inside": "right",
-     "bank_actual_deg": -0.8,
+     "bank_actual_deg": 0.8,
      "bank_needed_for_target_deg": 7.5,
-     "speed_cap_kmh": 130,
+     "speed_cap_kmh": 133,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -8203,9 +8203,9 @@
      "min_radius_m": 94.2,
      "turn_deg": 8.2,
      "inside": "right",
-     "bank_actual_deg": -2.0,
+     "bank_actual_deg": 2.0,
      "bank_needed_for_target_deg": 23.3,
-     "speed_cap_kmh": 95,
+     "speed_cap_kmh": 101,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 1.2,
@@ -8223,9 +8223,9 @@
      "min_radius_m": 187.3,
      "turn_deg": 0.0,
      "inside": "right",
-     "bank_actual_deg": -1.8,
+     "bank_actual_deg": 1.8,
      "bank_needed_for_target_deg": 4.7,
-     "speed_cap_kmh": 133,
+     "speed_cap_kmh": 142,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -8243,7 +8243,7 @@
      "min_radius_m": 133.0,
      "turn_deg": 0.0,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 14.4,
      "speed_cap_kmh": 116,
      "target_kmh": 150,
@@ -8263,7 +8263,7 @@
      "min_radius_m": 72.9,
      "turn_deg": 10.9,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 29.0,
      "speed_cap_kmh": 86,
      "target_kmh": 150,
@@ -8404,9 +8404,9 @@
      "min_radius_m": 87.4,
      "turn_deg": 18.3,
      "inside": "right",
-     "bank_actual_deg": -0.3,
+     "bank_actual_deg": 0.3,
      "bank_needed_for_target_deg": 25.1,
-     "speed_cap_kmh": 94,
+     "speed_cap_kmh": 95,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 3.3,
@@ -8424,7 +8424,7 @@
      "min_radius_m": 185.7,
      "turn_deg": 0.0,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 5.0,
      "speed_cap_kmh": 137,
      "target_kmh": 150,
@@ -8564,7 +8564,7 @@
      "min_radius_m": 23.0,
      "turn_deg": 140.2,
      "inside": "left",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 43.9,
      "speed_cap_kmh": 48,
      "target_kmh": 150,
@@ -8584,7 +8584,7 @@
      "min_radius_m": 125.1,
      "turn_deg": 1.7,
      "inside": "left",
-     "bank_actual_deg": -0.1,
+     "bank_actual_deg": 0.1,
      "bank_needed_for_target_deg": 16.1,
      "speed_cap_kmh": 113,
      "target_kmh": 150,
@@ -8604,9 +8604,9 @@
      "min_radius_m": 67.5,
      "turn_deg": 16.6,
      "inside": "right",
-     "bank_actual_deg": 0.5,
+     "bank_actual_deg": -0.5,
      "bank_needed_for_target_deg": 30.4,
-     "speed_cap_kmh": 84,
+     "speed_cap_kmh": 82,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 10.7,
@@ -8624,9 +8624,9 @@
      "min_radius_m": 52.9,
      "turn_deg": 31.9,
      "inside": "left",
-     "bank_actual_deg": -2.2,
+     "bank_actual_deg": 2.2,
      "bank_needed_for_target_deg": 34.7,
-     "speed_cap_kmh": 70,
+     "speed_cap_kmh": 77,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 17.4,
@@ -8644,9 +8644,9 @@
      "min_radius_m": 87.2,
      "turn_deg": 5.7,
      "inside": "left",
-     "bank_actual_deg": -0.2,
+     "bank_actual_deg": 0.2,
      "bank_needed_for_target_deg": 25.1,
-     "speed_cap_kmh": 94,
+     "speed_cap_kmh": 95,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 3.4,
@@ -8664,7 +8664,7 @@
      "min_radius_m": 67.1,
      "turn_deg": 21.0,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 30.6,
      "speed_cap_kmh": 83,
      "target_kmh": 150,
@@ -8724,7 +8724,7 @@
      "min_radius_m": 54.7,
      "turn_deg": 21.3,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 34.2,
      "speed_cap_kmh": 75,
      "target_kmh": 150,
@@ -8744,9 +8744,9 @@
      "min_radius_m": 32.5,
      "turn_deg": 179.8,
      "inside": "right",
-     "bank_actual_deg": -0.1,
+     "bank_actual_deg": 0.1,
      "bank_needed_for_target_deg": 40.9,
-     "speed_cap_kmh": 57,
+     "speed_cap_kmh": 58,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 28.9,
@@ -9044,7 +9044,7 @@
      "min_radius_m": 43.1,
      "turn_deg": 31.6,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 37.7,
      "speed_cap_kmh": 66,
      "target_kmh": 150,
@@ -9064,7 +9064,7 @@
      "min_radius_m": 26.9,
      "turn_deg": 169.3,
      "inside": "left",
-     "bank_actual_deg": -0.3,
+     "bank_actual_deg": 0.3,
      "bank_needed_for_target_deg": 42.7,
      "speed_cap_kmh": 52,
      "target_kmh": 150,
@@ -9084,7 +9084,7 @@
      "min_radius_m": 39.9,
      "turn_deg": 46.1,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 38.6,
      "speed_cap_kmh": 64,
      "target_kmh": 150,
@@ -9104,7 +9104,7 @@
      "min_radius_m": 72.0,
      "turn_deg": 14.8,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 29.2,
      "speed_cap_kmh": 86,
      "target_kmh": 150,
@@ -9484,7 +9484,7 @@
      "min_radius_m": 102.2,
      "turn_deg": 6.6,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 21.3,
      "speed_cap_kmh": 102,
      "target_kmh": 150,
@@ -9504,7 +9504,7 @@
      "min_radius_m": 25.8,
      "turn_deg": 172.4,
      "inside": "right",
-     "bank_actual_deg": -0.3,
+     "bank_actual_deg": 0.3,
      "bank_needed_for_target_deg": 43.1,
      "speed_cap_kmh": 51,
      "target_kmh": 150,
@@ -9524,7 +9524,7 @@
      "min_radius_m": 53.6,
      "turn_deg": 9.8,
      "inside": "left",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 34.5,
      "speed_cap_kmh": 74,
      "target_kmh": 150,
@@ -9544,7 +9544,7 @@
      "min_radius_m": 56.1,
      "turn_deg": 36.3,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 33.7,
      "speed_cap_kmh": 76,
      "target_kmh": 150,
@@ -9644,7 +9644,7 @@
      "min_radius_m": 84.0,
      "turn_deg": 6.8,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 26.0,
      "speed_cap_kmh": 92,
      "target_kmh": 150,
@@ -9664,7 +9664,7 @@
      "min_radius_m": 97.4,
      "turn_deg": 6.4,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 22.5,
      "speed_cap_kmh": 100,
      "target_kmh": 150,
@@ -9684,9 +9684,9 @@
      "min_radius_m": 150.4,
      "turn_deg": 1.5,
      "inside": "right",
-     "bank_actual_deg": -0.4,
+     "bank_actual_deg": 0.4,
      "bank_needed_for_target_deg": 11.0,
-     "speed_cap_kmh": 123,
+     "speed_cap_kmh": 124,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -9704,9 +9704,9 @@
      "min_radius_m": 198.3,
      "turn_deg": 1.2,
      "inside": "right",
-     "bank_actual_deg": -1.3,
+     "bank_actual_deg": 1.3,
      "bank_needed_for_target_deg": 3.1,
-     "speed_cap_kmh": 139,
+     "speed_cap_kmh": 145,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -9745,7 +9745,7 @@
      "min_radius_m": 110.9,
      "turn_deg": 7.0,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 19.3,
      "speed_cap_kmh": 106,
      "target_kmh": 150,
@@ -9765,7 +9765,7 @@
      "min_radius_m": 32.3,
      "turn_deg": 48.7,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 41.0,
      "speed_cap_kmh": 57,
      "target_kmh": 150,
@@ -10005,7 +10005,7 @@
      "min_radius_m": 168.7,
      "turn_deg": 0.0,
      "inside": "right",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 7.7,
      "speed_cap_kmh": 131,
      "target_kmh": 150,
@@ -10025,9 +10025,9 @@
      "min_radius_m": 72.6,
      "turn_deg": 33.2,
      "inside": "right",
-     "bank_actual_deg": 1.3,
+     "bank_actual_deg": -1.3,
      "bank_needed_for_target_deg": 29.0,
-     "speed_cap_kmh": 88,
+     "speed_cap_kmh": 84,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 8.6,
@@ -10045,9 +10045,9 @@
      "min_radius_m": 178.9,
      "turn_deg": 1.3,
      "inside": "right",
-     "bank_actual_deg": 1.0,
+     "bank_actual_deg": -1.0,
      "bank_needed_for_target_deg": 6.0,
-     "speed_cap_kmh": 137,
+     "speed_cap_kmh": 133,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -10065,9 +10065,9 @@
      "min_radius_m": 198.3,
      "turn_deg": 1.2,
      "inside": "right",
-     "bank_actual_deg": 0.7,
+     "bank_actual_deg": -0.7,
      "bank_needed_for_target_deg": 3.1,
-     "speed_cap_kmh": 144,
+     "speed_cap_kmh": 140,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -10085,7 +10085,7 @@
      "min_radius_m": 46.8,
      "turn_deg": 34.4,
      "inside": "right",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 36.5,
      "speed_cap_kmh": 69,
      "target_kmh": 150,
@@ -10105,7 +10105,7 @@
      "min_radius_m": 16.8,
      "turn_deg": 165.0,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 45.9,
      "speed_cap_kmh": 41,
      "target_kmh": 150,
@@ -10125,7 +10125,7 @@
      "min_radius_m": 193.8,
      "turn_deg": 1.2,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 3.7,
      "speed_cap_kmh": 140,
      "target_kmh": 150,
@@ -10145,9 +10145,9 @@
      "min_radius_m": 162.6,
      "turn_deg": 1.3,
      "inside": "left",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 8.8,
-     "speed_cap_kmh": 129,
+     "speed_cap_kmh": 128,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -10165,7 +10165,7 @@
      "min_radius_m": 49.5,
      "turn_deg": 61.3,
      "inside": "left",
-     "bank_actual_deg": 0.6,
+     "bank_actual_deg": -0.6,
      "bank_needed_for_target_deg": 35.7,
      "speed_cap_kmh": 71,
      "target_kmh": 150,
@@ -10185,7 +10185,7 @@
      "min_radius_m": 55.4,
      "turn_deg": 21.2,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 34.0,
      "speed_cap_kmh": 75,
      "target_kmh": 150,
@@ -10205,7 +10205,7 @@
      "min_radius_m": 30.7,
      "turn_deg": 50.3,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 41.5,
      "speed_cap_kmh": 56,
      "target_kmh": 150,
@@ -10425,7 +10425,7 @@
      "min_radius_m": 57.7,
      "turn_deg": 26.9,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 33.3,
      "speed_cap_kmh": 77,
      "target_kmh": 150,
@@ -10445,7 +10445,7 @@
      "min_radius_m": 72.2,
      "turn_deg": 15.6,
      "inside": "left",
-     "bank_actual_deg": -0.1,
+     "bank_actual_deg": 0.1,
      "bank_needed_for_target_deg": 29.1,
      "speed_cap_kmh": 86,
      "target_kmh": 150,
@@ -10465,9 +10465,9 @@
      "min_radius_m": 169.6,
      "turn_deg": 1.4,
      "inside": "right",
-     "bank_actual_deg": 1.8,
+     "bank_actual_deg": -1.8,
      "bank_needed_for_target_deg": 7.6,
-     "speed_cap_kmh": 136,
+     "speed_cap_kmh": 127,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -10508,7 +10508,7 @@
      "min_radius_m": 38.4,
      "turn_deg": 25.2,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 39.1,
      "speed_cap_kmh": 63,
      "target_kmh": 150,
@@ -10528,7 +10528,7 @@
      "min_radius_m": 96.4,
      "turn_deg": 2.0,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 22.8,
      "speed_cap_kmh": 99,
      "target_kmh": 150,
@@ -10968,7 +10968,7 @@
      "min_radius_m": 64.8,
      "turn_deg": 15.6,
      "inside": "left",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 31.2,
      "speed_cap_kmh": 81,
      "target_kmh": 150,
@@ -11008,7 +11008,7 @@
      "min_radius_m": 95.7,
      "turn_deg": 6.4,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 22.9,
      "speed_cap_kmh": 99,
      "target_kmh": 150,
@@ -11154,9 +11154,9 @@
      "min_radius_m": 79.2,
      "turn_deg": 2.2,
      "inside": "left",
-     "bank_actual_deg": -0.5,
+     "bank_actual_deg": 0.5,
      "bank_needed_for_target_deg": 27.2,
-     "speed_cap_kmh": 89,
+     "speed_cap_kmh": 91,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 6.2,
@@ -11174,7 +11174,7 @@
      "min_radius_m": 25.6,
      "turn_deg": 49.5,
      "inside": "right",
-     "bank_actual_deg": 0.2,
+     "bank_actual_deg": -0.2,
      "bank_needed_for_target_deg": 43.1,
      "speed_cap_kmh": 51,
      "target_kmh": 150,
@@ -11194,7 +11194,7 @@
      "min_radius_m": 82.6,
      "turn_deg": 2.8,
      "inside": "left",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 26.3,
      "speed_cap_kmh": 92,
      "target_kmh": 150,
@@ -11734,7 +11734,7 @@
      "min_radius_m": 89.0,
      "turn_deg": 2.6,
      "inside": "right",
-     "bank_actual_deg": -0.1,
+     "bank_actual_deg": 0.1,
      "bank_needed_for_target_deg": 24.6,
      "speed_cap_kmh": 95,
      "target_kmh": 150,
@@ -11754,7 +11754,7 @@
      "min_radius_m": 22.7,
      "turn_deg": 32.6,
      "inside": "left",
-     "bank_actual_deg": 0.3,
+     "bank_actual_deg": -0.3,
      "bank_needed_for_target_deg": 44.0,
      "speed_cap_kmh": 48,
      "target_kmh": 150,
@@ -11774,9 +11774,9 @@
      "min_radius_m": 23.8,
      "turn_deg": 56.6,
      "inside": "right",
-     "bank_actual_deg": -1.6,
+     "bank_actual_deg": 1.6,
      "bank_needed_for_target_deg": 43.7,
-     "speed_cap_kmh": 48,
+     "speed_cap_kmh": 50,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 34.5,
@@ -11794,9 +11794,9 @@
      "min_radius_m": 31.2,
      "turn_deg": 45.5,
      "inside": "left",
-     "bank_actual_deg": 0.8,
+     "bank_actual_deg": -0.8,
      "bank_needed_for_target_deg": 41.4,
-     "speed_cap_kmh": 57,
+     "speed_cap_kmh": 56,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 29.7,
@@ -11814,9 +11814,9 @@
      "min_radius_m": 143.6,
      "turn_deg": 0.0,
      "inside": "right",
-     "bank_actual_deg": -1.8,
+     "bank_actual_deg": 1.8,
      "bank_needed_for_target_deg": 12.3,
-     "speed_cap_kmh": 117,
+     "speed_cap_kmh": 125,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -12135,7 +12135,7 @@
      "min_radius_m": 119.1,
      "turn_deg": 1.7,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 17.4,
      "speed_cap_kmh": 110,
      "target_kmh": 150,
@@ -12155,7 +12155,7 @@
      "min_radius_m": 79.2,
      "turn_deg": 10.0,
      "inside": "right",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 27.2,
      "speed_cap_kmh": 90,
      "target_kmh": 150,
@@ -12175,9 +12175,9 @@
      "min_radius_m": 69.4,
      "turn_deg": 7.4,
      "inside": "left",
-     "bank_actual_deg": -1.0,
+     "bank_actual_deg": 1.0,
      "bank_needed_for_target_deg": 29.9,
-     "speed_cap_kmh": 82,
+     "speed_cap_kmh": 86,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 9.9,
@@ -12195,9 +12195,9 @@
      "min_radius_m": 26.4,
      "turn_deg": 162.7,
      "inside": "left",
-     "bank_actual_deg": -0.4,
+     "bank_actual_deg": 0.4,
      "bank_needed_for_target_deg": 42.8,
-     "speed_cap_kmh": 51,
+     "speed_cap_kmh": 53,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 32.8,
@@ -13184,7 +13184,7 @@
      "min_radius_m": 61.8,
      "turn_deg": 25.5,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 32.1,
      "speed_cap_kmh": 79,
      "target_kmh": 150,
@@ -13204,7 +13204,7 @@
      "min_radius_m": 76.4,
      "turn_deg": 8.4,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 28.0,
      "speed_cap_kmh": 88,
      "target_kmh": 150,
@@ -13245,9 +13245,9 @@
      "min_radius_m": 67.9,
      "turn_deg": 0.0,
      "inside": "right",
-     "bank_actual_deg": 1.8,
+     "bank_actual_deg": -1.8,
      "bank_needed_for_target_deg": 30.4,
-     "speed_cap_kmh": 86,
+     "speed_cap_kmh": 80,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 10.5,
@@ -13265,9 +13265,9 @@
      "min_radius_m": 28.2,
      "turn_deg": 74.4,
      "inside": "left",
-     "bank_actual_deg": -0.2,
+     "bank_actual_deg": 0.2,
      "bank_needed_for_target_deg": 42.3,
-     "speed_cap_kmh": 53,
+     "speed_cap_kmh": 54,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 31.6,
@@ -13285,7 +13285,7 @@
      "min_radius_m": 35.0,
      "turn_deg": 57.9,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 40.2,
      "speed_cap_kmh": 60,
      "target_kmh": 150,
@@ -13685,7 +13685,7 @@
      "min_radius_m": 26.2,
      "turn_deg": 109.0,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 42.9,
      "speed_cap_kmh": 52,
      "target_kmh": 150,
@@ -13705,7 +13705,7 @@
      "min_radius_m": 44.2,
      "turn_deg": 29.4,
      "inside": "right",
-     "bank_actual_deg": -0.4,
+     "bank_actual_deg": 0.4,
      "bank_needed_for_target_deg": 37.3,
      "speed_cap_kmh": 67,
      "target_kmh": 150,
@@ -13725,9 +13725,9 @@
      "min_radius_m": 36.8,
      "turn_deg": 33.8,
      "inside": "left",
-     "bank_actual_deg": 3.4,
+     "bank_actual_deg": -3.4,
      "bank_needed_for_target_deg": 39.6,
-     "speed_cap_kmh": 64,
+     "speed_cap_kmh": 58,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 26.3,
@@ -13745,9 +13745,9 @@
      "min_radius_m": 28.2,
      "turn_deg": 52.4,
      "inside": "right",
-     "bank_actual_deg": -3.5,
+     "bank_actual_deg": 3.5,
      "bank_needed_for_target_deg": 42.3,
-     "speed_cap_kmh": 50,
+     "speed_cap_kmh": 57,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 31.6,
@@ -13765,7 +13765,7 @@
      "min_radius_m": 67.9,
      "turn_deg": 19.5,
      "inside": "left",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 30.3,
      "speed_cap_kmh": 83,
      "target_kmh": 150,
@@ -13785,9 +13785,9 @@
      "min_radius_m": 99.3,
      "turn_deg": 10.4,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 22.0,
-     "speed_cap_kmh": 100,
+     "speed_cap_kmh": 101,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -13925,7 +13925,7 @@
      "min_radius_m": 65.3,
      "turn_deg": 22.1,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 31.1,
      "speed_cap_kmh": 81,
      "target_kmh": 150,
@@ -13945,7 +13945,7 @@
      "min_radius_m": 18.3,
      "turn_deg": 161.1,
      "inside": "left",
-     "bank_actual_deg": -0.2,
+     "bank_actual_deg": 0.2,
      "bank_needed_for_target_deg": 45.4,
      "speed_cap_kmh": 43,
      "target_kmh": 150,
@@ -13965,9 +13965,9 @@
      "min_radius_m": 91.5,
      "turn_deg": 4.2,
      "inside": "left",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 24.0,
-     "speed_cap_kmh": 96,
+     "speed_cap_kmh": 97,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 2.0,
@@ -13985,7 +13985,7 @@
      "min_radius_m": 94.4,
      "turn_deg": 4.4,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 23.3,
      "speed_cap_kmh": 98,
      "target_kmh": 150,
@@ -14005,7 +14005,7 @@
      "min_radius_m": 40.1,
      "turn_deg": 35.4,
      "inside": "left",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 38.6,
      "speed_cap_kmh": 64,
      "target_kmh": 150,
@@ -14645,7 +14645,7 @@
      "min_radius_m": 46.8,
      "turn_deg": 7.8,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 36.5,
      "speed_cap_kmh": 69,
      "target_kmh": 150,
@@ -14665,7 +14665,7 @@
      "min_radius_m": 19.3,
      "turn_deg": 176.9,
      "inside": "left",
-     "bank_actual_deg": -0.2,
+     "bank_actual_deg": 0.2,
      "bank_needed_for_target_deg": 45.1,
      "speed_cap_kmh": 44,
      "target_kmh": 150,
@@ -14685,9 +14685,9 @@
      "min_radius_m": 140.4,
      "turn_deg": 1.6,
      "inside": "right",
-     "bank_actual_deg": 1.6,
+     "bank_actual_deg": -1.6,
      "bank_needed_for_target_deg": 12.9,
-     "speed_cap_kmh": 123,
+     "speed_cap_kmh": 116,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -14730,9 +14730,9 @@
      "min_radius_m": 163.2,
      "turn_deg": 1.4,
      "inside": "left",
-     "bank_actual_deg": -0.1,
+     "bank_actual_deg": 0.1,
      "bank_needed_for_target_deg": 8.7,
-     "speed_cap_kmh": 128,
+     "speed_cap_kmh": 129,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -14750,9 +14750,9 @@
      "min_radius_m": 17.7,
      "turn_deg": 66.8,
      "inside": "right",
-     "bank_actual_deg": 0.6,
+     "bank_actual_deg": -0.6,
      "bank_needed_for_target_deg": 45.6,
-     "speed_cap_kmh": 43,
+     "speed_cap_kmh": 42,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 38.7,
@@ -14770,9 +14770,9 @@
      "min_radius_m": 160.0,
      "turn_deg": 1.4,
      "inside": "left",
-     "bank_actual_deg": -1.9,
+     "bank_actual_deg": 1.9,
      "bank_needed_for_target_deg": 9.2,
-     "speed_cap_kmh": 123,
+     "speed_cap_kmh": 132,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -14810,7 +14810,7 @@
      "min_radius_m": 26.9,
      "turn_deg": 91.7,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 42.7,
      "speed_cap_kmh": 52,
      "target_kmh": 150,
@@ -14870,7 +14870,7 @@
      "min_radius_m": 39.7,
      "turn_deg": 34.4,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 38.7,
      "speed_cap_kmh": 64,
      "target_kmh": 150,
@@ -14890,7 +14890,7 @@
      "min_radius_m": 86.8,
      "turn_deg": 4.7,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 25.2,
      "speed_cap_kmh": 94,
      "target_kmh": 150,
@@ -14910,9 +14910,9 @@
      "min_radius_m": 75.5,
      "turn_deg": 5.7,
      "inside": "left",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 28.2,
-     "speed_cap_kmh": 88,
+     "speed_cap_kmh": 87,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 7.5,
@@ -14930,9 +14930,9 @@
      "min_radius_m": 174.3,
      "turn_deg": 1.3,
      "inside": "left",
-     "bank_actual_deg": 0.8,
+     "bank_actual_deg": -0.8,
      "bank_needed_for_target_deg": 6.8,
-     "speed_cap_kmh": 135,
+     "speed_cap_kmh": 131,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -14950,9 +14950,9 @@
      "min_radius_m": 56.8,
      "turn_deg": 21.6,
      "inside": "left",
-     "bank_actual_deg": 1.4,
+     "bank_actual_deg": -1.4,
      "bank_needed_for_target_deg": 33.5,
-     "speed_cap_kmh": 79,
+     "speed_cap_kmh": 73,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 15.5,
@@ -14970,7 +14970,7 @@
      "min_radius_m": 106.0,
      "turn_deg": 2.2,
      "inside": "left",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 20.4,
      "speed_cap_kmh": 104,
      "target_kmh": 150,
@@ -14990,9 +14990,9 @@
      "min_radius_m": 145.2,
      "turn_deg": 1.6,
      "inside": "right",
-     "bank_actual_deg": 0.3,
+     "bank_actual_deg": -0.3,
      "bank_needed_for_target_deg": 12.0,
-     "speed_cap_kmh": 122,
+     "speed_cap_kmh": 121,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -15010,9 +15010,9 @@
      "min_radius_m": 69.5,
      "turn_deg": 8.9,
      "inside": "right",
-     "bank_actual_deg": 0.7,
+     "bank_actual_deg": -0.7,
      "bank_needed_for_target_deg": 29.9,
-     "speed_cap_kmh": 85,
+     "speed_cap_kmh": 83,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 9.9,
@@ -15030,9 +15030,9 @@
      "min_radius_m": 22.9,
      "turn_deg": 93.0,
      "inside": "right",
-     "bank_actual_deg": 1.3,
+     "bank_actual_deg": -1.3,
      "bank_needed_for_target_deg": 44.0,
-     "speed_cap_kmh": 50,
+     "speed_cap_kmh": 46,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 35.1,
@@ -15050,7 +15050,7 @@
      "min_radius_m": 31.0,
      "turn_deg": 28.6,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 41.4,
      "speed_cap_kmh": 56,
      "target_kmh": 150,
@@ -15133,7 +15133,7 @@
      "min_radius_m": 29.1,
      "turn_deg": 65.9,
      "inside": "left",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 42.0,
      "speed_cap_kmh": 54,
      "target_kmh": 150,
@@ -15153,7 +15153,7 @@
      "min_radius_m": 127.7,
      "turn_deg": 1.8,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 15.5,
      "speed_cap_kmh": 114,
      "target_kmh": 150,
@@ -15173,7 +15173,7 @@
      "min_radius_m": 55.4,
      "turn_deg": 8.9,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 34.0,
      "speed_cap_kmh": 75,
      "target_kmh": 150,
@@ -15193,7 +15193,7 @@
      "min_radius_m": 26.3,
      "turn_deg": 67.7,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 42.9,
      "speed_cap_kmh": 52,
      "target_kmh": 150,
@@ -15213,7 +15213,7 @@
      "min_radius_m": 85.9,
      "turn_deg": 9.9,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 25.5,
      "speed_cap_kmh": 93,
      "target_kmh": 150,
@@ -15233,7 +15233,7 @@
      "min_radius_m": 140.7,
      "turn_deg": 1.6,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 12.9,
      "speed_cap_kmh": 120,
      "target_kmh": 150,
@@ -15253,7 +15253,7 @@
      "min_radius_m": 78.1,
      "turn_deg": 18.0,
      "inside": "left",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 27.5,
      "speed_cap_kmh": 89,
      "target_kmh": 150,
@@ -15273,9 +15273,9 @@
      "min_radius_m": 137.5,
      "turn_deg": 1.5,
      "inside": "right",
-     "bank_actual_deg": -0.7,
+     "bank_actual_deg": 0.7,
      "bank_needed_for_target_deg": 13.5,
-     "speed_cap_kmh": 117,
+     "speed_cap_kmh": 120,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -15293,9 +15293,9 @@
      "min_radius_m": 53.9,
      "turn_deg": 41.0,
      "inside": "right",
-     "bank_actual_deg": -0.9,
+     "bank_actual_deg": 0.9,
      "bank_needed_for_target_deg": 34.4,
-     "speed_cap_kmh": 73,
+     "speed_cap_kmh": 75,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 16.9,
@@ -15313,9 +15313,9 @@
      "min_radius_m": 75.3,
      "turn_deg": 7.6,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 28.3,
-     "speed_cap_kmh": 87,
+     "speed_cap_kmh": 88,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 7.6,
@@ -15333,7 +15333,7 @@
      "min_radius_m": 56.3,
      "turn_deg": 26.8,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 33.7,
      "speed_cap_kmh": 76,
      "target_kmh": 150,
@@ -15633,7 +15633,7 @@
      "min_radius_m": 51.9,
      "turn_deg": 74.9,
      "inside": "left",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 35.0,
      "speed_cap_kmh": 73,
      "target_kmh": 150,
@@ -15674,9 +15674,9 @@
      "min_radius_m": 178.0,
      "turn_deg": 1.3,
      "inside": "right",
-     "bank_actual_deg": -0.1,
+     "bank_actual_deg": 0.1,
      "bank_needed_for_target_deg": 6.2,
-     "speed_cap_kmh": 134,
+     "speed_cap_kmh": 135,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -15694,7 +15694,7 @@
      "min_radius_m": 12.2,
      "turn_deg": 98.5,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 47.4,
      "speed_cap_kmh": 35,
      "target_kmh": 150,
@@ -16074,7 +16074,7 @@
      "min_radius_m": 80.2,
      "turn_deg": 2.9,
      "inside": "left",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 27.0,
      "speed_cap_kmh": 90,
      "target_kmh": 150,
@@ -16094,7 +16094,7 @@
      "min_radius_m": 145.9,
      "turn_deg": 0.0,
      "inside": "right",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 11.8,
      "speed_cap_kmh": 122,
      "target_kmh": 150,
@@ -16114,9 +16114,9 @@
      "min_radius_m": 134.1,
      "turn_deg": 1.6,
      "inside": "right",
-     "bank_actual_deg": 0.3,
+     "bank_actual_deg": -0.3,
      "bank_needed_for_target_deg": 14.2,
-     "speed_cap_kmh": 117,
+     "speed_cap_kmh": 116,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -16159,9 +16159,9 @@
      "min_radius_m": 108.2,
      "turn_deg": 2.1,
      "inside": "right",
-     "bank_actual_deg": -0.8,
+     "bank_actual_deg": 0.8,
      "bank_needed_for_target_deg": 19.9,
-     "speed_cap_kmh": 103,
+     "speed_cap_kmh": 106,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -16179,9 +16179,9 @@
      "min_radius_m": 46.8,
      "turn_deg": 50.8,
      "inside": "left",
-     "bank_actual_deg": 0.7,
+     "bank_actual_deg": -0.7,
      "bank_needed_for_target_deg": 36.5,
-     "speed_cap_kmh": 70,
+     "speed_cap_kmh": 67,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 20.6,
@@ -16199,7 +16199,7 @@
      "min_radius_m": 198.5,
      "turn_deg": 1.2,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 3.1,
      "speed_cap_kmh": 142,
      "target_kmh": 150,
@@ -17319,7 +17319,7 @@
      "min_radius_m": 19.9,
      "turn_deg": 53.4,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 44.9,
      "speed_cap_kmh": 45,
      "target_kmh": 150,
@@ -17339,7 +17339,7 @@
      "min_radius_m": 31.8,
      "turn_deg": 52.0,
      "inside": "left",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 41.2,
      "speed_cap_kmh": 57,
      "target_kmh": 150,
@@ -17359,9 +17359,9 @@
      "min_radius_m": 13.8,
      "turn_deg": 168.1,
      "inside": "right",
-     "bank_actual_deg": 0.5,
+     "bank_actual_deg": -0.5,
      "bank_needed_for_target_deg": 46.9,
-     "speed_cap_kmh": 38,
+     "speed_cap_kmh": 37,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 41.4,
@@ -17379,9 +17379,9 @@
      "min_radius_m": 108.6,
      "turn_deg": 2.1,
      "inside": "left",
-     "bank_actual_deg": -2.6,
+     "bank_actual_deg": 2.6,
      "bank_needed_for_target_deg": 19.8,
-     "speed_cap_kmh": 100,
+     "speed_cap_kmh": 110,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -17428,9 +17428,9 @@
      "min_radius_m": 178.7,
      "turn_deg": 1.3,
      "inside": "left",
-     "bank_actual_deg": 1.1,
+     "bank_actual_deg": -1.1,
      "bank_needed_for_target_deg": 6.1,
-     "speed_cap_kmh": 137,
+     "speed_cap_kmh": 132,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -17448,9 +17448,9 @@
      "min_radius_m": 63.9,
      "turn_deg": 18.8,
      "inside": "right",
-     "bank_actual_deg": -0.4,
+     "bank_actual_deg": 0.4,
      "bank_needed_for_target_deg": 31.5,
-     "speed_cap_kmh": 80,
+     "speed_cap_kmh": 81,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 12.3,
@@ -17468,7 +17468,7 @@
      "min_radius_m": 92.8,
      "turn_deg": 8.1,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 23.7,
      "speed_cap_kmh": 97,
      "target_kmh": 150,
@@ -17569,7 +17569,7 @@
      "min_radius_m": 168.8,
      "turn_deg": 1.4,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 43.7,
      "speed_cap_kmh": 131,
      "target_kmh": 400,
@@ -17589,9 +17589,9 @@
      "min_radius_m": 159.5,
      "turn_deg": 6.2,
      "inside": "right",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 44.1,
-     "speed_cap_kmh": 128,
+     "speed_cap_kmh": 127,
      "target_kmh": 400,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -17609,9 +17609,9 @@
      "min_radius_m": 177.0,
      "turn_deg": 1.3,
      "inside": "right",
-     "bank_actual_deg": 0.3,
+     "bank_actual_deg": -0.3,
      "bank_needed_for_target_deg": 43.3,
-     "speed_cap_kmh": 135,
+     "speed_cap_kmh": 133,
      "target_kmh": 400,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -17629,9 +17629,9 @@
      "min_radius_m": 177.8,
      "turn_deg": 1.3,
      "inside": "right",
-     "bank_actual_deg": 0.4,
+     "bank_actual_deg": -0.4,
      "bank_needed_for_target_deg": 43.3,
-     "speed_cap_kmh": 136,
+     "speed_cap_kmh": 133,
      "target_kmh": 400,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -17649,9 +17649,9 @@
      "min_radius_m": 199.0,
      "turn_deg": 1.2,
      "inside": "right",
-     "bank_actual_deg": 0.7,
+     "bank_actual_deg": -0.7,
      "bank_needed_for_target_deg": 42.4,
-     "speed_cap_kmh": 144,
+     "speed_cap_kmh": 140,
      "target_kmh": 400,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -17669,9 +17669,9 @@
      "min_radius_m": 110.3,
      "turn_deg": 6.7,
      "inside": "right",
-     "bank_actual_deg": 1.6,
+     "bank_actual_deg": -1.6,
      "bank_needed_for_target_deg": 46.3,
-     "speed_cap_kmh": 110,
+     "speed_cap_kmh": 102,
      "target_kmh": 400,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -17712,7 +17712,7 @@
      "min_radius_m": 73.9,
      "turn_deg": 42.6,
      "inside": "left",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 28.7,
      "speed_cap_kmh": 87,
      "target_kmh": 150,
@@ -17972,9 +17972,9 @@
      "min_radius_m": 21.9,
      "turn_deg": 25.6,
      "inside": "right",
-     "bank_actual_deg": 3.1,
+     "bank_actual_deg": -3.1,
      "bank_needed_for_target_deg": 44.3,
-     "speed_cap_kmh": 50,
+     "speed_cap_kmh": 44,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 35.8,
@@ -17992,9 +17992,9 @@
      "min_radius_m": 50.3,
      "turn_deg": 0.0,
      "inside": "left",
-     "bank_actual_deg": -4.5,
+     "bank_actual_deg": 4.5,
      "bank_needed_for_target_deg": 35.5,
-     "speed_cap_kmh": 66,
+     "speed_cap_kmh": 77,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 18.7,
@@ -18033,7 +18033,7 @@
      "min_radius_m": 71.4,
      "turn_deg": 2.8,
      "inside": "right",
-     "bank_actual_deg": -0.2,
+     "bank_actual_deg": 0.2,
      "bank_needed_for_target_deg": 29.4,
      "speed_cap_kmh": 85,
      "target_kmh": 150,
@@ -18053,9 +18053,9 @@
      "min_radius_m": 26.1,
      "turn_deg": 57.7,
      "inside": "left",
-     "bank_actual_deg": -0.2,
+     "bank_actual_deg": 0.2,
      "bank_needed_for_target_deg": 43.0,
-     "speed_cap_kmh": 52,
+     "speed_cap_kmh": 51,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 33.0,
@@ -18073,7 +18073,7 @@
      "min_radius_m": 96.3,
      "turn_deg": 4.4,
      "inside": "right",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 22.8,
      "speed_cap_kmh": 99,
      "target_kmh": 150,
@@ -18093,7 +18093,7 @@
      "min_radius_m": 187.2,
      "turn_deg": 1.2,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 4.7,
      "speed_cap_kmh": 138,
      "target_kmh": 150,
@@ -18113,7 +18113,7 @@
      "min_radius_m": 83.6,
      "turn_deg": 22.8,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 26.1,
      "speed_cap_kmh": 92,
      "target_kmh": 150,
@@ -18133,9 +18133,9 @@
      "min_radius_m": 156.6,
      "turn_deg": 0.0,
      "inside": "right",
-     "bank_actual_deg": -0.3,
+     "bank_actual_deg": 0.3,
      "bank_needed_for_target_deg": 9.8,
-     "speed_cap_kmh": 126,
+     "speed_cap_kmh": 127,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -18174,9 +18174,9 @@
      "min_radius_m": 99.4,
      "turn_deg": 15.6,
      "inside": "left",
-     "bank_actual_deg": -1.9,
+     "bank_actual_deg": 1.9,
      "bank_needed_for_target_deg": 22.0,
-     "speed_cap_kmh": 96,
+     "speed_cap_kmh": 105,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -18194,9 +18194,9 @@
      "min_radius_m": 143.3,
      "turn_deg": 0.0,
      "inside": "right",
-     "bank_actual_deg": 0.8,
+     "bank_actual_deg": -0.8,
      "bank_needed_for_target_deg": 12.3,
-     "speed_cap_kmh": 122,
+     "speed_cap_kmh": 119,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -18315,7 +18315,7 @@
      "min_radius_m": 168.9,
      "turn_deg": 0.0,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 7.7,
      "speed_cap_kmh": 131,
      "target_kmh": 150,
@@ -18396,9 +18396,9 @@
      "min_radius_m": 79.7,
      "turn_deg": 0.0,
      "inside": "left",
-     "bank_actual_deg": 1.4,
+     "bank_actual_deg": -1.4,
      "bank_needed_for_target_deg": 27.1,
-     "speed_cap_kmh": 92,
+     "speed_cap_kmh": 88,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 6.0,
@@ -18416,9 +18416,9 @@
      "min_radius_m": 42.2,
      "turn_deg": 41.1,
      "inside": "right",
-     "bank_actual_deg": -0.5,
+     "bank_actual_deg": 0.5,
      "bank_needed_for_target_deg": 37.9,
-     "speed_cap_kmh": 65,
+     "speed_cap_kmh": 66,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 23.1,
@@ -18436,7 +18436,7 @@
      "min_radius_m": 53.7,
      "turn_deg": 36.4,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 34.5,
      "speed_cap_kmh": 74,
      "target_kmh": 150,
@@ -18456,7 +18456,7 @@
      "min_radius_m": 58.5,
      "turn_deg": 12.6,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 33.1,
      "speed_cap_kmh": 77,
      "target_kmh": 150,
@@ -18476,7 +18476,7 @@
      "min_radius_m": 98.2,
      "turn_deg": 26.1,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 22.3,
      "speed_cap_kmh": 100,
      "target_kmh": 150,
@@ -18517,7 +18517,7 @@
      "min_radius_m": 161.8,
      "turn_deg": 1.4,
      "inside": "right",
-     "bank_actual_deg": -0.0,
+     "bank_actual_deg": 0.0,
      "bank_needed_for_target_deg": 8.9,
      "speed_cap_kmh": 128,
      "target_kmh": 150,
@@ -18537,9 +18537,9 @@
      "min_radius_m": 57.4,
      "turn_deg": 21.7,
      "inside": "left",
-     "bank_actual_deg": -0.8,
+     "bank_actual_deg": 0.8,
      "bank_needed_for_target_deg": 33.4,
-     "speed_cap_kmh": 75,
+     "speed_cap_kmh": 78,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 15.2,
@@ -18557,9 +18557,9 @@
      "min_radius_m": 79.4,
      "turn_deg": 16.5,
      "inside": "left",
-     "bank_actual_deg": 0.7,
+     "bank_actual_deg": -0.7,
      "bank_needed_for_target_deg": 27.2,
-     "speed_cap_kmh": 91,
+     "speed_cap_kmh": 89,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 6.1,
@@ -18598,9 +18598,9 @@
      "min_radius_m": 119.9,
      "turn_deg": 3.0,
      "inside": "right",
-     "bank_actual_deg": 2.6,
+     "bank_actual_deg": -2.6,
      "bank_needed_for_target_deg": 17.2,
-     "speed_cap_kmh": 114,
+     "speed_cap_kmh": 107,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -18618,7 +18618,7 @@
      "min_radius_m": 185.4,
      "turn_deg": 1.2,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 5.0,
      "speed_cap_kmh": 137,
      "target_kmh": 150,
@@ -18638,7 +18638,7 @@
      "min_radius_m": 150.1,
      "turn_deg": 4.4,
      "inside": "right",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 11.0,
      "speed_cap_kmh": 124,
      "target_kmh": 150,
@@ -18658,7 +18658,7 @@
      "min_radius_m": 38.0,
      "turn_deg": 91.2,
      "inside": "right",
-     "bank_actual_deg": -0.1,
+     "bank_actual_deg": 0.1,
      "bank_needed_for_target_deg": 39.2,
      "speed_cap_kmh": 62,
      "target_kmh": 150,
@@ -18678,9 +18678,9 @@
      "min_radius_m": 73.5,
      "turn_deg": 10.0,
      "inside": "right",
-     "bank_actual_deg": -0.9,
+     "bank_actual_deg": 0.9,
      "bank_needed_for_target_deg": 28.8,
-     "speed_cap_kmh": 85,
+     "speed_cap_kmh": 88,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 8.3,
@@ -18698,9 +18698,9 @@
      "min_radius_m": 186.4,
      "turn_deg": 1.2,
      "inside": "left",
-     "bank_actual_deg": 3.1,
+     "bank_actual_deg": -3.1,
      "bank_needed_for_target_deg": 4.9,
-     "speed_cap_kmh": 145,
+     "speed_cap_kmh": 130,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -18739,9 +18739,9 @@
      "min_radius_m": 34.6,
      "turn_deg": 8.6,
      "inside": "left",
-     "bank_actual_deg": 0.2,
+     "bank_actual_deg": -0.2,
      "bank_needed_for_target_deg": 40.3,
-     "speed_cap_kmh": 60,
+     "speed_cap_kmh": 59,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 27.6,
@@ -18759,7 +18759,7 @@
      "min_radius_m": 17.6,
      "turn_deg": 77.0,
      "inside": "left",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 45.7,
      "speed_cap_kmh": 42,
      "target_kmh": 150,
@@ -18779,7 +18779,7 @@
      "min_radius_m": 47.6,
      "turn_deg": 13.3,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 36.3,
      "speed_cap_kmh": 70,
      "target_kmh": 150,
@@ -18899,7 +18899,7 @@
      "min_radius_m": 29.7,
      "turn_deg": 66.7,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 41.8,
      "speed_cap_kmh": 55,
      "target_kmh": 150,
@@ -18919,7 +18919,7 @@
      "min_radius_m": 43.5,
      "turn_deg": 17.5,
      "inside": "left",
-     "bank_actual_deg": 0.0,
+     "bank_actual_deg": -0.0,
      "bank_needed_for_target_deg": 37.5,
      "speed_cap_kmh": 67,
      "target_kmh": 150,
@@ -18939,7 +18939,7 @@
      "min_radius_m": 169.5,
      "turn_deg": 1.4,
      "inside": "left",
-     "bank_actual_deg": 0.1,
+     "bank_actual_deg": -0.1,
      "bank_needed_for_target_deg": 7.6,
      "speed_cap_kmh": 131,
      "target_kmh": 150,
@@ -18959,9 +18959,9 @@
      "min_radius_m": 61.0,
      "turn_deg": 3.8,
      "inside": "left",
-     "bank_actual_deg": 0.3,
+     "bank_actual_deg": -0.3,
      "bank_needed_for_target_deg": 32.3,
-     "speed_cap_kmh": 79,
+     "speed_cap_kmh": 78,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 13.6,
@@ -19192,9 +19192,9 @@
      "min_radius_m": 56.9,
      "turn_deg": 83.3,
      "inside": "left",
-     "bank_actual_deg": -1.0,
+     "bank_actual_deg": 1.0,
      "bank_needed_for_target_deg": 33.5,
-     "speed_cap_kmh": 72,
+     "speed_cap_kmh": 77,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 15.5,
@@ -19212,9 +19212,9 @@
      "min_radius_m": 97.9,
      "turn_deg": 6.0,
      "inside": "right",
-     "bank_actual_deg": 3.2,
+     "bank_actual_deg": -3.2,
      "bank_needed_for_target_deg": 22.4,
-     "speed_cap_kmh": 105,
+     "speed_cap_kmh": 95,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.1,
@@ -19232,9 +19232,9 @@
      "min_radius_m": 97.9,
      "turn_deg": 3.8,
      "inside": "left",
-     "bank_actual_deg": -3.3,
+     "bank_actual_deg": 3.3,
      "bank_needed_for_target_deg": 22.4,
-     "speed_cap_kmh": 94,
+     "speed_cap_kmh": 106,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.1,
@@ -19273,9 +19273,9 @@
      "min_radius_m": 103.4,
      "turn_deg": 3.3,
      "inside": "left",
-     "bank_actual_deg": 3.5,
+     "bank_actual_deg": -3.5,
      "bank_needed_for_target_deg": 21.1,
-     "speed_cap_kmh": 109,
+     "speed_cap_kmh": 96,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -19293,9 +19293,9 @@
      "min_radius_m": 119.5,
      "turn_deg": 3.2,
      "inside": "right",
-     "bank_actual_deg": -2.8,
+     "bank_actual_deg": 2.8,
      "bank_needed_for_target_deg": 17.3,
-     "speed_cap_kmh": 106,
+     "speed_cap_kmh": 115,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -19313,9 +19313,9 @@
      "min_radius_m": 48.9,
      "turn_deg": 131.9,
      "inside": "left",
-     "bank_actual_deg": -0.4,
+     "bank_actual_deg": 0.4,
      "bank_needed_for_target_deg": 35.9,
-     "speed_cap_kmh": 70,
+     "speed_cap_kmh": 71,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 19.5,
@@ -19354,9 +19354,9 @@
      "min_radius_m": 123.4,
      "turn_deg": 31.9,
      "inside": "left",
-     "bank_actual_deg": 1.2,
+     "bank_actual_deg": -1.2,
      "bank_needed_for_target_deg": 16.5,
-     "speed_cap_kmh": 113,
+     "speed_cap_kmh": 110,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -19395,9 +19395,9 @@
      "min_radius_m": 27.8,
      "turn_deg": 19.0,
      "inside": "left",
-     "bank_actual_deg": -2.7,
+     "bank_actual_deg": 2.7,
      "bank_needed_for_target_deg": 42.4,
-     "speed_cap_kmh": 51,
+     "speed_cap_kmh": 56,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 31.9,
@@ -19456,7 +19456,7 @@
      "min_radius_m": 21.4,
      "turn_deg": 55.9,
      "inside": "right",
-     "bank_actual_deg": -0.1,
+     "bank_actual_deg": 0.1,
      "bank_needed_for_target_deg": 44.4,
      "speed_cap_kmh": 47,
      "target_kmh": 150,
@@ -19476,9 +19476,9 @@
      "min_radius_m": 172.5,
      "turn_deg": 0.7,
      "inside": "left",
-     "bank_actual_deg": 0.4,
+     "bank_actual_deg": -0.4,
      "bank_needed_for_target_deg": 7.1,
-     "speed_cap_kmh": 134,
+     "speed_cap_kmh": 131,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 0.0,
@@ -19496,9 +19496,9 @@
      "min_radius_m": 49.6,
      "turn_deg": 10.5,
      "inside": "left",
-     "bank_actual_deg": 1.5,
+     "bank_actual_deg": -1.5,
      "bank_needed_for_target_deg": 35.7,
-     "speed_cap_kmh": 73,
+     "speed_cap_kmh": 69,
      "target_kmh": 150,
      "bank_needed_by_kmh": {
       "100": 19.1,
@@ -19590,7 +19590,7 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_bayline-c12",
-   "message": "c_bayline s=5778 m: radius 187 m, bank -0.0 deg caps at 138 km/h, road target 400"
+   "message": "c_bayline s=5778 m: radius 187 m, bank 0.0 deg caps at 138 km/h, road target 400"
   },
   {
    "severity": "info",
@@ -19608,73 +19608,73 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_corniche-c02",
-   "message": "c_corniche s=3269 m: radius 174 m, bank 1.1 deg caps at 136 km/h, road target 400"
+   "message": "c_corniche s=3269 m: radius 174 m, bank -1.1 deg caps at 130 km/h, road target 400"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_corniche-c03",
-   "message": "c_corniche s=3293 m: radius 197 m, bank 0.4 deg caps at 143 km/h, road target 400"
+   "message": "c_corniche s=3293 m: radius 197 m, bank -0.4 deg caps at 140 km/h, road target 400"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_corniche-c04",
-   "message": "c_corniche s=3301 m: radius 179 m, bank 0.3 deg caps at 135 km/h, road target 400"
+   "message": "c_corniche s=3301 m: radius 179 m, bank -0.3 deg caps at 134 km/h, road target 400"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_corniche-c05",
-   "message": "c_corniche s=3317 m: radius 199 m, bank 0.2 deg caps at 143 km/h, road target 400"
+   "message": "c_corniche s=3317 m: radius 199 m, bank -0.2 deg caps at 142 km/h, road target 400"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_corniche-c06",
-   "message": "c_corniche s=3329 m: radius 179 m, bank 0.1 deg caps at 135 km/h, road target 400"
+   "message": "c_corniche s=3329 m: radius 179 m, bank -0.1 deg caps at 135 km/h, road target 400"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_corniche-c07",
-   "message": "c_corniche s=3341 m: radius 174 m, bank 0.1 deg caps at 133 km/h, road target 400"
+   "message": "c_corniche s=3341 m: radius 174 m, bank -0.1 deg caps at 133 km/h, road target 400"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_corniche-c08",
-   "message": "c_corniche s=3353 m: radius 174 m, bank 0.0 deg caps at 133 km/h, road target 400"
+   "message": "c_corniche s=3353 m: radius 174 m, bank -0.0 deg caps at 133 km/h, road target 400"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_corniche-c09",
-   "message": "c_corniche s=3365 m: radius 169 m, bank 0.0 deg caps at 131 km/h, road target 400"
+   "message": "c_corniche s=3365 m: radius 169 m, bank -0.0 deg caps at 131 km/h, road target 400"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_corniche-c10",
-   "message": "c_corniche s=3377 m: radius 169 m, bank 0.0 deg caps at 131 km/h, road target 400"
+   "message": "c_corniche s=3377 m: radius 169 m, bank -0.0 deg caps at 131 km/h, road target 400"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_corniche-c11",
-   "message": "c_corniche s=3385 m: radius 187 m, bank 0.0 deg caps at 138 km/h, road target 400"
+   "message": "c_corniche s=3385 m: radius 187 m, bank -0.0 deg caps at 138 km/h, road target 400"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_corniche-c12",
-   "message": "c_corniche s=3393 m: radius 199 m, bank 0.0 deg caps at 142 km/h, road target 400"
+   "message": "c_corniche s=3393 m: radius 199 m, bank -0.0 deg caps at 142 km/h, road target 400"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_corniche-c13",
-   "message": "c_corniche s=3401 m: radius 188 m, bank 0.0 deg caps at 138 km/h, road target 400"
+   "message": "c_corniche s=3401 m: radius 188 m, bank -0.0 deg caps at 138 km/h, road target 400"
   },
   {
    "severity": "warn",
@@ -19686,7 +19686,7 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_corniche-c15",
-   "message": "c_corniche s=3421 m: radius 180 m, bank 0.0 deg caps at 135 km/h, road target 400"
+   "message": "c_corniche s=3421 m: radius 180 m, bank -0.0 deg caps at 135 km/h, road target 400"
   },
   {
    "severity": "warn",
@@ -19896,7 +19896,7 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_gate_e-c01",
-   "message": "c_gate_e s=67 m: radius 66 m, bank -0.0 deg caps at 82 km/h, road target 150"
+   "message": "c_gate_e s=67 m: radius 66 m, bank 0.0 deg caps at 82 km/h, road target 150"
   },
   {
    "severity": "note",
@@ -20004,25 +20004,25 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_dock_quay-c01",
-   "message": "c_dock_quay s=60 m: radius 194 m, bank 0.1 deg caps at 141 km/h, road target 400"
+   "message": "c_dock_quay s=60 m: radius 194 m, bank -0.1 deg caps at 140 km/h, road target 400"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_dock_quay-c02",
-   "message": "c_dock_quay s=88 m: radius 163 m, bank 0.0 deg caps at 129 km/h, road target 400"
+   "message": "c_dock_quay s=88 m: radius 163 m, bank -0.0 deg caps at 129 km/h, road target 400"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_dock_quay-c03",
-   "message": "c_dock_quay s=96 m: radius 179 m, bank 0.0 deg caps at 135 km/h, road target 400"
+   "message": "c_dock_quay s=96 m: radius 179 m, bank -0.0 deg caps at 135 km/h, road target 400"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_seawall_e-c01",
-   "message": "c_seawall_e s=28 m: radius 174 m, bank 0.5 deg caps at 134 km/h, road target 400"
+   "message": "c_seawall_e s=28 m: radius 174 m, bank -0.5 deg caps at 132 km/h, road target 400"
   },
   {
    "severity": "note",
@@ -20034,97 +20034,103 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_yard_back-c01",
-   "message": "c_yard_back s=3 m: radius 29 m, bank 0.7 deg caps at 55 km/h, road target 150"
+   "message": "c_yard_back s=3 m: radius 29 m, bank -0.7 deg caps at 53 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
-   "id": "c_yard_back-c03",
-   "message": "c_yard_back s=604 m: radius 175 m, bank -1.6 deg caps at 130 km/h, road target 150"
+   "id": "c_yard_a1-c01",
+   "message": "c_yard_a1 s=4 m: radius 175 m, bank -1.2 deg caps at 131 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_yard_a1-c02",
-   "message": "c_yard_a1 s=24 m: radius 44 m, bank -0.5 deg caps at 67 km/h, road target 150"
+   "message": "c_yard_a1 s=24 m: radius 44 m, bank 0.5 deg caps at 68 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_yard_a1-c03",
-   "message": "c_yard_a1 s=68 m: radius 27 m, bank 0.1 deg caps at 52 km/h, road target 150"
+   "message": "c_yard_a1 s=68 m: radius 27 m, bank -0.1 deg caps at 52 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_yard_a1-c04",
-   "message": "c_yard_a1 s=127 m: radius 27 m, bank -0.0 deg caps at 52 km/h, road target 150"
+   "message": "c_yard_a1 s=127 m: radius 27 m, bank 0.0 deg caps at 52 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_yard_a1-c05",
-   "message": "c_yard_a1 s=199 m: radius 30 m, bank 0.1 deg caps at 55 km/h, road target 150"
+   "message": "c_yard_a1 s=199 m: radius 30 m, bank -0.1 deg caps at 55 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_yard_a1-c06",
-   "message": "c_yard_a1 s=255 m: radius 52 m, bank -0.5 deg caps at 73 km/h, road target 150"
+   "message": "c_yard_a1 s=255 m: radius 52 m, bank 0.5 deg caps at 73 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_eastflank-c01",
-   "message": "c_eastflank s=300 m: radius 137 m, bank -1.6 deg caps at 115 km/h, road target 150"
+   "message": "c_eastflank s=300 m: radius 137 m, bank 1.6 deg caps at 122 km/h, road target 150"
+  },
+  {
+   "severity": "warn",
+   "kind": "corner_short",
+   "id": "c_eastflank-c02",
+   "message": "c_eastflank s=436 m: radius 179 m, bank -0.1 deg caps at 135 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_eastflank-c03",
-   "message": "c_eastflank s=444 m: radius 46 m, bank 0.0 deg caps at 68 km/h, road target 150"
+   "message": "c_eastflank s=444 m: radius 46 m, bank -0.0 deg caps at 68 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_eastflank-c04",
-   "message": "c_eastflank s=528 m: radius 26 m, bank -0.0 deg caps at 52 km/h, road target 150"
+   "message": "c_eastflank s=528 m: radius 26 m, bank 0.0 deg caps at 52 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_eastflank-c05",
-   "message": "c_eastflank s=628 m: radius 35 m, bank 0.9 deg caps at 61 km/h, road target 150"
+   "message": "c_eastflank s=628 m: radius 35 m, bank -0.9 deg caps at 59 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_eastflank-c06",
-   "message": "c_eastflank s=828 m: radius 91 m, bank -0.1 deg caps at 96 km/h, road target 150"
+   "message": "c_eastflank s=828 m: radius 91 m, bank 0.1 deg caps at 97 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_eastflank-c08",
-   "message": "c_eastflank s=988 m: radius 75 m, bank -0.1 deg caps at 87 km/h, road target 150"
+   "message": "c_eastflank s=988 m: radius 75 m, bank 0.1 deg caps at 88 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_eastflank-c09",
-   "message": "c_eastflank s=1012 m: radius 21 m, bank -0.0 deg caps at 47 km/h, road target 150"
+   "message": "c_eastflank s=1012 m: radius 21 m, bank 0.0 deg caps at 47 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_eastflank-c10",
-   "message": "c_eastflank s=1060 m: radius 37 m, bank 0.0 deg caps at 61 km/h, road target 150"
+   "message": "c_eastflank s=1060 m: radius 37 m, bank -0.0 deg caps at 61 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_eastflank-c11",
-   "message": "c_eastflank s=1108 m: radius 24 m, bank -0.0 deg caps at 50 km/h, road target 150"
+   "message": "c_eastflank s=1108 m: radius 24 m, bank 0.0 deg caps at 50 km/h, road target 150"
   },
   {
    "severity": "note",
@@ -20238,25 +20244,25 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_eastflank-c32",
-   "message": "c_eastflank s=2651 m: radius 58 m, bank 0.0 deg caps at 77 km/h, road target 150"
+   "message": "c_eastflank s=2651 m: radius 58 m, bank -0.0 deg caps at 77 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_eastflank-c33",
-   "message": "c_eastflank s=2687 m: radius 44 m, bank -0.2 deg caps at 66 km/h, road target 150"
+   "message": "c_eastflank s=2687 m: radius 44 m, bank 0.2 deg caps at 67 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_eastflank-c34",
-   "message": "c_eastflank s=2743 m: radius 93 m, bank 1.2 deg caps at 99 km/h, road target 150"
+   "message": "c_eastflank s=2743 m: radius 93 m, bank -1.2 deg caps at 95 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_eastflank-c35",
-   "message": "c_eastflank s=2815 m: radius 21 m, bank -0.1 deg caps at 46 km/h, road target 150"
+   "message": "c_eastflank s=2815 m: radius 21 m, bank 0.1 deg caps at 46 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -20322,19 +20328,19 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_eastflank-c46",
-   "message": "c_eastflank s=3879 m: radius 65 m, bank 0.0 deg caps at 81 km/h, road target 150"
+   "message": "c_eastflank s=3879 m: radius 65 m, bank -0.0 deg caps at 81 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_eastflank-c47",
-   "message": "c_eastflank s=3907 m: radius 49 m, bank -0.0 deg caps at 71 km/h, road target 150"
+   "message": "c_eastflank s=3907 m: radius 49 m, bank 0.0 deg caps at 71 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_promenade-c01",
-   "message": "c_promenade s=24 m: radius 75 m, bank -1.6 deg caps at 87 km/h, road target 150"
+   "message": "c_promenade s=24 m: radius 75 m, bank 1.6 deg caps at 88 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -20346,25 +20352,25 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_promenade-c04",
-   "message": "c_promenade s=1621 m: radius 146 m, bank 0.3 deg caps at 123 km/h, road target 150"
+   "message": "c_promenade s=1621 m: radius 146 m, bank -0.3 deg caps at 121 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_promenade-c05",
-   "message": "c_promenade s=1649 m: radius 135 m, bank 0.5 deg caps at 118 km/h, road target 150"
+   "message": "c_promenade s=1649 m: radius 135 m, bank -0.5 deg caps at 117 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_causeway-c01",
-   "message": "c_causeway s=4 m: radius 123 m, bank 0.6 deg caps at 113 km/h, road target 150"
+   "message": "c_causeway s=4 m: radius 123 m, bank -0.6 deg caps at 111 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_causeway-c02",
-   "message": "c_causeway s=48 m: radius 50 m, bank -0.0 deg caps at 71 km/h, road target 150"
+   "message": "c_causeway s=48 m: radius 50 m, bank 0.0 deg caps at 71 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -20382,25 +20388,25 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_hotel_hill-c01",
-   "message": "c_hotel_hill s=4 m: radius 90 m, bank -0.1 deg caps at 95 km/h, road target 150"
+   "message": "c_hotel_hill s=4 m: radius 90 m, bank 0.1 deg caps at 96 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_hotel_hill-c02",
-   "message": "c_hotel_hill s=16 m: radius 34 m, bank -0.4 deg caps at 59 km/h, road target 150"
+   "message": "c_hotel_hill s=16 m: radius 34 m, bank 0.4 deg caps at 59 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_hotel_hill-c03",
-   "message": "c_hotel_hill s=68 m: radius 39 m, bank 0.1 deg caps at 63 km/h, road target 150"
+   "message": "c_hotel_hill s=68 m: radius 39 m, bank -0.1 deg caps at 63 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_hotel_hill-c04",
-   "message": "c_hotel_hill s=100 m: radius 71 m, bank 0.0 deg caps at 85 km/h, road target 150"
+   "message": "c_hotel_hill s=100 m: radius 71 m, bank -0.0 deg caps at 85 km/h, road target 150"
   },
   {
    "severity": "note",
@@ -20418,25 +20424,19 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_hotel_hill-c07",
-   "message": "c_hotel_hill s=779 m: radius 108 m, bank 0.0 deg caps at 105 km/h, road target 150"
+   "message": "c_hotel_hill s=779 m: radius 108 m, bank -0.0 deg caps at 105 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_hotel_hill-c08",
-   "message": "c_hotel_hill s=787 m: radius 57 m, bank -0.0 deg caps at 76 km/h, road target 150"
+   "message": "c_hotel_hill s=787 m: radius 57 m, bank 0.0 deg caps at 76 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_bellavista-c01",
-   "message": "c_bellavista s=16 m: radius 73 m, bank -2.1 deg caps at 84 km/h, road target 150"
-  },
-  {
-   "severity": "warn",
-   "kind": "corner_short",
-   "id": "c_bellavista-c02",
-   "message": "c_bellavista s=68 m: radius 179 m, bank -0.3 deg caps at 134 km/h, road target 150"
+   "message": "c_bellavista s=16 m: radius 73 m, bank 2.1 deg caps at 89 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -20454,73 +20454,73 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_bellavista-c05",
-   "message": "c_bellavista s=546 m: radius 66 m, bank 0.0 deg caps at 82 km/h, road target 150"
+   "message": "c_bellavista s=546 m: radius 66 m, bank -0.0 deg caps at 82 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_bellavista-c06",
-   "message": "c_bellavista s=562 m: radius 150 m, bank -0.0 deg caps at 123 km/h, road target 150"
+   "message": "c_bellavista s=562 m: radius 150 m, bank 0.0 deg caps at 123 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_bellavista-c07",
-   "message": "c_bellavista s=574 m: radius 51 m, bank 0.1 deg caps at 72 km/h, road target 150"
+   "message": "c_bellavista s=574 m: radius 51 m, bank -0.1 deg caps at 71 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_marina-c01",
-   "message": "c_marina s=1696 m: radius 120 m, bank 0.8 deg caps at 113 km/h, road target 150"
+   "message": "c_marina s=1696 m: radius 120 m, bank -0.8 deg caps at 107 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_marina-c02",
-   "message": "c_marina s=1784 m: radius 150 m, bank 0.3 deg caps at 124 km/h, road target 150"
+   "message": "c_marina s=1784 m: radius 150 m, bank -0.3 deg caps at 123 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_marina-c03",
-   "message": "c_marina s=1812 m: radius 161 m, bank 0.7 deg caps at 129 km/h, road target 150"
+   "message": "c_marina s=1812 m: radius 161 m, bank -0.7 deg caps at 126 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_marina-c04",
-   "message": "c_marina s=1824 m: radius 148 m, bank 0.8 deg caps at 124 km/h, road target 150"
+   "message": "c_marina s=1824 m: radius 148 m, bank -0.8 deg caps at 121 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_marina-c05",
-   "message": "c_marina s=1860 m: radius 149 m, bank 0.3 deg caps at 124 km/h, road target 150"
+   "message": "c_marina s=1860 m: radius 149 m, bank -0.3 deg caps at 123 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_harbour-c01",
-   "message": "c_harbour s=52 m: radius 104 m, bank -0.7 deg caps at 102 km/h, road target 150"
+   "message": "c_harbour s=52 m: radius 104 m, bank 0.7 deg caps at 104 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_harbour-c02",
-   "message": "c_harbour s=92 m: radius 168 m, bank -0.2 deg caps at 130 km/h, road target 150"
+   "message": "c_harbour s=92 m: radius 168 m, bank 0.2 deg caps at 131 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_harbour-c06",
-   "message": "c_harbour s=1383 m: radius 72 m, bank -1.5 deg caps at 82 km/h, road target 150"
+   "message": "c_harbour s=1383 m: radius 72 m, bank 1.5 deg caps at 89 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_bayline_e-c02",
-   "message": "c_bayline_e s=16 m: radius 56 m, bank 0.2 deg caps at 76 km/h, road target 150"
+   "message": "c_bayline_e s=16 m: radius 56 m, bank -0.2 deg caps at 75 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -20538,7 +20538,7 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_bayline_e-c05",
-   "message": "c_bayline_e s=569 m: radius 107 m, bank -0.0 deg caps at 104 km/h, road target 150"
+   "message": "c_bayline_e s=569 m: radius 107 m, bank 0.0 deg caps at 104 km/h, road target 150"
   },
   {
    "severity": "info",
@@ -20549,62 +20549,68 @@
   {
    "severity": "warn",
    "kind": "corner_short",
+   "id": "c_fortuna-c01",
+   "message": "c_fortuna s=28 m: radius 198 m, bank -4.7 deg caps at 130 km/h, road target 150"
+  },
+  {
+   "severity": "warn",
+   "kind": "corner_short",
    "id": "c_fortuna-c02",
-   "message": "c_fortuna s=168 m: radius 129 m, bank -0.0 deg caps at 115 km/h, road target 150"
+   "message": "c_fortuna s=168 m: radius 129 m, bank 0.0 deg caps at 115 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_fortuna-c03",
-   "message": "c_fortuna s=192 m: radius 114 m, bank -0.0 deg caps at 108 km/h, road target 150"
+   "message": "c_fortuna s=192 m: radius 114 m, bank 0.0 deg caps at 108 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_fortuna-c05",
-   "message": "c_fortuna s=324 m: radius 171 m, bank 0.2 deg caps at 132 km/h, road target 150"
+   "message": "c_fortuna s=324 m: radius 171 m, bank -0.2 deg caps at 132 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_fortuna-c06",
-   "message": "c_fortuna s=344 m: radius 94 m, bank 1.2 deg caps at 102 km/h, road target 150"
+   "message": "c_fortuna s=344 m: radius 94 m, bank -1.2 deg caps at 94 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_fortuna-c07",
-   "message": "c_fortuna s=451 m: radius 170 m, bank 0.1 deg caps at 132 km/h, road target 150"
+   "message": "c_fortuna s=451 m: radius 170 m, bank -0.1 deg caps at 131 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_fortuna-c08",
-   "message": "c_fortuna s=499 m: radius 132 m, bank -0.1 deg caps at 116 km/h, road target 150"
+   "message": "c_fortuna s=499 m: radius 132 m, bank 0.1 deg caps at 116 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_fortuna-c09",
-   "message": "c_fortuna s=519 m: radius 101 m, bank -0.8 deg caps at 101 km/h, road target 150"
+   "message": "c_fortuna s=519 m: radius 101 m, bank 0.8 deg caps at 102 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_fortuna-c10",
-   "message": "c_fortuna s=599 m: radius 154 m, bank -2.3 deg caps at 120 km/h, road target 150"
+   "message": "c_fortuna s=599 m: radius 154 m, bank 2.3 deg caps at 130 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_fortuna-c11",
-   "message": "c_fortuna s=675 m: radius 145 m, bank 0.1 deg caps at 121 km/h, road target 150"
+   "message": "c_fortuna s=675 m: radius 145 m, bank -0.1 deg caps at 121 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_fortuna-c12",
-   "message": "c_fortuna s=695 m: radius 131 m, bank 0.0 deg caps at 115 km/h, road target 150"
+   "message": "c_fortuna s=695 m: radius 131 m, bank -0.0 deg caps at 115 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -20622,67 +20628,61 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_fortuna-c15",
-   "message": "c_fortuna s=907 m: radius 99 m, bank -0.1 deg caps at 100 km/h, road target 150"
+   "message": "c_fortuna s=907 m: radius 99 m, bank 0.1 deg caps at 101 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_fortuna-c16",
-   "message": "c_fortuna s=1059 m: radius 70 m, bank -1.7 deg caps at 82 km/h, road target 150"
+   "message": "c_fortuna s=1059 m: radius 70 m, bank 1.7 deg caps at 88 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_casino-c02",
-   "message": "c_casino s=264 m: radius 132 m, bank 0.3 deg caps at 117 km/h, road target 150"
+   "message": "c_casino s=264 m: radius 132 m, bank -0.3 deg caps at 115 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_casino-c03",
-   "message": "c_casino s=280 m: radius 158 m, bank 0.6 deg caps at 128 km/h, road target 150"
+   "message": "c_casino s=280 m: radius 158 m, bank -0.6 deg caps at 125 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_casino-c04",
-   "message": "c_casino s=288 m: radius 145 m, bank 1.6 deg caps at 125 km/h, road target 150"
+   "message": "c_casino s=288 m: radius 145 m, bank -1.6 deg caps at 118 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_casino-c05",
-   "message": "c_casino s=328 m: radius 130 m, bank 2.0 deg caps at 119 km/h, road target 150"
+   "message": "c_casino s=328 m: radius 130 m, bank -2.0 deg caps at 110 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_casino-c06",
-   "message": "c_casino s=692 m: radius 169 m, bank 0.2 deg caps at 131 km/h, road target 150"
+   "message": "c_casino s=692 m: radius 169 m, bank -0.2 deg caps at 131 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_casino-c07",
-   "message": "c_casino s=712 m: radius 105 m, bank -1.4 deg caps at 100 km/h, road target 150"
-  },
-  {
-   "severity": "warn",
-   "kind": "corner_short",
-   "id": "c_casino-c08",
-   "message": "c_casino s=821 m: radius 179 m, bank -0.2 deg caps at 135 km/h, road target 150"
+   "message": "c_casino s=712 m: radius 105 m, bank 1.4 deg caps at 106 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_casino-c09",
-   "message": "c_casino s=1261 m: radius 112 m, bank 0.5 deg caps at 108 km/h, road target 150"
+   "message": "c_casino s=1261 m: radius 112 m, bank -0.5 deg caps at 106 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_casino-c10",
-   "message": "c_casino s=1301 m: radius 132 m, bank 1.2 deg caps at 118 km/h, road target 150"
+   "message": "c_casino s=1301 m: radius 132 m, bank -1.2 deg caps at 113 km/h, road target 150"
   },
   {
    "severity": "info",
@@ -20694,49 +20694,49 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_beau_rivage-c01",
-   "message": "c_beau_rivage s=4 m: radius 134 m, bank -2.2 deg caps at 112 km/h, road target 150"
+   "message": "c_beau_rivage s=4 m: radius 134 m, bank 2.2 deg caps at 121 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_beau_rivage-c02",
-   "message": "c_beau_rivage s=12 m: radius 31 m, bank 1.9 deg caps at 58 km/h, road target 150"
+   "message": "c_beau_rivage s=12 m: radius 31 m, bank -1.9 deg caps at 54 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_beau_rivage-c03",
-   "message": "c_beau_rivage s=80 m: radius 120 m, bank 0.4 deg caps at 111 km/h, road target 150"
+   "message": "c_beau_rivage s=80 m: radius 120 m, bank -0.4 deg caps at 110 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_beau_rivage-c04",
-   "message": "c_beau_rivage s=128 m: radius 159 m, bank 0.1 deg caps at 127 km/h, road target 150"
+   "message": "c_beau_rivage s=128 m: radius 159 m, bank -0.1 deg caps at 127 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_beau_rivage-c05",
-   "message": "c_beau_rivage s=321 m: radius 171 m, bank 0.1 deg caps at 132 km/h, road target 150"
+   "message": "c_beau_rivage s=321 m: radius 171 m, bank -0.1 deg caps at 132 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_beau_rivage-c06",
-   "message": "c_beau_rivage s=341 m: radius 34 m, bank 0.0 deg caps at 59 km/h, road target 150"
+   "message": "c_beau_rivage s=341 m: radius 34 m, bank -0.0 deg caps at 59 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_beau_rivage-c07",
-   "message": "c_beau_rivage s=529 m: radius 86 m, bank -0.2 deg caps at 93 km/h, road target 150"
+   "message": "c_beau_rivage s=529 m: radius 86 m, bank 0.2 deg caps at 94 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_beau_rivage-c09",
-   "message": "c_beau_rivage s=574 m: radius 144 m, bank 0.0 deg caps at 121 km/h, road target 150"
+   "message": "c_beau_rivage s=574 m: radius 144 m, bank -0.0 deg caps at 121 km/h, road target 150"
   },
   {
    "severity": "info",
@@ -20748,7 +20748,7 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_grand_hotel-c01",
-   "message": "c_grand_hotel s=48 m: radius 26 m, bank 0.2 deg caps at 52 km/h, road target 150"
+   "message": "c_grand_hotel s=48 m: radius 26 m, bank -0.2 deg caps at 51 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -20778,25 +20778,25 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_grand_hotel-c06",
-   "message": "c_grand_hotel s=643 m: radius 101 m, bank 2.8 deg caps at 106 km/h, road target 150"
+   "message": "c_grand_hotel s=643 m: radius 101 m, bank -2.8 deg caps at 97 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_spire_ave-c01",
-   "message": "c_spire_ave s=20 m: radius 66 m, bank -0.0 deg caps at 82 km/h, road target 150"
+   "message": "c_spire_ave s=20 m: radius 66 m, bank 0.0 deg caps at 82 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_spire_ave-c02",
-   "message": "c_spire_ave s=52 m: radius 66 m, bank 0.0 deg caps at 82 km/h, road target 150"
+   "message": "c_spire_ave s=52 m: radius 66 m, bank -0.0 deg caps at 82 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_spire_ave-c03",
-   "message": "c_spire_ave s=88 m: radius 81 m, bank 0.0 deg caps at 91 km/h, road target 150"
+   "message": "c_spire_ave s=88 m: radius 81 m, bank -0.0 deg caps at 91 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -21090,49 +21090,49 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_spire_ave-c54",
-   "message": "c_spire_ave s=2249 m: radius 111 m, bank -0.1 deg caps at 106 km/h, road target 150"
+   "message": "c_spire_ave s=2249 m: radius 111 m, bank 0.1 deg caps at 107 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_spire_ave-c55",
-   "message": "c_spire_ave s=2281 m: radius 138 m, bank 0.2 deg caps at 119 km/h, road target 150"
+   "message": "c_spire_ave s=2281 m: radius 138 m, bank -0.2 deg caps at 118 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_spire_ave-c56",
-   "message": "c_spire_ave s=2309 m: radius 156 m, bank -0.7 deg caps at 124 km/h, road target 150"
+   "message": "c_spire_ave s=2309 m: radius 156 m, bank 0.7 deg caps at 127 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_terrace-c01",
-   "message": "c_terrace s=4 m: radius 114 m, bank 2.1 deg caps at 112 km/h, road target 150"
+   "message": "c_terrace s=4 m: radius 114 m, bank -2.1 deg caps at 104 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_terrace-c02",
-   "message": "c_terrace s=16 m: radius 33 m, bank -1.2 deg caps at 56 km/h, road target 150"
+   "message": "c_terrace s=16 m: radius 33 m, bank 1.2 deg caps at 59 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_terrace-c03",
-   "message": "c_terrace s=80 m: radius 29 m, bank 0.1 deg caps at 54 km/h, road target 150"
+   "message": "c_terrace s=80 m: radius 29 m, bank -0.1 deg caps at 54 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_terrace-c04",
-   "message": "c_terrace s=172 m: radius 52 m, bank -0.0 deg caps at 72 km/h, road target 150"
+   "message": "c_terrace s=172 m: radius 52 m, bank 0.0 deg caps at 72 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_terrace-c05",
-   "message": "c_terrace s=200 m: radius 53 m, bank 0.0 deg caps at 73 km/h, road target 150"
+   "message": "c_terrace s=200 m: radius 53 m, bank -0.0 deg caps at 73 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -21252,25 +21252,25 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_terrace-c29",
-   "message": "c_terrace s=1720 m: radius 32 m, bank -0.0 deg caps at 57 km/h, road target 150"
+   "message": "c_terrace s=1720 m: radius 32 m, bank 0.0 deg caps at 57 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_terrace-c30",
-   "message": "c_terrace s=1836 m: radius 49 m, bank 0.2 deg caps at 71 km/h, road target 150"
+   "message": "c_terrace s=1836 m: radius 49 m, bank -0.2 deg caps at 71 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_terrace-c31",
-   "message": "c_terrace s=1880 m: radius 34 m, bank -1.6 deg caps at 58 km/h, road target 150"
+   "message": "c_terrace s=1880 m: radius 34 m, bank 1.6 deg caps at 60 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_terrace-c32",
-   "message": "c_terrace s=1940 m: radius 123 m, bank 3.5 deg caps at 118 km/h, road target 150"
+   "message": "c_terrace s=1940 m: radius 123 m, bank -3.5 deg caps at 105 km/h, road target 150"
   },
   {
    "severity": "info",
@@ -21282,19 +21282,19 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_casino_hill-c01",
-   "message": "c_casino_hill s=44 m: radius 28 m, bank -0.2 deg caps at 53 km/h, road target 150"
+   "message": "c_casino_hill s=44 m: radius 28 m, bank 0.2 deg caps at 54 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_casino_hill-c02",
-   "message": "c_casino_hill s=96 m: radius 27 m, bank -0.0 deg caps at 52 km/h, road target 150"
+   "message": "c_casino_hill s=96 m: radius 27 m, bank 0.0 deg caps at 52 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_casino_hill-c03",
-   "message": "c_casino_hill s=132 m: radius 58 m, bank 0.1 deg caps at 77 km/h, road target 150"
+   "message": "c_casino_hill s=132 m: radius 58 m, bank -0.1 deg caps at 77 km/h, road target 150"
   },
   {
    "severity": "info",
@@ -21306,19 +21306,19 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_fortuna_steps-c01",
-   "message": "c_fortuna_steps s=44 m: radius 26 m, bank -0.1 deg caps at 51 km/h, road target 150"
+   "message": "c_fortuna_steps s=44 m: radius 26 m, bank 0.1 deg caps at 51 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_fortuna_steps-c02",
-   "message": "c_fortuna_steps s=172 m: radius 24 m, bank 0.1 deg caps at 49 km/h, road target 150"
+   "message": "c_fortuna_steps s=172 m: radius 24 m, bank -0.1 deg caps at 49 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_fortuna_steps-c03",
-   "message": "c_fortuna_steps s=228 m: radius 66 m, bank -0.9 deg caps at 80 km/h, road target 150"
+   "message": "c_fortuna_steps s=228 m: radius 66 m, bank 0.9 deg caps at 83 km/h, road target 150"
   },
   {
    "severity": "info",
@@ -21330,67 +21330,67 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_moulins-c01",
-   "message": "c_moulins s=44 m: radius 27 m, bank 0.5 deg caps at 52 km/h, road target 150"
+   "message": "c_moulins s=44 m: radius 27 m, bank -0.5 deg caps at 52 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_moulins-c02",
-   "message": "c_moulins s=123 m: radius 22 m, bank -1.1 deg caps at 46 km/h, road target 150"
+   "message": "c_moulins s=123 m: radius 22 m, bank 1.1 deg caps at 48 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_moulins-c03",
-   "message": "c_moulins s=171 m: radius 29 m, bank 4.9 deg caps at 59 km/h, road target 150"
+   "message": "c_moulins s=171 m: radius 29 m, bank -4.9 deg caps at 49 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_moulins-c04",
-   "message": "c_moulins s=203 m: radius 107 m, bank -6.0 deg caps at 93 km/h, road target 150"
+   "message": "c_moulins s=203 m: radius 107 m, bank 6.0 deg caps at 116 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_mirador-c01",
-   "message": "c_mirador s=4 m: radius 25 m, bank -0.7 deg caps at 49 km/h, road target 150"
+   "message": "c_mirador s=4 m: radius 25 m, bank 0.7 deg caps at 51 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_lighthouse-c01",
-   "message": "c_lighthouse s=32 m: radius 39 m, bank -0.1 deg caps at 63 km/h, road target 150"
+   "message": "c_lighthouse s=32 m: radius 39 m, bank 0.1 deg caps at 63 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_lighthouse-c02",
-   "message": "c_lighthouse s=76 m: radius 133 m, bank 0.0 deg caps at 116 km/h, road target 150"
+   "message": "c_lighthouse s=76 m: radius 133 m, bank -0.0 deg caps at 116 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_lighthouse-c03",
-   "message": "c_lighthouse s=80 m: radius 133 m, bank -0.0 deg caps at 116 km/h, road target 150"
+   "message": "c_lighthouse s=80 m: radius 133 m, bank 0.0 deg caps at 116 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_lighthouse-c04",
-   "message": "c_lighthouse s=88 m: radius 25 m, bank 0.0 deg caps at 51 km/h, road target 150"
+   "message": "c_lighthouse s=88 m: radius 25 m, bank -0.0 deg caps at 51 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_lighthouse-c05",
-   "message": "c_lighthouse s=237 m: radius 135 m, bank 0.2 deg caps at 117 km/h, road target 150"
+   "message": "c_lighthouse s=237 m: radius 135 m, bank -0.2 deg caps at 117 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_lighthouse-c06",
-   "message": "c_lighthouse s=261 m: radius 98 m, bank 0.7 deg caps at 101 km/h, road target 150"
+   "message": "c_lighthouse s=261 m: radius 98 m, bank -0.7 deg caps at 98 km/h, road target 150"
   },
   {
    "severity": "info",
@@ -21402,37 +21402,37 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_ring-c01",
-   "message": "m_ring s=1452 m: radius 123 m, bank 0.2 deg caps at 112 km/h, road target 150"
+   "message": "m_ring s=1452 m: radius 123 m, bank -0.2 deg caps at 112 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_ring-c02",
-   "message": "m_ring s=1460 m: radius 31 m, bank -0.8 deg caps at 55 km/h, road target 150"
+   "message": "m_ring s=1460 m: radius 31 m, bank 0.8 deg caps at 57 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_ring-c03",
-   "message": "m_ring s=1580 m: radius 79 m, bank 0.1 deg caps at 90 km/h, road target 150"
+   "message": "m_ring s=1580 m: radius 79 m, bank -0.1 deg caps at 90 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_ring-c04",
-   "message": "m_ring s=1596 m: radius 59 m, bank 0.0 deg caps at 78 km/h, road target 150"
+   "message": "m_ring s=1596 m: radius 59 m, bank -0.0 deg caps at 78 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_ring-c05",
-   "message": "m_ring s=1644 m: radius 92 m, bank 0.0 deg caps at 97 km/h, road target 150"
+   "message": "m_ring s=1644 m: radius 92 m, bank -0.0 deg caps at 97 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_ring-c06",
-   "message": "m_ring s=1688 m: radius 98 m, bank -0.0 deg caps at 100 km/h, road target 150"
+   "message": "m_ring s=1688 m: radius 98 m, bank 0.0 deg caps at 100 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -21570,7 +21570,7 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_ring-c29",
-   "message": "m_ring s=2781 m: radius 145 m, bank 0.0 deg caps at 121 km/h, road target 150"
+   "message": "m_ring s=2781 m: radius 145 m, bank -0.0 deg caps at 121 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -21588,37 +21588,31 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_ring-c34",
-   "message": "m_ring s=3245 m: radius 46 m, bank -0.0 deg caps at 68 km/h, road target 150"
+   "message": "m_ring s=3245 m: radius 46 m, bank 0.0 deg caps at 68 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_ring-c35",
-   "message": "m_ring s=3453 m: radius 170 m, bank -0.8 deg caps at 130 km/h, road target 150"
+   "message": "m_ring s=3453 m: radius 170 m, bank 0.8 deg caps at 133 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_ring-c36",
-   "message": "m_ring s=3465 m: radius 94 m, bank -2.0 deg caps at 95 km/h, road target 150"
-  },
-  {
-   "severity": "warn",
-   "kind": "corner_short",
-   "id": "m_ring-c37",
-   "message": "m_ring s=3493 m: radius 187 m, bank -1.8 deg caps at 133 km/h, road target 150"
+   "message": "m_ring s=3465 m: radius 94 m, bank 2.0 deg caps at 101 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_ring-c38",
-   "message": "m_ring s=3637 m: radius 133 m, bank 0.0 deg caps at 116 km/h, road target 150"
+   "message": "m_ring s=3637 m: radius 133 m, bank -0.0 deg caps at 116 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_ring-c39",
-   "message": "m_ring s=3653 m: radius 73 m, bank 0.0 deg caps at 86 km/h, road target 150"
+   "message": "m_ring s=3653 m: radius 73 m, bank -0.0 deg caps at 86 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -21654,7 +21648,7 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_hillclimb-c01",
-   "message": "m_hillclimb s=52 m: radius 87 m, bank -0.3 deg caps at 94 km/h, road target 150"
+   "message": "m_hillclimb s=52 m: radius 87 m, bank 0.3 deg caps at 95 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -21690,37 +21684,37 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_hillclimb-c09",
-   "message": "m_hillclimb s=644 m: radius 23 m, bank -0.0 deg caps at 48 km/h, road target 150"
+   "message": "m_hillclimb s=644 m: radius 23 m, bank 0.0 deg caps at 48 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_hillclimb-c10",
-   "message": "m_hillclimb s=820 m: radius 125 m, bank -0.1 deg caps at 113 km/h, road target 150"
+   "message": "m_hillclimb s=820 m: radius 125 m, bank 0.1 deg caps at 113 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_hillclimb-c11",
-   "message": "m_hillclimb s=860 m: radius 68 m, bank 0.5 deg caps at 84 km/h, road target 150"
+   "message": "m_hillclimb s=860 m: radius 68 m, bank -0.5 deg caps at 82 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_hillclimb-c12",
-   "message": "m_hillclimb s=912 m: radius 53 m, bank -2.2 deg caps at 70 km/h, road target 150"
+   "message": "m_hillclimb s=912 m: radius 53 m, bank 2.2 deg caps at 77 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_hillclimb-c13",
-   "message": "m_hillclimb s=996 m: radius 87 m, bank -0.2 deg caps at 94 km/h, road target 150"
+   "message": "m_hillclimb s=996 m: radius 87 m, bank 0.2 deg caps at 95 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_hillclimb-c14",
-   "message": "m_hillclimb s=1036 m: radius 67 m, bank 0.0 deg caps at 83 km/h, road target 150"
+   "message": "m_hillclimb s=1036 m: radius 67 m, bank -0.0 deg caps at 83 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -21738,13 +21732,13 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_hillclimb-c17",
-   "message": "m_hillclimb s=1336 m: radius 55 m, bank 0.0 deg caps at 75 km/h, road target 150"
+   "message": "m_hillclimb s=1336 m: radius 55 m, bank -0.0 deg caps at 75 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_hillclimb-c18",
-   "message": "m_hillclimb s=1388 m: radius 32 m, bank -0.1 deg caps at 57 km/h, road target 150"
+   "message": "m_hillclimb s=1388 m: radius 32 m, bank 0.1 deg caps at 58 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -21828,25 +21822,25 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_hillclimb-c33",
-   "message": "m_hillclimb s=3111 m: radius 43 m, bank 0.0 deg caps at 66 km/h, road target 150"
+   "message": "m_hillclimb s=3111 m: radius 43 m, bank -0.0 deg caps at 66 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_hillclimb-c34",
-   "message": "m_hillclimb s=3163 m: radius 27 m, bank -0.3 deg caps at 52 km/h, road target 150"
+   "message": "m_hillclimb s=3163 m: radius 27 m, bank 0.3 deg caps at 52 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_hillclimb-c35",
-   "message": "m_hillclimb s=3383 m: radius 40 m, bank 0.0 deg caps at 64 km/h, road target 150"
+   "message": "m_hillclimb s=3383 m: radius 40 m, bank -0.0 deg caps at 64 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_hillclimb-c36",
-   "message": "m_hillclimb s=3459 m: radius 72 m, bank 0.0 deg caps at 86 km/h, road target 150"
+   "message": "m_hillclimb s=3459 m: radius 72 m, bank -0.0 deg caps at 86 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -21948,25 +21942,25 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_hillclimb-c55",
-   "message": "m_hillclimb s=4998 m: radius 102 m, bank -0.0 deg caps at 102 km/h, road target 150"
+   "message": "m_hillclimb s=4998 m: radius 102 m, bank 0.0 deg caps at 102 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_hillclimb-c56",
-   "message": "m_hillclimb s=5034 m: radius 26 m, bank -0.3 deg caps at 51 km/h, road target 150"
+   "message": "m_hillclimb s=5034 m: radius 26 m, bank 0.3 deg caps at 51 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_hillclimb-c57",
-   "message": "m_hillclimb s=5214 m: radius 54 m, bank 0.1 deg caps at 74 km/h, road target 150"
+   "message": "m_hillclimb s=5214 m: radius 54 m, bank -0.1 deg caps at 74 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_hillclimb-c58",
-   "message": "m_hillclimb s=5254 m: radius 56 m, bank 0.0 deg caps at 76 km/h, road target 150"
+   "message": "m_hillclimb s=5254 m: radius 56 m, bank -0.0 deg caps at 76 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -21996,19 +21990,19 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_hillclimb-c63",
-   "message": "m_hillclimb s=5854 m: radius 84 m, bank 0.0 deg caps at 92 km/h, road target 150"
+   "message": "m_hillclimb s=5854 m: radius 84 m, bank -0.0 deg caps at 92 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_hillclimb-c64",
-   "message": "m_hillclimb s=5898 m: radius 97 m, bank -0.0 deg caps at 100 km/h, road target 150"
+   "message": "m_hillclimb s=5898 m: radius 97 m, bank 0.0 deg caps at 100 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_hillclimb-c65",
-   "message": "m_hillclimb s=5974 m: radius 150 m, bank -0.4 deg caps at 123 km/h, road target 150"
+   "message": "m_hillclimb s=5974 m: radius 150 m, bank 0.4 deg caps at 124 km/h, road target 150"
   },
   {
    "severity": "info",
@@ -22020,13 +22014,13 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akagane-c01",
-   "message": "m_akagane s=172 m: radius 111 m, bank 0.0 deg caps at 106 km/h, road target 150"
+   "message": "m_akagane s=172 m: radius 111 m, bank -0.0 deg caps at 106 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akagane-c02",
-   "message": "m_akagane s=216 m: radius 32 m, bank 0.0 deg caps at 57 km/h, road target 150"
+   "message": "m_akagane s=216 m: radius 32 m, bank -0.0 deg caps at 57 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -22080,19 +22074,25 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akagane-c14",
-   "message": "m_akagane s=1083 m: radius 169 m, bank 0.1 deg caps at 131 km/h, road target 150"
+   "message": "m_akagane s=1083 m: radius 169 m, bank -0.1 deg caps at 131 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akagane-c15",
-   "message": "m_akagane s=1123 m: radius 73 m, bank 1.3 deg caps at 88 km/h, road target 150"
+   "message": "m_akagane s=1123 m: radius 73 m, bank -1.3 deg caps at 84 km/h, road target 150"
+  },
+  {
+   "severity": "warn",
+   "kind": "corner_short",
+   "id": "m_akagane-c16",
+   "message": "m_akagane s=1195 m: radius 179 m, bank -1.0 deg caps at 133 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akagane-c18",
-   "message": "m_akagane s=1211 m: radius 47 m, bank 0.1 deg caps at 69 km/h, road target 150"
+   "message": "m_akagane s=1211 m: radius 47 m, bank -0.1 deg caps at 69 km/h, road target 150"
   },
   {
    "severity": "note",
@@ -22104,25 +22104,25 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akagane-c21",
-   "message": "m_akagane s=1471 m: radius 163 m, bank 0.1 deg caps at 129 km/h, road target 150"
+   "message": "m_akagane s=1471 m: radius 163 m, bank -0.1 deg caps at 128 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akagane-c22",
-   "message": "m_akagane s=1487 m: radius 50 m, bank 0.6 deg caps at 71 km/h, road target 150"
+   "message": "m_akagane s=1487 m: radius 50 m, bank -0.6 deg caps at 71 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akagane-c23",
-   "message": "m_akagane s=1627 m: radius 55 m, bank -0.0 deg caps at 75 km/h, road target 150"
+   "message": "m_akagane s=1627 m: radius 55 m, bank 0.0 deg caps at 75 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akagane-c24",
-   "message": "m_akagane s=1671 m: radius 31 m, bank 0.0 deg caps at 56 km/h, road target 150"
+   "message": "m_akagane s=1671 m: radius 31 m, bank -0.0 deg caps at 56 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -22182,13 +22182,19 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akagane-c35",
-   "message": "m_akagane s=2634 m: radius 58 m, bank 0.0 deg caps at 77 km/h, road target 150"
+   "message": "m_akagane s=2634 m: radius 58 m, bank -0.0 deg caps at 77 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akagane-c36",
-   "message": "m_akagane s=2698 m: radius 72 m, bank -0.1 deg caps at 86 km/h, road target 150"
+   "message": "m_akagane s=2698 m: radius 72 m, bank 0.1 deg caps at 86 km/h, road target 150"
+  },
+  {
+   "severity": "warn",
+   "kind": "corner_short",
+   "id": "m_akagane-c37",
+   "message": "m_akagane s=2774 m: radius 170 m, bank -1.8 deg caps at 127 km/h, road target 150"
   },
   {
    "severity": "info",
@@ -22200,13 +22206,13 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_cloudline-c01",
-   "message": "m_cloudline s=120 m: radius 38 m, bank 0.0 deg caps at 63 km/h, road target 150"
+   "message": "m_cloudline s=120 m: radius 38 m, bank -0.0 deg caps at 63 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_cloudline-c02",
-   "message": "m_cloudline s=164 m: radius 96 m, bank 0.0 deg caps at 99 km/h, road target 150"
+   "message": "m_cloudline s=164 m: radius 96 m, bank -0.0 deg caps at 99 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -22308,13 +22314,13 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_cloudline-c24",
-   "message": "m_cloudline s=1885 m: radius 65 m, bank 0.1 deg caps at 81 km/h, road target 150"
+   "message": "m_cloudline s=1885 m: radius 65 m, bank -0.1 deg caps at 81 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_cloudline-c26",
-   "message": "m_cloudline s=2005 m: radius 96 m, bank 0.0 deg caps at 99 km/h, road target 150"
+   "message": "m_cloudline s=2005 m: radius 96 m, bank -0.0 deg caps at 99 km/h, road target 150"
   },
   {
    "severity": "note",
@@ -22356,19 +22362,19 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_skyline-c01",
-   "message": "m_skyline s=40 m: radius 79 m, bank -0.5 deg caps at 89 km/h, road target 150"
+   "message": "m_skyline s=40 m: radius 79 m, bank 0.5 deg caps at 91 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_skyline-c02",
-   "message": "m_skyline s=56 m: radius 26 m, bank 0.2 deg caps at 51 km/h, road target 150"
+   "message": "m_skyline s=56 m: radius 26 m, bank -0.2 deg caps at 51 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_skyline-c03",
-   "message": "m_skyline s=108 m: radius 83 m, bank -0.0 deg caps at 92 km/h, road target 150"
+   "message": "m_skyline s=108 m: radius 83 m, bank 0.0 deg caps at 92 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -22518,31 +22524,31 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_skyline-c30",
-   "message": "m_skyline s=2288 m: radius 89 m, bank -0.1 deg caps at 95 km/h, road target 150"
+   "message": "m_skyline s=2288 m: radius 89 m, bank 0.1 deg caps at 95 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_skyline-c31",
-   "message": "m_skyline s=2292 m: radius 23 m, bank 0.3 deg caps at 48 km/h, road target 150"
+   "message": "m_skyline s=2292 m: radius 23 m, bank -0.3 deg caps at 48 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_skyline-c32",
-   "message": "m_skyline s=2336 m: radius 24 m, bank -1.6 deg caps at 48 km/h, road target 150"
+   "message": "m_skyline s=2336 m: radius 24 m, bank 1.6 deg caps at 50 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_skyline-c33",
-   "message": "m_skyline s=2396 m: radius 31 m, bank 0.8 deg caps at 57 km/h, road target 150"
+   "message": "m_skyline s=2396 m: radius 31 m, bank -0.8 deg caps at 56 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_skyline-c34",
-   "message": "m_skyline s=2472 m: radius 144 m, bank -1.8 deg caps at 117 km/h, road target 150"
+   "message": "m_skyline s=2472 m: radius 144 m, bank 1.8 deg caps at 125 km/h, road target 150"
   },
   {
    "severity": "info",
@@ -22632,25 +22638,25 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_foxhole-c15",
-   "message": "m_foxhole s=1668 m: radius 119 m, bank 0.0 deg caps at 110 km/h, road target 150"
+   "message": "m_foxhole s=1668 m: radius 119 m, bank -0.0 deg caps at 110 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_foxhole-c16",
-   "message": "m_foxhole s=1728 m: radius 79 m, bank 0.1 deg caps at 90 km/h, road target 150"
+   "message": "m_foxhole s=1728 m: radius 79 m, bank -0.1 deg caps at 90 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_foxhole-c17",
-   "message": "m_foxhole s=1780 m: radius 69 m, bank -1.0 deg caps at 82 km/h, road target 150"
+   "message": "m_foxhole s=1780 m: radius 69 m, bank 1.0 deg caps at 86 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_foxhole-c18",
-   "message": "m_foxhole s=1812 m: radius 26 m, bank -0.4 deg caps at 51 km/h, road target 150"
+   "message": "m_foxhole s=1812 m: radius 26 m, bank 0.4 deg caps at 53 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -22872,13 +22878,13 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_redwater-c16",
-   "message": "m_redwater s=1406 m: radius 62 m, bank -0.0 deg caps at 79 km/h, road target 150"
+   "message": "m_redwater s=1406 m: radius 62 m, bank 0.0 deg caps at 79 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_redwater-c17",
-   "message": "m_redwater s=1458 m: radius 76 m, bank 0.0 deg caps at 88 km/h, road target 150"
+   "message": "m_redwater s=1458 m: radius 76 m, bank -0.0 deg caps at 88 km/h, road target 150"
   },
   {
    "severity": "info",
@@ -22890,19 +22896,19 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akina-c01",
-   "message": "m_akina s=4 m: radius 68 m, bank 1.8 deg caps at 86 km/h, road target 150"
+   "message": "m_akina s=4 m: radius 68 m, bank -1.8 deg caps at 80 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akina-c02",
-   "message": "m_akina s=12 m: radius 28 m, bank -0.2 deg caps at 53 km/h, road target 150"
+   "message": "m_akina s=12 m: radius 28 m, bank 0.2 deg caps at 54 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akina-c03",
-   "message": "m_akina s=104 m: radius 35 m, bank 0.0 deg caps at 60 km/h, road target 150"
+   "message": "m_akina s=104 m: radius 35 m, bank -0.0 deg caps at 60 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -22998,37 +23004,37 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akina-c23",
-   "message": "m_akina s=1392 m: radius 26 m, bank 0.0 deg caps at 52 km/h, road target 150"
+   "message": "m_akina s=1392 m: radius 26 m, bank -0.0 deg caps at 52 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akina-c24",
-   "message": "m_akina s=1500 m: radius 44 m, bank -0.4 deg caps at 67 km/h, road target 150"
+   "message": "m_akina s=1500 m: radius 44 m, bank 0.4 deg caps at 67 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akina-c25",
-   "message": "m_akina s=1552 m: radius 37 m, bank 3.4 deg caps at 64 km/h, road target 150"
+   "message": "m_akina s=1552 m: radius 37 m, bank -3.4 deg caps at 58 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akina-c26",
-   "message": "m_akina s=1604 m: radius 28 m, bank -3.5 deg caps at 50 km/h, road target 150"
+   "message": "m_akina s=1604 m: radius 28 m, bank 3.5 deg caps at 57 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akina-c27",
-   "message": "m_akina s=1696 m: radius 68 m, bank 0.1 deg caps at 83 km/h, road target 150"
+   "message": "m_akina s=1696 m: radius 68 m, bank -0.1 deg caps at 83 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akina-c28",
-   "message": "m_akina s=1744 m: radius 99 m, bank -0.0 deg caps at 100 km/h, road target 150"
+   "message": "m_akina s=1744 m: radius 99 m, bank 0.0 deg caps at 101 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -23064,7 +23070,7 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akina-c35",
-   "message": "m_akina s=2176 m: radius 65 m, bank 0.0 deg caps at 81 km/h, road target 150"
+   "message": "m_akina s=2176 m: radius 65 m, bank -0.0 deg caps at 81 km/h, road target 150"
   },
   {
    "severity": "note",
@@ -23076,19 +23082,19 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akina-c37",
-   "message": "m_akina s=2404 m: radius 92 m, bank -0.0 deg caps at 96 km/h, road target 150"
+   "message": "m_akina s=2404 m: radius 92 m, bank 0.0 deg caps at 97 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akina-c38",
-   "message": "m_akina s=2464 m: radius 94 m, bank 0.0 deg caps at 98 km/h, road target 150"
+   "message": "m_akina s=2464 m: radius 94 m, bank -0.0 deg caps at 98 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akina-c39",
-   "message": "m_akina s=2492 m: radius 40 m, bank -0.0 deg caps at 64 km/h, road target 150"
+   "message": "m_akina s=2492 m: radius 40 m, bank 0.0 deg caps at 64 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -23262,7 +23268,7 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akina-c71",
-   "message": "m_akina s=4829 m: radius 47 m, bank 0.0 deg caps at 69 km/h, road target 150"
+   "message": "m_akina s=4829 m: radius 47 m, bank -0.0 deg caps at 69 km/h, road target 150"
   },
   {
    "severity": "note",
@@ -23274,7 +23280,7 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_akina-c73",
-   "message": "m_akina s=4989 m: radius 140 m, bank 1.6 deg caps at 123 km/h, road target 150"
+   "message": "m_akina s=4989 m: radius 140 m, bank -1.6 deg caps at 116 km/h, road target 150"
   },
   {
    "severity": "info",
@@ -23286,7 +23292,7 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_paragon-c01",
-   "message": "m_paragon s=4 m: radius 163 m, bank -0.1 deg caps at 128 km/h, road target 150"
+   "message": "m_paragon s=4 m: radius 163 m, bank 0.1 deg caps at 129 km/h, road target 150"
   },
   {
    "severity": "note",
@@ -23298,7 +23304,7 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_paragon-c03",
-   "message": "m_paragon s=64 m: radius 160 m, bank -1.9 deg caps at 123 km/h, road target 150"
+   "message": "m_paragon s=64 m: radius 160 m, bank 1.9 deg caps at 132 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -23310,7 +23316,7 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_paragon-c05",
-   "message": "m_paragon s=256 m: radius 27 m, bank 0.0 deg caps at 52 km/h, road target 150"
+   "message": "m_paragon s=256 m: radius 27 m, bank -0.0 deg caps at 52 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -23328,55 +23334,61 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_paragon-c08",
-   "message": "m_paragon s=777 m: radius 40 m, bank -0.0 deg caps at 64 km/h, road target 150"
+   "message": "m_paragon s=777 m: radius 40 m, bank 0.0 deg caps at 64 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_paragon-c09",
-   "message": "m_paragon s=825 m: radius 87 m, bank -0.0 deg caps at 94 km/h, road target 150"
+   "message": "m_paragon s=825 m: radius 87 m, bank 0.0 deg caps at 94 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_paragon-c10",
-   "message": "m_paragon s=897 m: radius 76 m, bank 0.1 deg caps at 88 km/h, road target 150"
+   "message": "m_paragon s=897 m: radius 76 m, bank -0.1 deg caps at 87 km/h, road target 150"
+  },
+  {
+   "severity": "warn",
+   "kind": "corner_short",
+   "id": "m_paragon-c11",
+   "message": "m_paragon s=949 m: radius 174 m, bank -0.8 deg caps at 131 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_paragon-c12",
-   "message": "m_paragon s=961 m: radius 57 m, bank 1.4 deg caps at 79 km/h, road target 150"
+   "message": "m_paragon s=961 m: radius 57 m, bank -1.4 deg caps at 73 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_paragon-c13",
-   "message": "m_paragon s=1001 m: radius 106 m, bank 0.1 deg caps at 104 km/h, road target 150"
+   "message": "m_paragon s=1001 m: radius 106 m, bank -0.1 deg caps at 104 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_paragon-c14",
-   "message": "m_paragon s=1045 m: radius 145 m, bank 0.3 deg caps at 122 km/h, road target 150"
+   "message": "m_paragon s=1045 m: radius 145 m, bank -0.3 deg caps at 121 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_paragon-c15",
-   "message": "m_paragon s=1053 m: radius 69 m, bank 0.7 deg caps at 85 km/h, road target 150"
+   "message": "m_paragon s=1053 m: radius 69 m, bank -0.7 deg caps at 83 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_paragon-c16",
-   "message": "m_paragon s=1085 m: radius 23 m, bank 1.3 deg caps at 50 km/h, road target 150"
+   "message": "m_paragon s=1085 m: radius 23 m, bank -1.3 deg caps at 46 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_paragon-c17",
-   "message": "m_paragon s=1205 m: radius 31 m, bank 0.0 deg caps at 56 km/h, road target 150"
+   "message": "m_paragon s=1205 m: radius 31 m, bank -0.0 deg caps at 56 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -23400,67 +23412,67 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_transfagara-c01",
-   "message": "m_transfagara s=76 m: radius 29 m, bank 0.1 deg caps at 54 km/h, road target 150"
+   "message": "m_transfagara s=76 m: radius 29 m, bank -0.1 deg caps at 54 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_transfagara-c02",
-   "message": "m_transfagara s=148 m: radius 128 m, bank -0.0 deg caps at 114 km/h, road target 150"
+   "message": "m_transfagara s=148 m: radius 128 m, bank 0.0 deg caps at 114 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_transfagara-c03",
-   "message": "m_transfagara s=152 m: radius 55 m, bank 0.0 deg caps at 75 km/h, road target 150"
+   "message": "m_transfagara s=152 m: radius 55 m, bank -0.0 deg caps at 75 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_transfagara-c04",
-   "message": "m_transfagara s=188 m: radius 26 m, bank -0.0 deg caps at 52 km/h, road target 150"
+   "message": "m_transfagara s=188 m: radius 26 m, bank 0.0 deg caps at 52 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_transfagara-c05",
-   "message": "m_transfagara s=276 m: radius 86 m, bank -0.0 deg caps at 93 km/h, road target 150"
+   "message": "m_transfagara s=276 m: radius 86 m, bank 0.0 deg caps at 93 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_transfagara-c06",
-   "message": "m_transfagara s=340 m: radius 141 m, bank -0.0 deg caps at 120 km/h, road target 150"
+   "message": "m_transfagara s=340 m: radius 141 m, bank 0.0 deg caps at 120 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_transfagara-c07",
-   "message": "m_transfagara s=376 m: radius 78 m, bank 0.1 deg caps at 89 km/h, road target 150"
+   "message": "m_transfagara s=376 m: radius 78 m, bank -0.1 deg caps at 89 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_transfagara-c08",
-   "message": "m_transfagara s=444 m: radius 137 m, bank -0.7 deg caps at 117 km/h, road target 150"
+   "message": "m_transfagara s=444 m: radius 137 m, bank 0.7 deg caps at 120 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_transfagara-c09",
-   "message": "m_transfagara s=484 m: radius 54 m, bank -0.9 deg caps at 73 km/h, road target 150"
+   "message": "m_transfagara s=484 m: radius 54 m, bank 0.9 deg caps at 75 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_transfagara-c10",
-   "message": "m_transfagara s=572 m: radius 75 m, bank -0.0 deg caps at 87 km/h, road target 150"
+   "message": "m_transfagara s=572 m: radius 75 m, bank 0.0 deg caps at 88 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_transfagara-c11",
-   "message": "m_transfagara s=612 m: radius 56 m, bank 0.0 deg caps at 76 km/h, road target 150"
+   "message": "m_transfagara s=612 m: radius 56 m, bank -0.0 deg caps at 76 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -23532,7 +23544,7 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_transfagara-c26",
-   "message": "m_transfagara s=1908 m: radius 52 m, bank 0.1 deg caps at 73 km/h, road target 150"
+   "message": "m_transfagara s=1908 m: radius 52 m, bank -0.1 deg caps at 73 km/h, road target 150"
   },
   {
    "severity": "info",
@@ -23544,7 +23556,7 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_snowfell-c01",
-   "message": "m_snowfell s=100 m: radius 178 m, bank -0.1 deg caps at 134 km/h, road target 150"
+   "message": "m_snowfell s=100 m: radius 178 m, bank 0.1 deg caps at 135 km/h, road target 150"
   },
   {
    "severity": "note",
@@ -23658,19 +23670,19 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_snowfell-c21",
-   "message": "m_snowfell s=1789 m: radius 80 m, bank -0.0 deg caps at 90 km/h, road target 150"
+   "message": "m_snowfell s=1789 m: radius 80 m, bank 0.0 deg caps at 90 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_snowfell-c22",
-   "message": "m_snowfell s=1905 m: radius 146 m, bank 0.1 deg caps at 122 km/h, road target 150"
+   "message": "m_snowfell s=1905 m: radius 146 m, bank -0.1 deg caps at 122 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_snowfell-c23",
-   "message": "m_snowfell s=1925 m: radius 134 m, bank 0.3 deg caps at 117 km/h, road target 150"
+   "message": "m_snowfell s=1925 m: radius 134 m, bank -0.3 deg caps at 116 km/h, road target 150"
   },
   {
    "severity": "info",
@@ -23682,13 +23694,13 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_tsubame-c01",
-   "message": "m_tsubame s=4 m: radius 108 m, bank -0.8 deg caps at 103 km/h, road target 150"
+   "message": "m_tsubame s=4 m: radius 108 m, bank 0.8 deg caps at 106 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_tsubame-c02",
-   "message": "m_tsubame s=20 m: radius 47 m, bank 0.7 deg caps at 70 km/h, road target 150"
+   "message": "m_tsubame s=20 m: radius 47 m, bank -0.7 deg caps at 67 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -24012,13 +24024,13 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_tsubame-c59",
-   "message": "m_tsubame s=3476 m: radius 20 m, bank 0.0 deg caps at 45 km/h, road target 150"
+   "message": "m_tsubame s=3476 m: radius 20 m, bank -0.0 deg caps at 45 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_tsubame-c60",
-   "message": "m_tsubame s=3536 m: radius 32 m, bank -0.0 deg caps at 57 km/h, road target 150"
+   "message": "m_tsubame s=3536 m: radius 32 m, bank 0.0 deg caps at 57 km/h, road target 150"
   },
   {
    "severity": "note",
@@ -24030,7 +24042,7 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_tsubame-c62",
-   "message": "m_tsubame s=3708 m: radius 109 m, bank -2.6 deg caps at 100 km/h, road target 150"
+   "message": "m_tsubame s=3708 m: radius 109 m, bank 2.6 deg caps at 110 km/h, road target 150"
   },
   {
    "severity": "info",
@@ -24041,14 +24053,20 @@
   {
    "severity": "warn",
    "kind": "corner_short",
+   "id": "c_seafront_e-c01",
+   "message": "c_seafront_e s=4 m: radius 179 m, bank -1.1 deg caps at 132 km/h, road target 150"
+  },
+  {
+   "severity": "warn",
+   "kind": "corner_short",
    "id": "c_seafront_e-c02",
-   "message": "c_seafront_e s=20 m: radius 64 m, bank -0.4 deg caps at 80 km/h, road target 150"
+   "message": "c_seafront_e s=20 m: radius 64 m, bank 0.4 deg caps at 81 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_seafront_e-c03",
-   "message": "c_seafront_e s=168 m: radius 93 m, bank 0.0 deg caps at 97 km/h, road target 150"
+   "message": "c_seafront_e s=168 m: radius 93 m, bank -0.0 deg caps at 97 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -24066,31 +24084,31 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_bypass-c01",
-   "message": "c_bypass s=2193 m: radius 169 m, bank 0.0 deg caps at 131 km/h, road target 400"
+   "message": "c_bypass s=2193 m: radius 169 m, bank -0.0 deg caps at 131 km/h, road target 400"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_bypass-c02",
-   "message": "c_bypass s=2209 m: radius 159 m, bank 0.1 deg caps at 128 km/h, road target 400"
+   "message": "c_bypass s=2209 m: radius 159 m, bank -0.1 deg caps at 127 km/h, road target 400"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_bypass-c03",
-   "message": "c_bypass s=2241 m: radius 177 m, bank 0.3 deg caps at 135 km/h, road target 400"
+   "message": "c_bypass s=2241 m: radius 177 m, bank -0.3 deg caps at 133 km/h, road target 400"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_bypass-c04",
-   "message": "c_bypass s=2249 m: radius 178 m, bank 0.4 deg caps at 136 km/h, road target 400"
+   "message": "c_bypass s=2249 m: radius 178 m, bank -0.4 deg caps at 133 km/h, road target 400"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_bypass-c05",
-   "message": "c_bypass s=2261 m: radius 199 m, bank 0.7 deg caps at 144 km/h, road target 400"
+   "message": "c_bypass s=2261 m: radius 199 m, bank -0.7 deg caps at 140 km/h, road target 400"
   },
   {
    "severity": "note",
@@ -24102,7 +24120,7 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_cliffroad-c01",
-   "message": "c_cliffroad s=68 m: radius 74 m, bank -0.0 deg caps at 87 km/h, road target 150"
+   "message": "c_cliffroad s=68 m: radius 74 m, bank 0.0 deg caps at 87 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -24174,43 +24192,43 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_cliffroad-c14",
-   "message": "c_cliffroad s=1563 m: radius 22 m, bank 3.1 deg caps at 50 km/h, road target 150"
+   "message": "c_cliffroad s=1563 m: radius 22 m, bank -3.1 deg caps at 44 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_cliffroad-c15",
-   "message": "c_cliffroad s=1591 m: radius 50 m, bank -4.5 deg caps at 66 km/h, road target 150"
+   "message": "c_cliffroad s=1591 m: radius 50 m, bank 4.5 deg caps at 77 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_wh_foundry-c01",
-   "message": "c_wh_foundry s=340 m: radius 71 m, bank -0.2 deg caps at 85 km/h, road target 150"
+   "message": "c_wh_foundry s=340 m: radius 71 m, bank 0.2 deg caps at 85 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_wh_foundry-c02",
-   "message": "c_wh_foundry s=360 m: radius 26 m, bank -0.2 deg caps at 52 km/h, road target 150"
+   "message": "c_wh_foundry s=360 m: radius 26 m, bank 0.2 deg caps at 51 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_wh_foundry-c03",
-   "message": "c_wh_foundry s=447 m: radius 96 m, bank 0.1 deg caps at 99 km/h, road target 150"
+   "message": "c_wh_foundry s=447 m: radius 96 m, bank -0.1 deg caps at 99 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_wh_foundry-c05",
-   "message": "c_wh_foundry s=503 m: radius 84 m, bank -0.0 deg caps at 92 km/h, road target 150"
+   "message": "c_wh_foundry s=503 m: radius 84 m, bank 0.0 deg caps at 92 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_wh_foundry-c06",
-   "message": "c_wh_foundry s=579 m: radius 157 m, bank -0.3 deg caps at 126 km/h, road target 150"
+   "message": "c_wh_foundry s=579 m: radius 157 m, bank 0.3 deg caps at 127 km/h, road target 150"
   },
   {
    "severity": "info",
@@ -24222,13 +24240,13 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_wh_kiln-c01",
-   "message": "c_wh_kiln s=124 m: radius 99 m, bank -1.9 deg caps at 96 km/h, road target 150"
+   "message": "c_wh_kiln s=124 m: radius 99 m, bank 1.9 deg caps at 105 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_wh_kiln-c02",
-   "message": "c_wh_kiln s=176 m: radius 143 m, bank 0.8 deg caps at 122 km/h, road target 150"
+   "message": "c_wh_kiln s=176 m: radius 143 m, bank -0.8 deg caps at 119 km/h, road target 150"
   },
   {
    "severity": "info",
@@ -24240,7 +24258,7 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_arrivals-c01",
-   "message": "c_arrivals s=32 m: radius 169 m, bank 0.0 deg caps at 131 km/h, road target 150"
+   "message": "c_arrivals s=32 m: radius 169 m, bank -0.0 deg caps at 131 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -24258,49 +24276,49 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_lantern-c01",
-   "message": "c_lantern s=4 m: radius 80 m, bank 1.4 deg caps at 92 km/h, road target 150"
+   "message": "c_lantern s=4 m: radius 80 m, bank -1.4 deg caps at 88 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_lantern-c02",
-   "message": "c_lantern s=20 m: radius 42 m, bank -0.5 deg caps at 65 km/h, road target 150"
+   "message": "c_lantern s=20 m: radius 42 m, bank 0.5 deg caps at 66 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_lantern-c03",
-   "message": "c_lantern s=133 m: radius 54 m, bank 0.0 deg caps at 74 km/h, road target 150"
+   "message": "c_lantern s=133 m: radius 54 m, bank -0.0 deg caps at 74 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_lantern-c04",
-   "message": "c_lantern s=205 m: radius 58 m, bank -0.0 deg caps at 77 km/h, road target 150"
+   "message": "c_lantern s=205 m: radius 58 m, bank 0.0 deg caps at 77 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_lantern-c05",
-   "message": "c_lantern s=233 m: radius 98 m, bank -0.0 deg caps at 100 km/h, road target 150"
+   "message": "c_lantern s=233 m: radius 98 m, bank 0.0 deg caps at 100 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_petrol_layby-c01",
-   "message": "c_petrol_layby s=4 m: radius 162 m, bank -0.0 deg caps at 128 km/h, road target 150"
+   "message": "c_petrol_layby s=4 m: radius 162 m, bank 0.0 deg caps at 128 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_petrol_layby-c02",
-   "message": "c_petrol_layby s=16 m: radius 57 m, bank -0.8 deg caps at 75 km/h, road target 150"
+   "message": "c_petrol_layby s=16 m: radius 57 m, bank 0.8 deg caps at 78 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_petrol_layby-c03",
-   "message": "c_petrol_layby s=165 m: radius 79 m, bank 0.7 deg caps at 91 km/h, road target 150"
+   "message": "c_petrol_layby s=165 m: radius 79 m, bank -0.7 deg caps at 89 km/h, road target 150"
   },
   {
    "severity": "info",
@@ -24312,25 +24330,31 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_wh_slag-c01",
-   "message": "c_wh_slag s=32 m: radius 120 m, bank 2.6 deg caps at 114 km/h, road target 150"
+   "message": "c_wh_slag s=32 m: radius 120 m, bank -2.6 deg caps at 107 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_wh_slag-c03",
-   "message": "c_wh_slag s=140 m: radius 150 m, bank 0.0 deg caps at 124 km/h, road target 150"
+   "message": "c_wh_slag s=140 m: radius 150 m, bank -0.0 deg caps at 124 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_wh_slag-c04",
-   "message": "c_wh_slag s=176 m: radius 38 m, bank -0.1 deg caps at 62 km/h, road target 150"
+   "message": "c_wh_slag s=176 m: radius 38 m, bank 0.1 deg caps at 62 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_wh_slag-c05",
-   "message": "c_wh_slag s=295 m: radius 74 m, bank -0.9 deg caps at 85 km/h, road target 150"
+   "message": "c_wh_slag s=295 m: radius 74 m, bank 0.9 deg caps at 88 km/h, road target 150"
+  },
+  {
+   "severity": "warn",
+   "kind": "corner_short",
+   "id": "c_wh_slag-c06",
+   "message": "c_wh_slag s=343 m: radius 186 m, bank -3.1 deg caps at 130 km/h, road target 150"
   },
   {
    "severity": "info",
@@ -24342,7 +24366,7 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_stormwatch-c01",
-   "message": "m_stormwatch s=44 m: radius 35 m, bank 0.2 deg caps at 60 km/h, road target 150"
+   "message": "m_stormwatch s=44 m: radius 35 m, bank -0.2 deg caps at 59 km/h, road target 150"
   },
   {
    "severity": "note",
@@ -24354,7 +24378,7 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_stormwatch-c03",
-   "message": "m_stormwatch s=140 m: radius 48 m, bank 0.0 deg caps at 70 km/h, road target 150"
+   "message": "m_stormwatch s=140 m: radius 48 m, bank -0.0 deg caps at 70 km/h, road target 150"
   },
   {
    "severity": "warn",
@@ -24378,25 +24402,25 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_stormwatch-c09",
-   "message": "m_stormwatch s=424 m: radius 30 m, bank 0.0 deg caps at 55 km/h, road target 150"
+   "message": "m_stormwatch s=424 m: radius 30 m, bank -0.0 deg caps at 55 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_stormwatch-c10",
-   "message": "m_stormwatch s=511 m: radius 44 m, bank 0.0 deg caps at 67 km/h, road target 150"
+   "message": "m_stormwatch s=511 m: radius 44 m, bank -0.0 deg caps at 67 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_stormwatch-c11",
-   "message": "m_stormwatch s=539 m: radius 170 m, bank 0.1 deg caps at 131 km/h, road target 150"
+   "message": "m_stormwatch s=539 m: radius 170 m, bank -0.1 deg caps at 131 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "m_stormwatch-c12",
-   "message": "m_stormwatch s=571 m: radius 61 m, bank 0.3 deg caps at 79 km/h, road target 150"
+   "message": "m_stormwatch s=571 m: radius 61 m, bank -0.3 deg caps at 78 km/h, road target 150"
   },
   {
    "severity": "note",
@@ -24444,67 +24468,67 @@
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_pl_left_in-c01",
-   "message": "c_pl_left_in s=28 m: radius 57 m, bank -1.0 deg caps at 72 km/h, road target 150"
+   "message": "c_pl_left_in s=28 m: radius 57 m, bank 1.0 deg caps at 77 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_pl_left_in-c02",
-   "message": "c_pl_left_in s=139 m: radius 98 m, bank 3.2 deg caps at 105 km/h, road target 150"
+   "message": "c_pl_left_in s=139 m: radius 98 m, bank -3.2 deg caps at 95 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_pl_left_in-c03",
-   "message": "c_pl_left_in s=179 m: radius 98 m, bank -3.3 deg caps at 94 km/h, road target 150"
+   "message": "c_pl_left_in s=179 m: radius 98 m, bank 3.3 deg caps at 106 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_pl_left_out-c01",
-   "message": "c_pl_left_out s=4 m: radius 103 m, bank 3.5 deg caps at 109 km/h, road target 150"
+   "message": "c_pl_left_out s=4 m: radius 103 m, bank -3.5 deg caps at 96 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_pl_left_out-c02",
-   "message": "c_pl_left_out s=43 m: radius 120 m, bank -2.8 deg caps at 106 km/h, road target 150"
+   "message": "c_pl_left_out s=43 m: radius 120 m, bank 2.8 deg caps at 115 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_pl_left_out-c03",
-   "message": "c_pl_left_out s=75 m: radius 49 m, bank -0.4 deg caps at 70 km/h, road target 150"
+   "message": "c_pl_left_out s=75 m: radius 49 m, bank 0.4 deg caps at 71 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_harbour_in-c01",
-   "message": "c_harbour_in s=16 m: radius 123 m, bank 1.2 deg caps at 113 km/h, road target 150"
+   "message": "c_harbour_in s=16 m: radius 123 m, bank -1.2 deg caps at 110 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_harbour_out-c01",
-   "message": "c_harbour_out s=4 m: radius 28 m, bank -2.7 deg caps at 51 km/h, road target 150"
+   "message": "c_harbour_out s=4 m: radius 28 m, bank 2.7 deg caps at 56 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_kestrel_drive-c01",
-   "message": "c_kestrel_drive s=2 m: radius 21 m, bank -0.1 deg caps at 47 km/h, road target 150"
+   "message": "c_kestrel_drive s=2 m: radius 21 m, bank 0.1 deg caps at 47 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_kestrel_drive-c02",
-   "message": "c_kestrel_drive s=43 m: radius 173 m, bank 0.4 deg caps at 134 km/h, road target 150"
+   "message": "c_kestrel_drive s=43 m: radius 173 m, bank -0.4 deg caps at 131 km/h, road target 150"
   },
   {
    "severity": "warn",
    "kind": "corner_short",
    "id": "c_kestrel_drive-c03",
-   "message": "c_kestrel_drive s=47 m: radius 50 m, bank 1.5 deg caps at 73 km/h, road target 150"
+   "message": "c_kestrel_drive s=47 m: radius 50 m, bank -1.5 deg caps at 69 km/h, road target 150"
   },
   {
    "severity": "info",
@@ -32234,7 +32258,7 @@
   "flares": 278,
   "joints": 23,
   "flags": {
-   "corner_short": 755,
+   "corner_short": 759,
    "grade": 27,
    "steep_bank": 49,
    "flare_speed": 261,
