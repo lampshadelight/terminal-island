@@ -147,7 +147,7 @@ Hass asked for banking across the whole road, not just a raised outside edge, so
 ## 12. v46 audit (23 Oct)
 
 - Index rebuilt on export v46: `map-index/map-index-v46.json` (v42 kept for comparison). 83 roads (+8 interchange ramps `c_ix_*`), 974 corners, 135 junctions. Steep-bank corners rose from 49 to 59.
-- Trail widths on v46: `map-index/trail-widths-v46.json`. Race and circuit trails now mostly measure 6.5 to 7.0 m, so the earlier 5.5 m carve is gone. L1 (airport link) still has 104 narrow points, and it is not changed.
+- Trail widths on v46: `map-index/trail-widths-v46.json`. Race and circuit trails now mostly measure 6.5 to 7.0 m, so the earlier 5.5 m carve is gone. L1 (airport link) was flagged by my 8 m grid check, but the heightmap check (widths44.py, cross slope under 25%, within 0.5 m of centre height) puts it at 4.00 m minimum with 0 points under 4 m. The grid check was too coarse, so L1 is fine. The grid check is only used for a rough first pass.
 - Open item: the interchange ramps `c_ix_e1`, `e3`, `e4`, `w2`, `w3` and `w4` get the 400 km/h target because they run through the bypass tunnel. The exit braking rule (section 9) may need to apply to them, since they are slip roads. Hass to decide.
 - The footprint check (section 10) was run on v42 geometry only. Re-run it before any exit bank is built.
 
