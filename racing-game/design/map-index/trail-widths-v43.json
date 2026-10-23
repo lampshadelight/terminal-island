@@ -1,0 +1,1204 @@
+[
+ {
+  "id": "L1",
+  "name": "Airport link",
+  "kind": "link",
+  "required_m": 3.5,
+  "points": 737,
+  "narrow_points": 116,
+  "min_open_m": 0.0,
+  "runs": [
+   {
+    "from_xy": [
+     687,
+     3129
+    ],
+    "to_xy": [
+     785,
+     3235
+    ],
+    "min_open_m": 0.0,
+    "points": 98
+   },
+   {
+    "from_xy": [
+     776,
+     3253
+    ],
+    "to_xy": [
+     773,
+     3258
+    ],
+    "min_open_m": 0.0,
+    "points": 4
+   },
+   {
+    "from_xy": [
+     637,
+     3683
+    ],
+    "to_xy": [
+     650,
+     3661
+    ],
+    "min_open_m": 0.0,
+    "points": 14
+   }
+  ]
+ },
+ {
+  "id": "L2",
+  "name": "Seven Bends link",
+  "kind": "link",
+  "required_m": 3.5,
+  "points": 139,
+  "narrow_points": 5,
+  "min_open_m": 0.0,
+  "runs": [
+   {
+    "from_xy": [
+     1700,
+     3330
+    ],
+    "to_xy": [
+     1706,
+     3325
+    ],
+    "min_open_m": 0.0,
+    "points": 5
+   }
+  ]
+ },
+ {
+  "id": "L3",
+  "name": "Scree link",
+  "kind": "link",
+  "required_m": 3.5,
+  "points": 1497,
+  "narrow_points": 5,
+  "min_open_m": 0.0,
+  "runs": [
+   {
+    "from_xy": [
+     4028,
+     2996
+    ],
+    "to_xy": [
+     4032,
+     3003
+    ],
+    "min_open_m": 0.0,
+    "points": 5
+   }
+  ]
+ },
+ {
+  "id": "L4",
+  "name": "Gorge link",
+  "kind": "link",
+  "required_m": 3.5,
+  "points": 1470,
+  "narrow_points": 3,
+  "min_open_m": 0.0,
+  "runs": [
+   {
+    "from_xy": [
+     5560,
+     4109
+    ],
+    "to_xy": [
+     5556,
+     4111
+    ],
+    "min_open_m": 0.0,
+    "points": 3
+   }
+  ]
+ },
+ {
+  "id": "L5",
+  "name": "Moor link",
+  "kind": "link",
+  "required_m": 3.5,
+  "points": 455,
+  "narrow_points": 0,
+  "min_open_m": 7.5,
+  "runs": []
+ },
+ {
+  "id": "L6",
+  "name": "Coast link",
+  "kind": "link",
+  "required_m": 3.5,
+  "points": 195,
+  "narrow_points": 0,
+  "min_open_m": 7.5,
+  "runs": []
+ },
+ {
+  "id": "T1",
+  "name": "Riverbed Run",
+  "kind": "time_trial",
+  "required_m": 7.0,
+  "points": 1528,
+  "narrow_points": 4,
+  "min_open_m": 6.0,
+  "runs": [
+   {
+    "from_xy": [
+     2909,
+     3698
+    ],
+    "to_xy": [
+     2908,
+     3692
+    ],
+    "min_open_m": 6.0,
+    "points": 4
+   }
+  ]
+ },
+ {
+  "id": "T2",
+  "name": "Akagane Ridge",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 1284,
+  "narrow_points": 27,
+  "min_open_m": 0.0,
+  "runs": [
+   {
+    "from_xy": [
+     2775,
+     3476
+    ],
+    "to_xy": [
+     2778,
+     3468
+    ],
+    "min_open_m": 0.0,
+    "points": 5
+   },
+   {
+    "from_xy": [
+     2779,
+     3465
+    ],
+    "to_xy": [
+     2781,
+     3461
+    ],
+    "min_open_m": 0.0,
+    "points": 3
+   },
+   {
+    "from_xy": [
+     2740,
+     3429
+    ],
+    "to_xy": [
+     2740,
+     3429
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     2459,
+     3382
+    ],
+    "to_xy": [
+     2452,
+     3378
+    ],
+    "min_open_m": 0.0,
+    "points": 5
+   },
+   {
+    "from_xy": [
+     2236,
+     3308
+    ],
+    "to_xy": [
+     2233,
+     3315
+    ],
+    "min_open_m": 0.0,
+    "points": 5
+   },
+   {
+    "from_xy": [
+     2228,
+     3324
+    ],
+    "to_xy": [
+     2228,
+     3324
+    ],
+    "min_open_m": 6.0,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     2079,
+     3380
+    ],
+    "to_xy": [
+     2076,
+     3383
+    ],
+    "min_open_m": 0.0,
+    "points": 3
+   },
+   {
+    "from_xy": [
+     2072,
+     3388
+    ],
+    "to_xy": [
+     2068,
+     3392
+    ],
+    "min_open_m": 0.0,
+    "points": 4
+   }
+  ]
+ },
+ {
+  "id": "T3",
+  "name": "Whitepeak Scree",
+  "kind": "hill_climb",
+  "required_m": 7.0,
+  "points": 1554,
+  "narrow_points": 3,
+  "min_open_m": 6.5,
+  "runs": [
+   {
+    "from_xy": [
+     4299,
+     1732
+    ],
+    "to_xy": [
+     4299,
+     1732
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     4323,
+     1757
+    ],
+    "to_xy": [
+     4323,
+     1757
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     4860,
+     2108
+    ],
+    "to_xy": [
+     4860,
+     2108
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   }
+  ]
+ },
+ {
+  "id": "T4",
+  "name": "Low Tide Sprint",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 750,
+  "narrow_points": 26,
+  "min_open_m": 0.0,
+  "runs": [
+   {
+    "from_xy": [
+     2636,
+     5979
+    ],
+    "to_xy": [
+     2636,
+     5979
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     2988,
+     6146
+    ],
+    "to_xy": [
+     3012,
+     6148
+    ],
+    "min_open_m": 0.0,
+    "points": 13
+   },
+   {
+    "from_xy": [
+     3349,
+     6147
+    ],
+    "to_xy": [
+     3371,
+     6145
+    ],
+    "min_open_m": 0.0,
+    "points": 12
+   }
+  ]
+ },
+ {
+  "id": "T5",
+  "name": "Plateau Rim",
+  "kind": "circuit",
+  "required_m": 7.0,
+  "points": 696,
+  "narrow_points": 6,
+  "min_open_m": 0.0,
+  "runs": [
+   {
+    "from_xy": [
+     5996,
+     4012
+    ],
+    "to_xy": [
+     5996,
+     4012
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     6026,
+     3987
+    ],
+    "to_xy": [
+     6029,
+     3984
+    ],
+    "min_open_m": 0.0,
+    "points": 3
+   },
+   {
+    "from_xy": [
+     5980,
+     3948
+    ],
+    "to_xy": [
+     5978,
+     3947
+    ],
+    "min_open_m": 6.0,
+    "points": 2
+   }
+  ]
+ },
+ {
+  "id": "T6",
+  "name": "Dockside Scrapline",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 1004,
+  "narrow_points": 9,
+  "min_open_m": 0.0,
+  "runs": [
+   {
+    "from_xy": [
+     5980,
+     1808
+    ],
+    "to_xy": [
+     5982,
+     1812
+    ],
+    "min_open_m": 0.0,
+    "points": 3
+   },
+   {
+    "from_xy": [
+     5988,
+     2031
+    ],
+    "to_xy": [
+     5989,
+     2029
+    ],
+    "min_open_m": 0.0,
+    "points": 2
+   },
+   {
+    "from_xy": [
+     6213,
+     2644
+    ],
+    "to_xy": [
+     6213,
+     2644
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     6221,
+     2652
+    ],
+    "to_xy": [
+     6221,
+     2652
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     6228,
+     2660
+    ],
+    "to_xy": [
+     6228,
+     2660
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     6241,
+     2667
+    ],
+    "to_xy": [
+     6241,
+     2667
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   }
+  ]
+ },
+ {
+  "id": "T7",
+  "name": "Runway Verge",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 1458,
+  "narrow_points": 1121,
+  "min_open_m": 0.0,
+  "runs": [
+   {
+    "from_xy": [
+     655,
+     3285
+    ],
+    "to_xy": [
+     1098,
+     2847
+    ],
+    "min_open_m": 0.0,
+    "points": 337
+   },
+   {
+    "from_xy": [
+     1140,
+     2858
+    ],
+    "to_xy": [
+     1788,
+     2582
+    ],
+    "min_open_m": 0.0,
+    "points": 360
+   },
+   {
+    "from_xy": [
+     1791,
+     2579
+    ],
+    "to_xy": [
+     1796,
+     2574
+    ],
+    "min_open_m": 0.0,
+    "points": 5
+   },
+   {
+    "from_xy": [
+     1851,
+     2531
+    ],
+    "to_xy": [
+     1851,
+     2531
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     1943,
+     2476
+    ],
+    "to_xy": [
+     1941,
+     2452
+    ],
+    "min_open_m": 0.0,
+    "points": 14
+   },
+   {
+    "from_xy": [
+     1927,
+     2411
+    ],
+    "to_xy": [
+     2036,
+     2299
+    ],
+    "min_open_m": 0.0,
+    "points": 81
+   },
+   {
+    "from_xy": [
+     2377,
+     2171
+    ],
+    "to_xy": [
+     2921,
+     1893
+    ],
+    "min_open_m": 0.0,
+    "points": 323
+   }
+  ]
+ },
+ {
+  "id": "T8",
+  "name": "Neon Row Backlots",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 841,
+  "narrow_points": 236,
+  "min_open_m": 0.0,
+  "runs": [
+   {
+    "from_xy": [
+     4604,
+     4820
+    ],
+    "to_xy": [
+     4604,
+     4820
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     4923,
+     4925
+    ],
+    "to_xy": [
+     4928,
+     4916
+    ],
+    "min_open_m": 0.0,
+    "points": 6
+   },
+   {
+    "from_xy": [
+     4914,
+     4868
+    ],
+    "to_xy": [
+     4943,
+     4828
+    ],
+    "min_open_m": 0.0,
+    "points": 27
+   },
+   {
+    "from_xy": [
+     4993,
+     4828
+    ],
+    "to_xy": [
+     4995,
+     4829
+    ],
+    "min_open_m": 0.0,
+    "points": 2
+   },
+   {
+    "from_xy": [
+     5125,
+     4851
+    ],
+    "to_xy": [
+     5159,
+     4868
+    ],
+    "min_open_m": 0.0,
+    "points": 20
+   },
+   {
+    "from_xy": [
+     5172,
+     4872
+    ],
+    "to_xy": [
+     5218,
+     4836
+    ],
+    "min_open_m": 0.0,
+    "points": 31
+   },
+   {
+    "from_xy": [
+     5220,
+     4833
+    ],
+    "to_xy": [
+     5240,
+     4820
+    ],
+    "min_open_m": 0.0,
+    "points": 13
+   },
+   {
+    "from_xy": [
+     5254,
+     4813
+    ],
+    "to_xy": [
+     5324,
+     4760
+    ],
+    "min_open_m": 0.0,
+    "points": 45
+   },
+   {
+    "from_xy": [
+     5333,
+     4755
+    ],
+    "to_xy": [
+     5372,
+     4728
+    ],
+    "min_open_m": 0.0,
+    "points": 25
+   },
+   {
+    "from_xy": [
+     5392,
+     4708
+    ],
+    "to_xy": [
+     5443,
+     4664
+    ],
+    "min_open_m": 0.0,
+    "points": 35
+   },
+   {
+    "from_xy": [
+     5452,
+     4661
+    ],
+    "to_xy": [
+     5507,
+     4682
+    ],
+    "min_open_m": 0.0,
+    "points": 31
+   }
+  ]
+ },
+ {
+  "id": "T9",
+  "name": "Foxhole Forest",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 923,
+  "narrow_points": 18,
+  "min_open_m": 0.0,
+  "runs": [
+   {
+    "from_xy": [
+     1692,
+     3362
+    ],
+    "to_xy": [
+     1700,
+     3330
+    ],
+    "min_open_m": 0.0,
+    "points": 18
+   }
+  ]
+ },
+ {
+  "id": "T10",
+  "name": "Gull Cliff Tops",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 835,
+  "narrow_points": 16,
+  "min_open_m": 0.0,
+  "runs": [
+   {
+    "from_xy": [
+     1845,
+     5236
+    ],
+    "to_xy": [
+     1868,
+     5249
+    ],
+    "min_open_m": 0.0,
+    "points": 14
+   },
+   {
+    "from_xy": [
+     2236,
+     5467
+    ],
+    "to_xy": [
+     2236,
+     5467
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     2252,
+     5475
+    ],
+    "to_xy": [
+     2252,
+     5475
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   }
+  ]
+ },
+ {
+  "id": "T11",
+  "name": "East Cape Moors",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 1799,
+  "narrow_points": 14,
+  "min_open_m": 0.0,
+  "runs": [
+   {
+    "from_xy": [
+     6245,
+     2675
+    ],
+    "to_xy": [
+     6242,
+     2683
+    ],
+    "min_open_m": 0.0,
+    "points": 5
+   },
+   {
+    "from_xy": [
+     6276,
+     2827
+    ],
+    "to_xy": [
+     6276,
+     2827
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     6371,
+     2740
+    ],
+    "to_xy": [
+     6371,
+     2740
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     6524,
+     2667
+    ],
+    "to_xy": [
+     6524,
+     2667
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     6540,
+     2659
+    ],
+    "to_xy": [
+     6540,
+     2659
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     6404,
+     2805
+    ],
+    "to_xy": [
+     6404,
+     2805
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     6372,
+     2803
+    ],
+    "to_xy": [
+     6372,
+     2803
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     6364,
+     3068
+    ],
+    "to_xy": [
+     6364,
+     3068
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     6381,
+     3532
+    ],
+    "to_xy": [
+     6381,
+     3532
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     6411,
+     3636
+    ],
+    "to_xy": [
+     6411,
+     3636
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   }
+  ]
+ },
+ {
+  "id": "T12",
+  "name": "Tsubame Gorge",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 1512,
+  "narrow_points": 17,
+  "min_open_m": 0.0,
+  "runs": [
+   {
+    "from_xy": [
+     5324,
+     3868
+    ],
+    "to_xy": [
+     5299,
+     3860
+    ],
+    "min_open_m": 0.0,
+    "points": 14
+   },
+   {
+    "from_xy": [
+     5476,
+     3589
+    ],
+    "to_xy": [
+     5476,
+     3589
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     5667,
+     3085
+    ],
+    "to_xy": [
+     5667,
+     3085
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     5644,
+     2739
+    ],
+    "to_xy": [
+     5644,
+     2739
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   }
+  ]
+ },
+ {
+  "id": "T13",
+  "name": "Snowfell Meadows",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 1135,
+  "narrow_points": 5,
+  "min_open_m": 6.5,
+  "runs": [
+   {
+    "from_xy": [
+     3132,
+     4813
+    ],
+    "to_xy": [
+     3132,
+     4813
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     3116,
+     4821
+    ],
+    "to_xy": [
+     3116,
+     4821
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     3100,
+     4829
+    ],
+    "to_xy": [
+     3100,
+     4829
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     3116,
+     4843
+    ],
+    "to_xy": [
+     3116,
+     4843
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     3187,
+     5188
+    ],
+    "to_xy": [
+     3187,
+     5188
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   }
+  ]
+ },
+ {
+  "id": "T14",
+  "name": "Harune Logging Line",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 2352,
+  "narrow_points": 44,
+  "min_open_m": 0.0,
+  "runs": [
+   {
+    "from_xy": [
+     3276,
+     3715
+    ],
+    "to_xy": [
+     3276,
+     3715
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     3525,
+     3716
+    ],
+    "to_xy": [
+     3525,
+     3716
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     3532,
+     3708
+    ],
+    "to_xy": [
+     3532,
+     3708
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     3828,
+     3560
+    ],
+    "to_xy": [
+     3832,
+     3564
+    ],
+    "min_open_m": 0.0,
+    "points": 4
+   },
+   {
+    "from_xy": [
+     3844,
+     3577
+    ],
+    "to_xy": [
+     3850,
+     3588
+    ],
+    "min_open_m": 0.0,
+    "points": 7
+   },
+   {
+    "from_xy": [
+     3852,
+     3591
+    ],
+    "to_xy": [
+     3855,
+     3596
+    ],
+    "min_open_m": 0.0,
+    "points": 4
+   },
+   {
+    "from_xy": [
+     3932,
+     3676
+    ],
+    "to_xy": [
+     3948,
+     3687
+    ],
+    "min_open_m": 0.0,
+    "points": 11
+   },
+   {
+    "from_xy": [
+     4618,
+     3763
+    ],
+    "to_xy": [
+     4627,
+     3768
+    ],
+    "min_open_m": 0.0,
+    "points": 6
+   },
+   {
+    "from_xy": [
+     4636,
+     3772
+    ],
+    "to_xy": [
+     4636,
+     3772
+    ],
+    "min_open_m": 6.0,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     4923,
+     4020
+    ],
+    "to_xy": [
+     4923,
+     4020
+    ],
+    "min_open_m": 6.0,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     5115,
+     3683
+    ],
+    "to_xy": [
+     5123,
+     3692
+    ],
+    "min_open_m": 0.0,
+    "points": 7
+   }
+  ]
+ }
+]
