@@ -50,7 +50,7 @@ Sealed road, dirt, sand, wet sand, rock, loose rock, grass and snow. The export'
   - Tops of buildings and immovable objects or landscapes that should not be reachable: zero friction, so the car carries on in the direction it was going.
 - **Guard rails:** only stop a car coming from off road onto the road. They keep cars from leaving the track. The ping-pong between rails still needs a fix.
 - **Minimum trail width (proposed, 23 Oct, for Hass to confirm):** measured clear width, solid to solid, across the centreline.
-  - Explore trails and links: at least **3.5 m**.
+  - Explore trails and links: at least **4 m** (Hass, 23 Oct; was 3.5 m).
   - Race, time trial, hill climb and circuit trails: at least **7 m**.
   - Nothing solid within **4 m** of a race trail centreline (the 4wd-offroad.md rule). This already gives an 8 m corridor.
 - **v43 finding:** every trail is carved at 5.5 m (`width_m` in trails.json). That is under the 7 m race width. Built cells (buildings, fences, piers, zone 1) are within 4 m of many points on T7, T8, T14, L1 and L4. The count uses an 8 m grid and zone 1 is grown by 6 m, so it is an upper bound. Full list: `map-index/trail-widths-v43.json`, script `map-index/trail_width_audit.py`.

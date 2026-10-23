@@ -4,7 +4,7 @@ N = 1025; SP = 8.0
 surf = open(EXP + 'surface.u8', 'rb').read()
 zone = open(EXP + 'veg-zones.u8', 'rb').read()
 tr = json.load(open(EXP + 'trails.json'))
-REQ = {'race': 7.0, 'time_trial': 7.0, 'hill_climb': 7.0, 'circuit': 7.0, 'link': 3.5}   # explore-type links need 3.5 m (Hass); races 7 m (story note)
+REQ = {'race': 7.0, 'time_trial': 7.0, 'hill_climb': 7.0, 'circuit': 7.0, 'link': 4.0}   # explore-type links need 3.5 m (Hass); races 7 m (story note)
 CAP = 6.0   # look at most 6 m to each side (zone 11 corridor)
 
 def solid(x, y):
