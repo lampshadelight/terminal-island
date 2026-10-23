@@ -1,0 +1,573 @@
+[
+ {
+  "id": "L1",
+  "name": "Airport link",
+  "kind": "link",
+  "required_m": 4.0,
+  "points": 737,
+  "narrow_points": 104,
+  "min_open_m": 0.0,
+  "runs": [
+   {
+    "from_xy": [
+     701,
+     3129
+    ],
+    "to_xy": [
+     785,
+     3235
+    ],
+    "min_open_m": 0.0,
+    "points": 91
+   },
+   {
+    "from_xy": [
+     776,
+     3253
+    ],
+    "to_xy": [
+     773,
+     3258
+    ],
+    "min_open_m": 0.0,
+    "points": 4
+   },
+   {
+    "from_xy": [
+     637,
+     3683
+    ],
+    "to_xy": [
+     645,
+     3670
+    ],
+    "min_open_m": 0.0,
+    "points": 9
+   }
+  ]
+ },
+ {
+  "id": "L2",
+  "name": "Seven Bends link",
+  "kind": "link",
+  "required_m": 4.0,
+  "points": 139,
+  "narrow_points": 0,
+  "min_open_m": 9.0,
+  "runs": []
+ },
+ {
+  "id": "L3",
+  "name": "Scree link",
+  "kind": "link",
+  "required_m": 4.0,
+  "points": 1497,
+  "narrow_points": 0,
+  "min_open_m": 6.5,
+  "runs": []
+ },
+ {
+  "id": "L4",
+  "name": "Gorge link",
+  "kind": "link",
+  "required_m": 4.0,
+  "points": 1470,
+  "narrow_points": 0,
+  "min_open_m": 6.5,
+  "runs": []
+ },
+ {
+  "id": "L5",
+  "name": "Moor link",
+  "kind": "link",
+  "required_m": 4.0,
+  "points": 455,
+  "narrow_points": 0,
+  "min_open_m": 7.5,
+  "runs": []
+ },
+ {
+  "id": "L6",
+  "name": "Coast link",
+  "kind": "link",
+  "required_m": 4.0,
+  "points": 195,
+  "narrow_points": 0,
+  "min_open_m": 7.5,
+  "runs": []
+ },
+ {
+  "id": "T1",
+  "name": "Riverbed Run",
+  "kind": "time_trial",
+  "required_m": 7.0,
+  "points": 1528,
+  "narrow_points": 0,
+  "min_open_m": 7.0,
+  "runs": []
+ },
+ {
+  "id": "T2",
+  "name": "Akagane Ridge",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 1284,
+  "narrow_points": 1,
+  "min_open_m": 6.5,
+  "runs": [
+   {
+    "from_xy": [
+     2740,
+     3429
+    ],
+    "to_xy": [
+     2740,
+     3429
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   }
+  ]
+ },
+ {
+  "id": "T3",
+  "name": "Whitepeak Scree",
+  "kind": "hill_climb",
+  "required_m": 7.0,
+  "points": 1554,
+  "narrow_points": 3,
+  "min_open_m": 6.5,
+  "runs": [
+   {
+    "from_xy": [
+     4299,
+     1732
+    ],
+    "to_xy": [
+     4299,
+     1732
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     4323,
+     1757
+    ],
+    "to_xy": [
+     4323,
+     1757
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     4860,
+     2108
+    ],
+    "to_xy": [
+     4860,
+     2108
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   }
+  ]
+ },
+ {
+  "id": "T4",
+  "name": "Low Tide Sprint",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 750,
+  "narrow_points": 1,
+  "min_open_m": 6.5,
+  "runs": [
+   {
+    "from_xy": [
+     2636,
+     5979
+    ],
+    "to_xy": [
+     2636,
+     5979
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   }
+  ]
+ },
+ {
+  "id": "T5",
+  "name": "Plateau Rim",
+  "kind": "circuit",
+  "required_m": 7.0,
+  "points": 696,
+  "narrow_points": 0,
+  "min_open_m": 7.0,
+  "runs": []
+ },
+ {
+  "id": "T6",
+  "name": "Dockside Scrapline",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 1004,
+  "narrow_points": 0,
+  "min_open_m": 7.0,
+  "runs": []
+ },
+ {
+  "id": "T7",
+  "name": "Runway Verge",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 1458,
+  "narrow_points": 1,
+  "min_open_m": 6.5,
+  "runs": [
+   {
+    "from_xy": [
+     1851,
+     2531
+    ],
+    "to_xy": [
+     1851,
+     2531
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   }
+  ]
+ },
+ {
+  "id": "T8",
+  "name": "Neon Row Backlots",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 841,
+  "narrow_points": 1,
+  "min_open_m": 6.5,
+  "runs": [
+   {
+    "from_xy": [
+     4604,
+     4820
+    ],
+    "to_xy": [
+     4604,
+     4820
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   }
+  ]
+ },
+ {
+  "id": "T9",
+  "name": "Foxhole Forest",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 923,
+  "narrow_points": 0,
+  "min_open_m": 7.5,
+  "runs": []
+ },
+ {
+  "id": "T10",
+  "name": "Gull Cliff Tops",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 835,
+  "narrow_points": 2,
+  "min_open_m": 6.5,
+  "runs": [
+   {
+    "from_xy": [
+     2236,
+     5467
+    ],
+    "to_xy": [
+     2236,
+     5467
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     2252,
+     5475
+    ],
+    "to_xy": [
+     2252,
+     5475
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   }
+  ]
+ },
+ {
+  "id": "T11",
+  "name": "East Cape Moors",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 1799,
+  "narrow_points": 9,
+  "min_open_m": 6.5,
+  "runs": [
+   {
+    "from_xy": [
+     6276,
+     2827
+    ],
+    "to_xy": [
+     6276,
+     2827
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     6371,
+     2740
+    ],
+    "to_xy": [
+     6371,
+     2740
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     6524,
+     2667
+    ],
+    "to_xy": [
+     6524,
+     2667
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     6540,
+     2659
+    ],
+    "to_xy": [
+     6540,
+     2659
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     6404,
+     2805
+    ],
+    "to_xy": [
+     6404,
+     2805
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     6372,
+     2803
+    ],
+    "to_xy": [
+     6372,
+     2803
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     6364,
+     3068
+    ],
+    "to_xy": [
+     6364,
+     3068
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     6381,
+     3532
+    ],
+    "to_xy": [
+     6381,
+     3532
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     6411,
+     3636
+    ],
+    "to_xy": [
+     6411,
+     3636
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   }
+  ]
+ },
+ {
+  "id": "T12",
+  "name": "Tsubame Gorge",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 1512,
+  "narrow_points": 3,
+  "min_open_m": 6.5,
+  "runs": [
+   {
+    "from_xy": [
+     5476,
+     3589
+    ],
+    "to_xy": [
+     5476,
+     3589
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     5667,
+     3085
+    ],
+    "to_xy": [
+     5667,
+     3085
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     5644,
+     2739
+    ],
+    "to_xy": [
+     5644,
+     2739
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   }
+  ]
+ },
+ {
+  "id": "T13",
+  "name": "Snowfell Meadows",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 1135,
+  "narrow_points": 5,
+  "min_open_m": 6.5,
+  "runs": [
+   {
+    "from_xy": [
+     3132,
+     4813
+    ],
+    "to_xy": [
+     3132,
+     4813
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     3116,
+     4821
+    ],
+    "to_xy": [
+     3116,
+     4821
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     3100,
+     4829
+    ],
+    "to_xy": [
+     3100,
+     4829
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     3116,
+     4843
+    ],
+    "to_xy": [
+     3116,
+     4843
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   },
+   {
+    "from_xy": [
+     3187,
+     5188
+    ],
+    "to_xy": [
+     3187,
+     5188
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   }
+  ]
+ },
+ {
+  "id": "T14",
+  "name": "Harune Logging Line",
+  "kind": "race",
+  "required_m": 7.0,
+  "points": 2352,
+  "narrow_points": 1,
+  "min_open_m": 6.5,
+  "runs": [
+   {
+    "from_xy": [
+     3276,
+     3715
+    ],
+    "to_xy": [
+     3276,
+     3715
+    ],
+    "min_open_m": 6.5,
+    "points": 1
+   }
+  ]
+ }
+]

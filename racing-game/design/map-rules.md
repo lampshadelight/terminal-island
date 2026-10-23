@@ -144,3 +144,10 @@ Hass asked for banking across the whole road, not just a raised outside edge, so
 - **Audit:** at every corner sample the cross-fall across the full width (outside minus inside edge height) must match the bank needed, within 2°. Short = flag. This check is not in the audit yet; the index still uses the edge-height data that is there now.
 - **Shape (Hass, 22 Oct, confirmed):** the road pivots on its centreline. The inside edge drops below the centre, and the outside edge rises above it. The centre height stays where the export puts it. The audit should check that the outside rise and the inside drop are about equal, within 2 cm, around each centre sample.
 
+## 12. v46 audit (23 Oct)
+
+- Index rebuilt on export v46: `map-index/map-index-v46.json` (v42 kept for comparison). 83 roads (+8 interchange ramps `c_ix_*`), 974 corners, 135 junctions. Steep-bank corners rose from 49 to 59.
+- Trail widths on v46: `map-index/trail-widths-v46.json`. Race and circuit trails now mostly measure 6.5 to 7.0 m, so the earlier 5.5 m carve is gone. L1 (airport link) still has 104 narrow points, and it is not changed.
+- Open item: the interchange ramps `c_ix_e1`, `e3`, `e4`, `w2`, `w3` and `w4` get the 400 km/h target because they run through the bypass tunnel. The exit braking rule (section 9) may need to apply to them, since they are slip roads. Hass to decide.
+- The footprint check (section 10) was run on v42 geometry only. Re-run it before any exit bank is built.
+
