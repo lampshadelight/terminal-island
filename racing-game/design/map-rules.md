@@ -209,3 +209,11 @@ Notes only. Nothing in the export has been changed for these.
 2. **Barricade placement:** every road-side section at a high-speed turn gets a barricade. At present some are missing completely. Exact placement rules are to be set (TBC).
 3. **Exit signs:** exits need street signs at the exit and leading up to it. At present they are not visible.
 
+## 18. Expressway flatness and overpasses (Hass, 24 Oct)
+
+Notes only. Nothing in the export has been changed for these.
+
+1. **Expressways sit flat.** Every expressway road is flat, except through turns. Intersections of expressways are not banked.
+2. **Banked turns:** the outer part of a turn is banked. Section 11 applies, with the outside edge rising. The bank still follows the flat-then-gentle-curve shape in section 13.
+3. **Overpass for fast banked turns:** where a fast banked turn is needed on an expressway, an overpass is built rather than banking the expressway itself. The overpass follows the banking rules (sections 2, 8, 11 and 13).
+
