@@ -201,3 +201,12 @@ Notes only. Nothing in the export has been changed for these.
 2. **Banked turns:** the outer part of a turn is banked. Section 11 applies, with the outside edge rising. The bank still follows the flat-then-gentle-curve shape in section 13.
 3. **Overpass for fast banked turns:** where a fast banked turn is needed on an expressway, an overpass is built rather than banking the expressway itself. The overpass follows the banking rules (sections 2, 8, 11 and 13).
 
+## 19. Placeholder buildings and access (Hass, 24 Oct)
+
+Notes only. Do not start until Hass gives the go.
+
+1. **Placeholder buildings for unbuilt places.** Every map point of interest that is not built yet gets a placeholder building, including petrol stations, coffee shops and fast food restaurants. A map icon with no building on the ground is a bug.
+2. **Access roads for each placeholder.** Each placeholder building gets its own road and entrance and exit, so it can be reached from the network.
+3. **Correct entrances and exits.** Every road entrance and exit to and from a road, a building, or an off-road trail must join correctly, with the trail rules in sections 6 and 14.
+4. **Audit.** The audit (section 14) checks that every map icon has a building, and that every building has a working access road.
+
