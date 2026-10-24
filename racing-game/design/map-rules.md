@@ -197,3 +197,7 @@ Notes only. Nothing in the export has been changed for these.
 2. **Urban areas:** road-side lights do not need barriers. They must be completely off the road, outside the carriageway.
 3. **Breakable poles:** light poles are breakable. Hitting one slows the car more than a speed sign or a smaller sign does. Exact slow-down values are to be set (TBC).
 
+## 16. Barricade reflectors (Hass, 24 Oct)
+
+Notes only. Barricades need reflectors on them. The exact spec comes later from Hass (TBC). Until then, the audit (section 14) lists every barricade as missing reflectors, and that is not a failure yet.
+
