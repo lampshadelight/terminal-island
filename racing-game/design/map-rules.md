@@ -189,3 +189,11 @@ The audit covers these, each by its own item name. Nothing is lumped as "furnitu
 
 **Why the first audit missed the barricades (24 Oct):** it only read the road, junction, flare and joint data. It never read signage.json, street-furniture.json, the crash attenuator data or places.json, so it could not see objects on the road. Barricades need their own check against the road surface before any audit is called complete.
 
+## 15. Road lights and poles (Hass, 24 Oct)
+
+Notes only. Nothing in the export has been changed for these.
+
+1. **Highways:** road-side lights stand only on highways, and they sit behind barriers. Gantry poles count as road-side lights, so they go behind barriers too.
+2. **Urban areas:** road-side lights do not need barriers. They must be completely off the road, outside the carriageway.
+3. **Breakable poles:** light poles are breakable. Hitting one slows the car more than a speed sign or a smaller sign does. Exact slow-down values are to be set (TBC).
+
