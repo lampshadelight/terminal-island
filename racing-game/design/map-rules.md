@@ -242,3 +242,17 @@ Notes only. Nothing in the export has been changed for these.
 7. **Clear view:** nothing tall beside the driveway, so drivers coming out can see traffic.
 8. **Car parks:** one-way loops with marked bays and a turning area, so no car has to reverse onto the road.
 
+## 22. Road types, camber, lanes, city, mountain, bridges, surfaces, ends and signs (Hass approved, 24 Oct)
+
+Notes only. Nothing in the export has been changed for these. No runaway lanes (Hass, 24 Oct).
+
+1. **Road templates:** each kind of road has one fixed width and lane count: expressway, main road, city street, mountain road and lane. Every road follows its template.
+2. **Camber and drainage:** a slight slope from the centre to the edges, so rain runs off. Puddles collect only where they are meant to.
+3. **Lane drops:** when a road goes from three lanes to two, the outside lane tapers away over a long distance. It never just ends.
+4. **City streets:** kerbs, footpaths and parking lanes along the sides, all at the same kerb height.
+5. **Mountain roads:** passing bays, and barriers wherever there is a drop.
+6. **Bridges:** joints line up with the road surface so there is no bump. A solid side wall, and a straight run on and off the bridge.
+7. **Surfaces:** set rules for where asphalt, concrete and cobbles go. Each surface keeps the same grip (TBC).
+8. **No dead ends:** every road connects back into the network (Hass, 24 Oct, replacing the turning circle rule). The export has six dead ends now: three pier ends, the Resort Bay Promenade start, and the two summit ends (Whitepeak Hill Climb and Cloudline). Each needs a decision: connect it, or keep it as a documented exception (TBC).
+9. **Name and number signs:** a road name and route number sign after every junction.
+
