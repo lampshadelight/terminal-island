@@ -260,3 +260,7 @@ Notes only. Nothing in the export has been changed for these. No runaway lanes (
 
 Notes only, for later. The pier area becomes a proper dockyard. The three pier dead ends (c_pier1, c_pier2 and c_pier3) wait for that redesign, so they are not changed now. Section 22, rule 8 still applies once the dockyard is designed.
 
+## 24. Terminal 1 building length (Hass approved, 24 Oct)
+
+Notes only, for when the terminal is rebuilt. The Terminal 1 building should be about 300 to 400 m long. Real terminals run about 300 to 800 m, and Sydney's international terminal is about 600 m. The current game terminal has not been measured.
+
