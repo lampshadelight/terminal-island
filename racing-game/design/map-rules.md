@@ -65,32 +65,16 @@ Sealed road, dirt, sand, wet sand, rock, loose rock, grass and snow. The export'
 - Sign check of the bank convention.
 - Trail audit: the trail index is not built yet. It needs trail widths and clearance checks.
 
-## 8. Metal banks (steep corners)
+## 8. Steep banks (concrete, no metal attachments)
 
-**Where they go (Hass ruling, 22 Oct):** metal banks go only on the outside of large turns. Never at an intersection, never in the middle of a road. A large turn is 60° of turn or more (TBC). Intersections are any point within 40 m of a junction (TBC).
+Hass (24 Oct): metal bank attachments are dropped. Steep banks are made by shaping the concrete road and its structure itself.
 
-**When one is needed.** A corner needs a metal bank when the bank it needs to hold the road's target speed is 45° or more. The index marks these as `steep_bank`. On 22 Oct the 400 km/h roads have 16 such corners, needing 45° to 49.5°. The steepest need is still under the 51.3° grip limit, so grip can hold every one. The bank exists so the car can ride the steep part of the corner, not because grip fails. If a future target needs more than 51.3°, the audit flags it for a wall-ride design review.
-
-**Shape.** A separate steel ramp, built on the outside of the corner, that the road surface rises into. Its lower edge sits exactly on the road's outside edge, with no step. It rises at the corner's needed bank and follows the corner's radius. Its top edge is a drop, so it always gets a rail along it (section 4 and the firm rule on edges).
-
-**Entry and exit.** The bank angle ramps up from the road's own cross-fall to the full angle, and back down at the exit. The ramp must not change angle faster than **3° per 10 m** of road (Hass, 22 Oct). The ramp runs at least one road width before the corner's start and after its end.
-
-**Joins.**
-- Road edge: the bank's lower edge is the road's outside edge. The road mesh is cut along it, so there is no gap or step (same rule as the road joins in the export README).
-- Walls and rails: a steel rail along the top edge. Where the bank is steep, the inside of the road keeps its normal edge or barrier. No invisible walls.
-- Off road: the same shape and joins apply to off-road edges (Hass, 22 Oct). Grip for those is TBC.
-
-**Adding them to the map.** A bank is an edit to the road's outside edge. It is not a new road. The exporter takes each `steep_bank` corner and writes a bank record: road id, start and end distance, side, maximum angle, ramp length and rail on or off. The Unity side builds the ramp and rail from that record. Nothing else on the road moves.
-
-**How the audit checks them.**
-1. Every `steep_bank` corner has a bank record. Missing = error.
-2. The bank's maximum angle is at least the bank needed at the road's target. Short = error.
-3. The ramp's angle change rate is within the TBC limit. Too fast = error.
-4. The ramp runs at least one road width past each end of the corner. Short = error.
-5. The top edge has a rail. Missing = error.
-6. Any bank needing more than 51.3° is flagged for design review.
-
-**Status.** The current export has no metal bank records. The audit lists the 16 steep corners as the work to do, and the checks above are written but not yet run against any records.
+- **When one is needed:** a corner needs a steep bank when the bank it needs for the road's target speed is 45° or more. The index flags these as `steep_bank`. On v42 the 400 km/h roads had 16 such corners, needing 45° to 49.5°. Grip can hold all of them under the 51.3° limit.
+- **Where:** only on the outside of large turns (60° or more, TBC), never at intersections or mid-road (Hass ruling, 22 Oct).
+- **Shape:** the road pivots on its centreline, as section 11 sets out. The outside edge rises and the inside drops, and the whole structure is shaped to match.
+- **Entry and exit:** the bank eases in and out at 3° per 10 m (confirmed, 22 Oct), using the flat-then-gentle-curve shape from section 13.
+- **Edges:** the outside edge carries a barrier or rail along its top where the drop is. Off-road edges follow the same shape (grip TBC).
+- **Audit:** every steep corner is checked against the concrete bank that is in the export. A corner that needs a steep bank but has none is flagged. The old "bank record" approach is superseded.
 
 ## 9. Expressway continuity, exits and airside
 
@@ -123,11 +107,11 @@ The brake zone is 730 to 770 m. Some exits have no road like that before them. T
 
 **Airside.** Airside roads are the airport's own roads: the runway, taxiways, rapid exits, apron loops and the gymkhana apron. They are closed in free roam. They are not on the public network. They stay at 150 km/h for now. Hass to say whether the runway needs a higher value.
 
-## 10. Exit metal banks (Hass, 22 Oct)
+## 10. Exit banks (Hass, 22 Oct; metal attachments dropped 24 Oct)
 
 Hass asked for metal banks on the exits and for each bank to stay clear of other roads and paths. The airport is not changed.
 
-- **Records:** `map-index/exit-metal-banks.json`. Eight records covering the exit corner on five exits. Each is banked for the 150 km/h exit target, rounded up to whole degrees.
+- **Records (superseded for the metal part, 24 Oct):** `map-index/exit-metal-banks.json` still lists the bank angles. The metal-bank flags in it no longer apply; the banks are built into the concrete. Eight records covering the exit corner on five exits. Each is banked for the 150 km/h exit target, rounded up to whole degrees.
 - **Footprint rule:** the bank takes 4 m beyond the outer edge, plus 2 m clearance. No other road may be inside that band or within 2 m of it, if its height is within 3 m or it is a tunnel. No trail point may be inside it.
 - **Result:** seven of eight records are clear. The one that clashes is c_harbour_out-c01, a 28 m quick right at 43°. Its outer band would cover c_harbour_in, a one-way slip. **Decided (Hass, 22 Oct): move c_harbour_in.** This is a map change for the export owner. The bank stays at 43° and the corner keeps its speed. The c_harbour_out record stays blocked until the move is in the export and the footprint check passes again.
 - **Airport:** not checked or changed.
