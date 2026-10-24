@@ -229,3 +229,16 @@ Notes only. Nothing in the export has been changed for these.
 13. **Sign sequence:** advance exit signs at about 2 km, 1 km and 500 m, then a sign at the exit itself.
 14. **Three lanes each way (Hass, 24 Oct):** the ring expressway and the tunnels become three lanes in each direction, with a median barrier (rule 9). This changes the width rule in section 3 for expressways, and the median width is TBC.
 
+## 21. Driveway rules (Hass approved, 24 Oct)
+
+Notes only. Nothing in the export has been changed for these.
+
+1. **Clear of junctions:** no driveway close to a junction or on the inside of a fast bend. Keep about 30 m clear in town, and further on fast roads (exact distance TBC).
+2. **No highway driveways:** buildings next to an expressway are reached from a side road, never straight off the highway.
+3. **Width:** about 3 to 4 m for a house, and 6 to 8 m for a shop or petrol station.
+4. **Petrol stations:** separate entry and exit driveways.
+5. **Smooth edge:** the kerb drops to the driveway so a car can drive over it, with a small rounded corner where it meets the road.
+6. **Gentle slope:** 10 to 15% at most, flat for the first few metres off the road, and no scraping.
+7. **Clear view:** nothing tall beside the driveway, so drivers coming out can see traffic.
+8. **Car parks:** one-way loops with marked bays and a turning area, so no car has to reverse onto the road.
+
