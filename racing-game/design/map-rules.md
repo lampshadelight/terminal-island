@@ -160,3 +160,32 @@ Notes only. Nothing in the export has been changed for these. Hass will add more
 3. **Run-off lanes on turns:** every turn that needs one has a run-off lane on the inside and on the outside. The run-off lane is part of the carriageway for the width audit (section 6).
 4. **Banking shape:** a flat section first, then a gentle curve into the bank. Not a flat gradient or a straight ramp. The bank eases in from the flat part, and the same easing happens on the way out. This is an extra condition on the 3° per 10 m ramp rule in section 8.
 
+## 14. Audit scope (Hass, 24 Oct)
+
+The audit covers these, each by its own item name. Nothing is lumped as "furniture".
+
+- **Roads:** centreline, width, banks, grade, joints and dead ends.
+- **Junctions:** junction records, flares and their corner speeds.
+- **Barricades:** any barrier or barricade standing on or across a road, including old roadside barricades. Hass found some at the pier entrance (24 Oct).
+- **Road furniture, by name:**
+  - crash barriers and steel barriers
+  - crash cushions
+  - water-filled barrels
+  - signs (speed, direction, warning, event, tunnel)
+  - camera posts and gantries
+  - chevron boards
+  - reflector posts
+  - rumble strips
+  - kerbs
+  - pedestrian crossings
+  - bus shelters
+  - benches
+  - bins
+  - fences and gates (including the airport fences, which are not to be changed)
+  - rock aprons
+  - timber posts (off-road)
+  - 4WD ONLY gates
+  - painted lines and guide lines
+
+**Why the first audit missed the barricades (24 Oct):** it only read the road, junction, flare and joint data. It never read signage.json, street-furniture.json, the crash attenuator data or places.json, so it could not see objects on the road. Barricades need their own check against the road surface before any audit is called complete.
+
