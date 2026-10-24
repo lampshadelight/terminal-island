@@ -210,3 +210,22 @@ Notes only. Do not start until Hass gives the go.
 3. **Correct entrances and exits.** Every road entrance and exit to and from a road, a building, or an off-road trail must join correctly, with the trail rules in sections 6 and 14.
 4. **Audit.** The audit (section 14) checks that every map icon has a building, and that every building has a working access road.
 
+## 20. Highway design rules (Hass approved, 24 Oct)
+
+Notes only. Nothing in the export has been changed for these.
+
+1. **Transition curves:** a straight eases into a bend gradually, not in one jump into a fixed curve. This pairs with the gentle bank rule (section 13).
+2. **Sight distance:** a driver can see far enough ahead to react at the design speed, including over crests and around bends.
+3. **Merge and exit lanes:** an on-ramp has an acceleration lane long enough to reach highway speed. An off-ramp has a deceleration lane that starts before the turn.
+4. **Exit spacing:** a minimum gap between exits, so merges don't overlap. The minimum is TBC.
+5. **Gradients:** highways keep hills to about 4 to 6%, with crests and dips rounded off.
+6. **Shoulders:** a hard shoulder about 3 m wide on the outside, and a narrow one about 1 m wide on the inside.
+7. **Clear zone:** nothing solid near the road edge unless a barrier protects it.
+8. **Barrier ends:** barrier ends are bent away from the road or buried. They are never left blunt facing traffic.
+9. **Median barrier:** a continuous barrier separates the two directions of traffic.
+10. **Lane width:** about 3.5 m per lane, the same throughout.
+11. **Rumble strips:** on the shoulder edges.
+12. **Tunnels:** lighting gets gradually brighter or darker at the portals, so the eyes adjust. Walls and lighting stay even inside.
+13. **Sign sequence:** advance exit signs at about 2 km, 1 km and 500 m, then a sign at the exit itself.
+14. **Three lanes each way (Hass, 24 Oct):** the ring expressway and the tunnels become three lanes in each direction, with a median barrier (rule 9). This changes the width rule in section 3 for expressways, and the median width is TBC.
+
