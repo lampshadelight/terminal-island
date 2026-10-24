@@ -256,3 +256,7 @@ Notes only. Nothing in the export has been changed for these. No runaway lanes (
 8. **No dead ends:** every road connects back into the network (Hass, 24 Oct, replacing the turning circle rule). The export has six dead ends now: three pier ends, the Resort Bay Promenade start, and the two summit ends (Whitepeak Hill Climb and Cloudline). Each needs a decision: connect it, or keep it as a documented exception (TBC).
 9. **Name and number signs:** a road name and route number sign after every junction.
 
+## 23. Later task: pier dockyard (Hass, 24 Oct)
+
+Notes only, for later. The pier area becomes a proper dockyard. The three pier dead ends (c_pier1, c_pier2 and c_pier3) wait for that redesign, so they are not changed now. Section 22, rule 8 still applies once the dockyard is designed.
+
