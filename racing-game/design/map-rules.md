@@ -151,3 +151,12 @@ Hass asked for banking across the whole road, not just a raised outside edge, so
 - Open item: the interchange ramps `c_ix_e1`, `e3`, `e4`, `w2`, `w3` and `w4` get the 400 km/h target because they run through the bypass tunnel. The exit braking rule (section 9) may need to apply to them, since they are slip roads. Hass to decide.
 - The footprint check (section 10) was run on v42 geometry only. Re-run it before any exit bank is built.
 
+## 13. Road rules (open list, Hass 24 Oct)
+
+Notes only. Nothing in the export has been changed for these. Hass will add more.
+
+1. **Expressway near the spaghetti intersection:** the main ring expressway there is currently wavy. It should have no turns, only gentle bends. Check it against this rule in the next export.
+2. **Banking only on high-speed turns.** Low-speed turns get no banking. Speed is judged by the road's target (section 1).
+3. **Run-off lanes on turns:** every turn that needs one has a run-off lane on the inside and on the outside. The run-off lane is part of the carriageway for the width audit (section 6).
+4. **Banking shape:** a flat section first, then a gentle curve into the bank. Not a flat gradient or a straight ramp. The bank eases in from the flat part, and the same easing happens on the way out. This is an extra condition on the 3° per 10 m ramp rule in section 8.
+
