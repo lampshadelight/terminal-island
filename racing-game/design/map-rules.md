@@ -201,3 +201,11 @@ Notes only. Nothing in the export has been changed for these.
 
 Notes only. Barricades need reflectors on them. The exact spec comes later from Hass (TBC). Until then, the audit (section 14) lists every barricade as missing reflectors, and that is not a failure yet.
 
+## 17. Lines, barricade placement and exit signs (Hass, 24 Oct)
+
+Notes only. Nothing in the export has been changed for these.
+
+1. **One standard line style.** Every road uses the same line style, so lines match at intersections. At present the roads use different styles, which is why they don't line up at junctions. The standard style is to be set (TBC).
+2. **Barricade placement:** every road-side section at a high-speed turn gets a barricade. At present some are missing completely. Exact placement rules are to be set (TBC).
+3. **Exit signs:** exits need street signs at the exit and leading up to it. At present they are not visible.
+
